@@ -3,16 +3,22 @@ from rest_framework.response import Response
 
 from .models import Order
 from .service import OrderService
-from .serializers import OrderSerializer
+from .serializers import OrderSerializer, OrderProductSerializer
+from ..products.serializers import ProductSerializer
+
 
 
 @api_view(['POST'])
 def add_orders(request):
     """To Add new sales or purchase order"""
-    #try:
+
+    order_serializer = OrderSerializer(data=request.data)
+    order_serializer.is_valid(raise_exception=True)
+    order_product_serializer = OrderProductSerializer(data=request.data['orderproducts'], many=True)
+    order_product_serializer.is_valid(raise_exception=True)
     order_service = OrderService()
-    order_data = order_service.add_orders(request.data)
-    return Response(order_data)
+    order_details = order_service.add_orders(order_serializer, order_product_serializer)
+    return Response(order_details)
     #except Exception as e:
     #    return Response("Quantity")
 
@@ -40,5 +46,5 @@ def update_order(request, order_id):
     """Update details of the order with the given data"""
 
     order_service = OrderService()
-    order_data = order_service.update_order(order_id, **request.data)
+    order_data = order_service.update_order(order_id, request.data)
     return Response(order_data)

@@ -36,7 +36,7 @@ class Order (models.Model):
     is_sales_order = models.BooleanField(default=True ,null=False)
     order_date = models.DateField()
     delivery_date = models.DateField()
-    products = models.ManyToManyField(Product, through='OrderProduct',related_name='products')
+    #products = models.ManyToManyField(Product, through='OrderProduct',related_name='products')
     vendors = models.ForeignKey(Vendor,related_name='vendor_id',on_delete=models.CASCADE, null=True)
     customers = models.ForeignKey(Customer, related_name='customer_id', on_delete=models.CASCADE, null=False)
 
