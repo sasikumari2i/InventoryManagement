@@ -48,8 +48,8 @@ class Order (models.Model):
 
 
 class OrderProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product,related_name='products',on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='orders',on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(null=True)
 
     class Meta:

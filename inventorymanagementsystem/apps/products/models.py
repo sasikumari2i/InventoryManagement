@@ -22,7 +22,7 @@ class Product (models.Model):
     description = models.CharField(max_length=400)
     available_stock = models.IntegerField()
     price = models.FloatField()
-    category = models.ForeignKey(Category, related_name='category',on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category,related_name='products',on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
