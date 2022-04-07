@@ -14,24 +14,49 @@ class OrderService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic
-    def add_orders(self, order_serializer, order_product_serializer):
+    def add_orders(self, order_serializer):
         """To Add new sales or purchase order from the given data"""
 
-        products = Product.objects.all()
-        #print(products.get(id=4))
-        order_serializer.save()
-        for order_products in order_product_serializer:
-            product_details = products.get(id=order_products['products'])
+        order_serializer.is_valid(raise_exception=True)
 
-            if order_serializer.is_sales_order and product_details.available_stock >= order_products.quantity:
-                product_details.available_stock = product_details.available_stock - order_products.quantity
-            elif not order.is_sales_order:
-                product_details.available_stock = product_details.available_stock + order_products.quantity
-            else:
-                raise Exception("Enter only available stock")
-            product_details.save()
-            order_product_data = OrderProduct.objects.create(order=order_serializer,product=product_details,
-                                                             quantity=order_products.quantity)
+        order_placed = OrderSerializer(order_serializer)
+        #order_placed.is_valid(raise_exception=True)
+        #order_placed.
+
+        print(order_placed)
+
+        #print(type(order_placed))
+        #print(order_placed)
+
+        #print(order_placed.data['orderproducts'])
+
+        #products = Product.objects.all()
+        #print(products.get(id=4))
+        #order_serializer.save()
+        #print(order_serializer)
+        #order_serializer.is_valid(raise_exception=True)
+        #order_serializer.save()
+        #order = OrderSerializer(order_serializer)
+        #order_conf = Order.objects.create(**order)
+        #order = Order.objects.create(rder_serializer)
+        #data = order_serializer.validated_data
+        #order_serializer.save()
+        #print(order_products)
+        #print(type(order_serializer))
+        #order_serializer.pop('orderproducts')
+        #print(order_serializer)
+        # for order_products in order_product_serializer:
+        #     product_details = products.get(id=order_products['products'])
+        #
+        #     if order_serializer.is_sales_order and product_details.available_stock >= order_products.quantity:
+        #         product_details.available_stock = product_details.available_stock - order_products.quantity
+        #     elif not order.is_sales_order:
+        #         product_details.available_stock = product_details.available_stock + order_products.quantity
+        #     else:
+        #         raise Exception("Enter only available stock")
+        #     product_details.save()
+        #     order_product_data = OrderProduct.objects.create(order=order_serializer,product=product_details,
+        #                                                      quantity=order_products.quantity)
 
 
         # product_data = data['products']
@@ -52,8 +77,8 @@ class OrderService:
         # #
         #     order_product = OrderProduct.objects.create(product=product_details,order=order,quantity=quantity)
         #
-        ordered = OrderProductSerializer(order_product_data)
-        return ordered.data
+        #ordered = OrderProductSerializer(order_product_data)
+        return order_serializer
 
     def get_order_id(self,order_id):
         """Get order details for the given order id"""
