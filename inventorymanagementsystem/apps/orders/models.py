@@ -37,8 +37,8 @@ class Order (models.Model):
     order_date = models.DateField()
     delivery_date = models.DateField()
     #products = models.ManyToManyField(Product, through='OrderProduct',related_name='products')
-    vendors = models.ForeignKey(Vendor,related_name='vendor_id',on_delete=models.CASCADE, null=True)
-    customers = models.ForeignKey(Customer, related_name='customer_id', on_delete=models.CASCADE, null=False)
+    vendors = models.ForeignKey(Vendor,related_name='orders',on_delete=models.CASCADE, null=True, blank=True)
+    customers = models.ForeignKey(Customer, related_name='orders', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         if self.is_sales_order:

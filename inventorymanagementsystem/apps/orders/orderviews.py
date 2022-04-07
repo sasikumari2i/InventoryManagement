@@ -29,22 +29,17 @@ from ..products.serializers import ProductSerializer
 def add_orders(request):
     """To Add new sales or purchase order"""
 
-    validated_data = request.data
-    order_serializer = OrderSerializer(data=validated_data)
-    #order_service =
-
-    #order_serializer.save()
-    #order_serializer.is_valid(raise_exception=True)
-    #order_serializer.save()
-    #order_serializer.save()
-    # order_product_serializer = OrderProductSerializer(data=request.data['orderproducts'], many=True)
-    # order_product_serializer.is_valid(raise_exception=True)
+    #validated_data = request.data
+    #print(request.data['customer'])
+    #print(request.data)
+    #print(OrderSerializer())
+    validated_data = OrderSerializer(data=request.data)
+    #print(validated_data)
+    validated_data.is_valid(raise_exception=False)
     order_service = OrderService()
-    order_details = order_service.add_orders(order_serializer)
-    return Response(order_serializer.data)
-    #except Exception as e:
-    #    return Response("Quantity")
+    order_details = order_service.add_orders(request.data)
 
+    return Response(order_details)
 
 @api_view(['GET'])
 def get_order_by_id(request, order_id):
