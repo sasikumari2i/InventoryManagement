@@ -1,3 +1,4 @@
+import datetime
 from django.core.validators import RegexValidator
 
 from django.db import models
@@ -34,7 +35,7 @@ class Customer (models.Model):
 
 class Order (models.Model):
     is_sales_order = models.BooleanField(default=True ,null=False)
-    order_date = models.DateField()
+    order_date = models.DateField(default=datetime.date.today)
     delivery_date = models.DateField()
     #products = models.ManyToManyField(Product, through='OrderProduct',related_name='products')
     vendors = models.ForeignKey(Vendor,related_name='orders',on_delete=models.CASCADE, null=True, blank=True)

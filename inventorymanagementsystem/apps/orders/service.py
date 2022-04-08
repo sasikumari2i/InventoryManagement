@@ -35,7 +35,6 @@ class OrderService:
             product_details.save()
             order_product_data = OrderProduct.objects.create(order=order,product=product_details,
                                                               quantity=product['quantity'])
-        #order.save()
         order_response = OrderSerializer(order)
 
         return order_response.data

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+import datetime
 
 from .models import Vendor, Order,OrderProduct,Customer
 from ..products.models import Product
@@ -11,12 +12,6 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = "__all__"
 
-class VendorSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Vendor
-        fields = "__all__"
-
 class OrderProductSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -25,9 +20,11 @@ class OrderProductSerializer(serializers.ModelSerializer):
         #fields = ('product','quantity')
         exclude = ('id','order')
 
+
+
 class OrderSerializer(serializers.ModelSerializer):
 
-    orderproducts = OrderProductSerializer(many=True)
+    orderproducts = OrderProductSerializer(many=True, read_only=True)
 
     class Meta:
         model = Order
@@ -35,12 +32,24 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ('id','is_sales_order','order_date','delivery_date','vendors','customers','orderproducts')
 
     def validate(self, data):
-
-        if data['is_sales_order'] is True and self.initial_data['vendors_id'] is not None:
+        #datetime.datetime.strptime(self.initial_data['delivery_date'], "%Y-%m-%d").date()
+        #print(self.initial_data['orderproducts'])
+        if data['is_sales_order'] is True and self.initial_data['vendors'] is not None:
             raise Exception("Sales Order cannot have Vendor")
-        elif data['is_sales_order'] is False and self.initial_data['customers_id'] is not None:
+        elif data['is_sales_order'] is False and self.initial_data['customers'] is not None:
             raise Exception("Purchase Order cannot have Customer")
-        elif self.initial_data['vendors_id'] is None and self.initial_data['customers_id'] is None:
+        elif self.initial_data['vendors'] is None and self.initial_data['customers'] is None:
             raise Exception("Please give vendor or customer details for the order")
-
+        #elif  < datetime.date.today():
+         #   raise Exception("Enter Valid Delivery date")
         return data
+
+class VendorSerializer(serializers.ModelSerializer):
+
+    orders =OrderSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Vendor
+        #depth = 1
+        #fields = "__all__"
+        fields = ('id','name','address','email','phone_number','orders')
