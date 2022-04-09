@@ -14,9 +14,9 @@ class OrderView(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
     def destroy(self, request, *args, **kwargs):
-        order = self.get_object()
-        print("Ordereeeeeddd")
-        order.delete()
+        #order = self.get_object()
+        #order.delete()
+        super().destroy(request)
         return Response({"message" : "Order Deleted"})
 
     @transaction.atomic()
@@ -48,6 +48,8 @@ class OrderView(viewsets.ModelViewSet):
         new_order.save()
         serialized = OrderSerializer(new_order)
         return Response(serialized.data)
+
+
 
 class CustomerView(viewsets.ModelViewSet):
     queryset = Customer.objects.all()

@@ -17,14 +17,14 @@ class OrderProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderProduct
         #depth = 1
-        #fields = ('product','quantity')
-        exclude = ('id','order')
+        fields = ('product','quantity')
+        #exclude = ('id','order')
 
 
 
 class OrderSerializer(serializers.ModelSerializer):
 
-    orderproducts = OrderProductSerializer(many=True, read_only=True)
+    orderproducts = OrderProductSerializer(many=True,read_only=True)
 
     class Meta:
         model = Order
