@@ -32,16 +32,12 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ('id','is_sales_order','order_date','delivery_date','vendors','customers','orderproducts')
 
     def validate(self, data):
-        #datetime.datetime.strptime(self.initial_data['delivery_date'], "%Y-%m-%d").date()
-        #print(self.initial_data['orderproducts'])
         if data['is_sales_order'] is True and self.initial_data['vendors'] is not None:
             raise Exception("Sales Order cannot have Vendor")
         elif data['is_sales_order'] is False and self.initial_data['customers'] is not None:
             raise Exception("Purchase Order cannot have Customer")
         elif self.initial_data['vendors'] is None and self.initial_data['customers'] is None:
             raise Exception("Please give vendor or customer details for the order")
-        #elif  < datetime.date.today():
-         #   raise Exception("Enter Valid Delivery date")
         return data
 
 class VendorSerializer(serializers.ModelSerializer):

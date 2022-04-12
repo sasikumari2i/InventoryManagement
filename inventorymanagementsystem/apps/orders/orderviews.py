@@ -14,8 +14,6 @@ class OrderView(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
     def destroy(self, request, *args, **kwargs):
-        #order = self.get_object()
-        #order.delete()
         super().destroy(request)
         return Response({"message" : "Order Deleted"})
 
@@ -49,12 +47,44 @@ class OrderView(viewsets.ModelViewSet):
         serialized = OrderSerializer(new_order)
         return Response(serialized.data)
 
+    @transaction.atomic
+    def update(self, request, *args, **kwargs):
+        order_details = self.get_object()
+        order_products = request.data['orderproducts']
+        request.data.pop('orderproducts')
+        validated_data = OrderSerializer(data=request.data)
+        validated_data.is_valid(raise_exception=True)
+
+        order_details.is_sales_order = validated_data.data['is_sales_order']
+        order_details.order_date = validated_data.data['order_date']
+        order_details.delivery_date = validated_data.data['delivery_date']
+        order_details.vendors_id = validated_data.data['vendors']
+        order_details.customers_id = validated_data.data['customers']
+        order_details.save()
+
+        for product in order_products:
+            product_details = Product.objects.get(id=product['product'])
+            if validated_data.data['is_sales_order'] and product_details.available_stock >= product['quantity']:
+                product_details.available_stock = product_details.available_stock - product['quantity']
+            elif not validated_data.data['is_sales_order']:
+                product_details.available_stock = product_details.available_stock + product['quantity']
+            else:
+                raise Exception("Enter only available stock")
+            product_details.save()
+            order_product_details = OrderProduct.objects.get(product=product_details.id,
+                                                             order=order_details.id)
+            order_product_details.product = product_details
+            order_product_details.order = order_details
+            order_product_details.quantity = product['quantity']
+            order_product_details.save()
+
+        serializer = OrderSerializer(order_details)
+        return Response(serializer.data)
 
 
 class CustomerView(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-
 
 class VendorView(viewsets.ModelViewSet):
     queryset = Vendor.objects.all()
