@@ -8,7 +8,6 @@ from .service import OrderService
 from .serializers import OrderSerializer, OrderProductSerializer,CustomerSerializer, VendorSerializer
 from ..products.serializers import ProductSerializer
 
-
 class OrderView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -27,7 +26,6 @@ class OrderView(viewsets.ModelViewSet):
         serialized = OrderSerializer(new_order)
         return Response(serialized.data)
 
-
     def update(self, request, *args, **kwargs):
         order_details = self.get_object()
         order_products = request.data['orderproducts']
@@ -38,6 +36,9 @@ class OrderView(viewsets.ModelViewSet):
         serializer = OrderSerializer(order)
         return Response(serializer.data)
 
+    def partial_update(self, request, *args, **kwargs):
+        self.update(request)
+        return Response({"message" : "Updated"})
 
 class CustomerView(viewsets.ModelViewSet):
     queryset = Customer.objects.all()

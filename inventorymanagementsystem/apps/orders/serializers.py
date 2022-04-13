@@ -31,6 +31,10 @@ class OrderSerializer(serializers.ModelSerializer):
         #depth = 1
         fields = ('id','is_sales_order','order_date','delivery_date','vendors','customers','orderproducts')
 
+    def validate_date(self):
+        if data['order_date'] > data['delivery_date']:
+            raise serializers.ValidationError("Delivery date must be after Ordered date.")
+
     def validate(self, data):
         if data['is_sales_order'] is True and self.initial_data['vendors'] is not None:
             raise Exception("Sales Order cannot have Vendor")

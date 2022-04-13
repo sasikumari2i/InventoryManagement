@@ -17,7 +17,6 @@ class OrderService:
     def create(self, validated_data, order_products):
         products = Product.objects.all()
         new_order = Order.objects.create(is_sales_order=validated_data.data['is_sales_order'],
-                                         # order_date=validated_data.data['order_date'],
                                          delivery_date=validated_data.data['delivery_date'],
                                          vendors_id=validated_data.data['vendors'],
                                          customers_id=validated_data.data['customers'])
