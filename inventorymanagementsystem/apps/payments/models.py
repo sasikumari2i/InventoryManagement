@@ -12,7 +12,7 @@ class Invoice(models.Model):
 
 class Payment(models.Model):
 
-    payee_name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
+    payee_name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
+    phone = models.CharField(max_length=10)
     invoice = models.OneToOneField(Invoice, on_delete=models.CASCADE)
