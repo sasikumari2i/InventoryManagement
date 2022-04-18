@@ -10,4 +10,4 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Invoice
-        fields = "__all__"
+        fields = ('amount','created_date','order', 'payment_deadline')

@@ -721,3 +721,273 @@ INFO 2022-04-18 12:27:57,031 basehttp 3340 5180 "GET /invoice/ HTTP/1.1" 200 127
 INFO 2022-04-18 12:28:05,088 basehttp 3340 5180 "GET /invoice/1/ HTTP/1.1" 200 125
 INFO 2022-04-18 12:29:17,847 autoreload 3340 2400 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\urls.py changed, reloading.
 INFO 2022-04-18 12:29:19,221 autoreload 2228 9648 Watching for file changes with StatReloader
+INFO 2022-04-18 12:31:37,182 autoreload 2228 9648 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:31:38,376 autoreload 12832 8800 Watching for file changes with StatReloader
+INFO 2022-04-18 12:34:19,838 autoreload 12832 8800 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:34:21,209 autoreload 13484 13216 Watching for file changes with StatReloader
+INFO 2022-04-18 12:36:20,119 autoreload 13484 13216 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:36:21,177 autoreload 10440 8284 Watching for file changes with StatReloader
+INFO 2022-04-18 12:36:29,869 autoreload 10440 8284 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:36:30,809 autoreload 13420 976 Watching for file changes with StatReloader
+WARNING 2022-04-18 12:36:59,638 log 13420 9280 Bad Request: /invoice/
+WARNING 2022-04-18 12:36:59,638 basehttp 13420 9280 "POST /invoice/ HTTP/1.1" 400 128
+INFO 2022-04-18 12:38:03,525 basehttp 13420 9280 "POST /invoice/ HTTP/1.1" 200 108
+INFO 2022-04-18 12:39:28,470 autoreload 13420 976 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:39:29,744 autoreload 12012 1972 Watching for file changes with StatReloader
+INFO 2022-04-18 12:43:30,661 autoreload 12012 1972 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 12:43:31,999 autoreload 11160 13172 Watching for file changes with StatReloader
+INFO 2022-04-18 12:45:10,947 autoreload 11160 13172 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 12:45:12,331 autoreload 1464 6168 Watching for file changes with StatReloader
+INFO 2022-04-18 12:47:48,711 autoreload 1464 6168 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 12:47:50,390 autoreload 3364 8892 Watching for file changes with StatReloader
+INFO 2022-04-18 12:49:18,844 autoreload 3364 8892 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 12:49:20,236 autoreload 416 9712 Watching for file changes with StatReloader
+INFO 2022-04-18 12:49:33,910 autoreload 416 9712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 12:49:35,142 autoreload 6644 5968 Watching for file changes with StatReloader
+INFO 2022-04-18 12:51:29,819 autoreload 6644 5968 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 12:51:30,891 autoreload 12532 2624 Watching for file changes with StatReloader
+INFO 2022-04-18 12:54:11,882 autoreload 12532 2624 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:54:12,992 autoreload 5180 1080 Watching for file changes with StatReloader
+INFO 2022-04-18 12:56:35,385 autoreload 5180 1080 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:56:36,498 autoreload 12384 12264 Watching for file changes with StatReloader
+INFO 2022-04-18 12:56:38,172 autoreload 12384 12264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 12:56:39,140 autoreload 11740 8856 Watching for file changes with StatReloader
+INFO 2022-04-18 12:59:47,960 basehttp 11740 12736 "GET /invoice/ HTTP/1.1" 200 120
+INFO 2022-04-18 13:00:20,602 basehttp 11740 12736 "GET /orders/ HTTP/1.1" 200 4261
+ERROR 2022-04-18 13:01:20,670 log 11740 12736 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 17, in create
+    new_invoice = self.invoice_service.create(validated_data)
+AttributeError: 'InvoiceView' object has no attribute 'invoice_service'
+ERROR 2022-04-18 13:01:20,677 basehttp 11740 12736 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 13:02:20,256 autoreload 11740 8856 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 13:02:21,676 autoreload 11548 2584 Watching for file changes with StatReloader
+INFO 2022-04-18 13:03:23,022 autoreload 11548 2584 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:03:24,100 autoreload 10492 9380 Watching for file changes with StatReloader
+ERROR 2022-04-18 13:03:29,491 log 10492 13672 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    serialized = OrderSerializer(new_invoice)
+NameError: name 'OrderSerializer' is not defined
+ERROR 2022-04-18 13:03:29,498 basehttp 10492 13672 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 13:05:13,194 autoreload 10492 9380 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:05:14,359 autoreload 10220 676 Watching for file changes with StatReloader
+INFO 2022-04-18 13:05:31,325 autoreload 10220 676 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:05:32,440 autoreload 6680 1776 Watching for file changes with StatReloader
+INFO 2022-04-18 13:05:44,169 autoreload 6680 1776 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:05:45,250 autoreload 13600 13552 Watching for file changes with StatReloader
+ERROR 2022-04-18 13:05:49,458 log 13600 13708 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    serialized = OrderSerializer(new_invoice)
+NameError: name 'OrderSerializer' is not defined
+ERROR 2022-04-18 13:05:49,467 basehttp 13600 13708 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 13:07:02,449 autoreload 13600 13552 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:07:03,378 autoreload 5772 656 Watching for file changes with StatReloader
+INFO 2022-04-18 13:07:07,371 autoreload 5772 656 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:07:08,419 autoreload 2972 10748 Watching for file changes with StatReloader
+WARNING 2022-04-18 13:07:12,238 log 2972 5584 Bad Request: /invoice/
+WARNING 2022-04-18 13:07:12,238 basehttp 2972 5584 "POST /invoice/ HTTP/1.1" 400 64
+ERROR 2022-04-18 13:07:58,882 log 2972 5584 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    serialized = OrderSerializer(new_invoice)
+NameError: name 'OrderSerializer' is not defined
+ERROR 2022-04-18 13:07:58,884 basehttp 2972 5584 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 13:08:36,151 autoreload 2972 10748 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:08:37,179 autoreload 4636 13492 Watching for file changes with StatReloader
+INFO 2022-04-18 13:09:03,248 autoreload 4636 13492 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:09:04,436 autoreload 780 2712 Watching for file changes with StatReloader
+INFO 2022-04-18 13:09:40,153 autoreload 780 2712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:09:41,215 autoreload 12968 512 Watching for file changes with StatReloader
+WARNING 2022-04-18 13:09:56,204 log 12968 9684 Bad Request: /invoice/
+WARNING 2022-04-18 13:09:56,205 basehttp 12968 9684 "POST /invoice/ HTTP/1.1" 400 64
+ERROR 2022-04-18 13:10:21,631 log 12968 9684 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    serialized = OrderSerializer(new_invoice)
+NameError: name 'OrderSerializer' is not defined
+ERROR 2022-04-18 13:10:21,635 basehttp 12968 9684 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 13:10:48,212 autoreload 12968 512 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:10:49,739 autoreload 5540 7848 Watching for file changes with StatReloader
+INFO 2022-04-18 13:11:19,009 autoreload 5540 7848 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:11:20,478 autoreload 11296 14252 Watching for file changes with StatReloader
+WARNING 2022-04-18 13:11:33,630 log 11296 11160 Bad Request: /invoice/
+WARNING 2022-04-18 13:11:33,631 basehttp 11296 11160 "POST /invoice/ HTTP/1.1" 400 64
+ERROR 2022-04-18 13:11:44,427 log 11296 11160 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 18, in create
+    validated_data.is_valid(raise_exception=True)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 235, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'order': [ErrorDetail(string='Invalid pk "250" - object does not exist.', code='does_not_exist')], 'status_code': 400}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 466, in handle_exception
+    response = exception_handler(exc, context)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py", line 14, in custom_exception_handler
+    response.data['message'] = response.data['detail']
+KeyError: 'detail'
+ERROR 2022-04-18 13:11:44,438 basehttp 11296 11160 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 13:12:44,848 autoreload 11296 14252 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:12:46,069 autoreload 11656 5300 Watching for file changes with StatReloader
+INFO 2022-04-18 13:13:24,505 autoreload 11656 5300 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:13:25,829 autoreload 10248 2908 Watching for file changes with StatReloader
+INFO 2022-04-18 13:52:18,748 autoreload 10248 2908 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:52:19,708 autoreload 5436 14980 Watching for file changes with StatReloader
+INFO 2022-04-18 13:53:25,837 autoreload 5436 14980 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:53:26,759 autoreload 12392 5348 Watching for file changes with StatReloader
+INFO 2022-04-18 13:54:06,350 basehttp 12392 6440 "GET /orders/ HTTP/1.1" 200 4261
+INFO 2022-04-18 13:56:48,782 autoreload 12392 5348 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:56:49,579 autoreload 14704 12412 Watching for file changes with StatReloader
+INFO 2022-04-18 13:56:52,156 autoreload 14704 12412 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 13:56:53,148 autoreload 9296 15300 Watching for file changes with StatReloader
+INFO 2022-04-18 13:57:12,766 basehttp 9296 12416 "GET /invoice/ HTTP/1.1" 200 120
+ERROR 2022-04-18 13:57:29,370 log 9296 12416 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    serialized = OrderSerializer(new_invoice)
+NameError: name 'OrderSerializer' is not defined
+ERROR 2022-04-18 13:57:29,372 basehttp 9296 12416 "POST /invoice/ HTTP/1.1" 500 145
+INFO 2022-04-18 14:00:36,568 autoreload 9296 15300 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:00:37,487 autoreload 11852 6448 Watching for file changes with StatReloader
+INFO 2022-04-18 14:01:53,441 autoreload 11852 6448 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 14:01:54,321 autoreload 15156 5964 Watching for file changes with StatReloader
+INFO 2022-04-18 14:03:34,581 autoreload 15156 5964 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 14:03:35,272 autoreload 12740 4104 Watching for file changes with StatReloader
+INFO 2022-04-18 14:05:57,098 autoreload 12740 4104 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-04-18 14:05:57,801 autoreload 13040 7748 Watching for file changes with StatReloader
+INFO 2022-04-18 14:06:07,280 autoreload 13040 7748 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-04-18 14:06:08,009 autoreload 14616 9724 Watching for file changes with StatReloader
+INFO 2022-04-18 14:06:51,540 autoreload 14616 9724 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 14:06:52,320 autoreload 2736 14464 Watching for file changes with StatReloader
+INFO 2022-04-18 14:08:04,837 autoreload 2736 14464 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:08:05,754 autoreload 11004 5824 Watching for file changes with StatReloader
+INFO 2022-04-18 14:09:22,507 autoreload 11004 5824 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:09:23,273 autoreload 12488 7440 Watching for file changes with StatReloader
+INFO 2022-04-18 14:09:46,983 autoreload 12488 7440 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:09:47,812 autoreload 15324 13536 Watching for file changes with StatReloader
+INFO 2022-04-18 14:10:29,686 autoreload 15324 13536 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:10:30,479 autoreload 5540 5300 Watching for file changes with StatReloader
+INFO 2022-04-18 14:10:55,254 autoreload 5540 5300 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 14:10:56,067 autoreload 14672 4172 Watching for file changes with StatReloader
+INFO 2022-04-18 14:11:27,275 autoreload 14672 4172 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:11:28,056 autoreload 9888 15000 Watching for file changes with StatReloader
+INFO 2022-04-18 14:11:33,873 autoreload 9888 15000 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:11:34,748 autoreload 6452 2972 Watching for file changes with StatReloader
+INFO 2022-04-18 14:12:35,809 autoreload 6452 2972 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:12:36,732 autoreload 15336 14776 Watching for file changes with StatReloader
+INFO 2022-04-18 14:14:37,637 autoreload 15336 14776 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:14:38,512 autoreload 6796 11244 Watching for file changes with StatReloader
+INFO 2022-04-18 14:15:06,712 autoreload 6796 11244 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 14:15:07,526 autoreload 12980 14216 Watching for file changes with StatReloader
