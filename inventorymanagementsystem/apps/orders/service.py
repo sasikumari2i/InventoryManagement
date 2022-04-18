@@ -45,7 +45,7 @@ class OrderService:
             order_product_data.save()
             new_order.save()
             return new_order
-        except ValidationError as exc:
+        except CustomException as exc:
             raise CustomException(exc.status_code, "Exception in Order Creation")
 
     @transaction.atomic
