@@ -26,8 +26,8 @@ class OrderView(viewsets.ModelViewSet):
             instance = self.get_object()
             serializer = self.get_serializer(instance)
             return Response(serializer.data)
-        except ObjectDoesNotExist as exc:
-            raise CustomException(exc.status_code, "The requested page is not found")
+        except Exception as exc:
+            raise CustomException(exc.status_code, "Exception in Retrieving Orders")
 
     def create(self, request, *args, **kwargs):
         try:
@@ -38,8 +38,8 @@ class OrderView(viewsets.ModelViewSet):
             new_order = self.order_service.create(validated_data, order_products)
             serialized = OrderSerializer(new_order)
             return Response(serialized.data)
-        except ObjectDoesNotExist as exc :
-            raise CustomException(exc.status_code, "The requested page is not found")
+        except Exception as exc :
+            raise CustomException(exc.status_code, "Exception in Creating Order")
 
 
     def update(self, request, *args, **kwargs):
@@ -53,15 +53,21 @@ class OrderView(viewsets.ModelViewSet):
             serializer = OrderSerializer(order)
             return Response(serializer.data)
         except KeyError as exc :
-            raise CustomException(exc.status_code, "Verify the Data entered")
+            raise CustomException(exc.status_code, "Exception in Updating Order")
 
     def partial_update(self, request, *args, **kwargs):
-        response = self.update(request)
-        return response
+        try:
+            response = self.update(request)
+            return response
+        except KeyError as exc :
+            raise CustomException(exc.status_code, "Exception in Patch Order")
 
     def destroy(self, request, *args, **kwargs):
-        super().destroy(request)
-        return Response({"message" : "Order Deleted"})
+        try:
+            super().destroy(request)
+            return Response({"message" : "Order Deleted"})
+        except Exception as exc:
+            raise CustomException(exc.status_code, "Exception in Delete Order")
 
 
 class CustomerView(viewsets.ModelViewSet):

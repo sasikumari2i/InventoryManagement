@@ -1,13 +1,7 @@
 from django.core.validators import RegexValidator
 
 from django.db import models
-
-
-class ValidationConstants:
-    """Regex Validator strings defined here"""
-
-    NAME_REGEX = RegexValidator(r'[A-Za-z]+([ ][a-zA-Z]+)*', 'Enter a valid name')
-
+from utils.constants import ValidationConstants
 
 class Category (models.Model):
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])

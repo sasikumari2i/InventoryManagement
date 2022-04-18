@@ -2032,3 +2032,725 @@ INFO 2022-04-18 15:41:02,831 autoreload 10548 10380 Watching for file changes wi
 WARNING 2022-04-18 15:41:09,404 log 10548 8368 Bad Request: /invoice/
 WARNING 2022-04-18 15:41:09,404 basehttp 10548 8368 "POST /invoice/ HTTP/1.1" 400 58
 INFO 2022-04-18 15:41:18,435 autoreload 10548 10380 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 15:42:12,619 autoreload 12300 7084 Watching for file changes with StatReloader
+WARNING 2022-04-18 15:42:25,527 log 12300 10612 Bad Request: /invoice/
+WARNING 2022-04-18 15:42:25,529 basehttp 12300 10612 "POST /invoice/ HTTP/1.1" 400 58
+INFO 2022-04-18 15:45:41,334 autoreload 12300 7084 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 15:45:42,262 autoreload 9704 15080 Watching for file changes with StatReloader
+WARNING 2022-04-18 15:45:45,378 log 9704 8212 Bad Request: /invoice/
+WARNING 2022-04-18 15:45:45,380 basehttp 9704 8212 "POST /invoice/ HTTP/1.1" 400 58
+WARNING 2022-04-18 15:47:29,694 log 9704 8212 Bad Request: /invoice/
+WARNING 2022-04-18 15:47:29,694 basehttp 9704 8212 "POST /invoice/ HTTP/1.1" 400 58
+INFO 2022-04-18 16:13:30,181 autoreload 10788 10020 Watching for file changes with StatReloader
+WARNING 2022-04-18 16:13:34,329 log 10788 3932 Bad Request: /invoice/
+WARNING 2022-04-18 16:13:34,329 basehttp 10788 3932 "POST /invoice/ HTTP/1.1" 400 58
+WARNING 2022-04-18 16:13:40,532 log 10788 3932 Bad Request: /invoice/
+WARNING 2022-04-18 16:13:40,533 basehttp 10788 3932 "POST /invoice/ HTTP/1.1" 400 55
+WARNING 2022-04-18 16:14:02,373 log 10788 3932 Not Found: /order/215
+WARNING 2022-04-18 16:14:02,373 basehttp 10788 3932 "GET /order/215 HTTP/1.1" 404 9546
+WARNING 2022-04-18 16:14:08,864 log 10788 3932 Not Found: /order/215/
+WARNING 2022-04-18 16:14:08,864 basehttp 10788 3932 "GET /order/215/ HTTP/1.1" 404 9549
+INFO 2022-04-18 16:14:12,103 basehttp 10788 3932 "GET /orders/215/ HTTP/1.1" 200 164
+INFO 2022-04-18 16:14:21,497 basehttp 10788 3932 "GET /orders/207/ HTTP/1.1" 200 135
+INFO 2022-04-18 16:14:50,352 basehttp 10788 3932 "GET /orders/207/ HTTP/1.1" 200 135
+WARNING 2022-04-18 16:15:03,164 log 10788 3932 Bad Request: /invoice/
+WARNING 2022-04-18 16:15:03,164 basehttp 10788 3932 "POST /invoice/ HTTP/1.1" 400 81
+WARNING 2022-04-18 16:15:28,314 log 10788 3932 Bad Request: /invoice/
+WARNING 2022-04-18 16:15:28,315 basehttp 10788 3932 "POST /invoice/ HTTP/1.1" 400 58
+INFO 2022-04-18 16:18:31,994 autoreload 10788 10020 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 16:18:33,069 autoreload 15136 7868 Watching for file changes with StatReloader
+INFO 2022-04-18 16:20:27,268 autoreload 15136 7868 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 16:20:28,317 autoreload 14432 8448 Watching for file changes with StatReloader
+ERROR 2022-04-18 16:20:30,587 log 14432 4612 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 19, in create
+    new_invoice = self.invoice_service.create(validated_data)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 23, in create
+    order_id = validated_data.data['order']
+KeyError: 'order'
+ERROR 2022-04-18 16:20:30,590 basehttp 14432 4612 "POST /invoice/ HTTP/1.1" 500 98383
+INFO 2022-04-18 16:21:12,371 autoreload 14432 8448 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 16:21:13,513 autoreload 8976 13524 Watching for file changes with StatReloader
+ERROR 2022-04-18 16:21:14,775 log 8976 15104 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 19, in create
+    new_invoice = self.invoice_service.create(validated_data)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 24, in create
+    order_id = validated_data.data['order']
+KeyError: 'order'
+ERROR 2022-04-18 16:21:14,780 basehttp 8976 15104 "POST /invoice/ HTTP/1.1" 500 98324
+INFO 2022-04-18 16:21:53,790 autoreload 8976 13524 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 16:21:54,739 autoreload 6440 9932 Watching for file changes with StatReloader
+INFO 2022-04-18 16:25:03,133 autoreload 2664 6392 Watching for file changes with StatReloader
+WARNING 2022-04-18 16:25:06,544 log 2664 1036 Bad Request: /invoice/
+WARNING 2022-04-18 16:25:06,544 basehttp 2664 1036 "POST /invoice/ HTTP/1.1" 400 102
+INFO 2022-04-18 16:25:51,546 autoreload 2664 6392 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 16:25:52,511 autoreload 5352 3932 Watching for file changes with StatReloader
+INFO 2022-04-18 16:26:16,279 autoreload 5352 3932 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 16:26:17,239 autoreload 13952 6968 Watching for file changes with StatReloader
+INFO 2022-04-18 16:26:22,242 autoreload 13952 6968 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 16:26:23,193 autoreload 5144 4080 Watching for file changes with StatReloader
+INFO 2022-04-18 16:26:32,683 autoreload 5144 4080 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 16:26:33,490 autoreload 13908 5780 Watching for file changes with StatReloader
+INFO 2022-04-18 16:26:43,906 autoreload 13908 5780 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 16:26:44,785 autoreload 6120 12756 Watching for file changes with StatReloader
+ERROR 2022-04-18 16:26:48,465 log 6120 3912 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '207' for key 'payments_invoice.order_id'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    new_invoice = self.invoice_service.create(validated_data, order_id)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 31, in create
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python310\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '207' for key 'payments_invoice.order_id'")
+ERROR 2022-04-18 16:26:48,480 basehttp 6120 3912 "POST /invoice/ HTTP/1.1" 500 209813
+WARNING 2022-04-18 16:27:49,144 log 6120 3912 Bad Request: /invoice/
+WARNING 2022-04-18 16:27:49,145 basehttp 6120 3912 "POST /invoice/ HTTP/1.1" 400 75
+ERROR 2022-04-18 16:28:31,777 log 6120 3912 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 21, in create
+    serialized = InvoicSerializer(new_invoice)
+NameError: name 'InvoicSerializer' is not defined
+ERROR 2022-04-18 16:28:31,779 basehttp 6120 3912 "POST /invoice/ HTTP/1.1" 500 89213
+INFO 2022-04-18 16:29:02,035 autoreload 6120 12756 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 16:29:02,999 autoreload 9052 14728 Watching for file changes with StatReloader
+ERROR 2022-04-18 16:29:05,167 log 9052 6040 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '213' for key 'payments_invoice.order_id'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    new_invoice = self.invoice_service.create(validated_data, order_id)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 31, in create
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python310\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '213' for key 'payments_invoice.order_id'")
+ERROR 2022-04-18 16:29:05,183 basehttp 9052 6040 "POST /invoice/ HTTP/1.1" 500 210014
+INFO 2022-04-18 16:29:16,623 basehttp 9052 6040 "GET /invoice/ HTTP/1.1" 200 283
+INFO 2022-04-18 16:29:38,073 autoreload 9052 14728 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 16:29:39,096 autoreload 11520 12584 Watching for file changes with StatReloader
+INFO 2022-04-18 16:29:45,630 basehttp 11520 10872 "GET /invoice/ HTTP/1.1" 200 304
+INFO 2022-04-18 17:14:38,366 autoreload 10248 11820 Watching for file changes with StatReloader
+ERROR 2022-04-18 17:14:45,721 log 10248 1596 Internal Server Error: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '213' for key 'payments_invoice.order_id'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 20, in create
+    new_invoice = self.invoice_service.create(validated_data, order_id)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 31, in create
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python310\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '213' for key 'payments_invoice.order_id'")
+ERROR 2022-04-18 17:14:45,733 basehttp 10248 1596 "POST /invoice/ HTTP/1.1" 500 210194
+INFO 2022-04-18 17:14:59,476 basehttp 10248 1596 "GET /orders/ HTTP/1.1" 200 4261
+INFO 2022-04-18 17:15:33,077 basehttp 10248 1596 "GET /orders/206 HTTP/1.1" 301 0
+INFO 2022-04-18 17:15:33,089 basehttp 10248 1596 "GET /orders/206/ HTTP/1.1" 200 164
+INFO 2022-04-18 17:16:48,414 basehttp 10248 1596 "GET /orders/206 HTTP/1.1" 301 0
+INFO 2022-04-18 17:16:48,435 basehttp 10248 1596 "GET /orders/206/ HTTP/1.1" 200 164
+INFO 2022-04-18 17:16:56,715 basehttp 10248 1596 "POST /orders/ HTTP/1.1" 200 163
+INFO 2022-04-18 17:18:44,348 basehttp 10248 1596 "GET /invoice/ HTTP/1.1" 200 304
+WARNING 2022-04-18 17:19:05,778 log 10248 1596 Bad Request: /invoice/
+WARNING 2022-04-18 17:19:05,779 basehttp 10248 1596 "POST /invoice/ HTTP/1.1" 400 75
+INFO 2022-04-18 17:19:14,942 basehttp 10248 1596 "POST /invoice/ HTTP/1.1" 200 101
+INFO 2022-04-18 17:19:44,176 autoreload 10248 11820 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 17:19:45,173 autoreload 2096 13716 Watching for file changes with StatReloader
+WARNING 2022-04-18 17:20:06,598 log 2096 12644 Method Not Allowed: /invoice/
+WARNING 2022-04-18 17:20:06,598 basehttp 2096 12644 "PUT /invoice/ HTTP/1.1" 405 58
+INFO 2022-04-18 17:20:26,874 basehttp 2096 12644 "PUT /invoice/7/ HTTP/1.1" 200 101
+INFO 2022-04-18 17:22:09,453 autoreload 2096 13716 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 17:22:10,358 autoreload 15264 5164 Watching for file changes with StatReloader
+INFO 2022-04-18 17:30:03,764 autoreload 15264 5164 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 17:30:04,601 autoreload 9556 6208 Watching for file changes with StatReloader
+INFO 2022-04-18 17:35:04,093 autoreload 9556 6208 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 17:35:04,967 autoreload 5164 15264 Watching for file changes with StatReloader
+INFO 2022-04-18 17:35:20,314 autoreload 5164 15264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 17:35:21,086 autoreload 3716 10260 Watching for file changes with StatReloader
+INFO 2022-04-18 17:35:28,929 autoreload 3716 10260 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 17:35:29,678 autoreload 9400 12224 Watching for file changes with StatReloader
+INFO 2022-04-18 17:35:43,989 autoreload 9400 12224 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 17:35:44,776 autoreload 12644 11896 Watching for file changes with StatReloader
+INFO 2022-04-18 17:36:37,661 autoreload 12644 11896 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 17:36:38,464 autoreload 2176 4656 Watching for file changes with StatReloader
+INFO 2022-04-18 17:37:34,764 autoreload 2176 4656 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 17:37:35,584 autoreload 7380 7696 Watching for file changes with StatReloader
+INFO 2022-04-18 17:42:14,673 autoreload 7380 7696 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 17:42:15,567 autoreload 2720 10800 Watching for file changes with StatReloader
+INFO 2022-04-18 17:43:16,728 autoreload 2720 10800 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 17:43:17,605 autoreload 12152 14560 Watching for file changes with StatReloader
+INFO 2022-04-18 17:43:47,649 autoreload 12152 14560 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 17:43:48,429 autoreload 12896 6040 Watching for file changes with StatReloader
+INFO 2022-04-18 17:44:14,712 autoreload 12896 6040 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\urls.py changed, reloading.
+INFO 2022-04-18 17:44:15,535 autoreload 9492 11716 Watching for file changes with StatReloader
+INFO 2022-04-18 17:44:53,581 autoreload 9492 11716 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\urls.py changed, reloading.
+INFO 2022-04-18 17:44:54,383 autoreload 10996 12372 Watching for file changes with StatReloader
+INFO 2022-04-18 17:45:12,383 basehttp 10996 14280 "GET /payment/ HTTP/1.1" 200 2
+INFO 2022-04-18 17:47:24,567 autoreload 10996 12372 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 17:47:25,273 autoreload 9252 15184 Watching for file changes with StatReloader
+INFO 2022-04-18 17:47:44,260 autoreload 9252 15184 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 17:47:44,969 autoreload 11140 10008 Watching for file changes with StatReloader
+INFO 2022-04-18 17:57:15,832 autoreload 10808 11108 Watching for file changes with StatReloader
+INFO 2022-04-18 18:01:49,969 autoreload 10808 11108 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 18:01:50,908 autoreload 1392 14420 Watching for file changes with StatReloader
+INFO 2022-04-18 18:02:21,821 basehttp 1392 14904 "GET /payment/ HTTP/1.1" 200 2
+INFO 2022-04-18 18:02:58,927 basehttp 1392 14904 "GET /invoice/ HTTP/1.1" 200 406
+ERROR 2022-04-18 18:04:46,472 log 1392 14904 Internal Server Error: /payment/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 32, in create
+    new_payment = self.invoice_service.create(validated_data, invoice_id)
+AttributeError: 'PaymentView' object has no attribute 'invoice_service'
+ERROR 2022-04-18 18:04:46,474 basehttp 1392 14904 "POST /payment/ HTTP/1.1" 500 89619
+INFO 2022-04-18 18:05:28,538 autoreload 1392 14420 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 18:05:29,365 autoreload 5172 11848 Watching for file changes with StatReloader
+INFO 2022-04-18 18:05:41,643 autoreload 5172 11848 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 18:05:42,428 autoreload 14944 4696 Watching for file changes with StatReloader
+INFO 2022-04-18 18:05:45,025 basehttp 14944 7456 "POST /payment/ HTTP/1.1" 200 96
+INFO 2022-04-18 18:26:02,496 basehttp 14944 8972 "GET /invoice/ HTTP/1.1" 200 10027
+INFO 2022-04-18 18:26:02,641 basehttp 14944 8972 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+WARNING 2022-04-18 18:26:02,804 log 14944 8972 Not Found: /favicon.ico
+WARNING 2022-04-18 18:26:02,805 basehttp 14944 8972 "GET /favicon.ico HTTP/1.1" 404 13027
+INFO 2022-04-18 18:26:26,554 autoreload 14944 4696 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 18:26:27,637 autoreload 13764 13744 Watching for file changes with StatReloader
+INFO 2022-04-18 18:26:29,202 basehttp 13764 12828 "GET /invoice/ HTTP/1.1" 200 10027
+INFO 2022-04-18 18:26:32,183 basehttp 13764 12828 "GET /invoice/ HTTP/1.1" 200 10027
+INFO 2022-04-18 18:26:50,910 autoreload 13764 13744 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 18:26:51,822 autoreload 14444 4620 Watching for file changes with StatReloader
+INFO 2022-04-18 18:26:56,404 basehttp 14444 9976 "GET /payment/ HTTP/1.1" 200 9629
+INFO 2022-04-18 18:27:21,306 autoreload 14444 4620 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 18:27:22,092 autoreload 1084 9492 Watching for file changes with StatReloader
+INFO 2022-04-18 18:27:53,645 basehttp 1084 7124 "GET /invoice/ HTTP/1.1" 200 11643
+INFO 2022-04-18 18:29:55,180 autoreload 1084 9492 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 18:29:56,061 autoreload 15172 9920 Watching for file changes with StatReloader
+INFO 2022-04-18 18:29:58,011 basehttp 15172 3860 "GET /invoice/ HTTP/1.1" 200 11172
+INFO 2022-04-18 18:30:29,932 autoreload 15172 9920 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 18:30:30,813 autoreload 5732 13860 Watching for file changes with StatReloader
+INFO 2022-04-18 18:30:33,641 basehttp 5732 14476 "GET /invoice/ HTTP/1.1" 200 12636
+INFO 2022-04-18 18:31:32,495 autoreload 5732 13860 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 18:31:33,382 autoreload 10408 14624 Watching for file changes with StatReloader
+INFO 2022-04-18 18:31:35,524 basehttp 10408 13744 "GET /invoice/ HTTP/1.1" 200 13107
+INFO 2022-04-18 18:42:20,776 autoreload 10408 14624 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 18:42:21,641 autoreload 13760 14564 Watching for file changes with StatReloader
+INFO 2022-04-18 18:42:27,611 autoreload 13760 14564 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 18:42:28,398 autoreload 11324 15024 Watching for file changes with StatReloader
+INFO 2022-04-18 18:49:48,687 autoreload 11324 15024 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-04-18 18:49:49,612 autoreload 12356 2056 Watching for file changes with StatReloader
+INFO 2022-04-18 19:29:35,643 autoreload 10568 1364 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:29:41,581 log 10568 2816 Not Found: /payment//
+WARNING 2022-04-18 19:29:41,582 basehttp 10568 2816 "POST /payment// HTTP/1.1" 404 13022
+WARNING 2022-04-18 19:29:56,065 log 10568 2816 Not Found: /paymenst/
+WARNING 2022-04-18 19:29:56,065 basehttp 10568 2816 "POST /paymenst/ HTTP/1.1" 404 13022
+INFO 2022-04-18 19:31:13,895 autoreload 10568 1364 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\settings.py changed, reloading.
+INFO 2022-04-18 19:31:30,116 autoreload 3172 12112 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:31:33,491 log 3172 12184 Not Found: /paymenst/
+WARNING 2022-04-18 19:31:33,492 basehttp 3172 12184 "POST /paymenst/ HTTP/1.1" 404 179
+INFO 2022-04-18 19:32:11,997 autoreload 3172 12112 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\urls.py changed, reloading.
+INFO 2022-04-18 19:32:12,813 autoreload 15260 4636 Watching for file changes with StatReloader
+INFO 2022-04-18 19:33:11,735 autoreload 15260 4636 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\views.py changed, reloading.
+INFO 2022-04-18 19:33:12,538 autoreload 14100 14996 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:33:15,730 log 14100 11588 Not Found: /paymenst/
+WARNING 2022-04-18 19:33:15,730 basehttp 14100 11588 "POST /paymenst/ HTTP/1.1" 404 66
+INFO 2022-04-18 19:33:48,379 basehttp 14100 11588 "GET /payment/3 HTTP/1.1" 301 0
+WARNING 2022-04-18 19:33:48,404 log 14100 11588 Not Found: /payment/3/
+WARNING 2022-04-18 19:33:48,405 basehttp 14100 11588 "GET /payment/3/ HTTP/1.1" 404 83
+WARNING 2022-04-18 19:34:00,988 log 14100 11588 Not Found: /paymentsa/
+WARNING 2022-04-18 19:34:00,989 basehttp 14100 11588 "GET /paymentsa/ HTTP/1.1" 404 66
+INFO 2022-04-18 19:34:08,571 basehttp 14100 11588 "GET /payment/ HTTP/1.1" 200 221
+INFO 2022-04-18 19:34:43,922 basehttp 14100 11588 "GET /payment/3 HTTP/1.1" 301 0
+WARNING 2022-04-18 19:34:43,940 log 14100 11588 Not Found: /payment/3/
+WARNING 2022-04-18 19:34:43,941 basehttp 14100 11588 "GET /payment/3/ HTTP/1.1" 404 83
+INFO 2022-04-18 19:35:21,984 autoreload 14100 14996 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:35:23,010 autoreload 13824 12456 Watching for file changes with StatReloader
+INFO 2022-04-18 19:35:24,310 basehttp 13824 10168 "GET /payment/3 HTTP/1.1" 301 0
+WARNING 2022-04-18 19:35:24,330 log 13824 10168 Not Found: /payment/3/
+WARNING 2022-04-18 19:35:24,330 basehttp 13824 10168 "GET /payment/3/ HTTP/1.1" 404 61
+INFO 2022-04-18 19:35:30,036 autoreload 13824 12456 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:35:31,110 autoreload 13256 1532 Watching for file changes with StatReloader
+INFO 2022-04-18 19:35:32,224 basehttp 13256 12244 "GET /payment/3 HTTP/1.1" 301 0
+WARNING 2022-04-18 19:35:32,236 log 13256 12244 Not Found: /payment/3/
+WARNING 2022-04-18 19:35:32,236 basehttp 13256 12244 "GET /payment/3/ HTTP/1.1" 404 63
+WARNING 2022-04-18 19:45:55,433 log 13256 12244 Bad Request: /payment/
+WARNING 2022-04-18 19:45:55,434 basehttp 13256 12244 "POST /payment/ HTTP/1.1" 400 60
+INFO 2022-04-18 19:46:58,263 autoreload 13256 1532 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:46:59,096 autoreload 13696 748 Watching for file changes with StatReloader
+INFO 2022-04-18 19:47:16,151 autoreload 13696 748 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:47:17,030 autoreload 14964 13040 Watching for file changes with StatReloader
+INFO 2022-04-18 19:47:44,012 autoreload 14964 13040 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:47:44,830 autoreload 8264 5576 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:47:52,057 log 8264 3444 Bad Request: /payment/
+WARNING 2022-04-18 19:47:52,057 basehttp 8264 3444 "POST /payment/ HTTP/1.1" 400 104
+INFO 2022-04-18 19:48:17,377 autoreload 8264 5576 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:48:18,280 autoreload 2156 13204 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:48:20,805 log 2156 11620 Bad Request: /payment/
+WARNING 2022-04-18 19:48:20,806 basehttp 2156 11620 "POST /payment/ HTTP/1.1" 400 101
+INFO 2022-04-18 19:48:32,053 autoreload 2156 13204 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:48:32,955 autoreload 7812 4108 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:48:37,023 log 7812 12052 Bad Request: /payment/
+WARNING 2022-04-18 19:48:37,023 basehttp 7812 12052 "POST /payment/ HTTP/1.1" 400 101
+INFO 2022-04-18 19:48:50,833 autoreload 7812 4108 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:48:51,698 autoreload 10284 11052 Watching for file changes with StatReloader
+WARNING 2022-04-18 19:48:52,427 log 10284 14460 Bad Request: /payment/
+WARNING 2022-04-18 19:48:52,427 basehttp 10284 14460 "POST /payment/ HTTP/1.1" 400 101
+INFO 2022-04-18 19:50:34,178 autoreload 10284 11052 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:50:35,081 autoreload 7460 3864 Watching for file changes with StatReloader
+INFO 2022-04-18 19:50:36,881 autoreload 7460 3864 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\exceptionhandler.py changed, reloading.
+INFO 2022-04-18 19:50:37,816 autoreload 8180 2796 Watching for file changes with StatReloader
+INFO 2022-04-18 20:00:20,596 autoreload 8180 2796 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:00:21,449 autoreload 7596 1596 Watching for file changes with StatReloader
+INFO 2022-04-18 20:01:57,495 autoreload 7596 1596 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:01:58,296 autoreload 11452 4108 Watching for file changes with StatReloader
+INFO 2022-04-18 20:03:45,092 autoreload 11452 4108 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:03:45,935 autoreload 14876 6104 Watching for file changes with StatReloader
+INFO 2022-04-18 20:05:16,549 autoreload 14876 6104 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-04-18 20:05:17,258 autoreload 3388 13044 Watching for file changes with StatReloader
+INFO 2022-04-18 20:07:50,172 autoreload 3388 13044 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-04-18 20:07:50,826 autoreload 14820 6208 Watching for file changes with StatReloader
+INFO 2022-04-18 20:08:04,670 autoreload 14820 6208 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\utils\constants.py changed, reloading.
+INFO 2022-04-18 20:08:05,437 autoreload 9116 12144 Watching for file changes with StatReloader
+INFO 2022-04-18 20:09:00,681 autoreload 9116 12144 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 20:09:01,498 autoreload 12924 10324 Watching for file changes with StatReloader
+INFO 2022-04-18 20:09:39,734 autoreload 12924 10324 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\models.py changed, reloading.
+INFO 2022-04-18 20:09:40,513 autoreload 10576 10668 Watching for file changes with StatReloader
+ERROR 2022-04-18 20:09:52,456 log 10576 2892 Internal Server Error: /payment/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '1' for key 'payments_payment.invoice_id'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 32, in create
+    new_payment = self.payment_service.create(validated_data, invoice_id)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 62, in create
+    payment = Payment.objects.create(payee_name=validated_data.data['payee_name'],
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python310\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '1' for key 'payments_payment.invoice_id'")
+ERROR 2022-04-18 20:09:52,472 basehttp 10576 2892 "POST /payment/ HTTP/1.1" 500 49
+ERROR 2022-04-18 20:10:14,059 log 10576 2892 Internal Server Error: /payment/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '1' for key 'payments_payment.invoice_id'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 32, in create
+    new_payment = self.payment_service.create(validated_data, invoice_id)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 62, in create
+    payment = Payment.objects.create(payee_name=validated_data.data['payee_name'],
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python310\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '1' for key 'payments_payment.invoice_id'")
+ERROR 2022-04-18 20:10:14,062 basehttp 10576 2892 "POST /payment/ HTTP/1.1" 500 49
+INFO 2022-04-18 20:10:39,600 basehttp 10576 2892 "POST /payment/ HTTP/1.1" 200 215
+WARNING 2022-04-18 20:11:16,646 log 10576 2892 Bad Request: /payment/
+WARNING 2022-04-18 20:11:16,647 basehttp 10576 2892 "POST /payment/ HTTP/1.1" 400 58
+INFO 2022-04-18 20:13:24,016 autoreload 10576 10668 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-04-18 20:13:24,833 autoreload 9368 4660 Watching for file changes with StatReloader
+INFO 2022-04-18 20:14:43,154 autoreload 9368 4660 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 20:14:43,978 autoreload 11612 14496 Watching for file changes with StatReloader
+INFO 2022-04-18 20:15:27,886 autoreload 11612 14496 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 20:15:28,687 autoreload 3172 12692 Watching for file changes with StatReloader
+INFO 2022-04-18 20:15:58,026 autoreload 3172 12692 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 20:15:58,890 autoreload 9908 7692 Watching for file changes with StatReloader
+INFO 2022-04-18 20:17:08,638 autoreload 9908 7692 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 20:17:09,471 autoreload 13476 12380 Watching for file changes with StatReloader
+INFO 2022-04-18 20:18:19,112 autoreload 13476 12380 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 20:18:19,961 autoreload 9836 13040 Watching for file changes with StatReloader
+INFO 2022-04-18 20:18:44,984 autoreload 9836 13040 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-04-18 20:18:45,836 autoreload 11296 10508 Watching for file changes with StatReloader
+INFO 2022-04-18 20:19:08,721 autoreload 11296 10508 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-04-18 20:19:09,619 autoreload 5312 5304 Watching for file changes with StatReloader

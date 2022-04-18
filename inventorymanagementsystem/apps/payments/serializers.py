@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import APIException
 
-from .models import Invoice
+from .models import Invoice,Payment
 import utils.exceptionhandler as exceptionhandler
 from utils.exceptionhandler import CustomException
 from ..orders.serializers import OrderSerializer
@@ -9,7 +9,16 @@ from ..orders.serializers import OrderSerializer
 
 class InvoiceSerializer(serializers.ModelSerializer):
 
+    #order = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+
     class Meta:
         model = Invoice
-        fields = ('amount','created_date','payment_deadline', 'order')
+        fields = ('id','amount','created_date','payment_deadline', 'order', 'payment_status')
+        #fields = "__all__"
 
+class PaymentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Payment
+        depth = 1
+        fields = "__all__"

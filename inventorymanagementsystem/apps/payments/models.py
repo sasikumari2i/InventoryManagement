@@ -1,7 +1,10 @@
-from django.db import models
 import datetime
+from django.core.validators import RegexValidator
 
+from django.db import models
+from utils.constants import ValidationConstants
 from ..orders.models import Order
+
 
 class Invoice(models.Model):
 
@@ -11,9 +14,10 @@ class Invoice(models.Model):
     payment_status = models.BooleanField(default=False ,null=True)
     order = models.OneToOneField(Order, on_delete=models.CASCADE)
 
+
 class Payment(models.Model):
 
-    payee_name = models.CharField(max_length=100)
+    payee_name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
     email = models.EmailField()
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
     invoice = models.OneToOneField(Invoice, on_delete=models.CASCADE)

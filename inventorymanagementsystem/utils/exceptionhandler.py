@@ -10,13 +10,7 @@ def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
 
     if response is not None:
-        #print(response.data)
         response.data['status_code'] = response.status_code
-        #response.data['message'] = response.data['detail']
-        #del response.data['detail']
-    #if response is not None:
-        #print(response.data)
-        #response.data['status_code'] = response.default_code
 
     exception_class = exc.__class__.__name__
 
@@ -33,5 +27,7 @@ class CustomException(APIException):
 
 
 def _handle_generic_error(exception, response):
-    response.data['message'] = "The request page is not found"
+    response.data.pop('detail')
+    response.data['message'] = "The requested page is not found"
     return response
+

@@ -23,4 +23,9 @@ urlpatterns = [
     path('', include('apps.products.urls')),
     path('',include('apps.orders.urls')),
     path('', include('apps.payments.urls')),
+    path('', include('apps.payments.urls'))
 ]
+
+
+handler404 = 'utils.views.error_404'
+handler500 = 'utils.views.error_500'
