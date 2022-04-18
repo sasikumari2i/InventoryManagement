@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kzdk(olyf5$oqjo_7!#c-15sudsk*6akw@ot@uuju5!&476js!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -133,3 +133,28 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    'version': 1,
+    'loggers': {
+        'django':{
+            'handlers':['file'],
+            'level':'DEBUG'
+        }
+    },
+    'handlers':{
+        'file':{
+            'level':'INFO',
+            'class':'logging.FileHandler',
+            'filename':'./logs/debug.log',
+            'formatter':'simple',
+        }
+    },
+    'formatters':{
+        'simple': {
+            'format':'{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style':'{',
+        }
+    }
+}

@@ -4,10 +4,10 @@ from ..orders.models import Order
 
 class Invoice(models.Model):
 
-    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_date = models.DateField()
     payment_deadline = models.DateField()
-    payment_status = models.BooleanField(default=True ,null=False)
+    payment_status = models.BooleanField(default=False ,null=False)
     order = models.OneToOneField(Order, on_delete=models.CASCADE)
 
 class Payment(models.Model):
