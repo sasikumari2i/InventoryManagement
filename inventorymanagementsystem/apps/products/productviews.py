@@ -8,9 +8,13 @@ from .serializers import ProductSerializer, CategorySerializer
 
 
 class CategoryView(viewsets.ModelViewSet):
+    """Gives the view for the Category"""
+
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 class ProductView(viewsets.ModelViewSet):
+    """Gives the view for the Product"""
+
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

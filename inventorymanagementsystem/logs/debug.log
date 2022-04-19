@@ -2754,3 +2754,75 @@ INFO 2022-04-18 20:18:44,984 autoreload 9836 13040 C:\Users\Lenovo\Documents\pro
 INFO 2022-04-18 20:18:45,836 autoreload 11296 10508 Watching for file changes with StatReloader
 INFO 2022-04-18 20:19:08,721 autoreload 11296 10508 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
 INFO 2022-04-18 20:19:09,619 autoreload 5312 5304 Watching for file changes with StatReloader
+INFO 2022-04-18 20:22:09,799 autoreload 5312 5304 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-04-18 20:22:10,843 autoreload 2640 13660 Watching for file changes with StatReloader
+INFO 2022-04-18 20:22:33,687 autoreload 2640 13660 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 20:22:34,631 autoreload 12580 12152 Watching for file changes with StatReloader
+INFO 2022-04-18 20:23:18,641 autoreload 12580 12152 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 20:23:19,743 autoreload 14072 10748 Watching for file changes with StatReloader
+INFO 2022-04-18 20:23:30,230 autoreload 14072 10748 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 20:23:31,152 autoreload 10964 7712 Watching for file changes with StatReloader
+INFO 2022-04-18 20:25:49,844 autoreload 10964 7712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-04-18 20:25:50,833 autoreload 5260 9380 Watching for file changes with StatReloader
+INFO 2022-04-18 20:26:46,634 autoreload 5260 9380 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:26:47,575 autoreload 6052 2488 Watching for file changes with StatReloader
+INFO 2022-04-18 20:28:32,312 autoreload 6052 2488 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:28:33,305 autoreload 14452 6444 Watching for file changes with StatReloader
+INFO 2022-04-18 20:28:44,987 autoreload 14452 6444 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:28:45,979 autoreload 4524 3664 Watching for file changes with StatReloader
+INFO 2022-04-18 20:29:23,790 autoreload 4524 3664 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\models.py changed, reloading.
+INFO 2022-04-18 20:29:24,794 autoreload 6960 10380 Watching for file changes with StatReloader
+INFO 2022-04-18 20:29:47,624 autoreload 6960 10380 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\productviews.py changed, reloading.
+INFO 2022-04-18 20:29:48,715 autoreload 12672 2424 Watching for file changes with StatReloader
+INFO 2022-04-18 20:32:07,061 autoreload 12672 2424 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py changed, reloading.
+INFO 2022-04-18 20:32:08,087 autoreload 13568 2764 Watching for file changes with StatReloader
+WARNING 2022-04-18 20:32:15,420 log 13568 13856 Not Found: /order/
+WARNING 2022-04-18 20:32:15,420 basehttp 13568 13856 "GET /order/ HTTP/1.1" 404 66
+INFO 2022-04-18 20:32:18,553 basehttp 13568 13856 "GET /orders/ HTTP/1.1" 200 4425
+INFO 2022-04-18 20:32:32,486 basehttp 13568 13856 "GET /orders/206 HTTP/1.1" 301 0
+INFO 2022-04-18 20:32:32,499 basehttp 13568 13856 "GET /orders/206/ HTTP/1.1" 200 164
+INFO 2022-04-18 20:32:36,219 basehttp 13568 13856 "GET /orders/201 HTTP/1.1" 301 0
+ERROR 2022-04-18 20:32:36,231 log 13568 13856 Internal Server Error: /orders/201/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+apps.orders.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py", line 26, in retrieve
+    instance = self.get_object()
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 96, in get_object
+    obj = get_object_or_404(queryset, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 19, in get_object_or_404
+    return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 87, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\orderviews.py", line 30, in retrieve
+    raise CustomException(exc.status_code, "Exception in Retrieving Orders")
+AttributeError: 'Http404' object has no attribute 'status_code'
+ERROR 2022-04-18 20:32:36,237 basehttp 13568 13856 "GET /orders/201/ HTTP/1.1" 500 49

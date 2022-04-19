@@ -9,12 +9,9 @@ from ..orders.serializers import OrderSerializer
 
 class InvoiceSerializer(serializers.ModelSerializer):
 
-    #order = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-
     class Meta:
         model = Invoice
         fields = ('id','amount','created_date','payment_deadline', 'order', 'payment_status')
-        #fields = "__all__"
 
 class PaymentSerializer(serializers.ModelSerializer):
 

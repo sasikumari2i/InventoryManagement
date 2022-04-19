@@ -2,21 +2,21 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
 from django.db import transaction
+import logging
+from rest_framework.exceptions import APIException
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
 from .models import Order,Customer,OrderProduct,Product, Vendor
 from .service import OrderService
 from .serializers import OrderSerializer, OrderProductSerializer,CustomerSerializer, VendorSerializer
 from ..products.serializers import ProductSerializer
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from utils.exceptionhandler import CustomException
-from rest_framework.exceptions import APIException
-
-import logging
 
 logger = logging.getLogger('django')
 
-
 class OrderView(viewsets.ModelViewSet):
+    """Gives the view for the Order"""
+
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     order_service = OrderService()
@@ -71,9 +71,13 @@ class OrderView(viewsets.ModelViewSet):
 
 
 class CustomerView(viewsets.ModelViewSet):
+    """Gives the view for the Customer"""
+
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
 class VendorView(viewsets.ModelViewSet):
+    """Gives the view for the Vendor"""
+
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
