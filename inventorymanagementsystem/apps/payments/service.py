@@ -1,14 +1,14 @@
 import io
 from datetime import date, timedelta
+from django.core.exceptions import ValidationError
+from django.db import transaction
 
 from .serializers import InvoiceSerializer
 from .models import Invoice, Payment
 from ..orders.models import Order
 from ..orders.serializers import OrderSerializer
 from ..products.models import Product
-from django.db import transaction
 from utils.exceptionhandler import CustomException
-from django.core.exceptions import ValidationError
 
 
 class InvoiceService:
@@ -19,8 +19,8 @@ class InvoiceService:
         try:
             orders = Order.objects.all()
             order = orders.get(id=order_id)
-            if not order.is_sales_order:
-                raise CustomException(400,"Invoice cannot be created for Purchase Order")
+            # if not order.is_sales_order:
+            #     raise CustomException(400,"Invoice cannot be created for Purchase Order")
             amount = self.total_amount(order)
             created_date = date.today()
             if validated_data.data['payment_deadline'] is None:
@@ -48,7 +48,7 @@ class InvoiceService:
 
             return amount
         except Exception as exc:
-            raise CustomException(400, "Exception in PO Invoice Creation")
+            raise CustomException(exc.status_code, "Exception in PO Invoice Creation")
 
 class PaymentService:
     """Performs payment related operations like creating, updating and deleting"""
@@ -58,6 +58,7 @@ class PaymentService:
         try:
             invoices = Invoice.objects.all()
             invoice = invoices.get(id=invoice_id)
+
             invoice.payment_status = True
             invoice.save()
             payment = Payment.objects.create(payee_name=validated_data.data['payee_name'],
@@ -68,4 +69,4 @@ class PaymentService:
 
             return payment
         except Exception as exc:
-            raise CustomException(400, "Exception in Payment Creation")
+            raise CustomException(exc.status_code, "Exception in Payment Creation")

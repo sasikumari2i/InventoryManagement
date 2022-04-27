@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kzdk(olyf5$oqjo_7!#c-15sudsk*6akw@ot@uuju5!&476js!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -40,14 +40,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.products',
     'apps.orders',
-    'apps.payments'
+    'apps.payments',
+    'safedelete'
+    # 'django_filters'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -88,8 +90,13 @@ DATABASES = {
     }
 }
 
+
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER" : "utils.exceptionhandler.custom_exception_handler"
+    ,
+    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE' : 2
+    # 'DEFAULT_FILTER_BACKENDS' : 'django_filters.rest_framework.DjangoFilterBackend'
 }
 
 
@@ -137,6 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers' : False,
     'loggers': {
         'django':{
             'handlers':['file'],

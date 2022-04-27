@@ -1,16 +1,14 @@
 import io
 from datetime import date, timedelta
+from django.db import transaction
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
-from .serializers import OrderSerializer
-from .serializers import OrderProductSerializer
-from .models import Order
-from .models import OrderProduct
+from .serializers import OrderSerializer, OrderProductSerializer
+from .models import Order, OrderProduct
 from ..products.models import Product,Category
 from ..payments.models import Invoice
 from ..products.serializers import ProductSerializer
-from django.db import transaction
 from utils.exceptionhandler import CustomException
-from django.core.exceptions import ValidationError
 
 
 class OrderService:
@@ -38,15 +36,16 @@ class OrderService:
                 order_product_data = OrderProduct.objects.create(order=new_order, product=product_details,
                                                                  quantity=product['quantity'])
 
-            if not new_order.is_sales_order:
-                invoice = self.create_invoice(new_order)
-                invoice.save()
-
+            invoice = self.create_invoice(new_order)
+            invoice.save()
             order_product_data.save()
             new_order.save()
             return new_order
-        except Exception as exc:
-            raise CustomException(exc.status_code, "Exception in Order Creation")
+        except KeyError as exc:
+            raise CustomException(400, "Exception in Order Creation")
+        except Product.DoesNotExist:
+            raise CustomException(400, "Please enter available products only")
+
 
     @transaction.atomic
     def update(self, order_details, validated_data, order_products):
@@ -75,8 +74,8 @@ class OrderService:
                 order_product_details.save()
 
             return order_details
-        except ValidationError as exc:
-            raise CustomException(exc.status_code, "Exception in Order Update")
+        except (KeyError, ValidationError):
+            raise CustomException(400, "Exception in Order Update")
 
 
     def create_invoice(self,new_order):
@@ -84,7 +83,7 @@ class OrderService:
             amount = 0
             products = Product.objects.all()
             order_serializer = OrderSerializer(new_order)
-            for orders in order_serializer.data['orderproducts']:
+            for orders in order_serializer.data['order_products']:
                 product = products.get(id=orders['product'])
                 product_price = product.price
                 product_quantity = orders['quantity']
@@ -96,6 +95,21 @@ class OrderService:
                                              payment_deadline=payment_deadline, order=new_order)
             return invoice
         except Exception as exc:
-            raise CustomException(exc.status_code, "Exception in PO Invoice Creation")
+            raise CustomException(400, "Exception in PO Invoice Creation")
+
+    def update_delivery(self, order_details):
+        try:
+            delivery_status = order_details.delivery_status
+            response = {}
+            if delivery_status:
+                response = {"message": "It is already delivered"}
+            elif not delivery_status:
+                order_details.delivery_status = True
+                order_details.save()
+                response = {"message": "Delivery Status Updated"}
+            return response
+        except Exception:
+            raise CustomException(400,"Internal error in updating delivery status")
+
 
 

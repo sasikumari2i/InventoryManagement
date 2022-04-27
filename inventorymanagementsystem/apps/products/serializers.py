@@ -5,14 +5,14 @@ class CategorySerializer (serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = "__all__"
-
+        depth = 1
+        fields = ('id','name','description',)
 
 class ProductSerializer (serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('id','name','description','available_stock','price','category')
 
 
 

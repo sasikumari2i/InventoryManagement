@@ -11,11 +11,11 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Invoice
-        fields = ('id','amount','created_date','payment_deadline', 'order', 'payment_status')
+        fields = ('id','amount','created_date','payment_deadline', 'payment_status')
 
 class PaymentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Payment
-        depth = 1
-        fields = "__all__"
+        #depth = 1
+        fields = ('id','payee_name','email','phone', 'invoice')

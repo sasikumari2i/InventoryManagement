@@ -10,11 +10,11 @@ from .serializers import ProductSerializer, CategorySerializer
 class CategoryView(viewsets.ModelViewSet):
     """Gives the view for the Category"""
 
-    queryset = Category.objects.all()
+    queryset = Category.objects.get_queryset().order_by('id')
     serializer_class = CategorySerializer
 
 class ProductView(viewsets.ModelViewSet):
     """Gives the view for the Product"""
 
-    queryset = Product.objects.all()
+    queryset = Product.objects.get_queryset().order_by('id')
     serializer_class = ProductSerializer

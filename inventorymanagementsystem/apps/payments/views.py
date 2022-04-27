@@ -2,15 +2,18 @@ from django.shortcuts import render
 from .models import Invoice, Payment
 from .service import InvoiceService, PaymentService
 from .serializers import InvoiceSerializer,PaymentSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.response import Response
 from utils.exceptionhandler import CustomException
+from rest_framework.permissions import IsAuthenticated
+import logging
 
+# logger = logging.getLogger('django')
 
 class InvoiceView(viewsets.ModelViewSet):
     """Gives the view for the Invoice"""
 
-    queryset = Invoice.objects.all()
+    queryset = Invoice.objects.get_queryset().order_by('id')
     serializer_class = InvoiceSerializer
     invoice_service = InvoiceService()
 
@@ -25,10 +28,23 @@ class InvoiceView(viewsets.ModelViewSet):
         except Exception as exc:
             raise CustomException(exc.status_code, "Exception in invoice creation views")
 
+
+class InvoicePaymentView(generics.RetrieveAPIView):
+
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+
+    def get(self, request, *args, **kwargs):
+        invoice_id = self.kwargs['invoice']
+        payment = Payment.objects.get(invoice=invoice_id)
+        serialized = PaymentSerializer(payment)
+        return Response(serialized.data)
+
+
 class PaymentView(viewsets.ModelViewSet):
     """Gives the view for the Payment"""
 
-    queryset = Payment.objects.all()
+    queryset = Payment.objects.get_queryset().order_by('id')
     serializer_class = PaymentSerializer
     payment_service = PaymentService()
 
@@ -42,3 +58,4 @@ class PaymentView(viewsets.ModelViewSet):
             return Response(serialized.data)
         except Exception as exc:
             raise CustomException(exc.status_code, "Exception in payment creation views")
+
