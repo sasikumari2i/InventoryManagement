@@ -5,6 +5,7 @@ from safedelete.models import SOFT_DELETE_CASCADE
 
 from utils.constants import ValidationConstants
 
+
 class Category (SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 

@@ -18,4 +18,4 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         #depth = 1
-        fields = ('id','payee_name','email','phone', 'invoice')
+        fields = ('id','payee_name','payment_type','email','phone', 'invoice','amount')

@@ -1,13 +1,12 @@
-# import datetime
 from django.core.validators import RegexValidator
-
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE_CASCADE
 from django.db import models
 from datetime import date, timedelta
+
 from ..products.models import Product
 from ..payments.models import Invoice
 from utils.constants import ValidationConstants
-from safedelete.models import SafeDeleteModel
-from safedelete.models import SOFT_DELETE_CASCADE
 
 
 class Vendor (SafeDeleteModel):
@@ -29,7 +28,6 @@ class Customer (SafeDeleteModel):
     address = models.CharField(max_length=400)
     email = models.EmailField()
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
-    wallet = models.BigIntegerField(default=100000)
 
     def __str__(self):
         return self.name

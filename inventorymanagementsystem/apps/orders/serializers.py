@@ -3,7 +3,6 @@ from rest_framework import serializers
 import datetime
 from datetime import date, timedelta
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from rest_framework.exceptions import APIException
 
 from .models import Vendor, Order,OrderProduct,Customer
 from ..products.models import Product
@@ -35,6 +34,8 @@ class OrderSerializer(serializers.ModelSerializer):
                   'customers','order_products','invoice',)
 
     def validate(self, data):
+        """Validations for the Order model"""
+
         try:
             if data['is_sales_order'] is True and self.initial_data['vendors'] is not None:
                 raise CustomException(400, "Sales Order cannot have Vendor")
@@ -51,8 +52,8 @@ class OrderSerializer(serializers.ModelSerializer):
                 data['delivery_date'] = date.today() + timedelta(days=15)
 
             return data
-        except ObjectDoesNotExist:
-            raise CustomException(400, "Vendor not available")
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
 
 
 

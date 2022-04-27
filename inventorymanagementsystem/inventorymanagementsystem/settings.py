@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kzdk(olyf5$oqjo_7!#c-15sudsk*6akw@ot@uuju5!&476js!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -148,7 +148,7 @@ LOGGING = {
     'loggers': {
         'django':{
             'handlers':['file'],
-            'level':'DEBUG'
+            'level':'INFO'
         }
     },
     'handlers':{

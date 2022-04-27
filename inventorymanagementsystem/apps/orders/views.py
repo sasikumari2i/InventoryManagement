@@ -5,7 +5,6 @@ import logging
 from rest_framework.exceptions import APIException
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.http import Http404
-from rest_framework.decorators import action
 
 from .models import Order,Customer,OrderProduct,Product, Vendor
 from .service import OrderService
@@ -24,6 +23,8 @@ class OrderView(viewsets.ModelViewSet):
     order_service = OrderService()
 
     def retrieve(self, request, *args, **kwargs):
+        """Retrieves specific order for the given order id"""
+
         try:
             instance = self.get_object()
             serializer = self.get_serializer(instance)
@@ -32,6 +33,8 @@ class OrderView(viewsets.ModelViewSet):
             raise CustomException(exc.status_code, "Exception in Retrieving Orders")
 
     def create(self, request, *args, **kwargs):
+        """Creates new order using given data"""
+
         try:
             order_products = request.data['order_products']
             request.data.pop('order_products')
@@ -45,6 +48,8 @@ class OrderView(viewsets.ModelViewSet):
 
 
     def update(self, request, *args, **kwargs):
+        """Updates the given order"""
+
         try:
             order_details = self.get_object()
             order_products = request.data['order_products']
@@ -56,8 +61,12 @@ class OrderView(viewsets.ModelViewSet):
             return Response(serializer.data)
         except KeyError:
             raise CustomException(400, "Exception in Updating Order View")
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
 
     def partial_update(self, request, *args, **kwargs):
+        """Updates partial fields for the given order"""
+
         try:
             response = self.update(request)
             return response
@@ -66,6 +75,8 @@ class OrderView(viewsets.ModelViewSet):
 
 
     def destroy(self, request, *args, **kwargs):
+        """Deletes the given order"""
+
         try:
             super().destroy(request)
             return Response({"message" : "Order Deleted"})
@@ -103,22 +114,14 @@ class DeliveryView(generics.GenericAPIView):
             raise CustomException(404,"Exception in Updating Delivery Status")
 
 
-class ProductOrderView(viewsets.ModelViewSet):
-    queryset = OrderProduct.objects.get_queryset().order_by('id')
-    serializer_class = OrderProductSerializer
-
-    def retrieve(self, request, *args, **kwargs):
-        params = kwargs
-        orders = OrderProduct.objects.filter(product_id=params['pk'])
-        serialized = OrderProductSerializer(orders, many=True)
-        return Response(serialized.data)
-
 class CustomerOrderView(generics.ListAPIView):
 
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
     def get(self, request, *args, **kwargs):
+        """Retrieves the list of Orders for the given customer"""
+
         customer_id = self.kwargs['customer']
         orders = Order.objects.filter(customers=customer_id)
         serialized = OrderSerializer(orders,many=True)
@@ -130,6 +133,8 @@ class VendorOrderView(generics.ListAPIView):
     serializer_class = OrderSerializer
 
     def get(self, request, *args, **kwargs):
+        """Retrieves the list of Orders for the given vendor"""
+
         vendor_id = self.kwargs['vendor']
         orders = Order.objects.filter(vendors=vendor_id)
         serialized = OrderSerializer(orders,many=True)

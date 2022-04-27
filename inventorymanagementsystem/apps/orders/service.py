@@ -17,6 +17,8 @@ class OrderService:
 
     @transaction.atomic()
     def create(self, validated_data, order_products):
+        """Creates new order from the given data"""
+
         try:
             products = Product.objects.all()
             new_order = Order.objects.create(is_sales_order=validated_data.data['is_sales_order'],
@@ -49,6 +51,8 @@ class OrderService:
 
     @transaction.atomic
     def update(self, order_details, validated_data, order_products):
+        """Updates details of the given order"""
+
         try:
             order_details.is_sales_order = validated_data.data['is_sales_order']
             order_details.order_date = validated_data.data['order_date']
@@ -76,9 +80,13 @@ class OrderService:
             return order_details
         except (KeyError, ValidationError):
             raise CustomException(400, "Exception in Order Update")
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
 
 
     def create_invoice(self,new_order):
+        """Creates invoice for the created order"""
+
         try:
             amount = 0
             products = Product.objects.all()
@@ -98,6 +106,8 @@ class OrderService:
             raise CustomException(400, "Exception in PO Invoice Creation")
 
     def update_delivery(self, order_details):
+        """Updates the delivery status of the given order"""
+
         try:
             delivery_status = order_details.delivery_status
             response = {}
