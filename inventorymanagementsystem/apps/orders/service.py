@@ -54,6 +54,8 @@ class OrderService:
         """Updates details of the given order"""
 
         try:
+            products = Product.objects.all()
+            product_orders = OrderProduct.objects.all()
             order_details.is_sales_order = validated_data.data['is_sales_order']
             order_details.order_date = validated_data.data['order_date']
             order_details.delivery_date = validated_data.data['delivery_date']
@@ -62,7 +64,7 @@ class OrderService:
             order_details.save()
 
             for product in order_products:
-                product_details = Product.objects.get(id=product['product'])
+                product_details = products.get(id=product['product'])
                 if validated_data.data['is_sales_order'] and product_details.available_stock >= product['quantity']:
                     product_details.available_stock = product_details.available_stock - product['quantity']
                 elif not validated_data.data['is_sales_order']:
@@ -70,7 +72,7 @@ class OrderService:
                 else:
                     raise CustomException(400, "Enter only available stock")
                 product_details.save()
-                order_product_details = OrderProduct.objects.get(product=product_details.id,
+                order_product_details = product_orders.get(product=product_details.id,
                                                                  order=order_details.id)
                 order_product_details.product = product_details
                 order_product_details.order = order_details

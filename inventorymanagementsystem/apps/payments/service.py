@@ -42,7 +42,7 @@ class InvoiceService:
             products = Product.objects.all()
             order_serializer = OrderSerializer(order)
 
-            for orders in order_serializer.data['orderproducts']:
+            for orders in order_serializer.data['order_products']:
                 product = products.get(id=orders['product'])
                 product_price = product.price
                 product_quantity = orders['quantity']

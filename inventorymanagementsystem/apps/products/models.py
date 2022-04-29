@@ -4,6 +4,7 @@ from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 
 from utils.constants import ValidationConstants
+from rest_framework.authtoken.models import Token
 
 
 class Category (SafeDeleteModel):

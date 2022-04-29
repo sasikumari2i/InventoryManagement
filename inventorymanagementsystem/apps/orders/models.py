@@ -42,7 +42,7 @@ class Order (SafeDeleteModel):
     delivery_status = models.BooleanField(default=False)
     vendors = models.ForeignKey(Vendor,default=None,on_delete=models.DO_NOTHING, null=True, blank=True)
     customers = models.ForeignKey(Customer, default=None, on_delete=models.DO_NOTHING, blank=True, null=True)
-    invoice = models.OneToOneField(Invoice, models.CASCADE, default=None, null=True, blank=True)
+    invoice = models.OneToOneField(Invoice, models.SET_NULL, default=None, null=True, blank=True)
 
     def __str__(self):
         if self.is_sales_order:

@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.orders',
     'apps.payments',
-    'safedelete'
-    # 'django_filters'
+    'safedelete',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -92,10 +92,18 @@ DATABASES = {
 
 
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER" : "utils.exceptionhandler.custom_exception_handler"
-    ,
+    "EXCEPTION_HANDLER" : "utils.exceptionhandler.custom_exception_handler",
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE' : 2
+    'PAGE_SIZE' : 2,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
     # 'DEFAULT_FILTER_BACKENDS' : 'django_filters.rest_framework.DjangoFilterBackend'
 }
 

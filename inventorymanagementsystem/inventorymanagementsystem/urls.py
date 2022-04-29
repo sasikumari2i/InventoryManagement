@@ -16,15 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse, HttpResponseNotFound
-
+import apps.products.views as views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('apps.products.urls')),
-    path('',include('apps.orders.urls')),
-    path('', include('apps.payments.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("apps.products.urls")),
+    path("", include("apps.orders.urls")),
+    path("", include("apps.payments.urls")),
 ]
 
+urlpatterns += [
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/token/auth/", views.CustomAuthToken.as_view()),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
+]
 
-handler404 = 'utils.views.error_404'
-handler500 = 'utils.views.error_500'
+handler404 = "utils.views.error_404"
+handler500 = "utils.views.error_500"
