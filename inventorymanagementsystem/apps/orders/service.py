@@ -2,6 +2,7 @@ import io
 from datetime import date, timedelta
 from django.db import transaction
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from rest_framework.exceptions import NotFound
 
 from .serializers import OrderSerializer, OrderProductSerializer
 from .models import Order, OrderProduct
@@ -104,7 +105,7 @@ class OrderService:
             invoice = Invoice.objects.create(amount=amount, created_date=created_date,
                                              payment_deadline=payment_deadline, order=new_order)
             return invoice
-        except Exception as exc:
+        except ValidationError as exc:
             raise CustomException(400, "Exception in PO Invoice Creation")
 
     def update_delivery(self, order_details):
@@ -120,7 +121,7 @@ class OrderService:
                 order_details.save()
                 response = {"message": "Delivery Status Updated"}
             return response
-        except Exception:
+        except NotFound:
             raise CustomException(400,"Internal error in updating delivery status")
 
 

@@ -301,3 +301,961 @@ INFO 2022-04-29 20:54:02,750 basehttp 7448 3296 "GET /categories/ HTTP/1.1" 200 
 INFO 2022-04-29 20:54:15,904 basehttp 7448 3296 "GET /categories/ HTTP/1.1" 200 225
 INFO 2022-04-29 20:57:46,739 basehttp 7448 3296 "GET /products HTTP/1.1" 301 0
 INFO 2022-04-29 20:57:46,772 basehttp 7448 3296 "GET /products/ HTTP/1.1" 200 355
+INFO 2022-05-01 17:25:13,220 autoreload 14160 16768 Watching for file changes with StatReloader
+INFO 2022-05-01 17:25:16,599 basehttp 14160 984 "GET /products?product=1 HTTP/1.1" 301 0
+INFO 2022-05-01 17:25:16,637 basehttp 14160 984 "GET /products/?product=1 HTTP/1.1" 200 365
+INFO 2022-05-01 17:25:27,864 basehttp 14160 984 "GET /products HTTP/1.1" 301 0
+INFO 2022-05-01 17:25:27,915 basehttp 14160 984 "GET /products/ HTTP/1.1" 200 355
+INFO 2022-05-01 17:25:29,826 basehttp 14160 984 "GET /products/1 HTTP/1.1" 301 0
+INFO 2022-05-01 17:25:29,843 basehttp 14160 984 "GET /products/1/ HTTP/1.1" 200 132
+INFO 2022-05-01 19:04:41,551 basehttp 14160 984 "GET /categories/1 HTTP/1.1" 301 0
+WARNING 2022-05-01 19:04:41,577 log 14160 984 Not Found: /categories/1/
+WARNING 2022-05-01 19:04:41,577 basehttp 14160 984 "GET /categories/1/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:20:33,619 basehttp 14160 984 "GET /customers%0A HTTP/1.1" 200 66
+INFO 2022-05-01 19:20:41,218 basehttp 14160 984 "GET /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:20:41,227 log 14160 984 Not Found: /customers/
+/
+WARNING 2022-05-01 19:20:41,228 basehttp 14160 984 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:20:53,166 basehttp 14160 984 "GET /customers/12%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:20:53,185 log 14160 984 Not Found: /customers/12
+/
+WARNING 2022-05-01 19:20:53,185 basehttp 14160 984 "GET /customers/12%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:20:55,268 basehttp 14160 984 "GET /customers/2%0A HTTP/1.1" 301 0
+INFO 2022-05-01 19:20:55,286 basehttp 14160 984 "GET /customers/2%0A/ HTTP/1.1" 200 95
+INFO 2022-05-01 19:20:58,448 basehttp 14160 984 "GET /customers%0A HTTP/1.1" 200 66
+INFO 2022-05-01 19:21:00,784 basehttp 14160 984 "GET /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:21:00,794 log 14160 984 Not Found: /customers/
+/
+WARNING 2022-05-01 19:21:00,794 basehttp 14160 984 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:21:32,368 basehttp 14160 984 "GET /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:21:32,374 log 14160 984 Not Found: /customers/
+/
+WARNING 2022-05-01 19:21:32,374 basehttp 14160 984 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:22:24,080 basehttp 14160 984 "GET /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:22:24,089 log 14160 984 Not Found: /customers/
+/
+WARNING 2022-05-01 19:22:24,089 basehttp 14160 984 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:22:27,002 basehttp 14160 984 "GET /customers/1%0A HTTP/1.1" 301 0
+INFO 2022-05-01 19:22:27,014 basehttp 14160 984 "GET /customers/1%0A/ HTTP/1.1" 200 108
+INFO 2022-05-01 19:22:30,143 basehttp 14160 984 "GET /customers%0A HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:15,891 autoreload 14160 16768 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-01 19:23:18,026 autoreload 9196 7252 Watching for file changes with StatReloader
+INFO 2022-05-01 19:23:20,760 basehttp 9196 10092 "GET /customers%0A HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:24,312 basehttp 9196 10092 "GET /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:23:24,322 log 9196 10092 Not Found: /customers/
+/
+WARNING 2022-05-01 19:23:24,322 basehttp 9196 10092 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:23:41,799 basehttp 9196 5856 "GET /customers HTTP/1.1" 301 0
+INFO 2022-05-01 19:23:42,115 basehttp 9196 5856 "GET /customers/ HTTP/1.1" 200 11256
+INFO 2022-05-01 19:23:42,163 basehttp 9196 5856 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,172 basehttp 9196 8876 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,172 basehttp 9196 5856 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,173 basehttp 9196 912 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,180 basehttp 9196 5856 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,180 basehttp 9196 8876 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,181 basehttp 9196 912 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,191 basehttp 9196 8876 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,191 basehttp 9196 912 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,192 basehttp 9196 5856 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:23:42,339 basehttp 9196 912 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 19:24:07,455 basehttp 9196 10092 "GET /customers/ HTTP/1.1" 200 293
+INFO 2022-05-01 19:26:20,161 basehttp 9196 10092 "GET /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:26:20,166 log 9196 10092 Not Found: /customers/
+/
+WARNING 2022-05-01 19:26:20,167 basehttp 9196 10092 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:26:27,853 basehttp 9196 10092 "GET /customers/ HTTP/1.1" 200 293
+INFO 2022-05-01 19:34:23,543 basehttp 9196 10092 "POST /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:34:23,552 log 9196 10092 Not Found: /customers/
+/
+WARNING 2022-05-01 19:34:23,553 basehttp 9196 10092 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:34:27,767 basehttp 9196 10092 "POST /customers/1%0A HTTP/1.1" 301 0
+INFO 2022-05-01 19:34:27,785 basehttp 9196 10092 "GET /customers/1%0A/ HTTP/1.1" 200 108
+INFO 2022-05-01 19:36:12,482 basehttp 9196 10092 "POST /customers/%0A HTTP/1.1" 301 0
+WARNING 2022-05-01 19:36:12,488 log 9196 10092 Not Found: /customers/
+/
+WARNING 2022-05-01 19:36:12,490 basehttp 9196 10092 "GET /customers/%0A/ HTTP/1.1" 404 41
+INFO 2022-05-01 19:40:45,650 basehttp 9196 10092 "GET /customers/ HTTP/1.1" 200 293
+INFO 2022-05-01 19:43:55,982 basehttp 9196 14584 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-01 19:43:56,077 basehttp 9196 14584 "GET /vendors/ HTTP/1.1" 200 11249
+INFO 2022-05-01 19:43:56,110 basehttp 9196 14584 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,127 basehttp 9196 14584 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,127 basehttp 9196 5472 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,134 basehttp 9196 14584 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,134 basehttp 9196 5472 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,141 basehttp 9196 14584 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,141 basehttp 9196 5472 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,149 basehttp 9196 5472 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,150 basehttp 9196 14584 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,157 basehttp 9196 14584 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,157 basehttp 9196 5472 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:43:56,252 basehttp 9196 5472 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,540 basehttp 9196 2020 "GET /orders/ HTTP/1.1" 200 13767
+INFO 2022-05-01 19:53:44,658 basehttp 9196 2020 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,659 basehttp 9196 13716 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,667 basehttp 9196 14492 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,668 basehttp 9196 14492 - Broken pipe from ('127.0.0.1', 57811)
+
+INFO 2022-05-01 19:53:44,669 basehttp 9196 2020 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,673 basehttp 9196 13716 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,677 basehttp 9196 2020 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,679 basehttp 9196 13716 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,685 basehttp 9196 13716 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,685 basehttp 9196 2020 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,691 basehttp 9196 13716 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:53:44,737 basehttp 9196 13716 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:54,783 basehttp 9196 13716 "GET /orders/1 HTTP/1.1" 301 0
+INFO 2022-05-01 19:55:54,939 basehttp 9196 13716 "GET /orders/1/ HTTP/1.1" 200 13770
+INFO 2022-05-01 19:55:55,003 basehttp 9196 13716 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,029 basehttp 9196 2020 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,045 basehttp 9196 13716 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,047 basehttp 9196 2020 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,064 basehttp 9196 13716 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,065 basehttp 9196 2020 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,080 basehttp 9196 13716 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,083 basehttp 9196 2020 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,107 basehttp 9196 13716 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,109 basehttp 9196 2020 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 19:55:55,187 basehttp 9196 2020 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,559 basehttp 9196 7824 "GET /invoice HTTP/1.1" 301 0
+INFO 2022-05-01 20:08:19,651 basehttp 9196 7824 "GET /invoice/ HTTP/1.1" 200 11176
+INFO 2022-05-01 20:08:19,724 basehttp 9196 7824 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,745 basehttp 9196 7824 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,746 basehttp 9196 13544 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,765 basehttp 9196 7824 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,766 basehttp 9196 13544 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,777 basehttp 9196 13544 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,786 basehttp 9196 7824 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,811 basehttp 9196 7824 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,811 basehttp 9196 13544 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,824 basehttp 9196 4696 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:08:19,834 basehttp 9196 4696 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,709 basehttp 9196 7740 "GET /payment/ HTTP/1.1" 200 12737
+INFO 2022-05-01 20:14:09,752 basehttp 9196 7740 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,762 basehttp 9196 13672 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,780 basehttp 9196 7740 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,781 basehttp 9196 13672 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,789 basehttp 9196 7740 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,789 basehttp 9196 13672 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,799 basehttp 9196 13672 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,800 basehttp 9196 7740 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,815 basehttp 9196 13672 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,815 basehttp 9196 7740 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:14:09,861 basehttp 9196 7740 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,281 basehttp 9196 8936 "GET /categories/ HTTP/1.1" 200 9634
+INFO 2022-05-01 20:19:12,354 basehttp 9196 13920 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,365 basehttp 9196 8936 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,393 basehttp 9196 13920 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,394 basehttp 9196 8936 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,410 basehttp 9196 13920 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,411 basehttp 9196 8936 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,427 basehttp 9196 8936 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,429 basehttp 9196 13920 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,459 basehttp 9196 13920 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,465 basehttp 9196 8936 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:19:12,502 basehttp 9196 8936 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,318 basehttp 9196 5376 "GET /products/ HTTP/1.1" 200 11974
+INFO 2022-05-01 20:37:28,426 basehttp 9196 15220 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,428 basehttp 9196 5376 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,444 basehttp 9196 15220 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,446 basehttp 9196 5376 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,464 basehttp 9196 5376 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,465 basehttp 9196 15220 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,476 basehttp 9196 5376 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,477 basehttp 9196 15220 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,488 basehttp 9196 7904 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,489 basehttp 9196 5376 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:37:28,515 basehttp 9196 7904 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,178 basehttp 9196 17292 "GET /orders/ HTTP/1.1" 200 13767
+INFO 2022-05-01 20:44:18,255 basehttp 9196 17292 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,271 basehttp 9196 6992 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,299 basehttp 9196 14792 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,300 basehttp 9196 17292 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,300 basehttp 9196 6992 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,322 basehttp 9196 6992 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,326 basehttp 9196 17292 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,326 basehttp 9196 14792 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,352 basehttp 9196 17292 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,352 basehttp 9196 6992 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:18,387 basehttp 9196 17292 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:29,465 basehttp 9196 17292 "GET /delivery/ HTTP/1.1" 200 66
+INFO 2022-05-01 20:44:29,561 basehttp 9196 17292 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:45:49,783 basehttp 9196 10092 "PATCH /delivery/1 HTTP/1.1" 301 0
+WARNING 2022-05-01 20:45:49,795 log 9196 10092 Method Not Allowed: /delivery/1/
+WARNING 2022-05-01 20:45:49,797 basehttp 9196 10092 "GET /delivery/1/ HTTP/1.1" 405 58
+WARNING 2022-05-01 20:45:55,476 log 9196 10092 Method Not Allowed: /delivery/1/
+WARNING 2022-05-01 20:45:55,478 basehttp 9196 10092 "PATCH /delivery/1/ HTTP/1.1" 405 60
+INFO 2022-05-01 20:46:02,633 basehttp 9196 10092 "PUT /delivery/1/ HTTP/1.1" 200 37
+INFO 2022-05-01 20:46:17,327 basehttp 9196 10092 "PUT /delivery/ HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:29,824 basehttp 9196 17292 "GET /customer-orders/1/ HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:29,923 basehttp 9196 17292 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:35,938 basehttp 9196 17292 "GET /customer-orders/1 HTTP/1.1" 200 5625
+INFO 2022-05-01 20:47:36,034 basehttp 9196 6992 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,034 basehttp 9196 14792 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,036 basehttp 9196 17292 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,057 basehttp 9196 17292 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,058 basehttp 9196 14792 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,059 basehttp 9196 6992 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,081 basehttp 9196 17292 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,082 basehttp 9196 14792 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,087 basehttp 9196 6992 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,118 basehttp 9196 14792 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:47:36,131 basehttp 9196 14792 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,505 basehttp 9196 14792 "GET /invoice-payment/1 HTTP/1.1" 200 8621
+INFO 2022-05-01 20:50:46,577 basehttp 9196 14792 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,616 basehttp 9196 6992 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,616 basehttp 9196 17292 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,618 basehttp 9196 14792 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,628 basehttp 9196 6992 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,628 basehttp 9196 14792 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,629 basehttp 9196 17292 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,641 basehttp 9196 6992 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,641 basehttp 9196 17292 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,643 basehttp 9196 14792 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 20:50:46,662 basehttp 9196 14792 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 23:22:08,618 autoreload 17184 11668 Watching for file changes with StatReloader
+INFO 2022-05-01 23:24:08,064 autoreload 17184 11668 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:24:09,447 autoreload 11652 12972 Watching for file changes with StatReloader
+INFO 2022-05-01 23:24:18,413 basehttp 11652 16808 "GET /products/ HTTP/1.1" 200 11718
+INFO 2022-05-01 23:24:18,444 basehttp 11652 16808 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,444 basehttp 11652 16808 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,444 basehttp 11652 16808 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,460 basehttp 11652 16808 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,460 basehttp 11652 16808 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,460 basehttp 11652 16808 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,460 basehttp 11652 16808 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,460 basehttp 11652 16808 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,475 basehttp 11652 16808 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:18,475 basehttp 11652 16808 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:21,234 basehttp 11652 16808 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,708 basehttp 11652 16808 "GET /products/? HTTP/1.1" 200 11718
+INFO 2022-05-01 23:24:25,729 basehttp 11652 16808 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,746 basehttp 11652 7388 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,747 basehttp 11652 7312 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,748 basehttp 11652 16808 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,749 basehttp 11652 16356 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,749 basehttp 11652 14164 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,749 basehttp 11652 13784 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,757 basehttp 11652 7312 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,757 basehttp 11652 16808 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,757 basehttp 11652 7388 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:25,772 basehttp 11652 7388 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,026 basehttp 11652 7388 "GET /products/ HTTP/1.1" 200 11718
+INFO 2022-05-01 23:24:28,064 basehttp 11652 14164 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,065 basehttp 11652 7388 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,065 basehttp 11652 16808 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,065 basehttp 11652 16356 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,066 basehttp 11652 13784 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,066 basehttp 11652 7312 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,075 basehttp 11652 16808 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,075 basehttp 11652 16356 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,076 basehttp 11652 14164 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,076 basehttp 11652 7388 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:28,093 basehttp 11652 14164 "GET /favicon.ico HTTP/1.1" 200 66
+WARNING 2022-05-01 23:24:36,606 log 11652 14164 Forbidden: /products/
+WARNING 2022-05-01 23:24:36,607 basehttp 11652 14164 "POST /products/ HTTP/1.1" 403 5333
+INFO 2022-05-01 23:24:36,634 basehttp 11652 14164 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,637 basehttp 11652 14164 - Broken pipe from ('127.0.0.1', 50652)
+
+INFO 2022-05-01 23:24:36,637 basehttp 11652 7312 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,637 basehttp 11652 16808 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,637 basehttp 11652 7388 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,638 basehttp 11652 13784 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,638 basehttp 11652 16356 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,646 basehttp 11652 7312 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,651 basehttp 11652 7388 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,652 basehttp 11652 13784 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,652 basehttp 11652 16356 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 66
+INFO 2022-05-01 23:24:36,663 basehttp 11652 16356 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-01 23:31:47,911 basehttp 11652 9420 "GET /customers/ HTTP/1.1" 200 293
+INFO 2022-05-01 23:32:49,303 basehttp 11652 9420 "DELETE /products/14 HTTP/1.1" 301 0
+INFO 2022-05-01 23:32:49,326 basehttp 11652 9420 "GET /products/14/ HTTP/1.1" 200 127
+INFO 2022-05-01 23:33:18,814 autoreload 11652 12972 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:33:20,126 autoreload 3312 7176 Watching for file changes with StatReloader
+INFO 2022-05-01 23:33:26,746 basehttp 3312 12992 "DELETE /products/14 HTTP/1.1" 301 0
+INFO 2022-05-01 23:33:26,788 basehttp 3312 12992 "GET /products/14/ HTTP/1.1" 200 127
+WARNING 2022-05-01 23:33:33,281 log 3312 12992 Method Not Allowed: /products/
+WARNING 2022-05-01 23:33:33,282 basehttp 3312 12992 "DELETE /products/ HTTP/1.1" 405 61
+INFO 2022-05-01 23:34:07,097 autoreload 3312 7176 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:34:08,090 autoreload 13360 13056 Watching for file changes with StatReloader
+INFO 2022-05-01 23:34:09,692 basehttp 13360 11064 "DELETE /products/14 HTTP/1.1" 301 0
+INFO 2022-05-01 23:34:09,723 basehttp 13360 11064 "GET /products/14/ HTTP/1.1" 200 127
+INFO 2022-05-01 23:34:21,757 basehttp 13360 11064 "DELETE /products/14/ HTTP/1.1" 200 29
+INFO 2022-05-01 23:35:35,517 basehttp 13360 11064 "GET /categories/1 HTTP/1.1" 301 0
+WARNING 2022-05-01 23:35:35,548 log 13360 11064 Not Found: /categories/1/
+WARNING 2022-05-01 23:35:35,548 basehttp 13360 11064 "GET /categories/1/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:35:40,635 basehttp 13360 11064 "GET /categories/12 HTTP/1.1" 301 0
+WARNING 2022-05-01 23:35:40,652 log 13360 11064 Not Found: /categories/12/
+WARNING 2022-05-01 23:35:40,653 basehttp 13360 11064 "GET /categories/12/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:35:42,755 basehttp 13360 11064 "GET /categories/2 HTTP/1.1" 301 0
+INFO 2022-05-01 23:35:42,764 basehttp 13360 11064 "GET /categories/2/ HTTP/1.1" 200 81
+INFO 2022-05-01 23:37:09,072 basehttp 13360 11064 "POST /categories/ HTTP/1.1" 201 81
+INFO 2022-05-01 23:37:16,707 basehttp 13360 11064 "DELETE /categories/6 HTTP/1.1" 301 0
+INFO 2022-05-01 23:37:16,725 basehttp 13360 11064 "GET /categories/6/ HTTP/1.1" 200 81
+INFO 2022-05-01 23:41:26,477 basehttp 13360 11064 "DELETE /products/14 HTTP/1.1" 301 0
+INFO 2022-05-01 23:41:26,486 basehttp 13360 11064 "GET /products/14/ HTTP/1.1" 200 127
+INFO 2022-05-01 23:41:52,558 autoreload 11180 17080 Watching for file changes with StatReloader
+INFO 2022-05-01 23:42:27,393 autoreload 11180 17080 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:42:28,424 autoreload 15512 12680 Watching for file changes with StatReloader
+INFO 2022-05-01 23:42:37,578 autoreload 15512 12680 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:42:38,484 autoreload 7300 10228 Watching for file changes with StatReloader
+INFO 2022-05-01 23:42:42,280 autoreload 7300 10228 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:42:43,217 autoreload 5548 14728 Watching for file changes with StatReloader
+INFO 2022-05-01 23:42:52,664 basehttp 5548 15728 "DELETE /products/14 HTTP/1.1" 301 0
+INFO 2022-05-01 23:42:52,694 basehttp 5548 15728 "GET /products/14/ HTTP/1.1" 200 127
+INFO 2022-05-01 23:42:58,252 log 5548 15728 OK: /products/17/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+apps.products.models.Product.DoesNotExist: Product matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 64, in destroy
+    instance = self.get_object()
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 96, in get_object
+    obj = get_object_or_404(queryset, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 19, in get_object_or_404
+    return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 87, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Product matches the given query.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 67, in destroy
+    except NotFound:
+NameError: name 'NotFound' is not defined
+INFO 2022-05-01 23:42:58,329 basehttp 5548 15728 "DELETE /products/17/ HTTP/1.1" 200 56
+INFO 2022-05-01 23:44:09,317 autoreload 5548 14728 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:44:10,564 autoreload 6416 9364 Watching for file changes with StatReloader
+INFO 2022-05-01 23:44:11,356 log 6416 3208 OK: /products/17/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+apps.products.models.Product.DoesNotExist: Product matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 64, in destroy
+    instance = self.get_object()
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 96, in get_object
+    obj = get_object_or_404(queryset, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 19, in get_object_or_404
+    return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 87, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Product matches the given query.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 67, in destroy
+    except instance.DoesNotExist:
+UnboundLocalError: local variable 'instance' referenced before assignment
+INFO 2022-05-01 23:44:11,360 basehttp 6416 3208 "DELETE /products/17/ HTTP/1.1" 200 56
+INFO 2022-05-01 23:45:33,266 autoreload 6416 9364 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:45:34,503 autoreload 3312 10680 Watching for file changes with StatReloader
+INFO 2022-05-01 23:45:35,133 log 3312 7824 OK: /products/17/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+apps.products.models.Product.DoesNotExist: Product matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 65, in destroy
+    instance = self.get_object()
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 96, in get_object
+    obj = get_object_or_404(queryset, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\generics.py", line 19, in get_object_or_404
+    return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+  File "C:\Python310\lib\site-packages\django\shortcuts.py", line 87, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Product matches the given query.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 68, in destroy
+    except instance.DoesNotExist:
+AttributeError: type object 'object' has no attribute 'DoesNotExist'
+INFO 2022-05-01 23:45:35,141 basehttp 3312 7824 "DELETE /products/17/ HTTP/1.1" 200 56
+INFO 2022-05-01 23:46:38,752 autoreload 3312 10680 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:46:40,062 autoreload 636 11932 Watching for file changes with StatReloader
+WARNING 2022-05-01 23:46:41,320 log 636 9072 Not Found: /products/17/
+WARNING 2022-05-01 23:46:41,322 basehttp 636 9072 "DELETE /products/17/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:50:14,082 autoreload 636 11932 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:50:15,222 autoreload 13472 13864 Watching for file changes with StatReloader
+INFO 2022-05-01 23:50:26,436 autoreload 13472 13864 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:50:27,466 autoreload 9472 9048 Watching for file changes with StatReloader
+INFO 2022-05-01 23:51:43,775 autoreload 9472 9048 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:51:45,243 autoreload 8112 17260 Watching for file changes with StatReloader
+INFO 2022-05-01 23:51:55,397 autoreload 8112 17260 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:51:56,600 autoreload 3696 4120 Watching for file changes with StatReloader
+INFO 2022-05-01 23:52:02,520 autoreload 3696 4120 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:52:03,536 autoreload 5656 17264 Watching for file changes with StatReloader
+WARNING 2022-05-01 23:52:05,975 log 5656 14760 Not Found: /products/17/
+WARNING 2022-05-01 23:52:05,976 basehttp 5656 14760 "DELETE /products/17/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:52:27,936 autoreload 5656 17264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:52:29,139 autoreload 3908 14116 Watching for file changes with StatReloader
+WARNING 2022-05-01 23:52:30,084 log 3908 14656 Not Found: /products/17/
+WARNING 2022-05-01 23:52:30,084 basehttp 3908 14656 "DELETE /products/17/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:52:49,074 autoreload 3908 14116 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:52:50,075 autoreload 16280 10472 Watching for file changes with StatReloader
+INFO 2022-05-01 23:53:26,361 autoreload 16280 10472 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:53:27,541 autoreload 15676 13940 Watching for file changes with StatReloader
+WARNING 2022-05-01 23:53:31,576 log 15676 14416 Not Found: /products/17/
+WARNING 2022-05-01 23:53:31,576 basehttp 15676 14416 "DELETE /products/17/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:53:40,255 autoreload 15676 13940 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:53:41,332 autoreload 16408 3284 Watching for file changes with StatReloader
+INFO 2022-05-01 23:56:40,809 autoreload 16408 3284 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:56:42,435 autoreload 684 7864 Watching for file changes with StatReloader
+WARNING 2022-05-01 23:56:43,965 log 684 13872 Not Found: /products/17/
+WARNING 2022-05-01 23:56:43,966 basehttp 684 13872 "DELETE /products/17/ HTTP/1.1" 404 41
+INFO 2022-05-01 23:57:41,189 autoreload 684 7864 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:57:42,110 autoreload 2292 16448 Watching for file changes with StatReloader
+INFO 2022-05-01 23:57:50,187 autoreload 2292 16448 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-01 23:57:51,187 autoreload 8148 8784 Watching for file changes with StatReloader
+INFO 2022-05-02 00:00:38,646 basehttp 8148 9156 "DELETE /products/14/ HTTP/1.1" 200 29
+INFO 2022-05-02 00:00:55,133 basehttp 8148 9156 "DELETE /products/14 HTTP/1.1" 301 0
+WARNING 2022-05-02 00:00:55,146 log 8148 9156 Not Found: /products/14/
+WARNING 2022-05-02 00:00:55,147 basehttp 8148 9156 "GET /products/14/ HTTP/1.1" 404 41
+WARNING 2022-05-02 00:01:01,446 log 8148 9156 Not Found: /products/14/
+WARNING 2022-05-02 00:01:01,447 basehttp 8148 9156 "DELETE /products/14/ HTTP/1.1" 404 41
+WARNING 2022-05-02 00:01:06,203 log 8148 9156 Not Found: /products/14/
+WARNING 2022-05-02 00:01:06,203 basehttp 8148 9156 "GET /products/14/ HTTP/1.1" 404 41
+INFO 2022-05-02 00:02:10,308 basehttp 8148 9156 "PUT /products/1 HTTP/1.1" 301 0
+INFO 2022-05-02 00:02:10,317 basehttp 8148 9156 "GET /products/1/ HTTP/1.1" 200 132
+INFO 2022-05-02 00:03:08,920 basehttp 8148 9156 "PUT /products/1 HTTP/1.1" 301 0
+INFO 2022-05-02 00:03:08,931 basehttp 8148 9156 "GET /products/1/ HTTP/1.1" 200 132
+INFO 2022-05-02 00:03:11,918 basehttp 8148 9156 "PUT /products/1/ HTTP/1.1" 200 132
+INFO 2022-05-02 00:03:23,660 basehttp 8148 9156 "PUT /products/1/ HTTP/1.1" 200 132
+INFO 2022-05-02 00:03:33,978 basehttp 8148 9156 "PUT /products/1/ HTTP/1.1" 200 132
+WARNING 2022-05-02 00:03:45,475 log 8148 9156 Not Found: /products/7/
+WARNING 2022-05-02 00:03:45,476 basehttp 8148 9156 "PUT /products/7/ HTTP/1.1" 404 41
+INFO 2022-05-02 00:04:55,651 autoreload 8148 8784 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-02 00:04:56,792 autoreload 15812 13196 Watching for file changes with StatReloader
+INFO 2022-05-02 00:05:38,196 basehttp 15812 9940 "DELETE /cateories/6/ HTTP/1.1" 200 66
+INFO 2022-05-02 00:05:46,293 basehttp 15812 9940 "DELETE /categories/6/ HTTP/1.1" 200 30
+INFO 2022-05-02 00:06:02,870 basehttp 15812 9940 "DELETE /categories/4 HTTP/1.1" 301 0
+INFO 2022-05-02 00:06:02,890 basehttp 15812 9940 "GET /categories/4/ HTTP/1.1" 200 91
+INFO 2022-05-02 00:06:22,718 basehttp 15812 9940 "POST /categories/ HTTP/1.1" 201 91
+INFO 2022-05-02 00:06:35,072 basehttp 15812 9940 "GET /products/1 HTTP/1.1" 301 0
+INFO 2022-05-02 00:06:35,092 basehttp 15812 9940 "GET /products/1/ HTTP/1.1" 200 132
+INFO 2022-05-02 00:06:55,889 basehttp 15812 9940 "POST /products/ HTTP/1.1" 201 133
+INFO 2022-05-02 00:07:12,303 basehttp 15812 9940 "DELETE /categories/7/ HTTP/1.1" 200 30
+INFO 2022-05-02 00:07:18,698 basehttp 15812 9940 "DELETE /categories/7 HTTP/1.1" 301 0
+WARNING 2022-05-02 00:07:18,705 log 15812 9940 Not Found: /categories/7/
+WARNING 2022-05-02 00:07:18,705 basehttp 15812 9940 "GET /categories/7/ HTTP/1.1" 404 41
+INFO 2022-05-02 00:07:34,954 basehttp 15812 9940 "GET /products/15 HTTP/1.1" 301 0
+WARNING 2022-05-02 00:07:34,969 log 15812 9940 Not Found: /products/15/
+WARNING 2022-05-02 00:07:34,970 basehttp 15812 9940 "GET /products/15/ HTTP/1.1" 404 41
+WARNING 2022-05-02 00:08:34,612 log 15812 9940 Bad Request: /products/
+WARNING 2022-05-02 00:08:34,613 basehttp 15812 9940 "POST /products/ HTTP/1.1" 400 127
+INFO 2022-05-02 00:12:24,803 autoreload 15812 13196 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\serializers.py changed, reloading.
+INFO 2022-05-02 00:12:25,869 autoreload 13476 14916 Watching for file changes with StatReloader
+INFO 2022-05-02 00:12:32,140 autoreload 13476 14916 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 00:12:33,140 autoreload 3132 13252 Watching for file changes with StatReloader
+INFO 2022-05-02 00:12:49,645 autoreload 3132 13252 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 00:12:50,535 autoreload 10008 16192 Watching for file changes with StatReloader
+INFO 2022-05-02 00:13:47,481 autoreload 10008 16192 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 00:13:48,652 autoreload 7416 8892 Watching for file changes with StatReloader
+INFO 2022-05-02 00:13:55,729 autoreload 7416 8892 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 00:13:56,666 autoreload 9804 3348 Watching for file changes with StatReloader
+INFO 2022-05-02 00:14:08,913 autoreload 9804 3348 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 00:14:09,913 autoreload 8684 10704 Watching for file changes with StatReloader
+INFO 2022-05-02 00:14:12,756 autoreload 8684 10704 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 00:14:13,678 autoreload 6848 11752 Watching for file changes with StatReloader
+INFO 2022-05-02 07:24:48,342 autoreload 14468 13424 Watching for file changes with StatReloader
+INFO 2022-05-02 07:25:41,891 autoreload 12608 6016 Watching for file changes with StatReloader
+INFO 2022-05-02 07:27:46,731 basehttp 12608 7416 "GET /orders/ HTTP/1.1" 200 538
+INFO 2022-05-02 07:28:16,464 autoreload 12608 6016 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-02 07:28:17,559 autoreload 7688 15904 Watching for file changes with StatReloader
+INFO 2022-05-02 07:28:39,383 autoreload 7688 15904 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-02 07:28:40,620 autoreload 5140 10564 Watching for file changes with StatReloader
+INFO 2022-05-02 07:29:10,877 autoreload 5140 10564 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-02 07:29:12,127 autoreload 8808 9068 Watching for file changes with StatReloader
+INFO 2022-05-02 07:30:31,408 autoreload 8808 9068 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-02 07:30:32,455 autoreload 3548 12444 Watching for file changes with StatReloader
+INFO 2022-05-02 07:31:29,350 autoreload 3548 12444 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-02 07:31:30,522 autoreload 11632 10384 Watching for file changes with StatReloader
+INFO 2022-05-02 07:32:28,253 basehttp 11632 10584 "GET /customers/ HTTP/1.1" 200 293
+INFO 2022-05-02 07:32:33,470 basehttp 11632 10584 "GET /customers/1/ HTTP/1.1" 200 108
+INFO 2022-05-02 07:32:37,187 basehttp 11632 10584 "GET /customers/3 HTTP/1.1" 301 0
+INFO 2022-05-02 07:32:37,194 basehttp 11632 10584 "GET /customers/3/ HTTP/1.1" 200 97
+INFO 2022-05-02 07:32:39,604 basehttp 11632 10584 "GET /customers/4 HTTP/1.1" 301 0
+WARNING 2022-05-02 07:32:39,621 log 11632 10584 Not Found: /customers/4/
+WARNING 2022-05-02 07:32:39,622 basehttp 11632 10584 "GET /customers/4/ HTTP/1.1" 404 41
+INFO 2022-05-02 07:33:09,589 basehttp 11632 10584 "GET /customers/3 HTTP/1.1" 301 0
+INFO 2022-05-02 07:33:09,607 basehttp 11632 10584 "GET /customers/3/ HTTP/1.1" 200 97
+INFO 2022-05-02 07:33:56,402 basehttp 11632 10584 "POST /customers/ HTTP/1.1" 201 97
+WARNING 2022-05-02 07:34:25,069 log 11632 10584 Method Not Allowed: /customers/
+WARNING 2022-05-02 07:34:25,069 basehttp 11632 10584 "PUT /customers/ HTTP/1.1" 405 58
+INFO 2022-05-02 07:34:34,193 basehttp 11632 10584 "PUT /customers/5 HTTP/1.1" 301 0
+WARNING 2022-05-02 07:34:34,213 log 11632 10584 Not Found: /customers/5/
+WARNING 2022-05-02 07:34:34,214 basehttp 11632 10584 "GET /customers/5/ HTTP/1.1" 404 41
+INFO 2022-05-02 07:35:07,445 basehttp 11632 10584 "PUT /customers/4 HTTP/1.1" 301 0
+INFO 2022-05-02 07:35:07,453 basehttp 11632 10584 "GET /customers/4/ HTTP/1.1" 200 97
+INFO 2022-05-02 07:35:11,824 basehttp 11632 10584 "PUT /customers/4/ HTTP/1.1" 200 98
+WARNING 2022-05-02 07:35:26,853 log 11632 10584 Bad Request: /customers/4/
+WARNING 2022-05-02 07:35:26,854 basehttp 11632 10584 "PUT /customers/4/ HTTP/1.1" 400 62
+INFO 2022-05-02 07:35:59,184 basehttp 11632 10584 "PUT /customers/4/ HTTP/1.1" 200 97
+INFO 2022-05-02 07:36:14,357 basehttp 11632 10584 "PUT /customers/4/ HTTP/1.1" 200 98
+INFO 2022-05-02 07:36:32,944 basehttp 11632 10584 "PATCH /customers/4/ HTTP/1.1" 200 97
+WARNING 2022-05-02 07:41:52,722 log 11632 10584 Method Not Allowed: /orders/
+WARNING 2022-05-02 07:41:52,722 basehttp 11632 10584 "PATCH /orders/ HTTP/1.1" 405 60
+INFO 2022-05-02 07:41:59,880 basehttp 11632 10584 "GET /orders/ HTTP/1.1" 200 538
+INFO 2022-05-02 07:42:22,328 basehttp 11632 10584 "GET /orders/2 HTTP/1.1" 301 0
+WARNING 2022-05-02 07:42:22,349 log 11632 10584 Not Found: /orders/2/
+WARNING 2022-05-02 07:42:22,349 basehttp 11632 10584 "GET /orders/2/ HTTP/1.1" 404 41
+INFO 2022-05-02 07:42:25,217 basehttp 11632 10584 "GET /orders/ HTTP/1.1" 200 538
+INFO 2022-05-02 07:42:34,053 basehttp 11632 10584 "GET /orders/16 HTTP/1.1" 301 0
+INFO 2022-05-02 07:42:34,067 basehttp 11632 10584 "GET /orders/16/ HTTP/1.1" 200 197
+WARNING 2022-05-02 07:43:49,713 log 11632 10584 Bad Request: /orders/16/
+WARNING 2022-05-02 07:43:49,714 basehttp 11632 10584 "PATCH /orders/16/ HTTP/1.1" 400 63
+WARNING 2022-05-02 07:43:56,718 log 11632 10584 Bad Request: /orders/16/
+WARNING 2022-05-02 07:43:56,719 basehttp 11632 10584 "PUT /orders/16/ HTTP/1.1" 400 63
+INFO 2022-05-02 07:44:02,203 basehttp 11632 10584 "GET /orders/16/ HTTP/1.1" 200 197
+WARNING 2022-05-02 07:44:18,429 log 11632 10584 Bad Request: /orders/16/
+WARNING 2022-05-02 07:44:18,429 basehttp 11632 10584 "PUT /orders/16/ HTTP/1.1" 400 60
+INFO 2022-05-02 07:44:33,621 basehttp 11632 10584 "PUT /orders/16/ HTTP/1.1" 200 197
+WARNING 2022-05-02 07:44:40,825 log 11632 10584 Bad Request: /orders/16/
+WARNING 2022-05-02 07:44:40,825 basehttp 11632 10584 "PUT /orders/16/ HTTP/1.1" 400 61
+INFO 2022-05-02 07:44:49,476 basehttp 11632 10584 "PUT /orders/16/ HTTP/1.1" 200 197
+INFO 2022-05-02 07:45:04,537 log 11632 10584 OK: /orders/16/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 61, in update
+    order = self.order_service.update(order_details, validated_data, order_products)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 67, in update
+    product_details = products.get(id=product['product'])
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+apps.products.models.Product.DoesNotExist: Product matching query does not exist.
+INFO 2022-05-02 07:45:04,564 basehttp 11632 10584 "PUT /orders/16/ HTTP/1.1" 200 56
+WARNING 2022-05-02 07:47:04,029 log 11632 10584 Method Not Allowed: /orders/16/
+WARNING 2022-05-02 07:47:04,030 basehttp 11632 10584 "POST /orders/16/ HTTP/1.1" 405 59
+WARNING 2022-05-02 07:47:08,288 log 11632 10584 Bad Request: /orders/
+WARNING 2022-05-02 07:47:08,289 basehttp 11632 10584 "POST /orders/ HTTP/1.1" 400 67
+INFO 2022-05-02 07:47:33,642 basehttp 11632 10584 "POST /orders/ HTTP/1.1" 200 198
+INFO 2022-05-02 07:47:52,414 basehttp 11632 10584 "GET /invoice/7 HTTP/1.1" 301 0
+INFO 2022-05-02 07:47:52,426 basehttp 11632 10584 "GET /invoice/7/ HTTP/1.1" 200 112
+INFO 2022-05-02 07:48:45,120 basehttp 11632 10584 "GET /vendors/ HTTP/1.1" 200 321
+INFO 2022-05-02 07:49:01,487 basehttp 11632 10584 "POST /vendors/ HTTP/1.1" 201 113
+INFO 2022-05-02 07:49:16,669 basehttp 11632 10584 "GET /orders/17 HTTP/1.1" 301 0
+INFO 2022-05-02 07:49:16,679 basehttp 11632 10584 "GET /orders/17/ HTTP/1.1" 200 200
+INFO 2022-05-02 07:49:20,501 basehttp 11632 10584 "GET /orders/18 HTTP/1.1" 301 0
+WARNING 2022-05-02 07:49:20,510 log 11632 10584 Not Found: /orders/18/
+WARNING 2022-05-02 07:49:20,511 basehttp 11632 10584 "GET /orders/18/ HTTP/1.1" 404 41
+INFO 2022-05-02 07:49:38,457 basehttp 11632 10584 "GET /orders/21 HTTP/1.1" 301 0
+INFO 2022-05-02 07:49:38,478 basehttp 11632 10584 "GET /orders/21/ HTTP/1.1" 200 198
+WARNING 2022-05-02 07:50:45,925 log 11632 10584 Bad Request: /orders/
+WARNING 2022-05-02 07:50:45,926 basehttp 11632 10584 "POST /orders/ HTTP/1.1" 400 60
+INFO 2022-05-02 07:50:54,269 basehttp 11632 10584 "POST /orders/ HTTP/1.1" 200 199
+WARNING 2022-05-02 07:51:43,888 log 11632 10584 Method Not Allowed: /orders/
+WARNING 2022-05-02 07:51:43,889 basehttp 11632 10584 "DELETE /orders/ HTTP/1.1" 405 61
+INFO 2022-05-02 08:03:14,131 basehttp 11632 10584 "GET /orders/ HTTP/1.1" 200 538
+INFO 2022-05-02 08:03:22,460 basehttp 11632 10584 "GET /orders/18 HTTP/1.1" 301 0
+WARNING 2022-05-02 08:03:22,469 log 11632 10584 Not Found: /orders/18/
+WARNING 2022-05-02 08:03:22,469 basehttp 11632 10584 "GET /orders/18/ HTTP/1.1" 404 41
+INFO 2022-05-02 08:03:24,988 basehttp 11632 10584 "GET /orders/17 HTTP/1.1" 301 0
+INFO 2022-05-02 08:03:24,997 basehttp 11632 10584 "GET /orders/17/ HTTP/1.1" 200 200
+INFO 2022-05-02 08:03:30,124 basehttp 11632 10584 "GET /orders/19 HTTP/1.1" 301 0
+WARNING 2022-05-02 08:03:30,130 log 11632 10584 Not Found: /orders/19/
+WARNING 2022-05-02 08:03:30,130 basehttp 11632 10584 "GET /orders/19/ HTTP/1.1" 404 41
+INFO 2022-05-02 08:03:33,169 basehttp 11632 10584 "GET /orders/20 HTTP/1.1" 301 0
+WARNING 2022-05-02 08:03:33,176 log 11632 10584 Not Found: /orders/20/
+WARNING 2022-05-02 08:03:33,176 basehttp 11632 10584 "GET /orders/20/ HTTP/1.1" 404 41
+INFO 2022-05-02 08:03:34,882 basehttp 11632 10584 "GET /orders/21 HTTP/1.1" 301 0
+INFO 2022-05-02 08:03:34,893 basehttp 11632 10584 "GET /orders/21/ HTTP/1.1" 200 198
+INFO 2022-05-02 08:03:36,835 basehttp 11632 10584 "GET /orders/22 HTTP/1.1" 301 0
+INFO 2022-05-02 08:03:36,853 basehttp 11632 10584 "GET /orders/22/ HTTP/1.1" 200 199
+INFO 2022-05-02 08:03:39,105 basehttp 11632 10584 "GET /orders/23 HTTP/1.1" 301 0
+WARNING 2022-05-02 08:03:39,112 log 11632 10584 Not Found: /orders/23/
+WARNING 2022-05-02 08:03:39,112 basehttp 11632 10584 "GET /orders/23/ HTTP/1.1" 404 41
+INFO 2022-05-02 08:03:40,850 basehttp 11632 10584 "GET /orders/21 HTTP/1.1" 301 0
+INFO 2022-05-02 08:03:40,875 basehttp 11632 10584 "GET /orders/21/ HTTP/1.1" 200 198
+WARNING 2022-05-02 08:03:50,449 log 11632 10584 Method Not Allowed: /orders/
+WARNING 2022-05-02 08:03:50,450 basehttp 11632 10584 "DELETE /orders/ HTTP/1.1" 405 61
+INFO 2022-05-02 08:03:55,663 basehttp 11632 10584 "DELETE /orders/22/ HTTP/1.1" 200 27
+INFO 2022-05-02 08:05:45,999 autoreload 11632 10384 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 08:05:47,015 autoreload 8936 5800 Watching for file changes with StatReloader
+INFO 2022-05-02 08:05:56,972 basehttp 8936 5812 "DELETE /orders/21/ HTTP/1.1" 200 27
+INFO 2022-05-02 08:06:49,267 autoreload 3576 11916 Watching for file changes with StatReloader
+INFO 2022-05-02 08:06:57,588 basehttp 3576 16580 "POST /orders/ HTTP/1.1" 200 199
+INFO 2022-05-02 08:07:08,881 basehttp 3576 16580 "DELETE /orders/23/ HTTP/1.1" 200 27
+INFO 2022-05-02 08:08:14,284 autoreload 3576 11916 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 08:08:15,253 autoreload 13696 13088 Watching for file changes with StatReloader
+INFO 2022-05-02 08:08:28,875 autoreload 13236 11460 Watching for file changes with StatReloader
+INFO 2022-05-02 08:08:48,022 basehttp 13236 11028 "POST /orders/ HTTP/1.1" 200 200
+INFO 2022-05-02 08:09:02,968 basehttp 13236 11028 "POST /orders/ HTTP/1.1" 200 199
+INFO 2022-05-02 08:09:31,202 basehttp 13236 11028 "DELETE /vendors/4/ HTTP/1.1" 204 0
+INFO 2022-05-02 08:09:56,690 autoreload 13236 11460 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 08:09:57,628 autoreload 3824 4212 Watching for file changes with StatReloader
+INFO 2022-05-02 08:12:10,806 autoreload 3824 4212 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-02 08:12:24,133 autoreload 1400 10616 Watching for file changes with StatReloader
+INFO 2022-05-02 08:12:35,223 basehttp 1400 7456 "DELETE /customers/4/ HTTP/1.1" 204 0
+INFO 2022-05-02 08:13:57,974 basehttp 1400 7456 "DELETE /orders/17/ HTTP/1.1" 200 27
+WARNING 2022-05-02 08:34:39,114 log 1400 7456 Bad Request: /invoice/
+WARNING 2022-05-02 08:34:39,115 basehttp 1400 7456 "POST /invoice/ HTTP/1.1" 400 66
+INFO 2022-05-02 08:36:25,891 autoreload 1400 10616 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 08:36:26,875 autoreload 16440 17400 Watching for file changes with StatReloader
+INFO 2022-05-02 08:37:14,022 autoreload 16440 17400 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 08:37:14,975 autoreload 1856 15836 Watching for file changes with StatReloader
+INFO 2022-05-02 08:37:30,347 autoreload 1856 15836 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 08:37:31,159 autoreload 12176 9312 Watching for file changes with StatReloader
+INFO 2022-05-02 08:37:59,427 autoreload 12176 9312 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-05-02 08:38:00,348 autoreload 14876 16652 Watching for file changes with StatReloader
+INFO 2022-05-02 08:38:23,121 autoreload 14876 16652 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\models.py changed, reloading.
+INFO 2022-05-02 08:38:24,074 autoreload 12016 15848 Watching for file changes with StatReloader
+INFO 2022-05-02 08:38:38,698 autoreload 4368 14292 Watching for file changes with StatReloader
+INFO 2022-05-02 08:38:47,029 log 4368 6632 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 26, in create
+    validated_data.is_valid(raise_exception=True)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py", line 19, in validate
+    payment_deadline = datetime.datetime.strptime(self.initial_data['payment_deadline'], '%Y-%m-%d')
+NameError: name 'datetime' is not defined
+INFO 2022-05-02 08:38:47,063 basehttp 4368 6632 "POST /invoice/ HTTP/1.1" 200 56
+INFO 2022-05-02 08:40:09,920 log 4368 6632 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 26, in create
+    validated_data.is_valid(raise_exception=True)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py", line 19, in validate
+    payment_deadline = datetime.datetime.strptime(self.initial_data['payment_deadline'], '%Y-%m-%d')
+NameError: name 'datetime' is not defined
+INFO 2022-05-02 08:40:09,923 basehttp 4368 6632 "POST /invoice/ HTTP/1.1" 200 56
+INFO 2022-05-02 08:41:17,606 autoreload 4368 14292 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 08:41:18,628 autoreload 9336 5268 Watching for file changes with StatReloader
+INFO 2022-05-02 08:41:20,198 log 9336 16960 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 26, in create
+    validated_data.is_valid(raise_exception=True)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 430, in run_validation
+    assert value is not None, '.validate() should return the validated data'
+AssertionError: .validate() should return the validated data
+INFO 2022-05-02 08:41:20,201 basehttp 9336 16960 "POST /invoice/ HTTP/1.1" 200 56
+INFO 2022-05-02 08:42:09,655 autoreload 9336 5268 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 08:42:10,576 autoreload 10348 7432 Watching for file changes with StatReloader
+INFO 2022-05-02 08:42:18,551 autoreload 10348 7432 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 08:42:19,638 autoreload 5312 12000 Watching for file changes with StatReloader
+INFO 2022-05-02 08:42:21,596 basehttp 5312 7812 "POST /invoice/ HTTP/1.1" 200 113
+INFO 2022-05-02 08:44:17,861 autoreload 5312 12000 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 08:44:18,777 autoreload 7308 7112 Watching for file changes with StatReloader
+INFO 2022-05-02 08:45:00,308 autoreload 7308 7112 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 08:45:01,270 autoreload 3128 14196 Watching for file changes with StatReloader
+WARNING 2022-05-02 08:45:04,156 log 3128 10464 Bad Request: /invoice/
+WARNING 2022-05-02 08:45:04,156 basehttp 3128 10464 "POST /invoice/ HTTP/1.1" 400 71
+INFO 2022-05-02 08:47:30,202 basehttp 3128 10464 "DELETE /invoice/10 HTTP/1.1" 301 0
+INFO 2022-05-02 08:47:30,219 basehttp 3128 10464 "GET /invoice/10/ HTTP/1.1" 200 113
+INFO 2022-05-02 08:47:32,965 basehttp 3128 10464 "DELETE /invoice/10/ HTTP/1.1" 204 0
+INFO 2022-05-02 08:51:14,690 autoreload 3128 14196 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 08:51:15,580 autoreload 4348 7620 Watching for file changes with StatReloader
+INFO 2022-05-02 08:52:23,334 autoreload 4348 7620 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 08:52:24,240 autoreload 15680 32 Watching for file changes with StatReloader
+INFO 2022-05-02 08:54:30,266 autoreload 15680 32 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 08:54:31,110 autoreload 8276 15240 Watching for file changes with StatReloader
+INFO 2022-05-02 08:57:26,834 autoreload 8276 15240 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 08:57:27,771 autoreload 4040 8632 Watching for file changes with StatReloader
+INFO 2022-05-02 08:57:47,154 autoreload 4040 8632 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 08:57:48,013 autoreload 14176 9972 Watching for file changes with StatReloader
+INFO 2022-05-02 08:57:59,964 autoreload 14176 9972 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 08:58:00,838 autoreload 4716 960 Watching for file changes with StatReloader
+INFO 2022-05-02 08:58:31,708 autoreload 4716 960 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 08:58:32,583 autoreload 1064 10908 Watching for file changes with StatReloader
+INFO 2022-05-02 09:03:48,438 autoreload 1064 10908 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:03:49,329 autoreload 6228 14524 Watching for file changes with StatReloader
+INFO 2022-05-02 09:05:09,822 autoreload 6228 14524 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:05:10,885 autoreload 14724 11128 Watching for file changes with StatReloader
+INFO 2022-05-02 09:05:59,905 autoreload 14724 11128 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:06:00,733 autoreload 12228 10264 Watching for file changes with StatReloader
+INFO 2022-05-02 09:06:11,824 autoreload 12228 10264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:06:12,870 autoreload 2128 10672 Watching for file changes with StatReloader
+WARNING 2022-05-02 09:07:06,727 log 2128 10592 Bad Request: /invoice/12/
+WARNING 2022-05-02 09:07:06,727 basehttp 2128 10592 "PUT /invoice/12/ HTTP/1.1" 400 56
+INFO 2022-05-02 09:07:56,058 autoreload 2128 10672 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:07:57,165 autoreload 2772 9528 Watching for file changes with StatReloader
+WARNING 2022-05-02 09:09:05,260 log 2772 1552 Bad Request: /invoice/1/
+WARNING 2022-05-02 09:09:05,260 basehttp 2772 1552 "PUT /invoice/1/ HTTP/1.1" 400 60
+WARNING 2022-05-02 09:09:16,240 log 2772 1552 Bad Request: /invoice/1/
+WARNING 2022-05-02 09:09:16,240 basehttp 2772 1552 "PUT /invoice/1/ HTTP/1.1" 400 60
+INFO 2022-05-02 09:09:27,008 autoreload 2772 9528 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:09:28,007 autoreload 6596 13716 Watching for file changes with StatReloader
+INFO 2022-05-02 09:09:54,349 basehttp 6596 68 "GET /invoice/1/ HTTP/1.1" 200 113
+WARNING 2022-05-02 09:10:27,057 log 6596 68 Bad Request: /invoice/1/
+WARNING 2022-05-02 09:10:27,058 basehttp 6596 68 "PUT /invoice/1/ HTTP/1.1" 400 60
+INFO 2022-05-02 09:12:02,304 autoreload 6596 13716 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:12:03,225 autoreload 5432 1868 Watching for file changes with StatReloader
+INFO 2022-05-02 09:12:59,689 log 5432 15788 OK: /invoice/1/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 41, in update
+    update_invoice = self.invoice_service.update(instance, validated_data, order_id)
+NameError: name 'validated_data' is not defined
+INFO 2022-05-02 09:12:59,693 basehttp 5432 15788 "PUT /invoice/1/ HTTP/1.1" 200 56
+INFO 2022-05-02 09:13:25,706 autoreload 5432 1868 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:13:26,534 autoreload 14568 15004 Watching for file changes with StatReloader
+WARNING 2022-05-02 09:13:33,981 log 14568 9332 Bad Request: /invoice/1/
+WARNING 2022-05-02 09:13:33,981 basehttp 14568 9332 "PUT /invoice/1/ HTTP/1.1" 400 60
+INFO 2022-05-02 09:14:22,511 autoreload 14568 15004 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:14:23,611 autoreload 13980 15216 Watching for file changes with StatReloader
+INFO 2022-05-02 09:14:24,549 log 13980 6744 OK: /invoice/1/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 41, in update
+    update_invoice = self.invoice_service.update(instance, *request.data, order_id)
+TypeError: InvoiceService.update() takes 4 positional arguments but 6 were given
+INFO 2022-05-02 09:14:24,551 basehttp 13980 6744 "PUT /invoice/1/ HTTP/1.1" 200 56
+INFO 2022-05-02 09:15:19,287 autoreload 13980 15216 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-02 09:15:20,130 autoreload 7068 14904 Watching for file changes with StatReloader
+INFO 2022-05-02 09:15:38,525 autoreload 7068 14904 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:15:39,416 autoreload 3236 7368 Watching for file changes with StatReloader
+INFO 2022-05-02 09:15:49,738 autoreload 3236 7368 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:15:50,613 autoreload 16400 12364 Watching for file changes with StatReloader
+INFO 2022-05-02 09:15:54,070 log 16400 16300 OK: /invoice/1/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 41, in update
+    update_invoice = self.invoice_service.update(instance, *request.data, order_id)
+TypeError: InvoiceService.update() missing 1 required keyword-only argument: 'order_id'
+INFO 2022-05-02 09:15:54,073 basehttp 16400 16300 "PUT /invoice/1/ HTTP/1.1" 200 56
+INFO 2022-05-02 09:16:45,488 autoreload 16400 12364 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:16:46,564 autoreload 13844 2284 Watching for file changes with StatReloader
+INFO 2022-05-02 09:16:55,603 autoreload 13844 2284 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:16:56,494 autoreload 12368 12788 Watching for file changes with StatReloader
+INFO 2022-05-02 09:17:18,273 autoreload 12368 12788 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:17:19,430 autoreload 15640 1376 Watching for file changes with StatReloader
+WARNING 2022-05-02 09:17:20,772 log 15640 17012 Bad Request: /invoice/1/
+WARNING 2022-05-02 09:17:20,772 basehttp 15640 17012 "PUT /invoice/1/ HTTP/1.1" 400 60
+INFO 2022-05-02 09:19:05,879 autoreload 15640 1376 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:19:06,785 autoreload 8132 8024 Watching for file changes with StatReloader
+INFO 2022-05-02 09:19:35,976 autoreload 8132 8024 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:19:36,914 autoreload 12644 10368 Watching for file changes with StatReloader
+INFO 2022-05-02 09:19:41,603 basehttp 12644 14248 "PUT /invoice/1/ HTTP/1.1" 200 113
+INFO 2022-05-02 09:19:59,500 basehttp 12644 14248 "PUT /invoice/1/ HTTP/1.1" 200 113
+INFO 2022-05-02 09:24:04,756 autoreload 12644 10368 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:24:05,631 autoreload 10280 16728 Watching for file changes with StatReloader
+INFO 2022-05-02 09:24:59,840 autoreload 10280 16728 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-02 09:25:00,774 autoreload 8992 5140 Watching for file changes with StatReloader
+INFO 2022-05-02 09:25:35,914 basehttp 8992 5616 "GET /payment/ HTTP/1.1" 200 327
+ERROR 2022-05-02 09:26:41,790 views 8992 5616 Custom Exception in Payment Creation
+WARNING 2022-05-02 09:26:41,791 log 8992 5616 Bad Request: /payment/
+WARNING 2022-05-02 09:26:41,791 basehttp 8992 5616 "POST /payment/ HTTP/1.1" 400 57
+INFO 2022-05-02 09:27:10,058 views 8992 5616 Payment created
+INFO 2022-05-02 09:27:10,061 basehttp 8992 5616 "POST /payment/ HTTP/1.1" 200 126
+INFO 2022-05-02 09:29:27,978 autoreload 8992 5140 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-02 09:29:28,946 autoreload 4720 7208 Watching for file changes with StatReloader
+INFO 2022-05-02 09:29:42,587 basehttp 4720 14644 "PUT /payment/12 HTTP/1.1" 301 0
+INFO 2022-05-02 09:29:42,605 basehttp 4720 14644 "GET /payment/12/ HTTP/1.1" 200 126
+INFO 2022-05-02 09:29:45,792 basehttp 4720 14644 "PUT /payment/12/ HTTP/1.1" 200 39
+INFO 2022-05-02 09:29:51,678 basehttp 4720 14644 "PATCH /payment/12/ HTTP/1.1" 200 39
+INFO 2022-05-02 09:29:54,206 basehttp 4720 14644 "PATCH /payment/12/ HTTP/1.1" 200 39
+INFO 2022-05-02 09:30:07,462 basehttp 4720 14644 "PATCH /payment/12/ HTTP/1.1" 200 39
+INFO 2022-05-02 09:30:21,401 basehttp 4720 14644 "DELETE /payment/12/ HTTP/1.1" 204 0
+INFO 2022-05-02 09:33:59,275 basehttp 4720 14644 "DELETE /invoice-payment HTTP/1.1" 200 66
+INFO 2022-05-02 09:34:13,275 basehttp 4720 14644 "GET /invoice-payment/12 HTTP/1.1" 200 2
+INFO 2022-05-02 09:34:28,371 basehttp 4720 14644 "GET /payment HTTP/1.1" 301 0
+INFO 2022-05-02 09:34:28,400 basehttp 4720 14644 "GET /payment/ HTTP/1.1" 200 327
+INFO 2022-05-02 09:35:00,990 basehttp 4720 14644 "POST /payment HTTP/1.1" 301 0
+INFO 2022-05-02 09:35:01,005 basehttp 4720 14644 "GET /payment/ HTTP/1.1" 200 327
+INFO 2022-05-02 09:35:04,994 views 4720 14644 Payment created
+INFO 2022-05-02 09:35:04,995 basehttp 4720 14644 "POST /payment/ HTTP/1.1" 200 126
+WARNING 2022-05-02 09:35:29,866 log 4720 14644 Method Not Allowed: /invoice-payment/11
+WARNING 2022-05-02 09:35:29,867 basehttp 4720 14644 "POST /invoice-payment/11 HTTP/1.1" 405 59
+INFO 2022-05-02 09:35:37,991 basehttp 4720 14644 "GET /invoice-payment/11 HTTP/1.1" 200 128
+WARNING 2022-05-02 09:35:54,567 log 4720 14644 Method Not Allowed: /invoice-payment/11
+WARNING 2022-05-02 09:35:54,567 basehttp 4720 14644 "DELETE /invoice-payment/11 HTTP/1.1" 405 61
+WARNING 2022-05-02 09:36:15,342 log 4720 14644 Method Not Allowed: /customer-orders/1
+WARNING 2022-05-02 09:36:15,342 basehttp 4720 14644 "DELETE /customer-orders/1 HTTP/1.1" 405 61
+INFO 2022-05-02 09:36:20,702 basehttp 4720 14644 "GET /customer-orders/1 HTTP/1.1" 200 2
+INFO 2022-05-02 09:36:53,312 basehttp 4720 14644 "GET /vendor-orders/1 HTTP/1.1" 200 454
+WARNING 2022-05-02 09:37:37,841 log 4720 14644 Method Not Allowed: /delivery/24/
+WARNING 2022-05-02 09:37:37,841 basehttp 4720 14644 "GET /delivery/24/ HTTP/1.1" 405 58
+INFO 2022-05-02 09:37:43,888 basehttp 4720 14644 "PUT /delivery/24/ HTTP/1.1" 200 37
+INFO 2022-05-02 09:37:51,719 basehttp 4720 14644 "PUT /delivery/24/ HTTP/1.1" 200 37
+INFO 2022-05-02 09:38:22,144 basehttp 4720 14644 "GET /payment/ HTTP/1.1" 200 327
+INFO 2022-05-02 09:38:33,491 basehttp 4720 14644 "GET /products/ HTTP/1.1" 200 355
+INFO 2022-05-02 09:45:06,105 autoreload 4720 7208 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-02 09:45:07,177 autoreload 5752 8612 Watching for file changes with StatReloader
+INFO 2022-05-02 09:45:24,905 autoreload 5752 8612 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-02 09:45:25,827 autoreload 9020 12572 Watching for file changes with StatReloader
+INFO 2022-05-02 09:46:54,061 autoreload 9020 12572 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-02 09:46:54,899 autoreload 1488 5460 Watching for file changes with StatReloader

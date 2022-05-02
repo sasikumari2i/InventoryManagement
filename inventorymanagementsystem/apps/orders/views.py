@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, generics
 from django.db import transaction
 import logging
+from rest_framework.exceptions import NotFound
 from rest_framework.exceptions import APIException
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.http import Http404
@@ -22,6 +23,7 @@ class OrderView(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     order_service = OrderService()
 
+
     def retrieve(self, request, *args, **kwargs):
         """Retrieves specific order for the given order id"""
 
@@ -29,7 +31,7 @@ class OrderView(viewsets.ModelViewSet):
             instance = self.get_object()
             serializer = self.get_serializer(instance)
             return Response(serializer.data)
-        except Exception as exc:
+        except NotFound as exc:
             raise CustomException(exc.status_code, "Exception in Retrieving Orders")
 
     def create(self, request, *args, **kwargs):
@@ -121,11 +123,13 @@ class CustomerOrderView(generics.ListAPIView):
 
     def get(self, request, *args, **kwargs):
         """Retrieves the list of Orders for the given customer"""
-
-        customer_id = self.kwargs['customer']
-        orders = Order.objects.filter(customers=customer_id)
-        serialized = OrderSerializer(orders,many=True)
-        return Response(serialized.data)
+        try:
+            customer_id = self.kwargs['customer']
+            orders = Order.objects.filter(customers=customer_id)
+            serialized = OrderSerializer(orders,many=True)
+            return Response(serialized.data)
+        except NotFound:
+            raise CustomException(404,'Requested Orders for the customer is not available')
 
 class VendorOrderView(generics.ListAPIView):
 
@@ -135,8 +139,11 @@ class VendorOrderView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         """Retrieves the list of Orders for the given vendor"""
 
-        vendor_id = self.kwargs['vendor']
-        orders = Order.objects.filter(vendors=vendor_id)
-        serialized = OrderSerializer(orders,many=True)
-        return Response(serialized.data)
+        try:
+            vendor_id = self.kwargs['vendor']
+            orders = Order.objects.filter(vendors=vendor_id)
+            serialized = OrderSerializer(orders,many=True)
+            return Response(serialized.data)
+        except NotFound:
+            raise CustomException(404, "Requested Orders for the Vendor is not available")
 

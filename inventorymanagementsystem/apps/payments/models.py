@@ -3,6 +3,7 @@ from django.core.validators import RegexValidator
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 from django.db import models
+from datetime import date, timedelta
 
 from utils.constants import ValidationConstants
 
@@ -12,7 +13,7 @@ class Invoice(SafeDeleteModel):
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     created_date = models.DateField(default=datetime.date.today, null=True)
-    payment_deadline = models.DateField()
+    payment_deadline = models.DateField(default=(date.today() + timedelta(days=15)))
     payment_status = models.BooleanField(default=False ,null=True)
 
 

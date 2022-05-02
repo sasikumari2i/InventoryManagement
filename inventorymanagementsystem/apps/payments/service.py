@@ -21,6 +21,8 @@ class InvoiceService:
         try:
             orders = Order.objects.all()
             order = orders.get(id=order_id)
+            if order.invoice is not None:
+                raise CustomException(400, "Invoice Already available for this Order")
             amount = self.total_amount(order)
             created_date = date.today()
             if validated_data.data['payment_deadline'] is None:
@@ -65,14 +67,17 @@ class PaymentService:
             if invoice.payment_status:
                 raise CustomException(status_code=400, detail="Already paid")
             invoice.payment_status = True
-            invoice.save()
-            payment = Payment.objects.create(payee_name=validated_data.data['payee_name'],
-                                             email=validated_data.data['email'],
-                                             payment_type=validated_data.data['payment_type'],
-                                             phone=validated_data.data['phone'],
-                                             amount=validated_data.data['amount'],
-                                             invoice=invoice)
-            payment.save()
+            if invoice.amount == validated_data.data['amount']:
+                invoice.save()
+                payment = Payment.objects.create(payee_name=validated_data.data['payee_name'],
+                                                 email=validated_data.data['email'],
+                                                 payment_type=validated_data.data['payment_type'],
+                                                 phone=validated_data.data['phone'],
+                                                 amount=validated_data.data['amount'],
+                                                 invoice=invoice)
+                payment.save()
+            else:
+                raise CustomException(400, "Please give correct amount")
             return payment
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)

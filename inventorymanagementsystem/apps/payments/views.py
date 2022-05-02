@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -53,6 +52,9 @@ class PaymentView(viewsets.ModelViewSet):
         except CustomException as exc:
             logger.error("Custom Exception in Payment Creation")
             raise CustomException(exc.status_code, exc.detail)
+
+    def update(self, request, *args, **kwargs):
+        return Response({"message" : "Payment cannot be updated"})
 
 
 class InvoicePaymentView(generics.ListAPIView):

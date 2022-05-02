@@ -13,8 +13,8 @@ class Vendor (SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
-    address = models.CharField(max_length=200)
-    email = models.EmailField()
+    address = models.CharField(max_length=200, null=True)
+    email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
 
     def __str__(self):
@@ -25,8 +25,8 @@ class Customer (SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
-    address = models.CharField(max_length=400)
-    email = models.EmailField()
+    address = models.CharField(max_length=400, null=True)
+    email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
 
     def __str__(self):
@@ -40,8 +40,8 @@ class Order (SafeDeleteModel):
     order_date = models.DateField(default=date.today)
     delivery_date = models.DateField(default=(date.today() + timedelta(days=15)))
     delivery_status = models.BooleanField(default=False)
-    vendors = models.ForeignKey(Vendor,default=None,on_delete=models.DO_NOTHING, null=True, blank=True)
-    customers = models.ForeignKey(Customer, default=None, on_delete=models.DO_NOTHING, blank=True, null=True)
+    vendors = models.ForeignKey(Vendor,default=None,on_delete=models.CASCADE, null=True, blank=True)
+    customers = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE, blank=True, null=True)
     invoice = models.OneToOneField(Invoice, models.SET_NULL, default=None, null=True, blank=True)
 
     def __str__(self):

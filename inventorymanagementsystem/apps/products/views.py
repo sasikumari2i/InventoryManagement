@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework.exceptions import NotFound
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth.models import User
 from rest_framework import permissions, authentication
@@ -45,7 +46,7 @@ class CategoryView(viewsets.ModelViewSet):
         try:
             super().destroy(request)
             return Response({"message" : "Category Deleted"})
-        except ObjectDoesNotExist:
+        except NotFound:
             raise CustomException(404, "Object not available")
 
 
@@ -54,15 +55,15 @@ class ProductView(viewsets.ModelViewSet):
 
     queryset = Product.objects.get_queryset().order_by('id')
     serializer_class = ProductSerializer
-    permissions_classes = [permissions.IsAuthenticatedOrReadOnly]
+    #permissions_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting
                 Products"""
         try:
-            super().destroy(request)
+            instance = self.get_object()
+            super().perform_destroy(instance)
             return Response({"message" : "Product Deleted"})
         except NotFound:
             raise CustomException(404, "Object not available")
-
