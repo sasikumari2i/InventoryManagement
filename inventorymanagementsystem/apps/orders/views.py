@@ -6,6 +6,8 @@ from rest_framework.exceptions import NotFound
 from rest_framework.exceptions import APIException
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.http import Http404
+from rest_framework import permissions, authentication
+from django.contrib.auth.models import User
 
 from .models import Order,Customer,OrderProduct,Product, Vendor
 from .service import OrderService
@@ -22,6 +24,7 @@ class OrderView(viewsets.ModelViewSet):
     queryset = Order.objects.get_queryset().order_by('id')
     serializer_class = OrderSerializer
     order_service = OrderService()
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
     def retrieve(self, request, *args, **kwargs):
@@ -33,6 +36,8 @@ class OrderView(viewsets.ModelViewSet):
             return Response(serializer.data)
         except NotFound as exc:
             raise CustomException(exc.status_code, "Exception in Retrieving Orders")
+        except CustomException as exc:
+            raise CustomException(exc.status_code,exc.detail)
 
     def create(self, request, *args, **kwargs):
         """Creates new order using given data"""

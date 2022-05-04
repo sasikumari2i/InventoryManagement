@@ -28,6 +28,8 @@ class Customer (SafeDeleteModel):
     address = models.CharField(max_length=400, null=True)
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
+    wallet = models.BigIntegerField(default=100000)
+
 
     def __str__(self):
         return self.name

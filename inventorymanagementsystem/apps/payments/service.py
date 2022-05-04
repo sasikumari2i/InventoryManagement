@@ -5,11 +5,11 @@ from django.db import transaction
 
 from .serializers import InvoiceSerializer
 from .models import Invoice, Payment
-from ..orders.models import Order
+from ..orders.models import Order, Customer
 from ..orders.serializers import OrderSerializer
 from ..products.models import Product
 from utils.exceptionhandler import CustomException
-
+from django.contrib.auth.middleware import AuthenticationMiddleware
 
 class InvoiceService:
     """Performs invoice related operations like creating, updating and deleting"""
@@ -64,8 +64,14 @@ class PaymentService:
         try:
             invoices = Invoice.objects.all()
             invoice = invoices.get(id=invoice_id)
+            order = Order.objects.get(invoice_id=invoice)
+            if not order.is_sales_order:
+                raise CustomException(400, "Payment can be done only for sales order")
+            customer = Customer.objects.get(id=order.customers.id)
             if invoice.payment_status:
                 raise CustomException(status_code=400, detail="Already paid")
+            if customer.wallet < validated_data.data['amount']:
+                raise CustomException(400, "Insufficient balance in wallet")
             invoice.payment_status = True
             if invoice.amount == validated_data.data['amount']:
                 invoice.save()
