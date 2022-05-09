@@ -35,8 +35,7 @@ class CategoryView(viewsets.ModelViewSet):
     queryset = Category.objects.get_queryset().order_by('id')
     serializer_class = CategorySerializer
     # authentication_classes = [authentication.TokenAuthentication]
-    # permissions_classes = [permissions.IsAdminUser]
-
+    # permissions_classes = [permissions.IsAuthenticated]
 
 
     def destroy(self, request, *args, **kwargs):
@@ -56,14 +55,26 @@ class ProductView(viewsets.ModelViewSet):
     queryset = Product.objects.get_queryset().order_by('id')
     serializer_class = ProductSerializer
     # permissions_classes = [permissions.IsAuthenticated]
-    permissions_classes = (permissions.IsAuthenticatedOrReadOnly, )
+
+    def list(self, request, *args, **kwargs):
+        try:
+            if request.user.is_authenticated:
+                response = super().list(request)
+                return response
+            else:
+                return Response({"message": "Authentication Error"})
+        except NotFound:
+            raise(404, "Object not available")
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting
                 Products"""
         try:
-            instance = self.get_object()
-            super().perform_destroy(instance)
-            return Response({"message" : "Product Deleted"})
+            if request.user.is_authenticated:
+                instance = self.get_object()
+                super().perform_destroy(instance)
+                return Response({"message" : "Product Deleted"})
+            else:
+                return Response({"message": "Authentication Error"})
         except NotFound:
             raise CustomException(404, "Object not available")

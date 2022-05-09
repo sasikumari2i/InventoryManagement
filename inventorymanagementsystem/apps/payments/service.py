@@ -81,7 +81,9 @@ class PaymentService:
                                                  phone=validated_data.data['phone'],
                                                  amount=validated_data.data['amount'],
                                                  invoice=invoice)
+                customer.wallet = customer.wallet -validated_data.data['amount']
                 payment.save()
+                customer.save()
             else:
                 raise CustomException(400, "Please give correct amount")
             return payment

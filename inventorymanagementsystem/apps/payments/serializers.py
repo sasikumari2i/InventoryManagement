@@ -13,7 +13,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Invoice
-        fields = ('id','amount','created_date','payment_deadline', 'payment_status')
+        fields = ('id','amount','created_date','payment_deadline', 'payment_status','orders')
 
     def validate(self, data):
         try:
