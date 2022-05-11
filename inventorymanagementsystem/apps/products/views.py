@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.request import Request
+from datetime import date, timedelta
 from rest_framework import viewsets
 from rest_framework.exceptions import NotFound
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
@@ -14,28 +16,20 @@ from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
 
 
-# class CustomAuthToken(ObtainAuthToken):
-#
-#     def post(self, request, *args, **kwargs):
-#         serializer = self.serializer_class(data=request.data,
-#                                            context={'request': request})
-#         serializer.is_valid(raise_exception=True)
-#         user = serializer.validated_data['user']
-#         token, created = Token.objects.get_or_create(user=user)
-#         return Response({
-#             'token': token.key,
-#             'user_id': user.pk,
-#             'email': user.email
-#         })
-
-
 class CategoryView(viewsets.ModelViewSet):
     """Gives the view for the Category"""
 
     queryset = Category.objects.get_queryset().order_by('id')
     serializer_class = CategorySerializer
-    # authentication_classes = [authentication.TokenAuthentication]
-    # permissions_classes = [permissions.IsAuthenticated]
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        instance.updated_date = date.today()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 
     def destroy(self, request, *args, **kwargs):
@@ -54,27 +48,39 @@ class ProductView(viewsets.ModelViewSet):
 
     queryset = Product.objects.get_queryset().order_by('id')
     serializer_class = ProductSerializer
-    # permissions_classes = [permissions.IsAuthenticated]
+    # permission_classes_by_action = {'list': [permissions.AllowAny],
+    #                                 'destroy':[permissions.IsAuthenticated]}
 
-    def list(self, request, *args, **kwargs):
-        try:
-            if request.user.is_authenticated:
-                response = super().list(request)
-                return response
-            else:
-                return Response({"message": "Authentication Error"})
-        except NotFound:
-            raise(404, "Object not available")
+    # def list(self, request, *args, **kwargs):
+    #     try:
+    #         response = super().list(request)
+    #         return response
+    #     except NotFound:
+    #         raise(404, "Object not available")
+
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        instance.updated_date = date.today()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting
                 Products"""
         try:
-            if request.user.is_authenticated:
-                instance = self.get_object()
-                super().perform_destroy(instance)
-                return Response({"message" : "Product Deleted"})
-            else:
-                return Response({"message": "Authentication Error"})
+            instance = self.get_object()
+            super().perform_destroy(instance)
+            return Response({"message" : "Product Deleted"})
         except NotFound:
             raise CustomException(404, "Object not available")
+
+
+    # def get_permissions(self):
+    #     try:
+    #         return [permission() for permission in self.permission_classes_by_action[self.action]]
+    #     except KeyError:
+    #         return [permission() for permission in self.permission_classes]

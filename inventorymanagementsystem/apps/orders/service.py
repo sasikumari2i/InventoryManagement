@@ -50,6 +50,7 @@ class OrderService:
             raise CustomException(400, "Please enter available products only")
 
 
+
     @transaction.atomic
     def update(self, order_details, validated_data, order_products):
         """Updates details of the given order"""
@@ -108,6 +109,7 @@ class OrderService:
         except ValidationError as exc:
             raise CustomException(400, "Exception in PO Invoice Creation")
 
+
     def update_delivery(self, order_details):
         """Updates the delivery status of the given order"""
 
@@ -124,5 +126,5 @@ class OrderService:
         except NotFound:
             raise CustomException(400,"Internal error in updating delivery status")
 
-
+# class CustomerService:
 

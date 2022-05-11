@@ -16,7 +16,8 @@ class Vendor (SafeDeleteModel):
     address = models.CharField(max_length=200, null=True)
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
-    outstanding_payables = models.BigIntegerField(default=0)
+    created_date = models.DateField(default=date.today)
+    updated_date = models.DateField(default=date.today)
 
     def __str__(self):
         return self.name
@@ -30,7 +31,8 @@ class Customer (SafeDeleteModel):
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
     wallet = models.BigIntegerField(default=100000)
-    outstanding_payables = models.BigIntegerField(default=0)
+    created_date = models.DateField(default=date.today)
+    updated_date = models.DateField(default=date.today)
 
     def __str__(self):
         return self.name
@@ -45,7 +47,8 @@ class Order (SafeDeleteModel):
     delivery_status = models.BooleanField(default=False)
     vendors = models.ForeignKey(Vendor,default=None,on_delete=models.CASCADE, null=True, blank=True)
     customers = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE, blank=True, null=True)
-    invoice = models.OneToOneField(Invoice, models.SET_NULL,related_name='orders',  default=None, null=True, blank=True)
+    invoice = models.OneToOneField(Invoice, models.SET_NULL,  default=None, null=True, blank=True)
+    updated_date = models.DateField(default=date.today)
 
     def __str__(self):
         if self.is_sales_order:
@@ -60,6 +63,8 @@ class OrderProduct(SafeDeleteModel):
     product = models.ForeignKey(Product,related_name='products',on_delete=models.DO_NOTHING)
     order = models.ForeignKey(Order, related_name='order_products',on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(null=True)
+    created_date = models.DateField(default=date.today)
+    updated_date = models.DateField(default=date.today)
 
     class Meta:
         unique_together = [['product','order']]

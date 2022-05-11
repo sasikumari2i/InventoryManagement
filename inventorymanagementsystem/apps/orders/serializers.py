@@ -15,7 +15,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ('id','name','address','email','phone_number','wallet','outstanding_payables')
+        fields = ('id','name','address','email','phone_number','wallet','created_date', 'updated_date')
 
 class OrderProductSerializer(serializers.ModelSerializer):
 
@@ -63,7 +63,7 @@ class VendorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vendor
-        fields = ('id','name','address','email','phone_number','orders','outstanding_payables')
+        fields = ('id','name','address','email','phone_number','orders', 'created_date','updated_date')
 
 class DeliverySerializer(serializers.ModelSerializer):
 

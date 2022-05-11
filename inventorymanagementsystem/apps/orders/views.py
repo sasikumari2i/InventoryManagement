@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets, generics
 from django.db import transaction
 import logging
-from rest_framework.exceptions import NotFound
-from rest_framework.exceptions import APIException
+from datetime import date, timedelta
+from rest_framework.exceptions import NotFound, APIException
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.http import Http404
 from rest_framework import permissions, authentication
@@ -24,7 +24,6 @@ class OrderView(viewsets.ModelViewSet):
     queryset = Order.objects.get_queryset().order_by('id')
     serializer_class = OrderSerializer
     order_service = OrderService()
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
     def retrieve(self, request, *args, **kwargs):
@@ -53,7 +52,6 @@ class OrderView(viewsets.ModelViewSet):
         except Vendor.DoesNotExist:
             raise CustomException(400, "KeyError in Order Creation View")
 
-
     def update(self, request, *args, **kwargs):
         """Updates the given order"""
 
@@ -70,6 +68,7 @@ class OrderView(viewsets.ModelViewSet):
             raise CustomException(400, "Exception in Updating Order View")
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
+
 
     def partial_update(self, request, *args, **kwargs):
         """Updates partial fields for the given order"""
@@ -91,12 +90,29 @@ class OrderView(viewsets.ModelViewSet):
             raise CustomException(404, "Exception in Delete Order")
 
 
-
 class CustomerView(viewsets.ModelViewSet):
     """Gives the view for the Customer"""
 
     queryset = Customer.objects.get_queryset().order_by('id')
     serializer_class = CustomerSerializer
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        instance.updated_date = date.today()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        """Deletes the given customer"""
+
+        try:
+            super().destroy(request)
+            return Response({"message" : "Customer Deleted"})
+        except Http404:
+            raise CustomException(404, "Customer not found")
 
 
 class VendorView(viewsets.ModelViewSet):
@@ -104,6 +120,24 @@ class VendorView(viewsets.ModelViewSet):
 
     queryset = Vendor.objects.get_queryset().order_by('id')
     serializer_class = VendorSerializer
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        instance.updated_date = date.today()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        """Deletes the given customer"""
+
+        try:
+            super().destroy(request)
+            return Response({"message" : "Vendor Deleted"})
+        except Http404:
+            raise CustomException(404, "Vendor not found")
 
 
 class DeliveryView(generics.GenericAPIView):
@@ -123,7 +157,7 @@ class DeliveryView(generics.GenericAPIView):
 
 class CustomerOrderView(generics.ListAPIView):
 
-    queryset = Order.objects.all()
+    # queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
     def get(self, request, *args, **kwargs):
@@ -136,9 +170,10 @@ class CustomerOrderView(generics.ListAPIView):
         except NotFound:
             raise CustomException(404,'Requested Orders for the customer is not available')
 
+
 class VendorOrderView(generics.ListAPIView):
 
-    queryset = Order.objects.all()
+    # queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
     def get(self, request, *args, **kwargs):

@@ -28,20 +28,3 @@ class CustomMiddleware:
             user = JWTAuthentication().authenticate(Request(request))
         except InvalidToken:
             raise CustomException(400, "Invalid Authentication Token")
-    #     if user is not None:
-    #         user_obj = SimpleLazyObject(lambda : user[0])
-    #         print(user_obj.is_authenticated)
-
-           # if user is None:
-           #     raise
-
-        # if user is not None:
-        #     request.user = SimpleLazyObject(lambda: user)
-        #print(request.user.is_authenticated)
-        # print(request.user)
-        # try:
-        #     user = JWTAuthentication().authenticate(Request(request))
-        #     print(request.user.is_authenticated)
-        # except InvalidToken as exc:
-        #     print("Invalid Token error")
-        #     raise CustomException(400, "Inval")
