@@ -5494,3 +5494,335 @@ INFO 2022-05-11 08:45:07,118 basehttp 11288 7556 "GET /invoice/1/payment HTTP/1.
 INFO 2022-05-11 13:28:39,083 autoreload 17004 5616 Watching for file changes with StatReloader
 INFO 2022-05-11 13:28:57,987 autoreload 17004 5616 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
 INFO 2022-05-11 13:28:59,428 autoreload 15920 684 Watching for file changes with StatReloader
+INFO 2022-05-11 13:29:03,269 basehttp 15920 15804 "GET /categories HTTP/1.1" 301 0
+INFO 2022-05-11 13:29:03,306 basehttp 15920 15804 "GET /categories/ HTTP/1.1" 200 405
+INFO 2022-05-11 13:29:16,983 basehttp 15920 15804 "GET /products HTTP/1.1" 301 0
+INFO 2022-05-11 13:29:17,005 basehttp 15920 15804 "GET /products/ HTTP/1.1" 200 467
+INFO 2022-05-11 13:29:51,307 basehttp 15920 15804 "POST /products/ HTTP/1.1" 201 189
+INFO 2022-05-11 13:31:02,741 basehttp 15920 15804 "POST /orders HTTP/1.1" 301 0
+INFO 2022-05-11 13:31:02,770 basehttp 15920 15804 "GET /orders/ HTTP/1.1" 200 539
+INFO 2022-05-11 14:28:41,835 basehttp 15920 15804 "GET /orders HTTP/1.1" 301 0
+INFO 2022-05-11 14:28:41,910 log 15920 15804 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\custom_middleware.py", line 28, in process_view
+    user = JWTAuthentication().authenticate(Request(request))
+  File "C:\Python310\lib\site-packages\rest_framework_simplejwt\authentication.py", line 38, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+  File "C:\Python310\lib\site-packages\rest_framework_simplejwt\authentication.py", line 102, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is invalid or expired', code='token_not_valid')}]}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = middleware_method(
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\custom_middleware.py", line 30, in process_view
+    raise CustomException(400, "Invalid Authentication Token")
+utils.exceptionhandler.CustomException: Invalid Authentication Token
+INFO 2022-05-11 14:28:41,980 basehttp 15920 15804 "GET /orders/ HTTP/1.1" 200 56
+INFO 2022-05-11 14:28:51,489 basehttp 15920 15804 "GET /orders HTTP/1.1" 301 0
+INFO 2022-05-11 14:28:51,544 basehttp 15920 15804 "GET /orders/ HTTP/1.1" 200 539
+INFO 2022-05-11 23:48:37,197 autoreload 15828 6316 Watching for file changes with StatReloader
+INFO 2022-05-11 23:48:44,449 basehttp 15828 10696 "GET /orders HTTP/1.1" 301 0
+INFO 2022-05-11 23:48:44,489 basehttp 15828 10696 "GET /orders/ HTTP/1.1" 200 52
+INFO 2022-05-11 23:48:55,111 basehttp 15828 10696 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-11 23:48:55,150 basehttp 15828 10696 "GET /vendors/ HTTP/1.1" 200 52
+INFO 2022-05-11 23:51:20,995 autoreload 15828 6316 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:51:22,263 autoreload 8828 11312 Watching for file changes with StatReloader
+INFO 2022-05-11 23:52:55,842 autoreload 8828 11312 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:52:57,100 autoreload 13632 5264 Watching for file changes with StatReloader
+INFO 2022-05-11 23:53:31,642 autoreload 13632 5264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:53:32,706 autoreload 7224 17084 Watching for file changes with StatReloader
+INFO 2022-05-11 23:54:18,646 autoreload 7224 17084 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:54:20,126 autoreload 13020 1192 Watching for file changes with StatReloader
+INFO 2022-05-11 23:55:15,091 autoreload 16780 15548 Watching for file changes with StatReloader
+INFO 2022-05-11 23:56:49,532 autoreload 16780 15548 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:56:50,792 autoreload 9532 15400 Watching for file changes with StatReloader
+INFO 2022-05-11 23:57:02,913 autoreload 9532 15400 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:57:04,127 autoreload 4328 10696 Watching for file changes with StatReloader
+INFO 2022-05-11 23:57:08,786 autoreload 4328 10696 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:57:09,993 autoreload 968 13352 Watching for file changes with StatReloader
+INFO 2022-05-11 23:59:35,646 autoreload 968 13352 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-11 23:59:36,754 autoreload 9288 15556 Watching for file changes with StatReloader
+INFO 2022-05-12 00:03:27,785 autoreload 10696 15828 Watching for file changes with StatReloader
+INFO 2022-05-12 00:03:39,691 basehttp 10696 5472 "GET /vendors HTTP/1.1" 200 66
+INFO 2022-05-12 00:03:45,129 basehttp 10696 5472 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 00:06:34,531 autoreload 10696 15828 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\urls.py changed, reloading.
+INFO 2022-05-12 00:06:35,590 autoreload 9388 12620 Watching for file changes with StatReloader
+INFO 2022-05-12 00:13:27,212 autoreload 9388 12620 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\organisations\urls.py changed, reloading.
+INFO 2022-05-12 00:13:28,217 autoreload 15604 15668 Watching for file changes with StatReloader
+INFO 2022-05-12 00:13:38,591 basehttp 15604 968 "GET /organisations HTTP/1.1" 301 0
+INFO 2022-05-12 00:13:38,616 basehttp 15604 968 "GET /organisations/ HTTP/1.1" 200 52
+WARNING 2022-05-12 00:25:42,318 log 15604 968 Bad Request: /organisations/
+WARNING 2022-05-12 00:25:42,319 basehttp 15604 968 "POST /organisations/ HTTP/1.1" 400 55
+WARNING 2022-05-12 00:33:23,720 log 15604 968 Bad Request: /organisations/
+WARNING 2022-05-12 00:33:23,720 basehttp 15604 968 "POST /organisations/ HTTP/1.1" 400 55
+INFO 2022-05-12 00:33:52,269 autoreload 15604 15668 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\organisations\urls.py changed, reloading.
+INFO 2022-05-12 00:33:53,545 autoreload 16300 12340 Watching for file changes with StatReloader
+INFO 2022-05-12 00:35:45,998 autoreload 3428 17304 Watching for file changes with StatReloader
+INFO 2022-05-12 00:38:06,087 autoreload 3428 17304 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\organisations\urls.py changed, reloading.
+INFO 2022-05-12 00:38:07,163 autoreload 2672 12152 Watching for file changes with StatReloader
+INFO 2022-05-12 00:39:46,138 autoreload 2672 12152 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\organisations\urls.py changed, reloading.
+INFO 2022-05-12 00:39:47,250 autoreload 3424 6388 Watching for file changes with StatReloader
+INFO 2022-05-12 00:40:32,138 autoreload 3424 6388 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\organisations\views.py changed, reloading.
+INFO 2022-05-12 00:40:33,146 autoreload 7288 9284 Watching for file changes with StatReloader
+INFO 2022-05-12 00:40:45,766 autoreload 7288 9284 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\urls.py changed, reloading.
+INFO 2022-05-12 00:40:46,891 autoreload 13096 12460 Watching for file changes with StatReloader
+INFO 2022-05-12 00:41:04,382 basehttp 13096 1252 "POST /organisations/ HTTP/1.1" 201 70
+INFO 2022-05-12 00:41:43,336 basehttp 13096 1252 "POST /organisations/ HTTP/1.1" 201 83
+INFO 2022-05-12 00:43:33,543 basehttp 13096 1252 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 00:43:59,689 basehttp 13096 1252 "GET /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 00:44:02,110 basehttp 13096 1252 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 00:44:07,692 autoreload 13096 12460 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 00:44:08,884 autoreload 4600 3352 Watching for file changes with StatReloader
+INFO 2022-05-12 00:44:09,406 basehttp 4600 9932 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 00:45:48,974 autoreload 4600 3352 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 00:45:50,121 autoreload 14508 6324 Watching for file changes with StatReloader
+INFO 2022-05-12 00:46:01,721 basehttp 14508 11084 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-12 00:46:01,736 log 14508 11084 OK: /vendors/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 123, in get_queryset
+    vendors = Vendor.objects.filter(organisation=self.kwargs['organisation'])
+KeyError: 'organisation'
+INFO 2022-05-12 00:46:01,807 basehttp 14508 11084 "GET /vendors/ HTTP/1.1" 200 56
+INFO 2022-05-12 09:20:41,121 autoreload 15352 10428 Watching for file changes with StatReloader
+INFO 2022-05-12 09:20:47,731 basehttp 15352 12800 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-12 09:20:47,750 log 15352 12800 OK: /vendors/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 123, in get_queryset
+    vendors = Vendor.objects.filter(organisation=self.kwargs['organisation'])
+KeyError: 'organisation'
+INFO 2022-05-12 09:20:47,756 basehttp 15352 12800 "GET /vendors/ HTTP/1.1" 200 56
+INFO 2022-05-12 09:21:08,023 basehttp 15352 12800 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 09:23:48,671 basehttp 15352 12800 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:23:51,477 basehttp 15352 12800 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:24:55,574 autoreload 15352 10428 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:24:57,307 autoreload 17196 14584 Watching for file changes with StatReloader
+INFO 2022-05-12 09:24:58,736 basehttp 17196 8396 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:28:04,840 autoreload 17196 14584 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:28:06,481 autoreload 12804 11828 Watching for file changes with StatReloader
+INFO 2022-05-12 09:28:27,277 autoreload 12804 11828 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:28:29,334 autoreload 8708 6424 Watching for file changes with StatReloader
+INFO 2022-05-12 09:28:40,099 autoreload 8708 6424 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:28:41,521 autoreload 6792 16324 Watching for file changes with StatReloader
+INFO 2022-05-12 09:28:51,139 autoreload 6792 16324 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:28:52,349 autoreload 632 7784 Watching for file changes with StatReloader
+INFO 2022-05-12 09:30:13,823 autoreload 632 7784 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:30:15,160 autoreload 16012 13112 Watching for file changes with StatReloader
+INFO 2022-05-12 09:31:01,762 autoreload 16012 13112 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-12 09:31:03,143 autoreload 13508 5500 Watching for file changes with StatReloader
+INFO 2022-05-12 09:31:53,435 autoreload 13508 5500 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:31:54,679 autoreload 12192 7824 Watching for file changes with StatReloader
+INFO 2022-05-12 09:32:32,742 autoreload 12192 7824 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:32:34,140 autoreload 5056 7628 Watching for file changes with StatReloader
+INFO 2022-05-12 09:32:46,863 autoreload 5056 7628 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:32:48,191 autoreload 12464 9768 Watching for file changes with StatReloader
+INFO 2022-05-12 09:32:55,288 autoreload 12464 9768 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:32:56,887 autoreload 1552 11916 Watching for file changes with StatReloader
+INFO 2022-05-12 09:33:00,385 autoreload 1552 11916 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:33:01,846 autoreload 9868 12112 Watching for file changes with StatReloader
+INFO 2022-05-12 09:33:12,002 autoreload 9868 12112 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:33:13,478 autoreload 9624 16392 Watching for file changes with StatReloader
+INFO 2022-05-12 09:33:39,411 autoreload 9624 16392 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:33:40,515 autoreload 11972 9096 Watching for file changes with StatReloader
+INFO 2022-05-12 09:34:26,346 autoreload 11972 9096 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:34:27,596 autoreload 2396 17068 Watching for file changes with StatReloader
+INFO 2022-05-12 09:34:38,180 basehttp 2396 15772 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:35:06,712 basehttp 2396 15772 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:35:34,638 autoreload 2396 17068 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:35:36,082 autoreload 2700 16524 Watching for file changes with StatReloader
+INFO 2022-05-12 09:35:38,264 basehttp 2700 11180 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:35:42,983 autoreload 2700 16524 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:35:44,014 autoreload 7016 6280 Watching for file changes with StatReloader
+INFO 2022-05-12 09:35:52,589 autoreload 7016 6280 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:35:54,029 autoreload 4692 14752 Watching for file changes with StatReloader
+INFO 2022-05-12 09:35:55,263 basehttp 4692 5072 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:36:15,573 autoreload 4692 14752 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:36:16,862 autoreload 1192 12900 Watching for file changes with StatReloader
+INFO 2022-05-12 09:36:26,898 basehttp 1192 1940 "POST /organisation/1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:36:39,019 autoreload 1192 12900 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:36:40,232 autoreload 17208 16708 Watching for file changes with StatReloader
+INFO 2022-05-12 09:36:43,373 basehttp 17208 2660 "POST /organisation/1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:37:32,052 autoreload 17208 16708 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:37:33,204 autoreload 11364 10956 Watching for file changes with StatReloader
+INFO 2022-05-12 09:37:38,172 autoreload 11364 10956 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:37:39,118 autoreload 5576 11884 Watching for file changes with StatReloader
+INFO 2022-05-12 09:37:53,754 autoreload 5576 11884 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:37:54,767 autoreload 16068 5136 Watching for file changes with StatReloader
+INFO 2022-05-12 09:38:28,326 autoreload 10540 8176 Watching for file changes with StatReloader
+INFO 2022-05-12 09:54:46,033 autoreload 10540 8176 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:54:47,450 autoreload 16120 10984 Watching for file changes with StatReloader
+INFO 2022-05-12 09:54:52,057 autoreload 16120 10984 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:54:53,339 autoreload 2512 4264 Watching for file changes with StatReloader
+INFO 2022-05-12 09:55:29,258 autoreload 2512 4264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 09:55:30,621 autoreload 7928 15200 Watching for file changes with StatReloader
+INFO 2022-05-12 09:55:50,939 basehttp 7928 3600 "POST /organisation/1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 09:56:05,519 basehttp 7928 3600 "GET /organisation/1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 09:59:39,105 autoreload 7928 15200 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 09:59:40,478 autoreload 6232 7712 Watching for file changes with StatReloader
+INFO 2022-05-12 09:59:59,593 basehttp 6232 15196 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 10:00:21,561 basehttp 6232 15196 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-12 10:00:21,596 basehttp 6232 15196 "GET /vendors/ HTTP/1.1" 200 52
+INFO 2022-05-12 10:26:32,001 autoreload 6232 7712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 10:26:33,175 autoreload 1936 15596 Watching for file changes with StatReloader
+INFO 2022-05-12 10:26:45,166 basehttp 1936 16808 "GET /:1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 10:26:49,601 basehttp 1936 16808 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 10:27:07,848 autoreload 1936 15596 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 10:27:09,276 autoreload 3544 1844 Watching for file changes with StatReloader
+INFO 2022-05-12 10:27:12,492 basehttp 3544 9972 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 10:27:22,274 autoreload 3544 1844 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 10:27:23,387 autoreload 5776 2436 Watching for file changes with StatReloader
+INFO 2022-05-12 10:27:32,390 basehttp 5776 15696 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-12 10:27:32,421 basehttp 5776 15696 "GET /vendors/ HTTP/1.1" 200 52
+INFO 2022-05-12 10:27:59,709 autoreload 5776 2436 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 10:28:01,049 autoreload 12568 14080 Watching for file changes with StatReloader
+INFO 2022-05-12 10:28:05,005 basehttp 12568 9688 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-12 10:28:05,033 basehttp 12568 9688 "GET /vendors/ HTTP/1.1" 200 52
+INFO 2022-05-12 10:28:43,192 autoreload 12568 14080 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 10:28:44,527 autoreload 3004 17232 Watching for file changes with StatReloader
+INFO 2022-05-12 10:28:51,506 basehttp 3004 15852 "GET /1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 10:28:57,693 basehttp 3004 15852 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 10:29:03,330 autoreload 3004 17232 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 10:29:04,883 autoreload 10800 9736 Watching for file changes with StatReloader
+INFO 2022-05-12 10:29:05,818 basehttp 10800 3424 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 10:31:01,753 autoreload 10800 9736 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 10:31:03,103 autoreload 9292 13904 Watching for file changes with StatReloader
+INFO 2022-05-12 10:31:30,655 autoreload 9292 13904 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 10:31:32,164 autoreload 2164 7360 Watching for file changes with StatReloader
+INFO 2022-05-12 10:31:34,535 basehttp 2164 1472 "POST /1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 10:31:41,744 autoreload 2164 7360 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 10:31:43,947 autoreload 15844 14600 Watching for file changes with StatReloader
+INFO 2022-05-12 11:24:15,111 autoreload 3708 2668 Watching for file changes with StatReloader
+INFO 2022-05-12 11:24:21,918 autoreload 3708 2668 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:24:22,991 autoreload 844 16124 Watching for file changes with StatReloader
+INFO 2022-05-12 11:24:37,697 autoreload 844 16124 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:24:38,619 autoreload 10324 4356 Watching for file changes with StatReloader
+INFO 2022-05-12 11:28:18,003 autoreload 11332 11260 Watching for file changes with StatReloader
+INFO 2022-05-12 11:28:33,226 autoreload 11332 11260 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:28:34,345 autoreload 6752 14480 Watching for file changes with StatReloader
+INFO 2022-05-12 11:28:52,887 basehttp 6752 1548 "GET /organisatrion/1/vendors/ HTTP/1.1" 200 66
+INFO 2022-05-12 11:28:55,751 basehttp 6752 1548 "GET /organisatrion/1/vendors HTTP/1.1" 200 66
+INFO 2022-05-12 11:29:52,350 autoreload 6752 14480 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:29:53,629 autoreload 1112 13172 Watching for file changes with StatReloader
+INFO 2022-05-12 11:31:06,938 autoreload 1112 13172 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:31:08,272 autoreload 14916 1408 Watching for file changes with StatReloader
+INFO 2022-05-12 11:40:54,239 autoreload 6632 14672 Watching for file changes with StatReloader
+INFO 2022-05-12 11:41:04,101 autoreload 6632 14672 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:41:05,003 autoreload 12632 8040 Watching for file changes with StatReloader
+INFO 2022-05-12 11:41:06,407 autoreload 12632 8040 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:41:07,256 autoreload 10220 8760 Watching for file changes with StatReloader
+INFO 2022-05-12 11:41:18,240 autoreload 10220 8760 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:41:19,174 autoreload 13768 12716 Watching for file changes with StatReloader
+INFO 2022-05-12 11:41:26,024 autoreload 4168 15408 Watching for file changes with StatReloader
+INFO 2022-05-12 11:41:45,462 autoreload 4168 15408 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\urls.py changed, reloading.
+INFO 2022-05-12 11:41:46,518 autoreload 8428 10784 Watching for file changes with StatReloader
+INFO 2022-05-12 11:42:00,137 basehttp 8428 9620 "GET /?organisatrion=1/vendors HTTP/1.1" 200 56
+INFO 2022-05-12 11:42:09,134 basehttp 8428 9620 "GET /?organisation=1/vendors HTTP/1.1" 200 56
+INFO 2022-05-12 11:42:15,893 basehttp 8428 9620 "GET /organisations/ HTTP/1.1" 200 206
+INFO 2022-05-12 11:42:37,605 basehttp 8428 9620 "GET /?organisation=1/vendors HTTP/1.1" 200 56
+INFO 2022-05-12 11:42:55,396 basehttp 8428 9620 "GET /vendors HTTP/1.1" 301 0
+INFO 2022-05-12 11:42:55,428 basehttp 8428 9620 "GET /vendors/ HTTP/1.1" 200 52
+INFO 2022-05-12 11:43:10,999 autoreload 8428 10784 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 11:43:12,048 autoreload 7308 6792 Watching for file changes with StatReloader
+INFO 2022-05-12 11:55:31,410 basehttp 7308 2748 "GET /vendors/1 HTTP/1.1" 301 0
+WARNING 2022-05-12 11:55:31,442 log 7308 2748 Not Found: /vendors/1/
+WARNING 2022-05-12 11:55:31,442 basehttp 7308 2748 "GET /vendors/1/ HTTP/1.1" 404 41
+INFO 2022-05-12 13:33:21,255 autoreload 780 13104 Watching for file changes with StatReloader
+INFO 2022-05-12 13:33:30,001 basehttp 780 6216 "GET /products/ HTTP/1.1" 200 52
+INFO 2022-05-12 15:59:06,358 autoreload 14808 9176 Watching for file changes with StatReloader
+INFO 2022-05-12 16:00:16,641 autoreload 14808 9176 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:00:17,684 autoreload 9640 6600 Watching for file changes with StatReloader
+INFO 2022-05-12 16:00:26,290 autoreload 9640 6600 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:00:27,742 autoreload 15544 2932 Watching for file changes with StatReloader
+INFO 2022-05-12 16:00:53,550 basehttp 15544 11308 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 16:01:18,770 autoreload 15544 2932 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:01:19,981 autoreload 12440 12036 Watching for file changes with StatReloader
+INFO 2022-05-12 16:01:21,661 basehttp 12440 8680 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 16:01:36,869 autoreload 12440 12036 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:01:38,324 autoreload 5916 13756 Watching for file changes with StatReloader
+INFO 2022-05-12 16:01:39,506 basehttp 5916 784 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 16:01:46,048 autoreload 5916 13756 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:01:47,549 autoreload 10968 5872 Watching for file changes with StatReloader
+INFO 2022-05-12 16:01:50,898 log 10968 13500 OK: /vendors/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\rest_framework\request.py", line 416, in __getattr__
+    return getattr(self._request, attr)
+AttributeError: 'WSGIRequest' object has no attribute 'header'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 128, in create
+    print(request.header)
+  File "C:\Python310\lib\site-packages\rest_framework\request.py", line 418, in __getattr__
+    return self.__getattribute__(attr)
+AttributeError: 'Request' object has no attribute 'header'
+INFO 2022-05-12 16:01:50,934 basehttp 10968 13500 "POST /vendors/ HTTP/1.1" 200 56
+INFO 2022-05-12 16:03:15,673 autoreload 10968 5872 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:03:17,314 autoreload 1864 2076 Watching for file changes with StatReloader
+INFO 2022-05-12 16:03:18,713 basehttp 1864 8908 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 16:03:57,628 autoreload 1864 2076 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:03:58,980 autoreload 9176 14808 Watching for file changes with StatReloader
+INFO 2022-05-12 16:06:02,020 autoreload 9176 14808 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 16:06:03,409 autoreload 14544 1156 Watching for file changes with StatReloader
+INFO 2022-05-12 16:06:22,972 autoreload 3304 7352 Watching for file changes with StatReloader
+INFO 2022-05-12 16:06:31,863 basehttp 3304 10472 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 16:16:25,802 autoreload 15240 5276 Watching for file changes with StatReloader
+INFO 2022-05-12 16:16:54,767 autoreload 6936 16544 Watching for file changes with StatReloader
+INFO 2022-05-12 16:16:58,853 basehttp 6936 6164 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 16:18:36,787 basehttp 6936 6164 "POST /vendors/ HTTP/1.1" 200 28

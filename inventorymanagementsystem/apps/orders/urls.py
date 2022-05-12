@@ -1,10 +1,18 @@
 from django.urls import path, include
 from apps.orders import views
 from rest_framework import routers
+from .models import Vendor
+from rest_framework.urlpatterns import format_suffix_patterns
+
+
+vendor_list = views.VendorView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
 
 router = routers.DefaultRouter()
 router.register('customers', views.CustomerView)
-router.register('vendors', views.VendorView)
+router.register('vendors', views.VendorView, basename='vendors')
 router.register('orders', views.OrderView)
 
 urlpatterns = [

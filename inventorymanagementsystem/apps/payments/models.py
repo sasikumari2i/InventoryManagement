@@ -4,7 +4,7 @@ from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 from django.db import models
 from datetime import date, timedelta
-
+from organisations.models import Organisation
 from utils.constants import ValidationConstants
 
 
@@ -15,6 +15,7 @@ class Invoice(SafeDeleteModel):
     created_date = models.DateField(default=datetime.date.today, null=True)
     payment_deadline = models.DateField(default=(date.today() + timedelta(days=15)))
     payment_status = models.BooleanField(default=False ,null=True)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
 
 class Payment(SafeDeleteModel):
@@ -33,4 +34,5 @@ class Payment(SafeDeleteModel):
     phone = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
     amount = models.BigIntegerField(default=0)
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 

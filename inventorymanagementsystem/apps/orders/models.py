@@ -7,7 +7,7 @@ from datetime import date, timedelta
 from ..products.models import Product
 from ..payments.models import Invoice
 from utils.constants import ValidationConstants
-
+from organisations.models import Organisation
 
 class Vendor (SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
@@ -18,6 +18,7 @@ class Vendor (SafeDeleteModel):
     phone_number = models.CharField(max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX])
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
@@ -33,6 +34,7 @@ class Customer (SafeDeleteModel):
     wallet = models.BigIntegerField(default=100000)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
@@ -49,6 +51,7 @@ class Order (SafeDeleteModel):
     customers = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE, blank=True, null=True)
     invoice = models.OneToOneField(Invoice, models.SET_NULL,  default=None, null=True, blank=True)
     updated_date = models.DateField(default=date.today)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         if self.is_sales_order:
@@ -65,6 +68,7 @@ class OrderProduct(SafeDeleteModel):
     quantity = models.IntegerField(null=True)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
+    # organisation_id = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
     class Meta:
         unique_together = [['product','order']]
