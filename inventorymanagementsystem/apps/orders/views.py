@@ -117,28 +117,28 @@ class CustomerView(viewsets.ModelViewSet):
 
 class VendorView(viewsets.ModelViewSet):
     """Gives the view for the Vendor"""
-    # queryset = Vendor.objects.get_queryset().order_by('id')
+    queryset = Vendor.objects.get_queryset().order_by('id')
     serializer_class = VendorSerializer
-    def get_queryset(self):
-        try:
-            vendors = Vendor.objects.filter(organisation=self.request.headers['organisation'])
-            if vendors is null:
+    # def get_queryset(self):
+    #     try:
+    #         vendors = Vendor.objects.filter(organisation=self.request.headers['organisation'])
+    #         if vendors is null:
+    #
+    #         return vendors
 
-            return vendors
-
-    def create(self, request, *args, **kwargs):
-        try:
-            print(request.headers['organisation'])
-            # vendor = Vendor.objects.create(name=request.data['name'],
-            #                                address=request.data['address'],
-            #                                email=request.data['email'],
-            #                                phone_number=request.data['phone_number'],
-            #                                organisation=organisation_id)
-            # response = VendorSerializer(vendor)
-            return Response({"message" : "Vendor created"})
-
-        except KeyError:
-            raise CustomException(400, "KeyError in Vendor Creation")
+    # def create(self, request, *args, **kwargs):
+    #     try:
+    #         print(request.headers['organisation'])
+    #         vendor = Vendor.objects.create(name=request.data['name'],
+    #                                        address=request.data['address'],
+    #                                        email=request.data['email'],
+    #                                        phone_number=request.data['phone_number'],
+    #                                        organisation=organisation_id)
+    #         response = VendorSerializer(vendor)
+    #         return Response({"message" : "Vendor created"})
+    #
+    #     except KeyError:
+    #         raise CustomException(400, "KeyError in Vendor Creation")
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)

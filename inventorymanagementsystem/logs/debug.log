@@ -5826,3 +5826,6 @@ INFO 2022-05-12 16:16:25,802 autoreload 15240 5276 Watching for file changes wit
 INFO 2022-05-12 16:16:54,767 autoreload 6936 16544 Watching for file changes with StatReloader
 INFO 2022-05-12 16:16:58,853 basehttp 6936 6164 "POST /vendors/ HTTP/1.1" 200 28
 INFO 2022-05-12 16:18:36,787 basehttp 6936 6164 "POST /vendors/ HTTP/1.1" 200 28
+INFO 2022-05-12 22:56:48,267 autoreload 15136 9872 Watching for file changes with StatReloader
+INFO 2022-05-12 23:11:18,572 autoreload 15136 9872 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-12 23:11:19,889 autoreload 9928 2652 Watching for file changes with StatReloader

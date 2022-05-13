@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.payments',
     'safedelete',
     'rest_framework.authtoken',
+    'apps.assets'
 ]
 
 MIDDLEWARE = [
