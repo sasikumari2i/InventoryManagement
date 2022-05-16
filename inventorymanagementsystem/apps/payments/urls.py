@@ -3,8 +3,8 @@ from apps.payments import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('invoice', views.InvoiceView)
-router.register('payment', views.PaymentView)
+router.register('invoice', views.InvoiceView, basename='invoice')
+router.register('payment', views.PaymentView, basename='payment')
 
 urlpatterns = [
     path('',include(router.urls)),

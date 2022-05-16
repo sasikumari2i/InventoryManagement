@@ -9,8 +9,9 @@ from django.http import Http404
 from rest_framework import permissions, authentication
 from django.contrib.auth.models import User
 
+from organisations.models import Organisation
 from .models import Order,Customer,OrderProduct,Product, Vendor
-from .service import OrderService
+from .service import OrderService, VendorService, CustomerService
 from .serializers import CustomerSerializer, VendorSerializer, DeliverySerializer
 from .serializers import OrderSerializer, OrderProductSerializer
 from ..products.serializers import ProductSerializer
@@ -21,9 +22,22 @@ logger = logging.getLogger('django')
 class OrderView(viewsets.ModelViewSet):
     """Gives the view for the Order"""
 
-    queryset = Order.objects.get_queryset().order_by('id')
+    # queryset = Order.objects.get_queryset().order_by('id')
     serializer_class = OrderSerializer
     order_service = OrderService()
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            orders = Order.objects.filter(organisation=organisation).order_by('id')
+            return orders
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
 
 
     def retrieve(self, request, *args, **kwargs):
@@ -38,6 +52,7 @@ class OrderView(viewsets.ModelViewSet):
         except CustomException as exc:
             raise CustomException(exc.status_code,exc.detail)
 
+
     def create(self, request, *args, **kwargs):
         """Creates new order using given data"""
 
@@ -51,6 +66,7 @@ class OrderView(viewsets.ModelViewSet):
             return Response(serialized.data)
         except Vendor.DoesNotExist:
             raise CustomException(400, "KeyError in Order Creation View")
+
 
     def update(self, request, *args, **kwargs):
         """Updates the given order"""
@@ -79,7 +95,6 @@ class OrderView(viewsets.ModelViewSet):
         except KeyError:
             raise CustomException(400, "Exception in Patch Order")
 
-
     def destroy(self, request, *args, **kwargs):
         """Deletes the given order"""
 
@@ -93,8 +108,30 @@ class OrderView(viewsets.ModelViewSet):
 class CustomerView(viewsets.ModelViewSet):
     """Gives the view for the Customer"""
 
-    queryset = Customer.objects.get_queryset().order_by('id')
+    # queryset = Customer.objects.get_queryset().order_by('id')
     serializer_class = CustomerSerializer
+    customer_service = CustomerService()
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            customers = Customer.objects.filter(organisation=organisation).order_by('id')
+            return customers
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def create(self, request, *args, **kwargs):
+        validated_data = CustomerSerializer(data=request.data)
+        validated_data.is_valid(raise_exception=True)
+        organisation = self.request.query_params.get('organisation', None)
+        new_customer = self.customer_service.create(validated_data, organisation)
+        serialized = CustomerSerializer(new_customer)
+        return Response(serialized.data)
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -117,28 +154,31 @@ class CustomerView(viewsets.ModelViewSet):
 
 class VendorView(viewsets.ModelViewSet):
     """Gives the view for the Vendor"""
-    queryset = Vendor.objects.get_queryset().order_by('id')
+    # queryset = Vendor.objects.get_queryset().order_by('id')
     serializer_class = VendorSerializer
-    # def get_queryset(self):
-    #     try:
-    #         vendors = Vendor.objects.filter(organisation=self.request.headers['organisation'])
-    #         if vendors is null:
-    #
-    #         return vendors
+    vendor_service = VendorService()
 
-    # def create(self, request, *args, **kwargs):
-    #     try:
-    #         print(request.headers['organisation'])
-    #         vendor = Vendor.objects.create(name=request.data['name'],
-    #                                        address=request.data['address'],
-    #                                        email=request.data['email'],
-    #                                        phone_number=request.data['phone_number'],
-    #                                        organisation=organisation_id)
-    #         response = VendorSerializer(vendor)
-    #         return Response({"message" : "Vendor created"})
-    #
-    #     except KeyError:
-    #         raise CustomException(400, "KeyError in Vendor Creation")
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            vendors = Vendor.objects.filter(organisation=organisation).order_by('id')
+            return vendors
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def create(self, request, *args, **kwargs):
+        validated_data = VendorSerializer(data=request.data)
+        validated_data.is_valid(raise_exception=True)
+        organisation = self.request.query_params.get('organisation', None)
+        new_vendor = self.vendor_service.create(validated_data, organisation)
+        serialized = VendorSerializer(new_vendor)
+        return Response(serialized.data)
+
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -161,9 +201,22 @@ class VendorView(viewsets.ModelViewSet):
 
 class DeliveryView(generics.GenericAPIView):
 
-    queryset = Order.objects.all()
+    # queryset = Order.objects.all()
     serializer_class = DeliverySerializer
     order_service = OrderService()
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            orders = Order.objects.filter(organisation=organisation).order_by('id')
+            return orders
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
 
     def put(self, request, *args, **kwargs):
         try:

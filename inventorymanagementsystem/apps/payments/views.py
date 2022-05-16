@@ -14,9 +14,22 @@ logger = logging.getLogger('django')
 class InvoiceView(viewsets.ModelViewSet):
     """Gives the view for the Invoice"""
 
-    queryset = Invoice.objects.get_queryset().order_by('id')
+    # queryset = Invoice.objects.get_queryset().order_by('id')
     serializer_class = InvoiceSerializer
     invoice_service = InvoiceService()
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            invoices = Invoice.objects.filter(organisation=organisation).order_by('id')
+            return invoices
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
 
     def create(self, request, *args, **kwargs):
         """Creates new invoice, overrided from ModelViewSet class"""
@@ -35,10 +48,22 @@ class InvoiceView(viewsets.ModelViewSet):
 class PaymentView(viewsets.ModelViewSet):
     """Gives the view for the Payment"""
 
-    queryset = Payment.objects.get_queryset().order_by('id')
+    # queryset = Payment.objects.get_queryset().order_by('id')
     serializer_class = PaymentSerializer
     payment_service = PaymentService()
 
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            payments = Payment.objects.filter(organisation=organisation).order_by('id')
+            return payments
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
 
     def create(self, request, *args, **kwargs):
         """Creates new payment, overrided from ModelViewSet class"""

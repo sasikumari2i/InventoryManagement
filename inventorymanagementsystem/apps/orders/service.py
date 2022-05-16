@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from rest_framework.exceptions import NotFound
 
 from .serializers import OrderSerializer, OrderProductSerializer
-from .models import Order, OrderProduct
+from .models import Order, OrderProduct, Vendor, Customer
 from ..products.models import Product,Category
 from ..payments.models import Invoice
 from ..products.serializers import ProductSerializer
@@ -126,5 +126,32 @@ class OrderService:
         except NotFound:
             raise CustomException(400,"Internal error in updating delivery status")
 
-# class CustomerService:
 
+class VendorService:
+
+    @transaction.atomic()
+    def create(self, validated_data, organisation):
+        try:
+            new_vendor = Vendor.objects.create(name=validated_data.data['name'],
+                                               address=validated_data.data['address'],
+                                               email=validated_data.data['email'],
+                                               phone_number=validated_data.data['phone_number'],
+                                               organisation_id=organisation)
+            return new_vendor
+        except KeyError:
+            raise CustomException(400,"Invalid details")
+
+
+class CustomerService:
+
+    @transaction.atomic()
+    def create(self, validated_data, organisation):
+        try:
+            new_customer = Customer.objects.create(name=validated_data.data['name'],
+                                               address=validated_data.data['address'],
+                                               email=validated_data.data['email'],
+                                               phone_number=validated_data.data['phone_number'],
+                                               organisation_id=organisation)
+            return new_customer
+        except KeyError:
+            raise CustomException(400,"Invalid details")

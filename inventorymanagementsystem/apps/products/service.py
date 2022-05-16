@@ -1,42 +1,48 @@
-# from .serializers import ProductSerializer
-# from .models import Product
-# from ..orders.models import Order
-#
-#
-# class ProductService:
-#     """Performs product related operations like add new product, get single product
-#     details, get all the products, update a product details and delete product"""
-#
-#     def add_products(self, **product_data):
-#         """To Add new products"""
-#
-#         product = Product.objects.create(**product_data)
-#         product_serializer = ProductSerializer(product)
-#         return product_serializer
-#
-#     def get_product_by_id(self, product_id):
-#         """Get Details of the given product id"""
-#
-#         product_data = Product.objects.get(id=product_id)
-#         product_serializer = ProductSerializer(product_data)
-#         return product_serializer
-#
-#     def get_all(self):
-#         """Get all the products available"""
-#
-#         products = Product.objects.all()
-#         product_serializer = ProductSerializer(products, many=True)
-#         return product_serializer
-#
-#     def update_product(self,product_id, **product_data):
-#         """Update product details of the given product id"""
-#
-#         product_details = Product.objects.get(id=product_id)
-#         for key, value in product_data.items():
-#             if product_details.__getattribute__(key):
-#                 product_details.__setattr__(key, value)
-#             product_details.save()
-#         product_serializer = ProductSerializer(product_details)
-#         return product_serializer
-#
-#
+import io
+from datetime import date, timedelta
+from django.db import transaction
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from rest_framework.exceptions import NotFound
+
+from .serializers import ProductSerializer, CategorySerializer
+from .models import Product, Category
+from ..payments.models import Invoice
+from organisations.models import Organisation
+from ..products.serializers import ProductSerializer
+from utils.exceptionhandler import CustomException
+
+
+class CategoryService:
+    """Performs order related operations like add new order, get single order,
+    get all orders, update an order and delete order"""
+
+    @transaction.atomic()
+    def create(self, validated_data, organisation):
+        """Creates new order from the given data"""
+
+        try:
+            new_category = Category.objects.create(name=validated_data.data['name'],
+                                                   description=validated_data.data['description'],
+                                                   organisation_id=organisation)
+            return new_category
+        except KeyError:
+            raise CustomException(400,"Invalid details")
+
+
+class ProductService:
+
+    @transaction.atomic()
+    def create(self, validated_data, organisation):
+        """Creates new order from the given data"""
+        try:
+            category = Category.objects.get(organisation_id=organisation,id=validated_data.data['category'])
+            new_product = Product.objects.create(name=validated_data.data['name'],
+                                                 description=validated_data.data['description'],
+                                                 available_stock=validated_data.data['available_stock'],
+                                                 price=validated_data.data['price'],
+                                                 category_id=validated_data.data['category'],
+                                                 organisation_id=organisation)
+            return new_product
+        except Category.DoesNotExist:
+            raise CustomException(404, "Category not available")
+

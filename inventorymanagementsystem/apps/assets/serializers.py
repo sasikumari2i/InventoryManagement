@@ -4,8 +4,7 @@ import datetime
 from datetime import date, timedelta
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
-from .models import Vendor, Order,OrderProduct,Customer
-from ..products.models import Product
+from .models import Asset, RepairingStock
 import utils.exceptionhandler as exceptionhandler
 from ..products.serializers import ProductSerializer
 from utils.exceptionhandler import CustomException
@@ -15,10 +14,10 @@ class AssetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Asset
-        fields = "__all__"
+        fields = ('name','product','customer','serial_no','is_active')
 
 class RepairingStockSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RepairingStock
-        fields = "__all__"
+        fields = ('asset','product','serial_no','process_date','is_active')

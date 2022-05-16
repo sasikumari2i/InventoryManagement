@@ -11,9 +11,9 @@ vendor_list = views.VendorView.as_view({
 })
 
 router = routers.DefaultRouter()
-router.register('customers', views.CustomerView)
+router.register('customers', views.CustomerView, basename='customers')
 router.register('vendors', views.VendorView, basename='vendors')
-router.register('orders', views.OrderView)
+router.register('orders', views.OrderView, basename='orders')
 
 urlpatterns = [
     path('',include(router.urls)),

@@ -59,11 +59,11 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class VendorSerializer(serializers.ModelSerializer):
 
-    orders = OrderSerializer(many=True, read_only=True)
+    # orders = OrderSerializer(many=True, read_only=True)
 
     class Meta:
         model = Vendor
-        fields = ('id','name','address','email','phone_number','orders', 'created_date','updated_date', 'organisation')
+        fields = ('id','name','address','email','phone_number','created_date','updated_date')
 
 class DeliverySerializer(serializers.ModelSerializer):
 

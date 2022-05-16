@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse, HttpResponseNotFound
-import apps.products.views as views
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -26,6 +25,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("organisations.urls")),
     path("", include("apps.products.urls")),
+    path("", include("apps.assets.urls")),
     path("", include("apps.orders.urls")),
     path("", include("apps.payments.urls")),
 ]
