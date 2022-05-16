@@ -17,7 +17,7 @@ class OrderService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data, order_products):
+    def create(self, validated_data, order_products, organisation):
         """Creates new order from the given data"""
 
         try:
@@ -25,7 +25,8 @@ class OrderService:
             new_order = Order.objects.create(is_sales_order=validated_data.data['is_sales_order'],
                                              delivery_date=validated_data.data['delivery_date'],
                                              vendors_id=validated_data.data['vendors'],
-                                             customers_id=validated_data.data['customers'])
+                                             customers_id=validated_data.data['customers'],
+                                             organisation_id=organisation)
 
             for product in order_products:
                 product_details = products.get(id=product['product'])
@@ -104,7 +105,8 @@ class OrderService:
             created_date = date.today()
             payment_deadline = created_date + timedelta(days=15)
             invoice = Invoice.objects.create(amount=amount, created_date=created_date,
-                                             payment_deadline=payment_deadline, order=new_order)
+                                             payment_deadline=payment_deadline, order=new_order,
+                                             organisation_id=new_order.organisation_id)
             return invoice
         except ValidationError as exc:
             raise CustomException(400, "Exception in PO Invoice Creation")

@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.request import Request
 from datetime import date, timedelta
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.exceptions import NotFound
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth.models import User
@@ -95,8 +95,8 @@ class ProductView(viewsets.ModelViewSet):
         try:
             partial = kwargs.pop('partial', False)
             instance = self.get_object()
-            category = Category.objects.get(id=request.data['category'],
-                                                organisation_id=instance.organisation)
+            category = Category.objects.filter(id=request.data['category'],
+                                            organisation_id=instance.organisation)
             instance.updated_date = date.today()
             serializer = self.get_serializer(instance, data=request.data, partial=partial)
             serializer.is_valid(raise_exception=True)
@@ -117,3 +117,36 @@ class ProductView(viewsets.ModelViewSet):
             return Response({"message" : "Product Deleted"})
         except NotFound:
             raise CustomException(404, "Object not available")
+
+
+class CategoryProductView(generics.ListAPIView):
+
+    # queryset = Payment.objects.get_queryset().order_by('id')
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            products = Product.objects.filter(organisation=organisation).order_by('id')
+            return products
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(404, "Invalid Credentials")
+
+
+    def get(self, request, *args, **kwargs):
+        """Retrieves the payments for the Invoice id given"""
+
+        try:
+            category_id = self.kwargs['category']
+            organisation_id = self.request.query_params.get('organisation', None)
+            products = Product.objects.filter(category=category_id,organisation_id=organisation_id)
+            serialized = ProductSerializer(products, many=True)
+            return Response(serialized.data)
+        except Product.DoesNotExist:
+            raise CustomException(404, "The requested category does not exist")
+

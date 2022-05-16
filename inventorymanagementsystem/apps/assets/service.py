@@ -6,6 +6,7 @@ from rest_framework.exceptions import NotFound
 
 from .serializers import AssetSerializer, RepairingStockSerializer
 from .models import Asset, RepairingStock
+from ..orders.models import Customer
 from ..products.models import Product,Category
 from ..payments.models import Invoice
 from ..products.serializers import ProductSerializer
@@ -17,37 +18,45 @@ class AssetService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data):
+    def create(self, validated_data, organisation):
         """Creates new order from the given data"""
 
         try:
-            products = Product.objects.filter(organisation=validated_data.data['organisation'])
-            customer = Customer.objects.get(organisation=validated_data.data['organisation'],
+            product = Product.objects.get(organisation=organisation,
+                                             id=validated_data.data['product'])
+            customer = Customer.objects.get(organisation=organisation,
                                             id=validated_data.data['customer'])
-            return customer
-            # new_order = Order.objects.create(is_sales_order=validated_data.data['is_sales_order'],
-            #                                  delivery_date=validated_data.data['delivery_date'],
-            #                                  vendors_id=validated_data.data['vendors'],
-            #                                  customers_id=validated_data.data['customers'])
-            #
-            # for product in order_products:
-            #     product_details = products.get(id=product['product'])
-            #     if validated_data.data['is_sales_order'] and product_details.available_stock >= product['quantity']:
-            #         product_details.available_stock = product_details.available_stock - product['quantity']
-            #     elif not validated_data.data['is_sales_order']:
-            #         product_details.available_stock = product_details.available_stock + product['quantity']
-            #     else:
-            #         raise CustomException(400,"Enter only available stock")
-            #     product_details.save()
-            #     order_product_data = OrderProduct.objects.create(order=new_order, product=product_details,
-            #                                                      quantity=product['quantity'])
-            #
-            # invoice = self.create_invoice(new_order)
-            # invoice.save()
-            # order_product_data.save()
-            # new_order.save()
-            # return new_order
+
+            new_asset = Asset.objects.create(name=validated_data.data['name'],
+                                             serial_no=validated_data.data['serial_no'],
+                                             customer_id=validated_data.data['customer'],
+                                             organisation_id=organisation,
+                                             product_id=validated_data.data['product'])
+            product.available_stock -= 1
+            product.save()
+            return new_asset
         except KeyError as exc:
-            raise CustomException(400, "Exception in Order Creation")
+            raise CustomException(400, "Exception in Asset Service")
         except Product.DoesNotExist:
-            raise CustomException(400, "Please enter available products only")
+            raise CustomException(400, "Invalid Product")
+        except Customer.DoesNotExist:
+            raise CustomException(400, "Invalid Customer")
+
+
+class RepairingStockService:
+
+    @transaction.atomic()
+    def create(self, validated_data, organisation):
+        try:
+            asset = Asset.objects.get(organisation=organisation,
+                                      id=validated_data.data['asset'])
+
+            new_repairing_stock = RepairingStock.objects.create(serial_no=asset.serial_no,
+                                             asset_id=validated_data.data['asset'],
+                                             product_id=asset.product_id,
+                                             organisation_id=organisation)
+            return new_repairing_stock
+        except KeyError as exc:
+            raise CustomException(400, "Exception in Repairing Stock Service")
+        except Asset.DoesNotExist:
+            raise CustomException(400, "Invalid Asset")

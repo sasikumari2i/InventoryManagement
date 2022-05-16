@@ -21,15 +21,16 @@ class InvoiceService:
         try:
             orders = Order.objects.all()
             order = orders.get(id=order_id)
-            if order.invoice is not None:
-                raise CustomException(400, "Invoice Already available for this Order")
+            # if order.invoice is not None:
+            #     raise CustomException(400, "Invoice Already available for this Order")
             amount = self.total_amount(order)
             created_date = date.today()
             if validated_data.data['payment_deadline'] is None:
                 validated_data.data['payment_deadline'] = created_date + timedelta(days=15)
             payment_deadline = validated_data.data['payment_deadline']
             invoice = Invoice.objects.create(amount=amount, created_date=created_date,
-                                             payment_deadline=payment_deadline, order=order)
+                                             payment_deadline=payment_deadline, order=order,
+                                             organisation_id=order.organisation_id)
 
             return invoice
         except ValidationError:
@@ -53,6 +54,14 @@ class InvoiceService:
             return amount
         except ValidationError:
             raise CustomException(400, "Exception in PO Invoice Creation")
+
+    def retrieve(self,pk,organisation):
+        try:
+            invoice = Invoice.objects.get(id=pk,organisation_id=organisation)
+
+        except Invoice.DoesNotExist:
+            raise CustomException(404, "Invoice Not Found")
+
 
 class PaymentService:
     """Performs payment related operations like creating, updating and deleting"""

@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import BasePermission, IsAuthenticated
 import logging
 
+from organisations.models import Organisation
 from .models import Invoice, Payment
 from .service import InvoiceService, PaymentService
 from .serializers import InvoiceSerializer,PaymentSerializer
@@ -10,8 +11,7 @@ from utils.exceptionhandler import CustomException
 
 logger = logging.getLogger('django')
 
-
-class InvoiceView(viewsets.ModelViewSet):
+class InvoiceView(viewsets.ViewSet):
     """Gives the view for the Invoice"""
 
     # queryset = Invoice.objects.get_queryset().order_by('id')
@@ -44,6 +44,33 @@ class InvoiceView(viewsets.ModelViewSet):
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
 
+    def retrieve(self, request, pk):
+        try:
+            organisation = self.request.query_params.get('organisation', None)
+            invoice = self.invoice_service.retrieve(pk,organisation)
+            # invoice = Invoice.objects.get(id=pk,organisation_id=organisation)
+            serialized = InvoiceSerializer(invoice)
+            return Response(serialized.data)
+        except Invoice.DoesNotExist:
+            raise CustomException(404, "Invoice Not Found")
+
+    def list(self, request):
+        try:
+            organisation = self.request.query_params.get('organisation', None)
+            invoice = Invoice.objects.filter(organisation_id=organisation)
+            serialized = InvoiceSerializer(invoice, many=True)
+            return Response(serialized.data)
+        except Invoice.DoesNotExist:
+            raise CustomException(404, "Invoice Not Found")
+
+    def destroy(self, request, pk):
+        try:
+            organisation = self.request.query_params.get('organisation', None)
+            invoice = Invoice.objects.get(id=pk,organisation_id=organisation)
+            invoice.delete()
+            return Response({"message" : "Invoice Deleted"})
+        except Invoice.DoesNotExist:
+            raise CustomException(404,"Invoice Not Found")
 
 class PaymentView(viewsets.ModelViewSet):
     """Gives the view for the Payment"""
@@ -89,6 +116,7 @@ class InvoicePaymentView(generics.ListAPIView):
 
     queryset = Payment.objects.get_queryset().order_by('id')
     serializer_class = PaymentSerializer
+
 
     def get(self, request, *args, **kwargs):
         """Retrieves the payments for the Invoice id given"""

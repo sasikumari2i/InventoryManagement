@@ -9,10 +9,12 @@ from django.http import Http404
 from rest_framework import permissions, authentication
 from django.contrib.auth.models import User
 
-
-from .service import AssetService
+from organisations.models import Organisation
+from ..orders.models import Customer
+from ..orders.models import Product
+from .service import AssetService, RepairingStockService
 from .models import Asset, RepairingStock
-from .serializers import AssetSerializer, RepairingStockSerializer
+from .serializers import AssetSerializer, RepairingStockSerializer, RepairingStockCreateSerializer
 from utils.exceptionhandler import CustomException
 
 logger = logging.getLogger('django')
@@ -41,14 +43,31 @@ class AssetView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         try:
             organisation = request.query_params.get('organisation')
-            request.data['organisation'] = organisation
             validated_data = AssetSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_asset = asset_service.create(validated_data)
-            serialized = OrderSerializer(new_asset)
+            new_asset = self.asset_service.create(validated_data, organisation)
+            serialized = AssetSerializer(new_asset)
             return Response(serialized.data)
         except Asset.DoesNotExist:
             raise CustomException(400, "KeyError in Asset Creation View")
+
+    def update(self, request, *args, **kwargs):
+        try:
+            partial = kwargs.pop('partial', False)
+            instance = self.get_object()
+            customer = Customer.objects.get(id=request.data['customer'],
+                                            organisation_id=instance.organisation)
+            product = Product.objects.get(id=request.data['product'],
+                                            organisation_id=instance.organisation)
+            instance.updated_date = date.today()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            return Response(serializer.data)
+        except Customer.DoesNotExist:
+            raise CustomException(404, "Invalid Customer")
+        except Product.DoesNotExist:
+            raise CustomException(404, "Invalid Product")
 
 
 class RepairingStockView(viewsets.ModelViewSet):
@@ -56,6 +75,7 @@ class RepairingStockView(viewsets.ModelViewSet):
 
     # queryset = RepairingStock.objects.get_queryset().order_by('id')
     serializer_class = RepairingStockSerializer
+    repairing_stock_service = RepairingStockService()
 
     def get_queryset(self):
         try:
@@ -70,4 +90,28 @@ class RepairingStockView(viewsets.ModelViewSet):
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
 
+    def create(self, request, *args, **kwargs):
+        try:
+            organisation = request.query_params.get('organisation')
+            validated_data = RepairingStockCreateSerializer(data=request.data)
+            validated_data.is_valid(raise_exception=True)
+            new_repairing_stock = self.repairing_stock_service.create(validated_data, organisation)
+            serialized = RepairingStockSerializer(new_repairing_stock)
+            return Response(serialized.data)
+        except RepairingStock.DoesNotExist:
+            raise CustomException(400, "KeyError in Repairing Stock Creation View")
 
+    def update(self, request, *args, **kwargs):
+        try:
+            partial = kwargs.pop('partial', False)
+            instance = self.get_object()
+            asset = Asset.objects.get(id=request.data['asset'],
+                                      product_id=request.data['product'],
+                                      organisation_id=instance.organisation)
+            instance.updated_date = date.today()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            return Response(serializer.data)
+        except Asset.DoesNotExist:
+            raise CustomException(404, "Invalid Asset")

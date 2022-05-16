@@ -39,7 +39,7 @@ class RepairingStock(SafeDeleteModel):
     serial_no = models.CharField(max_length=100)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
-    process_date = models.DateField(default=None, null=True)
+    closed_date = models.DateField(default=None, null=True)
     organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True, null=False)
 

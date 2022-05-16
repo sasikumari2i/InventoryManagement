@@ -49,7 +49,7 @@ class Order (SafeDeleteModel):
     delivery_status = models.BooleanField(default=False)
     vendors = models.ForeignKey(Vendor,default=None,on_delete=models.CASCADE, null=True, blank=True)
     customers = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE, blank=True, null=True)
-    invoice = models.OneToOneField(Invoice, models.SET_NULL,  default=None, null=True, blank=True)
+    invoice = models.OneToOneField(Invoice, models.SET_NULL, related_name='orders',default=None, null=True, blank=True)
     updated_date = models.DateField(default=date.today)
     organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 

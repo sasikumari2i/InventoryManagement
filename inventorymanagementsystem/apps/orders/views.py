@@ -57,11 +57,12 @@ class OrderView(viewsets.ModelViewSet):
         """Creates new order using given data"""
 
         try:
+            organisation = self.request.query_params.get('organisation', None)
             order_products = request.data['order_products']
             request.data.pop('order_products')
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_order = self.order_service.create(validated_data, order_products)
+            new_order = self.order_service.create(validated_data, order_products, organisation)
             serialized = OrderSerializer(new_order)
             return Response(serialized.data)
         except Vendor.DoesNotExist:

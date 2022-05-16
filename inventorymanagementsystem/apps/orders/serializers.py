@@ -19,9 +19,19 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 class OrderProductSerializer(serializers.ModelSerializer):
 
+    price = serializers.FloatField(source="product.price")
+
     class Meta:
         model = OrderProduct
-        fields = ('product','quantity')
+        fields = ('product','quantity','price')
+
+class OrderInvoiceSerializer(serializers.ModelSerializer):
+
+    order_products = OrderProductSerializer(many=True,read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ('id','order_products',)
 
 
 class OrderSerializer(serializers.ModelSerializer):

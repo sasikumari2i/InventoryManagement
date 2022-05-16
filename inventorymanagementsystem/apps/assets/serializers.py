@@ -14,10 +14,17 @@ class AssetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Asset
-        fields = ('name','product','customer','serial_no','is_active')
+        fields = ('id', 'name','product','customer','serial_no','is_active')
 
 class RepairingStockSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RepairingStock
-        fields = ('asset','product','serial_no','process_date','is_active')
+        fields = ('id','asset','product','serial_no','closed_date','is_active')
+
+
+class RepairingStockCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = RepairingStock
+        fields = ('asset',)

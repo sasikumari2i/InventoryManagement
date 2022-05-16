@@ -8105,3 +8105,1557 @@ INFO 2022-05-16 14:28:01,970 autoreload 14696 8504 Watching for file changes wit
 INFO 2022-05-16 14:28:05,612 basehttp 14696 7868 "GET /customers/?organisation=1 HTTP/1.1" 200 52
 INFO 2022-05-16 14:28:34,802 basehttp 14696 7868 "POST /customers/?organisation=1 HTTP/1.1" 200 180
 INFO 2022-05-16 14:29:02,869 basehttp 14696 7868 "POST /customers/?organisation=2 HTTP/1.1" 200 172
+INFO 2022-05-16 15:23:58,522 autoreload 5372 17196 Watching for file changes with StatReloader
+INFO 2022-05-16 15:36:07,864 log 5372 12356 OK: /assets/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 46, in create
+    new_asset = asset_service.create(validated_data, organisation)
+NameError: name 'asset_service' is not defined
+INFO 2022-05-16 15:36:07,875 basehttp 5372 12356 "POST /assets/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 15:38:18,456 autoreload 5372 17196 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 15:38:20,057 autoreload 4324 7016 Watching for file changes with StatReloader
+INFO 2022-05-16 15:38:33,146 log 4324 13732 OK: /assets/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 46, in create
+    new_asset = self.asset_service.create(validated_data, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+TypeError: AssetService.create() takes 2 positional arguments but 3 were given
+INFO 2022-05-16 15:38:33,148 basehttp 4324 13732 "POST /assets/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 15:39:01,380 autoreload 4324 7016 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:39:02,521 autoreload 2268 13660 Watching for file changes with StatReloader
+INFO 2022-05-16 15:39:28,865 autoreload 2268 13660 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:39:30,022 autoreload 11160 9712 Watching for file changes with StatReloader
+INFO 2022-05-16 15:39:34,169 log 11160 4660 OK: /assets/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py", line 26, in create
+    customer = Customer.objects.get(organisation=organisation,
+NameError: name 'Customer' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 46, in create
+    new_asset = self.asset_service.create(validated_data, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py", line 41, in create
+    except Customer.DoesNotExist:
+NameError: name 'Customer' is not defined
+INFO 2022-05-16 15:39:34,171 basehttp 11160 4660 "POST /assets/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 15:40:10,718 autoreload 11160 9712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:40:11,933 autoreload 4600 12416 Watching for file changes with StatReloader
+WARNING 2022-05-16 15:40:12,847 log 4600 13808 Bad Request: /assets/
+WARNING 2022-05-16 15:40:12,848 basehttp 4600 13808 "POST /assets/?organisation=2 HTTP/1.1" 400 62
+INFO 2022-05-16 15:41:05,739 autoreload 4600 12416 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:41:06,679 autoreload 17272 13784 Watching for file changes with StatReloader
+WARNING 2022-05-16 15:41:40,882 log 17272 15312 Bad Request: /assets/
+WARNING 2022-05-16 15:41:40,883 basehttp 17272 15312 "POST /assets/?organisation=2 HTTP/1.1" 400 58
+INFO 2022-05-16 15:52:18,762 autoreload 17272 13784 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:52:19,806 autoreload 3912 13512 Watching for file changes with StatReloader
+WARNING 2022-05-16 15:52:20,517 log 3912 11684 Bad Request: /assets/
+WARNING 2022-05-16 15:52:20,518 basehttp 3912 11684 "POST /assets/?organisation=2 HTTP/1.1" 400 56
+INFO 2022-05-16 15:52:40,902 autoreload 3912 13512 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:52:42,716 autoreload 1648 2852 Watching for file changes with StatReloader
+INFO 2022-05-16 15:52:43,189 log 1648 8868 OK: /assets/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 46, in create
+    new_asset = self.asset_service.create(validated_data, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py", line 35, in create
+    product.available_stock -= 1
+AttributeError: 'SafeDeleteQueryset' object has no attribute 'available_stock'
+INFO 2022-05-16 15:52:43,196 basehttp 1648 8868 "POST /assets/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 15:54:17,069 autoreload 1648 2852 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 15:54:18,085 autoreload 10644 13480 Watching for file changes with StatReloader
+INFO 2022-05-16 15:54:22,589 log 10644 16460 OK: /assets/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 47, in create
+    serialized = OrderSerializer(new_asset)
+NameError: name 'OrderSerializer' is not defined
+INFO 2022-05-16 15:54:22,592 basehttp 10644 16460 "POST /assets/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 15:55:38,000 autoreload 10644 13480 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 15:55:39,252 autoreload 5456 1864 Watching for file changes with StatReloader
+WARNING 2022-05-16 15:55:55,418 log 5456 9712 Bad Request: /assets/
+WARNING 2022-05-16 15:55:55,418 basehttp 5456 9712 "POST /assets/?organisation=2 HTTP/1.1" 400 47
+WARNING 2022-05-16 15:56:27,381 log 5456 9712 Bad Request: /assets/
+WARNING 2022-05-16 15:56:27,383 basehttp 5456 9712 "POST /assets/?organisation=2 HTTP/1.1" 400 46
+INFO 2022-05-16 15:56:34,621 basehttp 5456 9712 "POST /assets/?organisation=2 HTTP/1.1" 200 83
+INFO 2022-05-16 16:55:21,821 autoreload 14784 1844 Watching for file changes with StatReloader
+INFO 2022-05-16 16:55:47,317 autoreload 14784 1844 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\serializers.py changed, reloading.
+INFO 2022-05-16 16:55:48,586 autoreload 1212 3376 Watching for file changes with StatReloader
+INFO 2022-05-16 16:56:32,482 log 1212 11912 OK: /assets/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 32, in get_queryset
+    organisation = Organisation.objects.get(id=organisation_id)
+NameError: name 'Organisation' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 37, in get_queryset
+    except Organisation.DoesNotExist:
+NameError: name 'Organisation' is not defined
+INFO 2022-05-16 16:56:32,492 basehttp 1212 11912 "GET /assets/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 16:57:35,279 autoreload 1212 3376 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 16:57:36,310 autoreload 8040 12428 Watching for file changes with StatReloader
+INFO 2022-05-16 16:57:39,134 basehttp 8040 8796 "GET /assets/?organisation=2 HTTP/1.1" 200 233
+WARNING 2022-05-16 16:57:54,795 log 8040 8796 Bad Request: /assets/
+WARNING 2022-05-16 16:57:54,796 basehttp 8040 8796 "GET /assets/ HTTP/1.1" 400 51
+INFO 2022-05-16 16:57:59,946 basehttp 8040 8796 "GET /assets/?organisation=2 HTTP/1.1" 200 233
+WARNING 2022-05-16 17:00:14,692 log 8040 8796 Not Found: /assets/2/
+WARNING 2022-05-16 17:00:14,692 basehttp 8040 8796 "PUT /assets/2/?organisation=2 HTTP/1.1" 404 47
+INFO 2022-05-16 17:00:28,903 autoreload 8040 12428 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 17:00:30,202 autoreload 10184 15944 Watching for file changes with StatReloader
+WARNING 2022-05-16 17:01:13,410 log 10184 7552 Not Found: /assets/2/
+WARNING 2022-05-16 17:01:13,411 basehttp 10184 7552 "PUT /assets/2/?organisation=2 HTTP/1.1" 404 47
+INFO 2022-05-16 17:01:22,119 log 10184 7552 OK: /assets/2/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 59, in update
+    product = Product.objects.get(id=request.data['product'],
+NameError: name 'Product' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 68, in update
+    except Product.DoesNotExist:
+NameError: name 'Product' is not defined
+INFO 2022-05-16 17:01:22,121 basehttp 10184 7552 "PUT /assets/2/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 17:02:07,715 autoreload 10184 15944 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 17:02:09,398 autoreload 1860 7336 Watching for file changes with StatReloader
+WARNING 2022-05-16 17:02:09,899 log 1860 12416 Not Found: /assets/2/
+WARNING 2022-05-16 17:02:09,900 basehttp 1860 12416 "PUT /assets/2/?organisation=2 HTTP/1.1" 404 46
+INFO 2022-05-16 17:14:44,458 autoreload 1860 7336 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\serializers.py changed, reloading.
+INFO 2022-05-16 17:14:45,570 autoreload 13796 6112 Watching for file changes with StatReloader
+INFO 2022-05-16 17:15:15,674 autoreload 7348 16780 Watching for file changes with StatReloader
+INFO 2022-05-16 17:26:05,821 autoreload 7348 16780 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 17:26:07,149 autoreload 11688 12900 Watching for file changes with StatReloader
+INFO 2022-05-16 17:27:08,963 autoreload 11688 12900 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:27:09,953 autoreload 9056 7752 Watching for file changes with StatReloader
+INFO 2022-05-16 17:27:24,039 autoreload 9056 7752 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:27:25,101 autoreload 15380 6016 Watching for file changes with StatReloader
+INFO 2022-05-16 17:27:45,634 autoreload 15380 6016 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 17:27:46,618 autoreload 14100 15928 Watching for file changes with StatReloader
+INFO 2022-05-16 17:32:22,512 autoreload 14100 15928 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 17:32:23,589 autoreload 14156 5868 Watching for file changes with StatReloader
+INFO 2022-05-16 17:52:52,254 autoreload 14156 5868 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:52:53,363 autoreload 9988 16680 Watching for file changes with StatReloader
+INFO 2022-05-16 17:53:31,395 autoreload 9988 16680 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:53:32,464 autoreload 13340 8256 Watching for file changes with StatReloader
+INFO 2022-05-16 17:55:56,862 autoreload 13340 8256 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:55:57,878 autoreload 7192 13756 Watching for file changes with StatReloader
+INFO 2022-05-16 17:56:14,440 autoreload 7192 13756 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:56:15,415 autoreload 3192 2056 Watching for file changes with StatReloader
+INFO 2022-05-16 17:56:39,338 autoreload 3192 2056 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:56:40,449 autoreload 9488 16956 Watching for file changes with StatReloader
+INFO 2022-05-16 17:56:44,347 autoreload 9488 16956 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:56:45,334 autoreload 1216 11672 Watching for file changes with StatReloader
+INFO 2022-05-16 17:57:04,994 autoreload 1216 11672 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:57:06,119 autoreload 15704 16920 Watching for file changes with StatReloader
+INFO 2022-05-16 17:58:51,799 autoreload 15704 16920 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:58:52,896 autoreload 13480 17168 Watching for file changes with StatReloader
+INFO 2022-05-16 17:58:56,709 autoreload 13480 17168 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:58:57,646 autoreload 9820 924 Watching for file changes with StatReloader
+INFO 2022-05-16 17:59:19,798 autoreload 9820 924 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:59:20,805 autoreload 12396 1148 Watching for file changes with StatReloader
+INFO 2022-05-16 17:59:24,535 autoreload 12396 1148 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 17:59:25,488 autoreload 1548 13104 Watching for file changes with StatReloader
+INFO 2022-05-16 18:01:06,281 autoreload 1548 13104 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:01:07,438 autoreload 12832 15692 Watching for file changes with StatReloader
+INFO 2022-05-16 18:03:33,778 autoreload 12832 15692 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:03:34,670 autoreload 10484 2552 Watching for file changes with StatReloader
+INFO 2022-05-16 18:04:03,191 autoreload 10484 2552 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:04:04,213 autoreload 12000 15832 Watching for file changes with StatReloader
+WARNING 2022-05-16 18:05:57,781 log 12000 1548 Bad Request: /repairing_stocks/
+WARNING 2022-05-16 18:05:57,781 basehttp 12000 1548 "POST /repairing_stocks/?organisation=2 HTTP/1.1" 400 97
+INFO 2022-05-16 18:06:41,473 autoreload 12000 15832 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\serializers.py changed, reloading.
+INFO 2022-05-16 18:06:42,463 autoreload 472 2392 Watching for file changes with StatReloader
+WARNING 2022-05-16 18:06:58,965 log 472 16684 Bad Request: /repairing_stocks/
+WARNING 2022-05-16 18:06:58,966 basehttp 472 16684 "POST /repairing_stocks/?organisation=2 HTTP/1.1" 400 67
+INFO 2022-05-16 18:08:13,801 autoreload 472 2392 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:08:15,623 autoreload 7712 8408 Watching for file changes with StatReloader
+INFO 2022-05-16 18:08:18,294 autoreload 7712 8408 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:08:19,185 autoreload 11228 14384 Watching for file changes with StatReloader
+INFO 2022-05-16 18:08:21,874 autoreload 11228 14384 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:08:22,855 autoreload 4600 16308 Watching for file changes with StatReloader
+INFO 2022-05-16 18:08:23,494 log 4600 15380 OK: /repairing_stocks/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py", line 98, in create
+    new_repairing_stock = self.repairing_stock_service.create(validated_data, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py", line 54, in create
+    new_repairing_stock = RepairingStock.objects.create(serial_no=asset.serial_no,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 541, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Python310\lib\site-packages\django\db\models\fields\related_descriptors.py", line 235, in __set__
+    raise ValueError(
+ValueError: Cannot assign "'2'": "RepairingStock.organisation" must be a "Organisation" instance.
+INFO 2022-05-16 18:08:23,533 basehttp 4600 15380 "POST /repairing_stocks/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 18:08:43,089 autoreload 4600 16308 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\service.py changed, reloading.
+INFO 2022-05-16 18:08:44,424 autoreload 3916 16904 Watching for file changes with StatReloader
+INFO 2022-05-16 18:08:45,342 basehttp 3916 15800 "POST /repairing_stocks/?organisation=2 HTTP/1.1" 200 54
+INFO 2022-05-16 18:12:26,844 autoreload 3916 16904 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:12:27,873 autoreload 3872 3912 Watching for file changes with StatReloader
+INFO 2022-05-16 18:12:59,069 autoreload 3872 3912 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:13:00,164 autoreload 4284 5148 Watching for file changes with StatReloader
+INFO 2022-05-16 18:13:11,244 autoreload 4284 5148 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:13:12,387 autoreload 13664 10932 Watching for file changes with StatReloader
+INFO 2022-05-16 18:14:50,002 autoreload 13664 10932 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:14:50,923 autoreload 14556 16184 Watching for file changes with StatReloader
+INFO 2022-05-16 18:15:57,586 autoreload 14556 16184 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:15:58,526 autoreload 12920 12480 Watching for file changes with StatReloader
+INFO 2022-05-16 18:16:29,072 autoreload 12920 12480 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:16:30,135 autoreload 14856 11076 Watching for file changes with StatReloader
+INFO 2022-05-16 18:23:27,555 autoreload 14856 11076 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:23:28,901 autoreload 11904 11796 Watching for file changes with StatReloader
+INFO 2022-05-16 18:23:47,061 autoreload 11904 11796 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:23:48,210 autoreload 7796 2768 Watching for file changes with StatReloader
+INFO 2022-05-16 18:25:29,010 autoreload 7796 2768 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
+INFO 2022-05-16 18:25:30,045 autoreload 5180 17068 Watching for file changes with StatReloader
+INFO 2022-05-16 18:26:22,433 basehttp 5180 16112 "GET /repairing_stocks/?organisation=2 HTTP/1.1" 200 142
+WARNING 2022-05-16 18:27:10,701 log 5180 16112 Not Found: /repairing_stocks/2/
+WARNING 2022-05-16 18:27:10,702 basehttp 5180 16112 "PUT /repairing_stocks/2/?organisation=2 HTTP/1.1" 404 41
+WARNING 2022-05-16 18:27:48,241 log 5180 16112 Not Found: /repairing_stocks/2/
+WARNING 2022-05-16 18:27:48,241 basehttp 5180 16112 "GET /repairing_stocks/2/?organisation=2 HTTP/1.1" 404 41
+INFO 2022-05-16 18:28:03,571 basehttp 5180 16112 "GET /repairing_stocks/1/?organisation=2 HTTP/1.1" 200 90
+INFO 2022-05-16 18:28:08,285 basehttp 5180 16112 "GET /repairing_stocks/1/?organisation=2 HTTP/1.1" 200 90
+INFO 2022-05-16 18:28:12,745 basehttp 5180 16112 "PUT /repairing_stocks/1/?organisation=2 HTTP/1.1" 200 90
+WARNING 2022-05-16 18:28:22,606 log 5180 16112 Not Found: /repairing_stocks/1/
+WARNING 2022-05-16 18:28:22,607 basehttp 5180 16112 "PUT /repairing_stocks/1/?organisation=2 HTTP/1.1" 404 44
+INFO 2022-05-16 20:40:32,953 autoreload 6552 14196 Watching for file changes with StatReloader
+INFO 2022-05-16 20:40:36,619 basehttp 6552 2436 "GET /invoice/1/payment?organisation=1 HTTP/1.1" 200 2
+INFO 2022-05-16 20:40:41,322 basehttp 6552 2436 "GET /invoice/payment?organisation=1 HTTP/1.1" 200 66
+INFO 2022-05-16 20:41:06,629 autoreload 6552 14196 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:41:07,949 autoreload 10244 688 Watching for file changes with StatReloader
+INFO 2022-05-16 20:44:46,014 autoreload 10244 688 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:44:47,014 autoreload 10692 9644 Watching for file changes with StatReloader
+INFO 2022-05-16 20:47:47,172 basehttp 10692 1852 "POST /orders?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:47:47,197 basehttp 10692 1852 "GET /orders/?organisation=2 HTTP/1.1" 200 52
+INFO 2022-05-16 20:47:53,405 log 10692 1852 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1048, "Column 'organisation_id' cannot be null")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 64, in create
+    new_order = self.order_service.create(validated_data, order_products)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 25, in create
+    new_order = Order.objects.create(is_sales_order=validated_data.data['is_sales_order'],
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\safedelete\models.py", line 107, in save
+    super(SafeDeleteModel, self).save(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 80, in execute
+    raise IntegrityError(*tuple(e.args))
+django.db.utils.IntegrityError: (1048, "Column 'organisation_id' cannot be null")
+INFO 2022-05-16 20:47:53,490 basehttp 10692 1852 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:48:52,233 autoreload 10692 9644 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-16 20:48:54,029 autoreload 2196 8784 Watching for file changes with StatReloader
+INFO 2022-05-16 20:49:12,600 autoreload 2196 8784 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-16 20:49:13,884 autoreload 5364 16532 Watching for file changes with StatReloader
+INFO 2022-05-16 20:49:15,216 log 5364 688 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1048, "Column 'organisation_id' cannot be null")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 65, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 43, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 107, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\safedelete\models.py", line 107, in save
+    super(SafeDeleteModel, self).save(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 80, in execute
+    raise IntegrityError(*tuple(e.args))
+django.db.utils.IntegrityError: (1048, "Column 'organisation_id' cannot be null")
+INFO 2022-05-16 20:49:15,218 basehttp 5364 688 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:49:59,444 autoreload 5364 16532 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-16 20:50:00,789 autoreload 9448 12132 Watching for file changes with StatReloader
+INFO 2022-05-16 20:50:04,616 log 9448 14840 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1048, "Column 'organisation_id' cannot be null")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 66, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 43, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 107, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\safedelete\models.py", line 107, in save
+    super(SafeDeleteModel, self).save(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 80, in execute
+    raise IntegrityError(*tuple(e.args))
+django.db.utils.IntegrityError: (1048, "Column 'organisation_id' cannot be null")
+INFO 2022-05-16 20:50:04,637 basehttp 9448 14840 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:50:12,265 autoreload 9448 12132 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py changed, reloading.
+INFO 2022-05-16 20:50:13,472 autoreload 15960 12160 Watching for file changes with StatReloader
+INFO 2022-05-16 20:50:33,813 autoreload 15960 12160 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-16 20:50:34,974 autoreload 10852 14016 Watching for file changes with StatReloader
+INFO 2022-05-16 20:50:35,581 log 10852 3488 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1048, "Column 'organisation_id' cannot be null")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 65, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 44, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 108, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\safedelete\models.py", line 107, in save
+    super(SafeDeleteModel, self).save(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 80, in execute
+    raise IntegrityError(*tuple(e.args))
+django.db.utils.IntegrityError: (1048, "Column 'organisation_id' cannot be null")
+INFO 2022-05-16 20:50:35,590 basehttp 10852 3488 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:50:42,456 autoreload 10852 14016 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-16 20:50:43,614 autoreload 3912 6292 Watching for file changes with StatReloader
+INFO 2022-05-16 20:51:25,006 autoreload 3912 6292 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-16 20:51:26,187 autoreload 16604 16048 Watching for file changes with StatReloader
+INFO 2022-05-16 20:51:26,862 log 16604 8688 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\models\fields\__init__.py", line 1988, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'Organisation'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 65, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 43, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 107, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\safedelete\models.py", line 107, in save
+    super(SafeDeleteModel, self).save(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1620, in execute_sql
+    for sql, params in self.as_sql():
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1547, in as_sql
+    value_rows = [
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1548, in <listcomp>
+    [
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1549, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1487, in prepare_value
+    value = field.get_db_prep_save(value, connection=self.connection)
+  File "C:\Python310\lib\site-packages\django\db\models\fields\related.py", line 1126, in get_db_prep_save
+    return self.target_field.get_db_prep_save(value, connection=connection)
+  File "C:\Python310\lib\site-packages\django\db\models\fields\__init__.py", line 910, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "C:\Python310\lib\site-packages\django\db\models\fields\__init__.py", line 2668, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "C:\Python310\lib\site-packages\django\db\models\fields\__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <Organisation: element5>.
+INFO 2022-05-16 20:51:26,886 basehttp 16604 8688 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:51:47,586 autoreload 16604 16048 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-16 20:51:49,074 autoreload 8980 10368 Watching for file changes with StatReloader
+INFO 2022-05-16 20:51:51,457 basehttp 8980 12700 "POST /orders/?organisation=2 HTTP/1.1" 200 198
+INFO 2022-05-16 20:52:04,914 basehttp 8980 12700 "GET /invoice/?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 20:52:08,369 basehttp 8980 12700 "GET /invoice?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 20:52:11,802 basehttp 8980 12700 "GET /invoices?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 20:52:27,865 autoreload 8980 10368 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\urls.py changed, reloading.
+INFO 2022-05-16 20:52:29,063 autoreload 3560 5724 Watching for file changes with StatReloader
+INFO 2022-05-16 20:52:30,405 basehttp 3560 8064 "GET /invoices?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 20:52:37,202 basehttp 3560 8064 "GET /invoice?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:52:37,207 log 3560 8064 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 25, in get_queryset
+    organisation = Organisation.objects.get(id=organisation_id)
+NameError: name 'Organisation' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 30, in get_queryset
+    except Organisation.DoesNotExist:
+NameError: name 'Organisation' is not defined
+INFO 2022-05-16 20:52:37,216 basehttp 3560 8064 "GET /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:53:24,052 autoreload 3560 5724 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:53:25,380 autoreload 12296 13128 Watching for file changes with StatReloader
+INFO 2022-05-16 20:53:25,718 basehttp 12296 2696 "GET /invoice?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:53:25,743 basehttp 12296 2696 "GET /invoice/?organisation=2 HTTP/1.1" 200 159
+INFO 2022-05-16 20:54:20,978 basehttp 12296 2696 "GET /invoice?organisation=1 HTTP/1.1" 301 0
+INFO 2022-05-16 20:54:20,989 basehttp 12296 2696 "GET /invoice/?organisation=1 HTTP/1.1" 200 52
+INFO 2022-05-16 20:54:25,127 basehttp 12296 2696 "GET /invoice?organisation=1\2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:54:25,139 log 12296 2696 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\models\fields\__init__.py", line 1988, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: '1\\2'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 26, in get_queryset
+    organisation = Organisation.objects.get(id=organisation_id)
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1466, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1496, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1412, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1242, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Python310\lib\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\Python310\lib\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\Python310\lib\site-packages\django\db\models\fields\__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got '1\\2'.
+INFO 2022-05-16 20:54:25,168 basehttp 12296 2696 "GET /invoice/?organisation=1%5C2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:54:28,327 basehttp 12296 2696 "GET /invoice?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:54:28,353 basehttp 12296 2696 "GET /invoice/?organisation=2 HTTP/1.1" 200 159
+INFO 2022-05-16 20:54:32,566 basehttp 12296 2696 "GET /invoice/1?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:54:32,583 basehttp 12296 2696 "GET /invoice/1/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 20:54:36,786 basehttp 12296 2696 "GET /invoice/1?organisation=1 HTTP/1.1" 301 0
+WARNING 2022-05-16 20:54:36,804 log 12296 2696 Not Found: /invoice/1/
+WARNING 2022-05-16 20:54:36,804 basehttp 12296 2696 "GET /invoice/1/?organisation=1 HTTP/1.1" 404 41
+INFO 2022-05-16 20:54:40,102 basehttp 12296 2696 "GET /invoice/1?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:54:40,123 basehttp 12296 2696 "GET /invoice/1/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 20:55:41,907 autoreload 12296 13128 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:55:43,119 autoreload 16176 7828 Watching for file changes with StatReloader
+INFO 2022-05-16 20:55:47,477 basehttp 16176 6316 "GET /invoice/1?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 20:56:16,790 autoreload 16176 7828 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:56:17,972 autoreload 12544 16756 Watching for file changes with StatReloader
+INFO 2022-05-16 20:56:26,113 autoreload 12544 16756 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:56:27,261 autoreload 12912 7908 Watching for file changes with StatReloader
+INFO 2022-05-16 20:56:50,247 autoreload 12912 7908 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 20:56:51,566 autoreload 14988 10204 Watching for file changes with StatReloader
+INFO 2022-05-16 20:56:52,735 basehttp 14988 7580 "POST /invoice/1?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 20:56:52,774 basehttp 14988 7580 "GET /invoice/1/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 20:57:18,917 log 14988 7580 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 38, in create
+    order_id = request.data['order']
+KeyError: 'order'
+INFO 2022-05-16 20:57:18,917 basehttp 14988 7580 "POST /invoice/?organisation=2 HTTP/1.1" 200 56
+WARNING 2022-05-16 20:58:40,825 log 14988 7580 Bad Request: /invoice/
+WARNING 2022-05-16 20:58:40,826 basehttp 14988 7580 "POST /invoice/?organisation=2 HTTP/1.1" 400 71
+INFO 2022-05-16 20:59:15,921 autoreload 14988 10204 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-16 20:59:17,135 autoreload 13296 12176 Watching for file changes with StatReloader
+INFO 2022-05-16 20:59:18,466 log 13296 12776 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Python310\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Python310\lib\site-packages\MySQLdb\connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1048, "Column 'organisation_id' cannot be null")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 41, in create
+    new_invoice = self.invoice_service.create(validated_data, order_id)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 31, in create
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 514, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python310\lib\site-packages\safedelete\models.py", line 107, in save
+    super(SafeDeleteModel, self).save(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 806, in save
+    self.save_base(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 857, in save_base
+    updated = self._save_table(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1000, in _save_table
+    results = self._do_insert(
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 1041, in _do_insert
+    return manager._insert(
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1434, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Python310\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python310\lib\site-packages\django\db\backends\mysql\base.py", line 80, in execute
+    raise IntegrityError(*tuple(e.args))
+django.db.utils.IntegrityError: (1048, "Column 'organisation_id' cannot be null")
+INFO 2022-05-16 20:59:18,471 basehttp 13296 12776 "POST /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 20:59:58,872 autoreload 13296 12176 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-16 21:00:00,173 autoreload 4828 8464 Watching for file changes with StatReloader
+INFO 2022-05-16 21:00:02,226 basehttp 4828 8920 "POST /invoice/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 21:00:38,039 autoreload 4828 8464 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:00:39,200 autoreload 10868 1956 Watching for file changes with StatReloader
+INFO 2022-05-16 21:01:03,554 basehttp 10868 2004 "POST /invoice/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 21:01:38,042 basehttp 10868 2004 "PUT /invoice/3/?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 21:01:49,625 basehttp 10868 2004 "DELETE /invoice/3/?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 21:01:55,673 basehttp 10868 2004 "GET /invoice/3?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 21:02:32,042 autoreload 10868 1956 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:02:33,277 autoreload 11488 9800 Watching for file changes with StatReloader
+INFO 2022-05-16 21:03:03,926 autoreload 11488 9800 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:03:05,223 autoreload 15964 15228 Watching for file changes with StatReloader
+INFO 2022-05-16 21:03:12,261 autoreload 15964 15228 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:03:13,529 autoreload 6804 6564 Watching for file changes with StatReloader
+INFO 2022-05-16 21:03:31,326 autoreload 6804 6564 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:03:32,509 autoreload 4052 7456 Watching for file changes with StatReloader
+INFO 2022-05-16 21:05:44,573 autoreload 4052 7456 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:05:45,665 autoreload 1544 7744 Watching for file changes with StatReloader
+INFO 2022-05-16 21:05:49,793 basehttp 1544 17004 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:05:49,805 log 1544 17004 OK: /invoice/3/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+INFO 2022-05-16 21:05:49,808 basehttp 1544 17004 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:06:30,205 autoreload 1544 7744 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:06:31,287 autoreload 14364 1672 Watching for file changes with StatReloader
+INFO 2022-05-16 21:06:36,466 autoreload 14364 1672 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:06:37,693 autoreload 12572 14752 Watching for file changes with StatReloader
+INFO 2022-05-16 21:06:38,336 basehttp 12572 12396 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:06:38,354 basehttp 12572 12396 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 37
+INFO 2022-05-16 21:06:47,409 basehttp 12572 12396 "GET /invoice/4?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:06:47,413 basehttp 12572 12396 "GET /invoice/4/?organisation=2 HTTP/1.1" 200 37
+INFO 2022-05-16 21:07:07,849 autoreload 12572 14752 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:07:09,008 autoreload 13820 13756 Watching for file changes with StatReloader
+INFO 2022-05-16 21:07:10,749 autoreload 13820 13756 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:07:11,830 autoreload 3388 5608 Watching for file changes with StatReloader
+INFO 2022-05-16 21:07:14,829 log 3388 12584 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+INFO 2022-05-16 21:07:14,829 basehttp 3388 12584 "GET /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:09:08,258 autoreload 3388 5608 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:09:09,354 autoreload 12524 16020 Watching for file changes with StatReloader
+INFO 2022-05-16 21:09:37,647 autoreload 12524 16020 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:09:38,709 autoreload 13296 14932 Watching for file changes with StatReloader
+INFO 2022-05-16 21:09:43,778 autoreload 13296 14932 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:09:44,852 autoreload 9784 16712 Watching for file changes with StatReloader
+INFO 2022-05-16 21:10:01,994 log 9784 12952 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+INFO 2022-05-16 21:10:02,007 basehttp 9784 12952 "GET /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:10:05,834 basehttp 9784 12952 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:10:05,850 log 9784 12952 OK: /invoice/3/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 51, in retrieve
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+TypeError: 'Invoice' object is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 52, in retrieve
+    except ObjectDoesNotExist:
+NameError: name 'ObjectDoesNotExist' is not defined
+INFO 2022-05-16 21:10:05,870 basehttp 9784 12952 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:11:13,548 basehttp 9784 12952 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:11:13,570 log 9784 12952 OK: /invoice/3/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 51, in retrieve
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+TypeError: 'Invoice' object is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 52, in retrieve
+    except ObjectDoesNotExist:
+NameError: name 'ObjectDoesNotExist' is not defined
+INFO 2022-05-16 21:11:13,573 basehttp 9784 12952 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:11:23,843 autoreload 9784 16712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:11:25,121 autoreload 11040 10632 Watching for file changes with StatReloader
+INFO 2022-05-16 21:11:26,726 basehttp 11040 14856 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:11:26,746 log 11040 14856 OK: /invoice/3/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 51, in retrieve
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+TypeError: 'Invoice' object is not iterable
+INFO 2022-05-16 21:11:26,754 basehttp 11040 14856 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:11:52,790 autoreload 11040 10632 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:11:54,078 autoreload 11084 3964 Watching for file changes with StatReloader
+INFO 2022-05-16 21:11:54,592 basehttp 11084 10096 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:11:54,618 log 11084 10096 OK: /invoice/3/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Invoice' object has no attribute 'payee_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 51, in retrieve
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `payee_name` on serializer `PaymentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Invoice` instance.
+Original exception text was: 'Invoice' object has no attribute 'payee_name'.
+INFO 2022-05-16 21:11:54,653 basehttp 11084 10096 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:12:06,102 autoreload 11084 3964 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:12:07,380 autoreload 13240 17052 Watching for file changes with StatReloader
+INFO 2022-05-16 21:12:09,647 basehttp 13240 7128 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:12:09,698 basehttp 13240 7128 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 21:12:14,861 basehttp 13240 7128 "GET /invoice/3?organisation=1 HTTP/1.1" 301 0
+INFO 2022-05-16 21:12:14,875 basehttp 13240 7128 "GET /invoice/3/?organisation=1 HTTP/1.1" 200 107
+INFO 2022-05-16 21:13:37,665 autoreload 13240 17052 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:13:38,691 autoreload 4324 10820 Watching for file changes with StatReloader
+INFO 2022-05-16 21:13:43,032 basehttp 4324 10788 "GET /invoice/3?organisation=1 HTTP/1.1" 301 0
+WARNING 2022-05-16 21:13:43,049 log 4324 10788 Not Found: /invoice/3/
+WARNING 2022-05-16 21:13:43,051 basehttp 4324 10788 "GET /invoice/3/?organisation=1 HTTP/1.1" 404 48
+INFO 2022-05-16 21:13:48,749 basehttp 4324 10788 "GET /invoice/3?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:13:48,773 basehttp 4324 10788 "GET /invoice/3/?organisation=2 HTTP/1.1" 200 107
+INFO 2022-05-16 21:14:27,668 autoreload 4324 10820 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:14:28,797 autoreload 16976 960 Watching for file changes with StatReloader
+INFO 2022-05-16 21:14:34,402 basehttp 16976 11960 "GET /invoice?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 21:14:34,430 basehttp 16976 11960 "GET /invoice/?organisation=2 HTTP/1.1" 200 325
+INFO 2022-05-16 21:14:43,295 basehttp 16976 11960 "GET /invoice?organisation=1 HTTP/1.1" 301 0
+INFO 2022-05-16 21:14:43,310 basehttp 16976 11960 "GET /invoice/?organisation=1 HTTP/1.1" 200 2
+WARNING 2022-05-16 21:15:15,819 log 16976 11960 Method Not Allowed: /invoice/3/
+WARNING 2022-05-16 21:15:15,820 basehttp 16976 11960 "PUT /invoice/3/?organisation=1 HTTP/1.1" 405 58
+INFO 2022-05-16 21:15:22,907 autoreload 16976 960 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:15:24,030 autoreload 3372 12536 Watching for file changes with StatReloader
+WARNING 2022-05-16 21:15:36,423 log 3372 13400 Method Not Allowed: /invoice/3/
+WARNING 2022-05-16 21:15:36,424 basehttp 3372 13400 "PATCH /invoice/3/?organisation=2 HTTP/1.1" 405 60
+INFO 2022-05-16 21:17:41,657 autoreload 3372 12536 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:17:42,831 autoreload 7856 15416 Watching for file changes with StatReloader
+INFO 2022-05-16 21:18:05,707 autoreload 7856 15416 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:18:06,742 autoreload 16092 9324 Watching for file changes with StatReloader
+INFO 2022-05-16 21:18:22,947 autoreload 16092 9324 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:18:24,374 autoreload 13296 17208 Watching for file changes with StatReloader
+INFO 2022-05-16 21:18:31,721 log 13296 13220 OK: /invoice/3/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 66, in destroy
+    instance = self.get_object()
+AttributeError: 'InvoiceView' object has no attribute 'get_object'
+INFO 2022-05-16 21:18:31,726 basehttp 13296 13220 "DELETE /invoice/3/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 21:19:42,902 autoreload 13296 17208 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:19:43,967 autoreload 1276 6804 Watching for file changes with StatReloader
+INFO 2022-05-16 21:19:53,256 autoreload 1276 6804 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:19:54,340 autoreload 17068 16512 Watching for file changes with StatReloader
+INFO 2022-05-16 21:20:55,940 autoreload 17068 16512 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 21:20:57,005 autoreload 2428 12952 Watching for file changes with StatReloader
+WARNING 2022-05-16 21:21:02,558 log 2428 13192 Not Found: /invoice/3/
+WARNING 2022-05-16 21:21:02,559 basehttp 2428 13192 "DELETE /invoice/3/?organisation=1 HTTP/1.1" 404 48
+INFO 2022-05-16 21:21:05,816 basehttp 2428 13192 "DELETE /invoice/3/?organisation=2 HTTP/1.1" 200 29
+INFO 2022-05-16 22:46:34,291 autoreload 7668 6436 Watching for file changes with StatReloader
+INFO 2022-05-16 22:47:14,734 autoreload 7668 6436 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-16 22:47:16,037 autoreload 756 16512 Watching for file changes with StatReloader
+INFO 2022-05-16 22:47:34,872 autoreload 756 16512 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\urls.py changed, reloading.
+INFO 2022-05-16 22:47:35,986 autoreload 15596 9408 Watching for file changes with StatReloader
+INFO 2022-05-16 22:48:32,620 basehttp 15596 13264 "GET /category/4/products?organisation=2 HTTP/1.1" 200 1032
+INFO 2022-05-16 22:51:00,772 autoreload 15596 9408 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-16 22:51:01,809 autoreload 9880 4308 Watching for file changes with StatReloader
+INFO 2022-05-16 22:51:04,718 basehttp 9880 4036 "GET /category/4/products?organisation=2 HTTP/1.1" 200 690
+INFO 2022-05-16 22:51:12,488 basehttp 9880 4036 "GET /category/4/products?organisation=1 HTTP/1.1" 200 343
+INFO 2022-05-16 22:51:20,678 basehttp 9880 4036 "GET /category/3/products?organisation=1 HTTP/1.1" 200 2
+INFO 2022-05-16 22:51:26,416 basehttp 9880 4036 "GET /category/3/products?organisation=2 HTTP/1.1" 200 2
+INFO 2022-05-16 22:51:29,136 basehttp 9880 4036 "GET /category/3/products?organisation=3 HTTP/1.1" 200 2
+INFO 2022-05-16 22:51:32,298 basehttp 9880 4036 "GET /category/3/products?organisation=2 HTTP/1.1" 200 2
+INFO 2022-05-16 22:51:36,389 basehttp 9880 4036 "GET /category/5/products?organisation=2 HTTP/1.1" 200 2
+INFO 2022-05-16 22:51:38,596 basehttp 9880 4036 "GET /category/2/products?organisation=2 HTTP/1.1" 200 2
+INFO 2022-05-16 22:51:40,446 basehttp 9880 4036 "GET /category/4/products?organisation=2 HTTP/1.1" 200 690
+WARNING 2022-05-16 22:51:55,331 log 9880 4036 Method Not Allowed: /category/4/products
+WARNING 2022-05-16 22:51:55,332 basehttp 9880 4036 "PUT /category/4/products?organisation=2 HTTP/1.1" 405 58
+INFO 2022-05-16 23:17:51,723 autoreload 9880 4308 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\models.py changed, reloading.
+INFO 2022-05-16 23:17:52,858 autoreload 14376 7512 Watching for file changes with StatReloader
+INFO 2022-05-16 23:18:53,413 autoreload 14376 7512 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:18:54,664 autoreload 4108 8000 Watching for file changes with StatReloader
+INFO 2022-05-16 23:19:08,304 basehttp 4108 9508 "GET /nvoice?organisation=2 HTTP/1.1" 200 66
+INFO 2022-05-16 23:19:12,908 basehttp 4108 9508 "GET /invoice?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 23:19:12,940 basehttp 4108 9508 "GET /invoice/?organisation=2 HTTP/1.1" 200 439
+INFO 2022-05-16 23:21:13,711 autoreload 4108 8000 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:21:14,919 autoreload 16584 8020 Watching for file changes with StatReloader
+INFO 2022-05-16 23:26:15,413 autoreload 16584 8020 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:26:16,838 autoreload 14428 16380 Watching for file changes with StatReloader
+INFO 2022-05-16 23:29:52,521 autoreload 14428 16380 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:29:53,710 autoreload 10852 14480 Watching for file changes with StatReloader
+INFO 2022-05-16 23:29:56,552 autoreload 10852 14480 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:29:57,905 autoreload 17388 6812 Watching for file changes with StatReloader
+INFO 2022-05-16 23:30:00,170 basehttp 17388 12076 "GET /invoice?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 23:30:00,190 basehttp 17388 12076 "GET /invoice/?organisation=2 HTTP/1.1" 200 217
+INFO 2022-05-16 23:31:47,278 autoreload 17388 6812 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py changed, reloading.
+INFO 2022-05-16 23:31:48,401 autoreload 12572 9828 Watching for file changes with StatReloader
+INFO 2022-05-16 23:34:59,165 autoreload 12572 9828 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-16 23:35:00,492 autoreload 1236 13472 Watching for file changes with StatReloader
+INFO 2022-05-16 23:40:03,443 autoreload 1236 13472 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-16 23:40:04,701 autoreload 10760 10576 Watching for file changes with StatReloader
+INFO 2022-05-16 23:40:47,210 autoreload 10760 10576 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:40:48,512 autoreload 16720 2468 Watching for file changes with StatReloader
+INFO 2022-05-16 23:41:11,602 autoreload 16720 2468 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:41:12,654 autoreload 2180 15060 Watching for file changes with StatReloader
+INFO 2022-05-16 23:41:29,219 autoreload 2180 15060 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:41:30,259 autoreload 15344 6436 Watching for file changes with StatReloader
+INFO 2022-05-16 23:41:36,501 autoreload 15344 6436 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:41:37,564 autoreload 9824 17152 Watching for file changes with StatReloader
+INFO 2022-05-16 23:42:06,368 autoreload 9824 17152 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:42:07,631 autoreload 3292 5832 Watching for file changes with StatReloader
+INFO 2022-05-16 23:42:12,450 autoreload 3292 5832 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:42:13,666 autoreload 11756 8404 Watching for file changes with StatReloader
+INFO 2022-05-16 23:42:34,367 autoreload 11756 8404 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:42:35,449 autoreload 13112 15592 Watching for file changes with StatReloader
+INFO 2022-05-16 23:44:00,389 autoreload 13112 15592 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-16 23:44:02,033 autoreload 15380 15608 Watching for file changes with StatReloader
+INFO 2022-05-16 23:46:00,803 autoreload 15380 15608 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:46:01,925 autoreload 6252 10304 Watching for file changes with StatReloader
+INFO 2022-05-16 23:47:27,007 autoreload 6252 10304 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:47:28,103 autoreload 3376 15060 Watching for file changes with StatReloader
+INFO 2022-05-16 23:47:44,260 autoreload 3376 15060 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:47:45,283 autoreload 788 14520 Watching for file changes with StatReloader
+INFO 2022-05-16 23:51:12,423 autoreload 788 14520 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:51:13,244 autoreload 14844 10980 Watching for file changes with StatReloader
+INFO 2022-05-16 23:51:27,722 autoreload 14844 10980 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:51:28,876 autoreload 7256 12000 Watching for file changes with StatReloader
+INFO 2022-05-16 23:52:07,121 autoreload 7256 12000 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:52:08,214 autoreload 4604 14976 Watching for file changes with StatReloader
+INFO 2022-05-16 23:57:47,492 autoreload 4604 14976 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:57:48,708 autoreload 5576 14312 Watching for file changes with StatReloader
+INFO 2022-05-16 23:57:57,346 autoreload 5576 14312 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:57:58,518 autoreload 14604 8780 Watching for file changes with StatReloader
+INFO 2022-05-16 23:58:45,330 basehttp 14604 9036 "GET /orders?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 23:58:45,364 log 14604 9036 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Python310\lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'price' was declared on serializer OrderProductSerializer, but has not been included in the 'fields' option.
+INFO 2022-05-16 23:58:45,365 basehttp 14604 9036 "GET /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-16 23:59:30,464 autoreload 14604 8780 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-16 23:59:31,837 autoreload 11260 8612 Watching for file changes with StatReloader
+INFO 2022-05-16 23:59:45,801 basehttp 11260 6484 "GET /orders?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-16 23:59:45,849 basehttp 11260 6484 "GET /orders/?organisation=2 HTTP/1.1" 200 262
+INFO 2022-05-17 00:00:09,910 basehttp 11260 6484 "GET /products?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-17 00:00:09,927 basehttp 11260 6484 "GET /products/?organisation=2 HTTP/1.1" 200 449
+INFO 2022-05-17 00:01:05,985 basehttp 11260 6484 "PUT /products/1?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-17 00:01:05,997 basehttp 11260 6484 "GET /products/1/?organisation=2 HTTP/1.1" 200 175
+INFO 2022-05-17 00:02:30,647 autoreload 11260 8612 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-17 00:02:32,169 autoreload 15796 13308 Watching for file changes with StatReloader
+INFO 2022-05-17 00:02:32,856 basehttp 15796 5656 "PUT /products/1?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-17 00:02:32,884 basehttp 15796 5656 "GET /products/1/?organisation=2 HTTP/1.1" 200 175
+INFO 2022-05-17 00:02:42,708 autoreload 15796 13308 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-17 00:02:43,878 autoreload 3744 14104 Watching for file changes with StatReloader
+INFO 2022-05-17 00:02:58,846 autoreload 3744 14104 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-17 00:03:00,211 autoreload 13148 10336 Watching for file changes with StatReloader
+INFO 2022-05-17 00:03:00,989 basehttp 13148 16868 "PUT /products/1?organisation=2 HTTP/1.1" 301 0
+INFO 2022-05-17 00:03:01,020 basehttp 13148 16868 "GET /products/1/?organisation=2 HTTP/1.1" 200 175
+INFO 2022-05-17 00:03:07,634 autoreload 13148 10336 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-17 00:03:08,756 autoreload 14492 10932 Watching for file changes with StatReloader
+WARNING 2022-05-17 00:03:11,988 log 14492 12996 Not Found: /products/1/
+WARNING 2022-05-17 00:03:11,989 basehttp 14492 12996 "PUT /products/1/?organisation=2 HTTP/1.1" 404 47
+INFO 2022-05-17 00:04:01,318 autoreload 14492 10932 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-17 00:04:02,468 autoreload 10244 13936 Watching for file changes with StatReloader
+INFO 2022-05-17 00:04:15,516 basehttp 10244 5240 "PUT /products/1/?organisation=2 HTTP/1.1" 200 179
+INFO 2022-05-17 00:04:36,591 basehttp 10244 5240 "GET /invoice/1/?organisation=2 HTTP/1.1" 200 82
+INFO 2022-05-17 00:05:31,842 basehttp 10244 5240 "GET /orders/?organisation=2 HTTP/1.1" 200 266
+INFO 2022-05-17 00:06:55,992 autoreload 10244 13936 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:06:57,112 autoreload 15960 1212 Watching for file changes with StatReloader
+INFO 2022-05-17 00:09:01,408 autoreload 15960 1212 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:09:02,830 autoreload 17236 14204 Watching for file changes with StatReloader
+INFO 2022-05-17 00:09:33,204 autoreload 17236 14204 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:09:34,427 autoreload 11748 2136 Watching for file changes with StatReloader
+INFO 2022-05-17 00:11:06,458 autoreload 11748 2136 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-17 00:11:07,548 autoreload 11060 2836 Watching for file changes with StatReloader
+INFO 2022-05-17 00:11:15,809 autoreload 11060 2836 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-17 00:11:16,891 autoreload 1264 2164 Watching for file changes with StatReloader
+INFO 2022-05-17 00:11:45,875 autoreload 1264 2164 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-17 00:11:46,953 autoreload 15600 4272 Watching for file changes with StatReloader
+INFO 2022-05-17 00:12:36,898 autoreload 15600 4272 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:12:37,902 autoreload 10584 15240 Watching for file changes with StatReloader
+INFO 2022-05-17 00:12:48,274 log 10584 2472 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 62, in list
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+TypeError: 'Order' object is not iterable
+INFO 2022-05-17 00:12:48,279 basehttp 10584 2472 "GET /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 00:13:31,551 autoreload 10584 15240 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:13:32,824 autoreload 12132 13124 Watching for file changes with StatReloader
+INFO 2022-05-17 00:13:33,438 basehttp 12132 9532 "GET /invoice/?organisation=2 HTTP/1.1" 200 305
+INFO 2022-05-17 00:15:24,745 autoreload 12132 13124 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:15:25,800 autoreload 13768 15760 Watching for file changes with StatReloader
+INFO 2022-05-17 00:19:17,893 autoreload 8800 10668 Watching for file changes with StatReloader
+INFO 2022-05-17 00:19:24,966 log 8800 13736 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Invoice' object has no attribute 'order_products'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 62, in list
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `order_products` on serializer `InvoiceSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Invoice` instance.
+Original exception text was: 'Invoice' object has no attribute 'order_products'.
+INFO 2022-05-17 00:19:24,973 basehttp 8800 13736 "GET /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 00:20:44,014 autoreload 8800 10668 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:20:45,359 autoreload 1156 4128 Watching for file changes with StatReloader
+INFO 2022-05-17 00:20:58,999 autoreload 1156 4128 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:21:00,006 autoreload 7648 16544 Watching for file changes with StatReloader
+INFO 2022-05-17 00:21:32,966 autoreload 7648 16544 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:21:34,146 autoreload 10164 14980 Watching for file changes with StatReloader
+INFO 2022-05-17 00:21:35,830 basehttp 10164 5676 "GET /invoice/?organisation=2 HTTP/1.1" 200 259
+INFO 2022-05-17 00:21:56,317 autoreload 10164 14980 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:21:57,489 autoreload 1848 14836 Watching for file changes with StatReloader
+INFO 2022-05-17 00:22:10,302 autoreload 1848 14836 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:22:11,555 autoreload 12176 2400 Watching for file changes with StatReloader
+INFO 2022-05-17 00:22:12,077 log 12176 3448 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'RelatedManager' object has no attribute 'product'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 62, in list
+    return Response(serialized.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Python310\lib\site-packages\rest_framework\relations.py", line 190, in get_attribute
+    return super().get_attribute(instance)
+  File "C:\Python310\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `product` on serializer `OrderProductSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `RelatedManager` instance.
+Original exception text was: 'RelatedManager' object has no attribute 'product'.
+INFO 2022-05-17 00:22:12,104 basehttp 12176 3448 "GET /invoice/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 00:22:29,958 autoreload 12176 2400 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:22:31,083 autoreload 12788 4368 Watching for file changes with StatReloader
+INFO 2022-05-17 00:22:36,176 autoreload 12788 4368 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:22:37,369 autoreload 10928 4712 Watching for file changes with StatReloader
+INFO 2022-05-17 00:22:37,724 basehttp 10928 4036 "GET /invoice/?organisation=2 HTTP/1.1" 200 242
+INFO 2022-05-17 00:22:48,020 autoreload 10928 4712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\serializers.py changed, reloading.
+INFO 2022-05-17 00:22:49,338 autoreload 7728 11540 Watching for file changes with StatReloader
+INFO 2022-05-17 00:22:50,773 basehttp 7728 15148 "GET /invoice/?organisation=2 HTTP/1.1" 200 305
+INFO 2022-05-17 00:23:29,122 autoreload 7728 11540 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-17 00:23:30,408 autoreload 5740 14104 Watching for file changes with StatReloader
+INFO 2022-05-17 00:23:31,172 basehttp 5740 8124 "GET /invoice/?organisation=2 HTTP/1.1" 200 312
+INFO 2022-05-17 00:23:46,750 basehttp 5740 8124 "GET /orders/?organisation=2 HTTP/1.1" 200 266
