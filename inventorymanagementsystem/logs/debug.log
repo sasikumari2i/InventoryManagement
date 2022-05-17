@@ -9659,3 +9659,226 @@ INFO 2022-05-17 00:23:29,122 autoreload 7728 11540 C:\Users\Lenovo\Documents\pro
 INFO 2022-05-17 00:23:30,408 autoreload 5740 14104 Watching for file changes with StatReloader
 INFO 2022-05-17 00:23:31,172 basehttp 5740 8124 "GET /invoice/?organisation=2 HTTP/1.1" 200 312
 INFO 2022-05-17 00:23:46,750 basehttp 5740 8124 "GET /orders/?organisation=2 HTTP/1.1" 200 266
+INFO 2022-05-17 09:27:42,256 autoreload 10512 9184 Watching for file changes with StatReloader
+INFO 2022-05-17 09:29:54,226 log 10512 9740 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Python310\lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "C:\Python310\lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `is_sales_order` is not valid for model `Order`.
+INFO 2022-05-17 09:29:54,237 basehttp 10512 9740 "GET /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 09:30:33,708 autoreload 10512 9184 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-17 09:30:34,772 autoreload 5608 14180 Watching for file changes with StatReloader
+INFO 2022-05-17 09:31:52,027 basehttp 5608 15184 "GET /orders/?organisation=2 HTTP/1.1" 200 226
+WARNING 2022-05-17 09:41:02,014 log 5608 15184 Bad Request: /orders/
+WARNING 2022-05-17 09:41:02,015 basehttp 5608 15184 "POST /orders/?organisation=2 HTTP/1.1" 400 58
+INFO 2022-05-17 09:42:50,468 autoreload 5608 14180 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:42:51,601 autoreload 964 1864 Watching for file changes with StatReloader
+INFO 2022-05-17 09:43:07,661 autoreload 964 1864 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:43:08,987 autoreload 15504 13096 Watching for file changes with StatReloader
+WARNING 2022-05-17 09:43:09,680 log 15504 10608 Bad Request: /orders/
+WARNING 2022-05-17 09:43:09,681 basehttp 15504 10608 "POST /orders/?organisation=2 HTTP/1.1" 400 58
+INFO 2022-05-17 09:43:23,874 autoreload 15504 13096 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:43:25,414 autoreload 1452 10992 Watching for file changes with StatReloader
+WARNING 2022-05-17 09:43:26,062 log 1452 14300 Bad Request: /orders/
+WARNING 2022-05-17 09:43:26,064 basehttp 1452 14300 "POST /orders/?organisation=2 HTTP/1.1" 400 58
+INFO 2022-05-17 09:43:37,361 autoreload 1452 10992 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:43:38,841 autoreload 16264 1140 Watching for file changes with StatReloader
+WARNING 2022-05-17 09:43:39,560 log 16264 7376 Bad Request: /orders/
+WARNING 2022-05-17 09:43:39,561 basehttp 16264 7376 "POST /orders/?organisation=2 HTTP/1.1" 400 58
+INFO 2022-05-17 09:43:45,457 autoreload 16264 1140 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:43:47,262 autoreload 5416 16728 Watching for file changes with StatReloader
+INFO 2022-05-17 09:43:52,624 autoreload 5416 16728 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:43:54,041 autoreload 5544 2824 Watching for file changes with StatReloader
+WARNING 2022-05-17 09:43:55,138 log 5544 8612 Bad Request: /orders/
+WARNING 2022-05-17 09:43:55,140 basehttp 5544 8612 "POST /orders/?organisation=2 HTTP/1.1" 400 58
+INFO 2022-05-17 09:44:13,822 autoreload 5544 2824 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:44:14,980 autoreload 14796 13036 Watching for file changes with StatReloader
+INFO 2022-05-17 09:44:25,968 log 14796 16696 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 65, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 37, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 95, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 559, in __init__
+    raise TypeError(
+TypeError: Invoice() got an unexpected keyword argument 'order'
+INFO 2022-05-17 09:44:25,984 basehttp 14796 16696 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 09:45:53,044 autoreload 14796 13036 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:45:54,702 autoreload 15220 636 Watching for file changes with StatReloader
+INFO 2022-05-17 09:45:57,241 log 15220 14556 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 65, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 37, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 96, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 559, in __init__
+    raise TypeError(
+TypeError: Invoice() got an unexpected keyword argument 'order'
+INFO 2022-05-17 09:45:57,248 basehttp 15220 14556 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 09:46:20,080 autoreload 15220 636 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:46:21,671 autoreload 3908 10272 Watching for file changes with StatReloader
+INFO 2022-05-17 09:46:24,697 log 3908 17304 OK: /orders/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\views.py", line 65, in create
+    new_order = self.order_service.create(validated_data, order_products, organisation)
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 37, in create
+    invoice = self.create_invoice(new_order)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py", line 96, in create_invoice
+    invoice = Invoice.objects.create(amount=amount, created_date=created_date,
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\base.py", line 559, in __init__
+    raise TypeError(
+TypeError: Invoice() got an unexpected keyword argument 'order'
+INFO 2022-05-17 09:46:24,710 basehttp 3908 17304 "POST /orders/?organisation=2 HTTP/1.1" 200 56
+INFO 2022-05-17 09:46:53,469 autoreload 3908 10272 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:46:54,522 autoreload 8712 8416 Watching for file changes with StatReloader
+INFO 2022-05-17 09:48:05,213 autoreload 8712 8416 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:48:06,236 autoreload 8348 11052 Watching for file changes with StatReloader
+INFO 2022-05-17 09:48:10,008 basehttp 8348 7776 "POST /orders/?organisation=2 HTTP/1.1" 200 177
+INFO 2022-05-17 09:48:34,371 autoreload 8348 11052 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:48:35,994 autoreload 11144 16876 Watching for file changes with StatReloader
+INFO 2022-05-17 09:48:37,682 basehttp 11144 5380 "POST /orders/?organisation=2 HTTP/1.1" 200 175
+INFO 2022-05-17 09:52:36,465 autoreload 11144 16876 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 09:52:37,835 autoreload 10616 1436 Watching for file changes with StatReloader
+WARNING 2022-05-17 11:16:01,586 log 10616 2648 Bad Request: /orders/10/
+WARNING 2022-05-17 11:16:01,590 basehttp 10616 2648 "PUT /orders/10/?organisation=2 HTTP/1.1" 400 56
+INFO 2022-05-17 11:16:10,925 autoreload 10616 1436 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:16:12,916 autoreload 17096 13980 Watching for file changes with StatReloader
+INFO 2022-05-17 11:16:16,946 autoreload 17096 13980 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:16:18,309 autoreload 8512 15964 Watching for file changes with StatReloader
+WARNING 2022-05-17 11:16:18,757 log 8512 16420 Bad Request: /orders/10/
+WARNING 2022-05-17 11:16:18,757 basehttp 8512 16420 "PUT /orders/10/?organisation=2 HTTP/1.1" 400 56
+INFO 2022-05-17 11:17:34,228 autoreload 8512 15964 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:17:35,533 autoreload 6488 14548 Watching for file changes with StatReloader
+INFO 2022-05-17 11:17:36,238 basehttp 6488 10160 "PUT /orders/10/?organisation=2 HTTP/1.1" 200 94
+INFO 2022-05-17 11:17:57,377 autoreload 6488 14548 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:17:58,591 autoreload 11256 14440 Watching for file changes with StatReloader
+INFO 2022-05-17 11:18:26,713 basehttp 11256 14544 "PUT /orders/10/?organisation=2 HTTP/1.1" 200 175
+INFO 2022-05-17 11:18:41,127 basehttp 11256 14544 "PUT /orders/10/?organisation=2 HTTP/1.1" 200 176
+INFO 2022-05-17 11:19:11,090 basehttp 11256 14544 "PUT /orders/10/?organisation=2 HTTP/1.1" 200 175
+INFO 2022-05-17 11:21:47,588 autoreload 11256 14440 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:21:48,696 autoreload 2632 3964 Watching for file changes with StatReloader
+INFO 2022-05-17 11:22:04,588 autoreload 2632 3964 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:22:05,599 autoreload 13980 17096 Watching for file changes with StatReloader
+INFO 2022-05-17 11:22:53,762 autoreload 13980 17096 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:22:54,787 autoreload 15868 12056 Watching for file changes with StatReloader
+INFO 2022-05-17 11:24:21,018 autoreload 15868 12056 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:24:22,254 autoreload 8012 15200 Watching for file changes with StatReloader
+INFO 2022-05-17 11:24:56,998 autoreload 8012 15200 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:24:58,299 autoreload 8004 16156 Watching for file changes with StatReloader
+INFO 2022-05-17 11:34:36,283 autoreload 8004 16156 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:34:37,891 autoreload 2648 6016 Watching for file changes with StatReloader
+INFO 2022-05-17 11:37:19,758 autoreload 2648 6016 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:37:21,432 autoreload 17240 13712 Watching for file changes with StatReloader
+INFO 2022-05-17 11:38:11,565 autoreload 17240 13712 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:38:12,552 autoreload 14252 10784 Watching for file changes with StatReloader
+INFO 2022-05-17 11:39:18,443 autoreload 14252 10784 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\service.py changed, reloading.
+INFO 2022-05-17 11:39:19,677 autoreload 11260 13628 Watching for file changes with StatReloader
+INFO 2022-05-17 11:40:20,709 basehttp 11260 14732 "PUT /orders/10/?organisation=2 HTTP/1.1" 200 176

@@ -22,20 +22,14 @@ class OrderService:
 
         try:
             products = Product.objects.all()
-            new_order = Order.objects.create(is_sales_order=validated_data.data['is_sales_order'],
-                                             delivery_date=validated_data.data['delivery_date'],
+            new_order = Order.objects.create(delivery_date=validated_data.data['delivery_date'],
                                              vendors_id=validated_data.data['vendors'],
-                                             customers_id=validated_data.data['customers'],
                                              organisation_id=organisation)
 
             for product in order_products:
                 product_details = products.get(id=product['product'])
-                if validated_data.data['is_sales_order'] and product_details.available_stock >= product['quantity']:
-                    product_details.available_stock = product_details.available_stock - product['quantity']
-                elif not validated_data.data['is_sales_order']:
-                    product_details.available_stock = product_details.available_stock + product['quantity']
-                else:
-                    raise CustomException(400,"Enter only available stock")
+                product_details.price = product['price']
+                product_details.available_stock = product_details.available_stock + product['quantity']
                 product_details.save()
                 order_product_data = OrderProduct.objects.create(order=new_order, product=product_details,
                                                                  quantity=product['quantity'])
@@ -51,7 +45,6 @@ class OrderService:
             raise CustomException(400, "Please enter available products only")
 
 
-
     @transaction.atomic
     def update(self, order_details, validated_data, order_products):
         """Updates details of the given order"""
@@ -59,21 +52,17 @@ class OrderService:
         try:
             products = Product.objects.all()
             product_orders = OrderProduct.objects.all()
-            order_details.is_sales_order = validated_data.data['is_sales_order']
-            order_details.order_date = validated_data.data['order_date']
             order_details.delivery_date = validated_data.data['delivery_date']
             order_details.vendors_id = validated_data.data['vendors']
-            order_details.customers_id = validated_data.data['customers']
             order_details.save()
 
             for product in order_products:
                 product_details = products.get(id=product['product'])
-                if validated_data.data['is_sales_order'] and product_details.available_stock >= product['quantity']:
-                    product_details.available_stock = product_details.available_stock - product['quantity']
-                elif not validated_data.data['is_sales_order']:
-                    product_details.available_stock = product_details.available_stock + product['quantity']
-                else:
-                    raise CustomException(400, "Enter only available stock")
+                old_order_product = product_orders.get(product=product_details.id,order=order_details.id)
+                old_quantity = old_order_product.quantity
+                product_details.available_stock = product_details.available_stock - old_quantity
+                product_details.available_stock = product_details.available_stock + product['quantity']
+                product_details.price = product['price']
                 product_details.save()
                 order_product_details = product_orders.get(product=product_details.id,
                                                                  order=order_details.id)
@@ -83,8 +72,9 @@ class OrderService:
                 order_product_details.save()
 
             return order_details
-        except (KeyError, ValidationError):
-            raise CustomException(400, "Exception in Order Update")
+        except KeyError as exc:
+            # raise CustomException(400, "Exception in Order Update")
+            print(exc)
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
 
@@ -98,14 +88,14 @@ class OrderService:
             order_serializer = OrderSerializer(new_order)
             for orders in order_serializer.data['order_products']:
                 product = products.get(id=orders['product'])
-                product_price = product.price
+                product_price = orders['price']
                 product_quantity = orders['quantity']
                 amount = amount + (product_price * product_quantity)
 
             created_date = date.today()
             payment_deadline = created_date + timedelta(days=15)
             invoice = Invoice.objects.create(amount=amount, created_date=created_date,
-                                             payment_deadline=payment_deadline, order=new_order,
+                                             payment_deadline=payment_deadline, orders=new_order,
                                              organisation_id=new_order.organisation_id)
             return invoice
         except ValidationError as exc:

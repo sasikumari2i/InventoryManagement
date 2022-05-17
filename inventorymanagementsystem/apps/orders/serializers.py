@@ -17,6 +17,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = ('id','name','address','email','phone_number','wallet','created_date', 'updated_date')
 
+
 class OrderProductSerializer(serializers.ModelSerializer):
 
     price = serializers.FloatField(source="product.price")
@@ -24,6 +25,7 @@ class OrderProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderProduct
         fields = ('product','quantity','price')
+
 
 class OrderInvoiceSerializer(serializers.ModelSerializer):
 
@@ -40,19 +42,19 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id','is_sales_order','order_date','delivery_status','delivery_date','vendors',
-                  'customers','order_products','invoice',)
+        fields = ('id','order_date','delivery_status','delivery_date','vendors',
+                  'order_products','invoice',)
 
     def validate(self, data):
         """Validations for the Order model"""
 
         try:
-            if data['is_sales_order'] is True and self.initial_data['vendors'] is not None:
-                raise CustomException(400, "Sales Order cannot have Vendor")
-            elif data['is_sales_order'] is False and self.initial_data['customers'] is not None:
-                raise CustomException(400, "Purchase Order cannot have Customer")
-            elif self.initial_data['vendors'] is None and self.initial_data['customers'] is None:
-                raise CustomException(400, "Please give vendor or customer details for the order")
+        #     if data['is_sales_order'] is True and self.initial_data['vendors'] is not None:
+        #         raise CustomException(400, "Sales Order cannot have Vendor")
+        #     elif data['is_sales_order'] is False and self.initial_data['customers'] is not None:
+        #         raise CustomException(400, "Purchase Order cannot have Customer")
+            if self.initial_data['vendors'] is None:
+                raise CustomException(400, "Please give vendor details for the order")
 
             try:
                 delivery_date = datetime.datetime.strptime(self.initial_data['delivery_date'], '%Y-%m-%d')
@@ -66,7 +68,6 @@ class OrderSerializer(serializers.ModelSerializer):
             raise CustomException(exc.status_code, exc.detail)
 
 
-
 class VendorSerializer(serializers.ModelSerializer):
 
     # orders = OrderSerializer(many=True, read_only=True)
@@ -74,6 +75,7 @@ class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
         fields = ('id','name','address','email','phone_number','created_date','updated_date')
+
 
 class DeliverySerializer(serializers.ModelSerializer):
 
