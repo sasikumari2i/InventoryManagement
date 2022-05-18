@@ -20,7 +20,7 @@ class InvoiceService:
 
         try:
             orders = Order.objects.all()
-            order = orders.get(id=order_id)
+            order = orders.get(order_uid=order_id)
             # if order.invoice is not None:
             #     raise CustomException(400, "Invoice Already available for this Order")
             amount = self.total_amount(order)
@@ -46,7 +46,7 @@ class InvoiceService:
             order_serializer = OrderSerializer(order)
 
             for orders in order_serializer.data['order_products']:
-                product = products.get(id=orders['product'])
+                product = products.get(product_uid=orders['product'])
                 product_price = product.price
                 product_quantity = orders['quantity']
                 amount = amount + (product_price * product_quantity)
@@ -57,8 +57,8 @@ class InvoiceService:
 
     def retrieve(self,pk,organisation):
         try:
-            invoice = Invoice.objects.get(id=pk,organisation_id=organisation)
-
+            invoice = Invoice.objects.get(invoice_uid=pk,organisation_id=organisation)
+            return invoice
         except Invoice.DoesNotExist:
             raise CustomException(404, "Invoice Not Found")
 
@@ -72,15 +72,15 @@ class PaymentService:
 
         try:
             invoices = Invoice.objects.all()
-            invoice = invoices.get(id=invoice_id)
-            order = Order.objects.get(invoice_id=invoice)
-            if not order.is_sales_order:
-                raise CustomException(400, "Payment can be done only for sales order")
-            customer = Customer.objects.get(id=order.customers.id)
+            invoice = invoices.get(invoice_uid=invoice_id)
+            order = Order.objects.get(invoice_uid=invoice)
+            # if not order.is_sales_order:
+            #     raise CustomException(400, "Payment can be done only for sales order")
+            # customer = Customer.objects.get(customer_uid=order.customers.id)
             if invoice.payment_status:
                 raise CustomException(status_code=400, detail="Already paid")
-            if customer.wallet < validated_data.data['amount']:
-                raise CustomException(400, "Insufficient balance in wallet")
+            # if customer.wallet < validated_data.data['amount']:
+            #     raise CustomException(400, "Insufficient balance in wallet")
             invoice.payment_status = True
             if invoice.amount == validated_data.data['amount']:
                 invoice.save()
@@ -90,9 +90,9 @@ class PaymentService:
                                                  phone=validated_data.data['phone'],
                                                  amount=validated_data.data['amount'],
                                                  invoice=invoice)
-                customer.wallet = customer.wallet -validated_data.data['amount']
+                # customer.wallet = customer.wallet -validated_data.data['amount']
                 payment.save()
-                customer.save()
+                # customer.save()
             else:
                 raise CustomException(400, "Please give correct amount")
             return payment

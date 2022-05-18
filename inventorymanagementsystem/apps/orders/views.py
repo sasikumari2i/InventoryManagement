@@ -24,14 +24,15 @@ class OrderView(viewsets.ModelViewSet):
 
     # queryset = Order.objects.get_queryset().order_by('id')
     serializer_class = OrderSerializer
+    lookup_field = 'order_uid'
     order_service = OrderService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             orders = Order.objects.filter(organisation=organisation).order_by('id')
             return orders
         except CustomException as exc:
@@ -57,12 +58,12 @@ class OrderView(viewsets.ModelViewSet):
         """Creates new order using given data"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
+            organisation_uid = self.request.query_params.get('organisation', None)
             order_products = request.data['order_products']
             request.data.pop('order_products')
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_order = self.order_service.create(validated_data, order_products, organisation)
+            new_order = self.order_service.create(validated_data, order_products, organisation_uid)
             serialized = OrderSerializer(new_order)
             return Response(serialized.data)
         except Vendor.DoesNotExist:
@@ -111,14 +112,15 @@ class CustomerView(viewsets.ModelViewSet):
 
     # queryset = Customer.objects.get_queryset().order_by('id')
     serializer_class = CustomerSerializer
+    lookup_field = 'customer_uid'
     customer_service = CustomerService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             customers = Customer.objects.filter(organisation=organisation).order_by('id')
             return customers
         except CustomException as exc:
@@ -157,20 +159,22 @@ class VendorView(viewsets.ModelViewSet):
     """Gives the view for the Vendor"""
     # queryset = Vendor.objects.get_queryset().order_by('id')
     serializer_class = VendorSerializer
+    lookup_field = 'vendor_uid'
     vendor_service = VendorService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             vendors = Vendor.objects.filter(organisation=organisation).order_by('id')
             return vendors
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
+
 
     def create(self, request, *args, **kwargs):
         validated_data = VendorSerializer(data=request.data)
@@ -204,14 +208,15 @@ class DeliveryView(generics.GenericAPIView):
 
     # queryset = Order.objects.all()
     serializer_class = DeliverySerializer
+    lookup_field = 'order_uid'
     order_service = OrderService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             orders = Order.objects.filter(organisation=organisation).order_by('id')
             return orders
         except CustomException as exc:
@@ -228,35 +233,53 @@ class DeliveryView(generics.GenericAPIView):
             raise CustomException(404,"Exception in Updating Delivery Status")
 
 
-class CustomerOrderView(generics.ListAPIView):
-
-    # queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-
-    def get(self, request, *args, **kwargs):
-        """Retrieves the list of Orders for the given customer"""
-        try:
-            customer_id = self.kwargs['customer']
-            orders = Order.objects.filter(customers=customer_id)
-            serialized = OrderSerializer(orders,many=True)
-            return Response(serialized.data)
-        except NotFound:
-            raise CustomException(404,'Requested Orders for the customer is not available')
+# class CustomerOrderView(generics.ListAPIView):
+#
+#     # queryset = Order.objects.all()
+#     serializer_class = OrderSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         """Retrieves the list of Orders for the given customer"""
+#         try:
+#             customer_id = self.kwargs['customer']
+#             orders = Order.objects.filter(customers=customer_id)
+#             serialized = OrderSerializer(orders,many=True)
+#             return Response(serialized.data)
+#         except NotFound:
+#             raise CustomException(404,'Requested Orders for the customer is not available')
 
 
 class VendorOrderView(generics.ListAPIView):
 
     # queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    lookup_field = 'vendors'
+
+    def get_queryset(self):
+        try:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            orders = Order.objects.filter(organisation=organisation).order_by('id')
+            return orders
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
 
     def get(self, request, *args, **kwargs):
         """Retrieves the list of Orders for the given vendor"""
 
         try:
-            vendor_id = self.kwargs['vendor']
-            orders = Order.objects.filter(vendors=vendor_id)
-            serialized = OrderSerializer(orders,many=True)
-            return Response(serialized.data)
+            # vendor_id = self.kwargs['vendor']
+            # orders = Order.objects.filter(vendors=vendor_id)
+            # serialized = OrderSerializer(orders,many=True)
+            # return Response(serialized.data)
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+            return Response(serializer.data)
         except NotFound:
             raise CustomException(404, "Requested Orders for the Vendor is not available")
 

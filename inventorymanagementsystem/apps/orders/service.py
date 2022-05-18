@@ -17,17 +17,17 @@ class OrderService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data, order_products, organisation):
+    def create(self, validated_data, order_products, organisation_uid):
         """Creates new order from the given data"""
 
         try:
-            products = Product.objects.all()
+            products = Product.objects.filter(organisation_id=organisation_uid)
             new_order = Order.objects.create(delivery_date=validated_data.data['delivery_date'],
                                              vendors_id=validated_data.data['vendors'],
-                                             organisation_id=organisation)
+                                             organisation_id=organisation_uid)
 
             for product in order_products:
-                product_details = products.get(id=product['product'])
+                product_details = products.get(product_uid=product['product'])
                 product_details.price = product['price']
                 product_details.available_stock = product_details.available_stock + product['quantity']
                 product_details.save()
@@ -53,11 +53,11 @@ class OrderService:
             products = Product.objects.all()
             product_orders = OrderProduct.objects.all()
             order_details.delivery_date = validated_data.data['delivery_date']
-            order_details.vendors_id = validated_data.data['vendors']
+            order_details.vendors_uid = validated_data.data['vendors']
             order_details.save()
 
             for product in order_products:
-                product_details = products.get(id=product['product'])
+                product_details = products.get(product_uid=product['product'])
                 old_order_product = product_orders.get(product=product_details.id,order=order_details.id)
                 old_quantity = old_order_product.quantity
                 product_details.available_stock = product_details.available_stock - old_quantity
@@ -73,8 +73,7 @@ class OrderService:
 
             return order_details
         except KeyError as exc:
-            # raise CustomException(400, "Exception in Order Update")
-            print(exc)
+            raise CustomException(400, "Exception in Order Update")
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
 
@@ -87,7 +86,7 @@ class OrderService:
             products = Product.objects.all()
             order_serializer = OrderSerializer(new_order)
             for orders in order_serializer.data['order_products']:
-                product = products.get(id=orders['product'])
+                product = products.get(product_uid=orders['product'])
                 product_price = orders['price']
                 product_quantity = orders['quantity']
                 amount = amount + (product_price * product_quantity)
@@ -122,13 +121,13 @@ class OrderService:
 class VendorService:
 
     @transaction.atomic()
-    def create(self, validated_data, organisation):
+    def create(self, validated_data, organisation_uid):
         try:
             new_vendor = Vendor.objects.create(name=validated_data.data['name'],
                                                address=validated_data.data['address'],
                                                email=validated_data.data['email'],
                                                phone_number=validated_data.data['phone_number'],
-                                               organisation_id=organisation)
+                                               organisation_id=organisation_uid)
             return new_vendor
         except KeyError:
             raise CustomException(400,"Invalid details")
@@ -137,13 +136,13 @@ class VendorService:
 class CustomerService:
 
     @transaction.atomic()
-    def create(self, validated_data, organisation):
+    def create(self, validated_data, organisation_uid):
         try:
             new_customer = Customer.objects.create(name=validated_data.data['name'],
                                                address=validated_data.data['address'],
                                                email=validated_data.data['email'],
                                                phone_number=validated_data.data['phone_number'],
-                                               organisation_id=organisation)
+                                               organisation_id=organisation_uid)
             return new_customer
         except KeyError:
             raise CustomException(400,"Invalid details")

@@ -24,15 +24,16 @@ class AssetView(viewsets.ModelViewSet):
 
     # queryset = Asset.objects.get_queryset().order_by('id')
     serializer_class = AssetSerializer
+    lookup_field = 'asset_uid'
     asset_service = AssetService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
-            assets = Asset.objects.filter(organisation=organisation).order_by('id')
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            assets = Asset.objects.filter(organisation_id=organisation).order_by('id')
             return assets
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
@@ -42,10 +43,10 @@ class AssetView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            organisation = request.query_params.get('organisation')
+            organisation_uid = request.query_params.get('organisation')
             validated_data = AssetSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_asset = self.asset_service.create(validated_data, organisation)
+            new_asset = self.asset_service.create(validated_data, organisation_uid)
             serialized = AssetSerializer(new_asset)
             return Response(serialized.data)
         except Asset.DoesNotExist:
@@ -57,10 +58,10 @@ class AssetView(viewsets.ModelViewSet):
             instance = self.get_object()
             if not instance.is_active:
                 raise CustomException(400,"Only active assets can be updated")
-            customer = Customer.objects.get(id=request.data['customer'],
-                                            organisation_id=instance.organisation)
-            product = Product.objects.get(id=request.data['product'],
-                                            organisation_id=instance.organisation)
+            customer = Customer.objects.get(customer_uid=request.data['customer'],
+                                            organisation_uid=instance.organisation)
+            product = Product.objects.get(product_uid=request.data['product'],
+                                            organisation_uid=instance.organisation)
             instance.updated_date = date.today()
             serializer = self.get_serializer(instance, data=request.data, partial=partial)
             serializer.is_valid(raise_exception=True)
@@ -77,14 +78,15 @@ class RepairingStockView(viewsets.ModelViewSet):
 
     # queryset = RepairingStock.objects.get_queryset().order_by('id')
     serializer_class = RepairingStockSerializer
+    lookup_field = 'repairing_stock_uid'
     repairing_stock_service = RepairingStockService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by('id')
             return repairing_stocks
         except CustomException as exc:
@@ -94,10 +96,10 @@ class RepairingStockView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            organisation = request.query_params.get('organisation')
+            organisation_uid = request.query_params.get('organisation')
             validated_data = RepairingStockCreateSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_repairing_stock = self.repairing_stock_service.create(validated_data, organisation)
+            new_repairing_stock = self.repairing_stock_service.create(validated_data, organisation_uid)
             serialized = RepairingStockSerializer(new_repairing_stock)
             return Response(serialized.data)
         except RepairingStock.DoesNotExist:
@@ -109,9 +111,9 @@ class RepairingStockView(viewsets.ModelViewSet):
             instance = self.get_object()
             if not instance.is_active:
                 raise CustomException(400,"Only active repairing stocks can be updated")
-            asset = Asset.objects.get(id=request.data['asset'],
-                                      product_id=request.data['product'],
-                                      organisation_id=instance.organisation)
+            asset = Asset.objects.get(asset_uid=request.data['asset'],
+                                      product_uid=request.data['product'],
+                                      organisation_uid=instance.organisation)
             instance.updated_date = date.today()
             serializer = self.get_serializer(instance, data=request.data, partial=partial)
             serializer.is_valid(raise_exception=True)
@@ -123,16 +125,15 @@ class RepairingStockView(viewsets.ModelViewSet):
 
 class CloseAssetView(generics.GenericAPIView):
 
-    # queryset = Order.objects.all()
-    # serializer_class = DeliverySerializer
     asset_service = AssetService()
+    lookup_field = 'asset_uid'
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             assets = Asset.objects.filter(organisation=organisation).order_by('id')
             return assets
         except CustomException as exc:
@@ -143,6 +144,7 @@ class CloseAssetView(generics.GenericAPIView):
     def put(self, request, *args, **kwargs):
         try:
             asset_details = self.get_object()
+            print(asset_details)
             response = self.asset_service.close_asset(asset_details, request.data)
             return Response(response)
         except Http404:
@@ -151,16 +153,15 @@ class CloseAssetView(generics.GenericAPIView):
 
 class CloseRepairingStockView(generics.GenericAPIView):
 
-    # queryset = Order.objects.all()
-    # serializer_class = DeliverySerializer
     repairing_stock_service = RepairingStockService()
+    lookup_field = 'repairing_stock_uid'
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by('id')
             return repairing_stocks
         except CustomException as exc:
@@ -175,3 +176,120 @@ class CloseRepairingStockView(generics.GenericAPIView):
             return Response(response)
         except Http404:
             raise CustomException(404,"Exception in Updating Repairing Stock Status")
+
+
+class ProductAssetView(generics.ListAPIView):
+
+    serializer_class = AssetSerializer
+    lookup_field = 'product'
+
+    def get_queryset(self):
+        try:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            assets = Asset.objects.filter(organisation=organisation).order_by('id')
+            return assets
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+
+    def get(self, request, *args, **kwargs):
+        """Retrieves the list of Orders for the given vendor"""
+
+        try:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+            return Response(serializer.data)
+        except NotFound:
+            raise CustomException(404, "Requested Orders for the Vendor is not available")
+
+class CustomerAssetView(generics.ListAPIView):
+
+    serializer_class = AssetSerializer
+    lookup_field = 'customer'
+
+    def get_queryset(self):
+        try:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            assets = Asset.objects.filter(organisation=organisation).order_by('id')
+            return assets
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+
+    def get(self, request, *args, **kwargs):
+        """Retrieves the list of Orders for the given vendor"""
+
+        try:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+            return Response(serializer.data)
+        except NotFound:
+            raise CustomException(404, "Requested Orders for the Vendor is not available")
+
+
+class ProductRepairingStockView(generics.ListAPIView):
+
+    serializer_class = RepairingStockSerializer
+    lookup_field = 'product'
+
+    def get_queryset(self):
+        try:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by('id')
+            return repairing_stocks
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def get(self, request, *args, **kwargs):
+        """Retrieves the list of Orders for the given vendor"""
+
+        try:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+            return Response(serializer.data)
+        except NotFound:
+            raise CustomException(404, "Requested Orders for the Vendor is not available")
+
+
+class AssetRepairingStockView(generics.ListAPIView):
+
+    serializer_class = RepairingStockSerializer
+    lookup_field = 'asset'
+
+    def get_queryset(self):
+        try:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by('id')
+            return repairing_stocks
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def get(self, request, *args, **kwargs):
+        """Retrieves the list of Orders for the given vendor"""
+
+        try:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+            return Response(serializer.data)
+        except NotFound:
+            raise CustomException(404, "Requested Orders for the Vendor is not available")

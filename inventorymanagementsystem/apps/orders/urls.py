@@ -17,7 +17,7 @@ router.register('orders', views.OrderView, basename='orders')
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('delivery/<int:pk>/', views.DeliveryView.as_view(),name="delivery"),
-    path('customer/<int:customer>/orders', views.CustomerOrderView.as_view(),name="customer-orders"),
-    path('vendor/<int:vendor>/orders', views.VendorOrderView.as_view(), name="vendor-orders")
+    path('delivery/<str:order_uid>/', views.DeliveryView.as_view(),name="delivery"),
+    # path('customer/<int:customer>/orders', views.CustomerOrderView.as_view(),name="customer-orders"),
+    path('vendor/<str:vendors>/orders', views.VendorOrderView.as_view(), name="vendor-orders")
 ]

@@ -19,14 +19,14 @@ class AssetService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation):
+    def create(self, validated_data, organisation_uid):
         """Creates new order from the given data"""
 
         try:
-            product = Product.objects.get(organisation=organisation,
-                                             id=validated_data.data['product'])
-            customer = Customer.objects.get(organisation=organisation,
-                                            id=validated_data.data['customer'])
+            product = Product.objects.get(organisation_id=organisation_uid,
+                                             product_uid=validated_data.data['product'])
+            customer = Customer.objects.get(organisation_id=organisation_uid,
+                                            customer_uid=validated_data.data['customer'])
 
             try:
                 asset = Asset.objects.get(product_id=product.id,
@@ -39,7 +39,7 @@ class AssetService:
             new_asset = Asset.objects.create(name=validated_data.data['name'],
                                              serial_no=validated_data.data['serial_no'],
                                              customer_id=validated_data.data['customer'],
-                                             organisation_id=organisation,
+                                             organisation_id=organisation_uid,
                                              product_id=validated_data.data['product'])
             product.available_stock -= 1
             product.save()
@@ -79,10 +79,10 @@ class AssetService:
 class RepairingStockService:
 
     @transaction.atomic()
-    def create(self, validated_data, organisation):
+    def create(self, validated_data, organisation_uid):
         try:
-            asset = Asset.objects.get(organisation=organisation,
-                                      id=validated_data.data['asset'])
+            asset = Asset.objects.get(organisation_id=organisation_uid,
+                                      asset_uid=validated_data.data['asset'])
 
             try:
                 repairing_stock = RepairingStock.objects.get(asset_id=validated_data.data['asset'],
@@ -97,7 +97,7 @@ class RepairingStockService:
             new_repairing_stock = RepairingStock.objects.create(serial_no=asset.serial_no,
                                              asset_id=validated_data.data['asset'],
                                              product_id=asset.product_id,
-                                             organisation_id=organisation)
+                                             organisation_id=organisation_uid)
             return new_repairing_stock
         except KeyError as exc:
             raise CustomException(400, "Exception in Repairing Stock Service")
@@ -124,7 +124,7 @@ class RepairingStockService:
 
                 repairing_stock_details.closed_date = data['closed_date']
                 repairing_stock_details.save()
-                product = Product.objects.get(id=repairing_stock_details.product_id)
+                product = Product.objects.get(product_uid=repairing_stock_details.product_id)
                 product.available_stock = product.available_stock + 1
                 product.save()
                 response = {"message": "Repairing Stock asset is closed"}

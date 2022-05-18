@@ -46,7 +46,9 @@ class RepairingStock(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     repairing_stock_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    asset = models.ForeignKey(Asset, on_delete=models.DO_NOTHING)
+    asset = models.ForeignKey(Asset, on_delete=models.DO_NOTHING,
+                              to_field="asset_uid",
+                              db_column="asset_uid")
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING,
                                 to_field="product_uid",
                                 db_column="product_uid")
