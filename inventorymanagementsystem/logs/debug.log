@@ -11262,3 +11262,6 @@ INFO 2022-05-18 09:53:03,890 autoreload 16388 9424 C:\Users\Lenovo\Documents\pro
 INFO 2022-05-18 09:53:05,027 autoreload 6020 11980 Watching for file changes with StatReloader
 INFO 2022-05-18 09:55:40,129 autoreload 6020 11980 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\models.py changed, reloading.
 INFO 2022-05-18 09:55:41,384 autoreload 5096 8612 Watching for file changes with StatReloader
+INFO 2022-05-18 12:13:45,899 autoreload 11052 6308 Watching for file changes with StatReloader
+INFO 2022-05-18 12:14:25,885 autoreload 13628 16180 Watching for file changes with StatReloader
+INFO 2022-05-18 12:14:52,784 basehttp 13628 5820 "GET /category/f99472709e88419b9733ade2792fe1e2/products?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 207

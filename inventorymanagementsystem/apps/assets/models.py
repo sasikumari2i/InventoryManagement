@@ -24,7 +24,10 @@ class Asset(SafeDeleteModel):
                                 to_field="product_uid",
                                 db_column="product_uid",
                                 on_delete=models.DO_NOTHING)
-    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(Customer,
+                                 on_delete=models.DO_NOTHING,
+                                 to_field="customer_uid",
+                                 db_column="customer_uid")
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
     serial_no = models.CharField(max_length=100)
@@ -33,7 +36,6 @@ class Asset(SafeDeleteModel):
     organisation = models.ForeignKey(Organisation,
                                      to_field="organisation_uid",
                                      db_column="organisation_uid",
-                                     related_name='asset_organisation',
                                      on_delete=models.DO_NOTHING)
 
     def __str__(self):
@@ -45,12 +47,17 @@ class RepairingStock(SafeDeleteModel):
 
     repairing_stock_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     asset = models.ForeignKey(Asset, on_delete=models.DO_NOTHING)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING,
+                                to_field="product_uid",
+                                db_column="product_uid")
     serial_no = models.CharField(max_length=100)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
     closed_date = models.DateField(default=None, null=True)
-    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
+    organisation = models.ForeignKey(Organisation,
+                                     to_field="organisation_uid",
+                                     db_column="organisation_uid",
+                                     on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True, null=False)
 
     def __str__(self):

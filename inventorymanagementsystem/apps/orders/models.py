@@ -23,7 +23,6 @@ class Vendor (SafeDeleteModel):
     organisation = models.ForeignKey(Organisation,
                                      to_field="organisation_uid",
                                      db_column="organisation_uid",
-                                     related_name='vendor_organisation',
                                      on_delete=models.DO_NOTHING)
 
     def __str__(self):
@@ -43,7 +42,6 @@ class Customer (SafeDeleteModel):
     organisation = models.ForeignKey(Organisation,
                                      to_field="organisation_uid",
                                      db_column="organisation_uid",
-                                     related_name='customer_organisation',
                                      on_delete=models.DO_NOTHING)
 
     def __str__(self):
@@ -70,7 +68,6 @@ class Order (SafeDeleteModel):
     organisation = models.ForeignKey(Organisation,
                                      to_field="organisation_uid",
                                      db_column="organisation_uid",
-                                     related_name='order_organisation',
                                      on_delete=models.DO_NOTHING)
 
     def __str__(self):

@@ -44,7 +44,6 @@ class Product (SafeDeleteModel):
     organisation = models.ForeignKey(Organisation,
                                      to_field="organisation_uid",
                                      db_column="organisation_uid",
-                                     related_name='organisation',
                                      on_delete=models.DO_NOTHING)
 
 
