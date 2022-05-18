@@ -13212,3 +13212,191 @@ INFO 2022-05-18 19:00:42,686 basehttp 9288 5188 "GET /asset/f7137762b1574a9798f3
 INFO 2022-05-18 19:01:02,792 autoreload 9288 9416 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\urls.py changed, reloading.
 INFO 2022-05-18 19:01:03,864 autoreload 2080 3716 Watching for file changes with StatReloader
 INFO 2022-05-18 19:01:07,126 basehttp 2080 1648 "GET /asset/f7137762b1574a9798f3eedccd35f85d/repairing_stocks?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 173
+INFO 2022-05-18 22:28:26,351 autoreload 12240 10828 Watching for file changes with StatReloader
+WARNING 2022-05-18 22:28:29,744 log 12240 6984 Bad Request: /organisations/2/
+WARNING 2022-05-18 22:28:29,744 basehttp 12240 6984 "PUT /organisations/2/ HTTP/1.1" 400 54
+INFO 2022-05-18 22:29:04,758 autoreload 12240 10828 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\organisations\views.py changed, reloading.
+INFO 2022-05-18 22:29:06,025 autoreload 1036 12244 Watching for file changes with StatReloader
+WARNING 2022-05-18 22:29:06,556 log 1036 11392 Not Found: /organisations/2/
+WARNING 2022-05-18 22:29:06,556 basehttp 1036 11392 "PUT /organisations/2/ HTTP/1.1" 404 41
+WARNING 2022-05-18 22:29:27,032 log 1036 11392 Not Found: /organisations/2/
+WARNING 2022-05-18 22:29:27,032 basehttp 1036 11392 "PATCH /organisations/2/ HTTP/1.1" 404 41
+INFO 2022-05-18 22:29:33,250 basehttp 1036 11392 "PATCH /organisations/9d92135d8a964a9d958a56236ca940f8/ HTTP/1.1" 200 124
+INFO 2022-05-18 22:34:19,180 basehttp 1036 11392 "GET /categories?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 301 0
+INFO 2022-05-18 22:34:19,210 basehttp 1036 11392 "GET /categories/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 52
+INFO 2022-05-18 22:34:50,456 basehttp 1036 11392 "GET /categories?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 22:34:50,479 basehttp 1036 11392 "GET /categories/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 338
+INFO 2022-05-18 22:37:24,122 basehttp 1036 11392 "PATCH /categories/f99472709e88419b9733ade2792fe1e2?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 22:37:24,145 basehttp 1036 11392 "GET /categories/f99472709e88419b9733ade2792fe1e2/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 139
+INFO 2022-05-18 22:37:29,114 basehttp 1036 11392 "PATCH /categories/f99472709e88419b9733ade2792fe1e2/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 144
+INFO 2022-05-18 22:38:03,786 basehttp 1036 11392 "PATCH /categories/fc276db2270542f88d6648938c1dc8c5/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 151
+INFO 2022-05-18 22:39:19,964 basehttp 1036 11392 "POST /categories/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 147
+INFO 2022-05-18 22:40:07,722 basehttp 1036 11392 "POST /categories/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 147
+INFO 2022-05-18 22:42:13,985 basehttp 1036 11392 "POST /categories/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 144
+INFO 2022-05-18 22:42:40,761 basehttp 1036 11392 "POST /categories/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 151
+INFO 2022-05-18 22:43:11,534 basehttp 1036 11392 "POST /categories/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 147
+INFO 2022-05-18 22:44:00,069 basehttp 1036 11392 "PATCH /categories/06d8d79d0cb64f668d6349739c5fa422?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 301 0
+INFO 2022-05-18 22:44:00,092 basehttp 1036 11392 "GET /categories/06d8d79d0cb64f668d6349739c5fa422/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 147
+INFO 2022-05-18 22:44:05,746 basehttp 1036 11392 "PATCH /categories/06d8d79d0cb64f668d6349739c5fa422/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 147
+INFO 2022-05-18 22:45:02,111 basehttp 1036 11392 "POST /categories/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 147
+INFO 2022-05-18 22:45:25,883 basehttp 1036 11392 "PATCH /categories/4a5a12ea8eff46b7b3ee2ca0311ab14c/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 147
+INFO 2022-05-18 22:45:55,321 basehttp 1036 11392 "GET /categories?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 301 0
+INFO 2022-05-18 22:45:55,344 basehttp 1036 11392 "GET /categories/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 432
+INFO 2022-05-18 22:46:19,204 basehttp 1036 11392 "GET /categories?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 22:46:19,223 basehttp 1036 11392 "GET /categories/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 432
+INFO 2022-05-18 22:50:45,864 basehttp 1036 11392 "GET /products?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 22:50:45,888 basehttp 1036 11392 "GET /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 263
+INFO 2022-05-18 22:55:19,107 basehttp 1036 11392 "PATCH /products/77a104ad92e547f5933626012f77afbd?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 22:55:19,130 basehttp 1036 11392 "GET /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 211
+INFO 2022-05-18 22:55:27,234 log 1036 11392 OK: /products/77a104ad92e547f5933626012f77afbd/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 107, in update
+    category = Category.objects.filter(id=request.data['category'],
+KeyError: 'category'
+INFO 2022-05-18 22:55:27,255 basehttp 1036 11392 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 56
+INFO 2022-05-18 22:58:45,174 autoreload 1036 12244 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-18 22:58:46,201 autoreload 6056 10524 Watching for file changes with StatReloader
+INFO 2022-05-18 23:01:06,331 autoreload 6056 10524 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-18 23:01:07,610 autoreload 7920 12164 Watching for file changes with StatReloader
+INFO 2022-05-18 23:01:09,043 log 7920 10840 OK: /products/77a104ad92e547f5933626012f77afbd/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 118, in partial_update
+    response = super().partial_update(request)
+  File "C:\Python310\lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py", line 107, in update
+    category = Category.objects.filter(category_uid=request.data['category'],
+KeyError: 'category'
+INFO 2022-05-18 23:01:09,048 basehttp 7920 10840 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 56
+INFO 2022-05-18 23:03:13,553 autoreload 7920 12164 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\views.py changed, reloading.
+INFO 2022-05-18 23:03:14,555 autoreload 11620 2496 Watching for file changes with StatReloader
+INFO 2022-05-18 23:03:18,851 basehttp 11620 7952 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:04:05,056 basehttp 11620 7952 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:04:49,878 basehttp 11620 7952 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:05:11,933 basehttp 11620 7952 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:06:20,170 autoreload 11620 2496 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\models.py changed, reloading.
+INFO 2022-05-18 23:06:21,712 autoreload 9536 12000 Watching for file changes with StatReloader
+INFO 2022-05-18 23:07:26,196 autoreload 1756 12036 Watching for file changes with StatReloader
+INFO 2022-05-18 23:07:45,396 basehttp 1756 6564 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:08:11,409 basehttp 1756 6564 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:09:58,944 basehttp 1756 6564 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 206
+INFO 2022-05-18 23:11:26,684 autoreload 12132 2756 Watching for file changes with StatReloader
+INFO 2022-05-18 23:12:16,238 basehttp 12132 2364 "PATCH /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:13:23,892 basehttp 12132 2364 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:13:52,349 basehttp 12132 2364 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:14:32,885 basehttp 12132 2364 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:14:54,757 basehttp 12132 2364 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:15:13,836 autoreload 12132 2756 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\products\models.py changed, reloading.
+INFO 2022-05-18 23:15:14,946 autoreload 11700 12240 Watching for file changes with StatReloader
+INFO 2022-05-18 23:15:31,422 autoreload 7920 5776 Watching for file changes with StatReloader
+INFO 2022-05-18 23:15:42,213 basehttp 7920 7176 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:16:08,762 basehttp 7920 7176 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:16:32,565 basehttp 7920 7176 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 216
+INFO 2022-05-18 23:16:43,233 basehttp 7920 7176 "PUT /products/77a104ad92e547f5933626012f77afbd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:17:02,875 basehttp 7920 7176 "GET /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 473
+INFO 2022-05-18 23:18:21,898 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 210
+INFO 2022-05-18 23:19:06,019 basehttp 7920 7176 "DELETE /products/86dce30f85ed4e908a1e0eae82b75c36/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 29
+WARNING 2022-05-18 23:19:44,024 log 7920 7176 Not Found: /products/
+WARNING 2022-05-18 23:19:44,024 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 404 53
+INFO 2022-05-18 23:20:13,921 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 210
+INFO 2022-05-18 23:20:56,738 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 206
+INFO 2022-05-18 23:21:23,291 basehttp 7920 7176 "PATCH /products/8b276fe0ff43415c9abea5c38dd5045e/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 206
+INFO 2022-05-18 23:23:42,509 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 207
+INFO 2022-05-18 23:24:35,020 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 218
+INFO 2022-05-18 23:25:24,701 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 218
+INFO 2022-05-18 23:26:57,224 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 207
+INFO 2022-05-18 23:29:01,597 basehttp 7920 7176 "GET /categories?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 23:29:01,616 basehttp 7920 7176 "GET /categories/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 432
+INFO 2022-05-18 23:30:56,520 basehttp 7920 7176 "PATCH /products/9e0f1c1c21954fea81ef7779359dd1dd/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 206
+WARNING 2022-05-18 23:31:31,434 log 7920 7176 Not Found: /products/9e0f1c1c21954fea81ef7779359dd1dd/
+WARNING 2022-05-18 23:31:31,435 basehttp 7920 7176 "PATCH /products/9e0f1c1c21954fea81ef7779359dd1dd/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 404 41
+WARNING 2022-05-18 23:33:43,425 log 7920 7176 Not Found: /products/9e0f1c1c21954fea81ef7779359dd1dd/
+WARNING 2022-05-18 23:33:43,426 basehttp 7920 7176 "PATCH /products/9e0f1c1c21954fea81ef7779359dd1dd/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 404 41
+WARNING 2022-05-18 23:34:04,442 log 7920 7176 Not Found: /products/9e0f1c1c21954fea81ef7779359dd1dd/
+WARNING 2022-05-18 23:34:04,444 basehttp 7920 7176 "PATCH /products/9e0f1c1c21954fea81ef7779359dd1dd/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 404 41
+INFO 2022-05-18 23:34:46,204 basehttp 7920 7176 "PATCH /products/8dd9bd4961b34acaab01991c1608095a/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 206
+INFO 2022-05-18 23:36:36,798 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 213
+WARNING 2022-05-18 23:36:58,521 log 7920 7176 Not Found: /products/
+WARNING 2022-05-18 23:36:58,522 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 404 53
+INFO 2022-05-18 23:37:07,803 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 213
+INFO 2022-05-18 23:37:56,529 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 221
+INFO 2022-05-18 23:38:17,962 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 221
+INFO 2022-05-18 23:39:17,146 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 214
+INFO 2022-05-18 23:40:23,442 basehttp 7920 7176 "POST /products/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 215
+INFO 2022-05-18 23:40:43,535 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 215
+INFO 2022-05-18 23:40:55,843 basehttp 7920 7176 "GET /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 551
+INFO 2022-05-18 23:41:09,132 basehttp 7920 7176 "GET /products/?organisation=9d92135d8a964a9d958a56236ca940f8&page=2 HTTP/1.1" 200 629
+INFO 2022-05-18 23:41:21,868 basehttp 7920 7176 "GET /products/?organisation=9d92135d8a964a9d958a56236ca940f8&page=3 HTTP/1.1" 200 571
+INFO 2022-05-18 23:42:14,036 basehttp 7920 7176 "GET /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 551
+INFO 2022-05-18 23:42:19,370 basehttp 7920 7176 "GET /products HTTP/1.1" 301 0
+WARNING 2022-05-18 23:42:19,378 log 7920 7176 Bad Request: /products/
+WARNING 2022-05-18 23:42:19,378 basehttp 7920 7176 "GET /products/ HTTP/1.1" 400 51
+INFO 2022-05-18 23:44:07,041 basehttp 7920 7176 "POST /products/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 214
+INFO 2022-05-18 23:44:46,285 basehttp 7920 7176 "GET /vendors?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 301 0
+INFO 2022-05-18 23:44:46,299 basehttp 7920 7176 "GET /vendors/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 218
+INFO 2022-05-18 23:46:38,363 basehttp 7920 7176 "POST /vendors/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 172
+INFO 2022-05-18 23:47:48,855 basehttp 7920 7176 "PATCH /vendors/d96cf08c72b74d849d58fe0ff808799d/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 177
+INFO 2022-05-18 23:48:28,824 basehttp 7920 7176 "PATCH /orga HTTP/1.1" 200 66
+INFO 2022-05-18 23:48:36,878 basehttp 7920 7176 "GET /organisations HTTP/1.1" 301 0
+INFO 2022-05-18 23:48:36,895 basehttp 7920 7176 "GET /organisations/ HTTP/1.1" 200 309
+WARNING 2022-05-18 23:49:04,146 log 7920 7176 Not Found: /vendors/d96cf08c72b74d849d58fe0ff808799d/
+WARNING 2022-05-18 23:49:04,147 basehttp 7920 7176 "GET /vendors/d96cf08c72b74d849d58fe0ff808799d/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 404 41
+INFO 2022-05-18 23:49:17,957 basehttp 7920 7176 "PATCH /vendors/d96cf08c72b74d849d58fe0ff808799d/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 177
+INFO 2022-05-18 23:49:41,804 basehttp 7920 7176 "POST /vendors/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 177
+INFO 2022-05-18 23:50:10,485 basehttp 7920 7176 "GET /vendors/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 477
+INFO 2022-05-18 23:51:05,652 basehttp 7920 7176 "PATCH /vendors/f002976f8f4c48bcbf559d98e33d8d52/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 181
+INFO 2022-05-18 23:51:46,026 basehttp 7920 7176 "POST /vendors/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 181
+INFO 2022-05-18 23:52:18,707 basehttp 7920 7176 "GET /vendors/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 477
+INFO 2022-05-18 23:53:01,757 basehttp 7920 7176 "PATCH /vendors/a4591e4e54ee4bb9b84d0b8ca1d8abe4/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 171
+WARNING 2022-05-18 23:53:56,176 log 7920 7176 Not Found: /vendors/a4591e4e54ee4bb9b84d0b8ca1d8abe4/
+WARNING 2022-05-18 23:53:56,177 basehttp 7920 7176 "PATCH /vendors/a4591e4e54ee4bb9b84d0b8ca1d8abe4/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 404 41
+INFO 2022-05-18 23:54:06,547 basehttp 7920 7176 "POST /vendors/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 171
+INFO 2022-05-18 23:54:28,915 basehttp 7920 7176 "GET /vendors/e75e8cf02a3048fbb281411081a1d03a?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 23:54:28,942 basehttp 7920 7176 "GET /vendors/e75e8cf02a3048fbb281411081a1d03a/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 167
+INFO 2022-05-18 23:55:04,175 basehttp 7920 7176 "PATCH /vendors/e75e8cf02a3048fbb281411081a1d03a?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 23:55:04,196 basehttp 7920 7176 "GET /vendors/e75e8cf02a3048fbb281411081a1d03a/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 167
+INFO 2022-05-18 23:55:24,521 basehttp 7920 7176 "PUT /vendors/e75e8cf02a3048fbb281411081a1d03a?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 301 0
+INFO 2022-05-18 23:55:24,528 basehttp 7920 7176 "GET /vendors/e75e8cf02a3048fbb281411081a1d03a/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 167
+INFO 2022-05-18 23:55:37,053 basehttp 7920 7176 "PUT /vendors/e75e8cf02a3048fbb281411081a1d03a/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 172
+INFO 2022-05-18 23:55:54,742 basehttp 7920 7176 "POST /vendors/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 172
+WARNING 2022-05-18 23:57:18,280 log 7920 7176 Bad Request: /customers/
+WARNING 2022-05-18 23:57:18,288 basehttp 7920 7176 "GET /customers/ HTTP/1.1" 400 51
+INFO 2022-05-18 23:57:26,230 basehttp 7920 7176 "GET /customers/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 213
+INFO 2022-05-18 23:58:43,622 basehttp 7920 7176 "POST /customers/?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 151
+INFO 2022-05-18 23:59:14,572 basehttp 7920 7176 "POST /customers/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 157
+INFO 2022-05-18 23:59:30,416 basehttp 7920 7176 "POST /customers/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 155
+INFO 2022-05-18 23:59:48,006 basehttp 7920 7176 "GET /customers/?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 365

@@ -102,18 +102,17 @@ class ProductView(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         try:
-            partial = kwargs.pop('partial', False)
+            partial = kwargs.pop('partial', True)
             instance = self.get_object()
-            category = Category.objects.filter(id=request.data['category'],
-                                            organisation_id=instance.organisation)
+            # category = Category.objects.filter(category_uid=request.data['category'],
+            #                                 organisation_id=instance.organisation)
             instance.updated_date = date.today()
             serializer = self.get_serializer(instance, data=request.data, partial=partial)
             serializer.is_valid(raise_exception=True)
-            self.perform_update(serializer)
+            response = self.perform_update(serializer)
             return Response(serializer.data)
         except Category.DoesNotExist:
             raise CustomException(404, "Invalid Category")
-
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting

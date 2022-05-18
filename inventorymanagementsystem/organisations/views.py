@@ -21,4 +21,5 @@ class OrganisationView(viewsets.ModelViewSet):
     """Gives the view for the Product"""
 
     queryset = Organisation.objects.order_by('id')
+    lookup_field = 'organisation_uid'
     serializer_class = OrganisationSerializer
