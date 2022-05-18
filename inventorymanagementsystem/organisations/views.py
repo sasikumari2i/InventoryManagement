@@ -20,5 +20,5 @@ from .serializers import OrganisationSerializer
 class OrganisationView(viewsets.ModelViewSet):
     """Gives the view for the Product"""
 
-    queryset = Organisation.objects.all()
+    queryset = Organisation.objects.order_by('id')
     serializer_class = OrganisationSerializer

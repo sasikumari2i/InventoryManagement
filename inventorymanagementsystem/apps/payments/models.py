@@ -1,3 +1,4 @@
+import uuid
 import datetime
 from django.core.validators import RegexValidator
 from safedelete.models import SafeDeleteModel
@@ -11,6 +12,7 @@ from utils.constants import ValidationConstants
 class Invoice(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
+    invoice_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     created_date = models.DateField(default=datetime.date.today, null=True)
     payment_deadline = models.DateField(default=(date.today() + timedelta(days=15)))
@@ -27,6 +29,7 @@ class Payment(SafeDeleteModel):
         (3, "Digital"),
     )
 
+    payment_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     payee_name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
     created_date = models.DateField(default=datetime.date.today)
     payment_type = models.IntegerField(choices=payment_types,default=2)

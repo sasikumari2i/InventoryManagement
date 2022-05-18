@@ -20,10 +20,10 @@ class InvoiceView(viewsets.ViewSet):
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             invoices = Invoice.objects.filter(organisation=organisation).order_by('id')
             return invoices
         except CustomException as exc:

@@ -28,3 +28,10 @@ class RepairingStockCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepairingStock
         fields = ('asset',)
+
+
+class CloseAssetSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Asset
+        fields = ('id',)

@@ -5,4 +5,4 @@ class OrganisationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Organisation
-        fields = '__all__'
+        fields = ('organisation_uid', 'name', 'description')

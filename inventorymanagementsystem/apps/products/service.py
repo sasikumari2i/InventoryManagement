@@ -17,16 +17,18 @@ class CategoryService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation):
+    def create(self, validated_data, organisation_uid):
         """Creates new order from the given data"""
 
         try:
             new_category = Category.objects.create(name=validated_data.data['name'],
                                                    description=validated_data.data['description'],
-                                                   organisation_id=organisation)
+                                                   organisation_id=organisation_uid)
             return new_category
         except KeyError:
             raise CustomException(400,"Invalid details")
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Organisation does not exist")
 
 
 class ProductService:
@@ -35,11 +37,9 @@ class ProductService:
     def create(self, validated_data, organisation):
         """Creates new order from the given data"""
         try:
-            category = Category.objects.get(organisation_id=organisation,id=validated_data.data['category'])
+            category = Category.objects.get(organisation_id=organisation,category_uid=validated_data.data['category'])
             new_product = Product.objects.create(name=validated_data.data['name'],
                                                  description=validated_data.data['description'],
-                                                 available_stock=validated_data.data['available_stock'],
-                                                 price=validated_data.data['price'],
                                                  category_id=validated_data.data['category'],
                                                  organisation_id=organisation)
             return new_product

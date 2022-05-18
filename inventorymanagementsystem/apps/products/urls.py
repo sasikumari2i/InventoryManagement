@@ -10,6 +10,6 @@ router.register('categories', views.CategoryView, basename='categories')
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('category/<int:category>/products', views.CategoryProductView.as_view(), name="category-products")
+    path('category/<str:category>/products', views.CategoryProductView.as_view(), name="category-products")
 ]
 

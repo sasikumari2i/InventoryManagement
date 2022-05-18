@@ -19,15 +19,16 @@ class CategoryView(viewsets.ModelViewSet):
 
     # queryset = Category.objects.get_queryset().order_by('id')
     serializer_class = CategorySerializer
+    lookup_field = 'category_uid'
     category_service = CategoryService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation',None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation',None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
-            categories = Category.objects.filter(organisation=organisation).order_by('id')
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            categories = Category.objects.filter(organisation_id=organisation).order_by('id')
             return categories
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
@@ -35,12 +36,17 @@ class CategoryView(viewsets.ModelViewSet):
             raise CustomException(400, "Invalid Credentials")
 
     def create(self, request, *args, **kwargs):
-        validated_data = CategorySerializer(data=request.data)
-        validated_data.is_valid(raise_exception=True)
-        organisation = self.request.query_params.get('organisation', None)
-        new_category = self.category_service.create(validated_data, organisation)
-        serialized = CategorySerializer(new_category)
-        return Response(serialized.data)
+        try:
+            validated_data = CategorySerializer(data=request.data)
+            validated_data.is_valid(raise_exception=True)
+            organisation_uid = self.request.query_params.get('organisation')
+            if organisation_uid is None:
+                raise CustomException(404, "Credentials Required")
+            new_category = self.category_service.create(validated_data, organisation_uid)
+            serialized = CategorySerializer(new_category)
+            return Response(serialized.data)
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -68,14 +74,15 @@ class ProductView(viewsets.ModelViewSet):
 
     # queryset = Product.objects.get_queryset().order_by('id')
     serializer_class = ProductSerializer
+    lookup_field = 'product_uid'
     product_service = ProductService()
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             products = Product.objects.filter(organisation=organisation).order_by('id')
             return products
         except CustomException as exc:
@@ -86,8 +93,10 @@ class ProductView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         validated_data = ProductSerializer(data=request.data)
         validated_data.is_valid(raise_exception=True)
-        organisation = self.request.query_params.get('organisation', None)
-        new_product = self.product_service.create(validated_data, organisation)
+        organisation_uid = self.request.query_params.get('organisation', None)
+        if organisation_uid is None:
+            raise CustomException(404, "Credentials Required")
+        new_product = self.product_service.create(validated_data, organisation_uid)
         serialized = ProductSerializer(new_product)
         return Response(serialized.data)
 
@@ -104,8 +113,6 @@ class ProductView(viewsets.ModelViewSet):
             return Response(serializer.data)
         except Category.DoesNotExist:
             raise CustomException(404, "Invalid Category")
-
-
 
 
     def destroy(self, request, *args, **kwargs):
@@ -126,10 +133,10 @@ class CategoryProductView(generics.ListAPIView):
 
     def get_queryset(self):
         try:
-            organisation_id = self.request.query_params.get('organisation', None)
-            if organisation_id is None:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(id=organisation_id)
+            organisation = Organisation.objects.get(organisation_uid=organisation_id)
             products = Product.objects.filter(organisation=organisation).order_by('id')
             return products
         except CustomException as exc:
@@ -142,9 +149,9 @@ class CategoryProductView(generics.ListAPIView):
         """Retrieves the payments for the Invoice id given"""
 
         try:
-            category_id = self.kwargs['category']
+            category_uid = self.kwargs['category']
             organisation_id = self.request.query_params.get('organisation', None)
-            products = Product.objects.filter(category=category_id,organisation_id=organisation_id)
+            products = Product.objects.filter(category=category_uid,organisation_id=organisation_id)
             serialized = ProductSerializer(products, many=True)
             return Response(serialized.data)
         except Product.DoesNotExist:

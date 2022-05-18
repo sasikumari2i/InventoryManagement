@@ -12,4 +12,6 @@ router.register('repairing_stocks', views.RepairingStockView, basename='repairin
 
 urlpatterns = [
     path('',include(router.urls)),
+    path('asset/<int:pk>/close', views.CloseAssetView.as_view(), name="close-asset"),
+    path('repairing_stock/<int:pk>/close', views.CloseRepairingStockView.as_view(), name="close-repairing-stock")
 ]

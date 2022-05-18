@@ -14,7 +14,7 @@ from ..orders.models import Customer
 from ..orders.models import Product
 from .service import AssetService, RepairingStockService
 from .models import Asset, RepairingStock
-from .serializers import AssetSerializer, RepairingStockSerializer, RepairingStockCreateSerializer
+from .serializers import AssetSerializer, RepairingStockSerializer, RepairingStockCreateSerializer, CloseAssetSerializer
 from utils.exceptionhandler import CustomException
 
 logger = logging.getLogger('django')
@@ -55,6 +55,8 @@ class AssetView(viewsets.ModelViewSet):
         try:
             partial = kwargs.pop('partial', False)
             instance = self.get_object()
+            if not instance.is_active:
+                raise CustomException(400,"Only active assets can be updated")
             customer = Customer.objects.get(id=request.data['customer'],
                                             organisation_id=instance.organisation)
             product = Product.objects.get(id=request.data['product'],
@@ -105,6 +107,8 @@ class RepairingStockView(viewsets.ModelViewSet):
         try:
             partial = kwargs.pop('partial', False)
             instance = self.get_object()
+            if not instance.is_active:
+                raise CustomException(400,"Only active repairing stocks can be updated")
             asset = Asset.objects.get(id=request.data['asset'],
                                       product_id=request.data['product'],
                                       organisation_id=instance.organisation)
@@ -115,3 +119,59 @@ class RepairingStockView(viewsets.ModelViewSet):
             return Response(serializer.data)
         except Asset.DoesNotExist:
             raise CustomException(404, "Invalid Asset")
+
+
+class CloseAssetView(generics.GenericAPIView):
+
+    # queryset = Order.objects.all()
+    # serializer_class = DeliverySerializer
+    asset_service = AssetService()
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            assets = Asset.objects.filter(organisation=organisation).order_by('id')
+            return assets
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def put(self, request, *args, **kwargs):
+        try:
+            asset_details = self.get_object()
+            response = self.asset_service.close_asset(asset_details, request.data)
+            return Response(response)
+        except Http404:
+            raise CustomException(404,"Exception in Updating Asset Status")
+
+
+class CloseRepairingStockView(generics.GenericAPIView):
+
+    # queryset = Order.objects.all()
+    # serializer_class = DeliverySerializer
+    repairing_stock_service = RepairingStockService()
+
+    def get_queryset(self):
+        try:
+            organisation_id = self.request.query_params.get('organisation', None)
+            if organisation_id is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(id=organisation_id)
+            repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by('id')
+            return repairing_stocks
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def put(self, request, *args, **kwargs):
+        try:
+            repairing_stock_details = self.get_object()
+            response = self.repairing_stock_service.close_repairing_stock(repairing_stock_details, request.data)
+            return Response(response)
+        except Http404:
+            raise CustomException(404,"Exception in Updating Repairing Stock Status")
