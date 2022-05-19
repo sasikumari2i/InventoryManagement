@@ -15073,3 +15073,8 @@ INFO 2022-05-19 17:14:04,343 autoreload 5836 6948 C:\Users\Lenovo\Documents\proj
 INFO 2022-05-19 17:14:05,390 autoreload 13680 14000 Watching for file changes with StatReloader
 INFO 2022-05-19 17:14:22,127 autoreload 13680 14000 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\assets\views.py changed, reloading.
 INFO 2022-05-19 17:14:23,129 autoreload 16224 15252 Watching for file changes with StatReloader
+INFO 2022-05-19 17:14:52,107 basehttp 16224 6700 "GET /asset/fbcd15abf83846d0874743cbf5f3fd41/repairing_stocks?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 2
+INFO 2022-05-19 17:15:05,486 basehttp 16224 6700 "GET /asset/e905956f3f67458094eebe4975a92394/repairing_stocks?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 2
+INFO 2022-05-19 17:15:14,782 basehttp 16224 6700 "GET /asset/f7137762b1574a9798f3eedccd35f85d/repairing_stocks?organisation=9d92135d8a964a9d958a56236ca940f8 HTTP/1.1" 200 2
+INFO 2022-05-19 17:15:48,411 basehttp 16224 6700 "GET /asset/f7137762b1574a9798f3eedccd35f85d/repairing_stocks?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 457
+INFO 2022-05-19 17:16:11,902 basehttp 16224 6700 "GET /asset/e905956f3f67458094eebe4975a92394/repairing_stocks?organisation=7e5b0ff22f594003b7d3002487532a4a HTTP/1.1" 200 229

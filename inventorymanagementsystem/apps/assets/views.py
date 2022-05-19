@@ -221,15 +221,15 @@ class ProductAssetView(generics.ListAPIView):
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
 
-
     def get(self, request, *args, **kwargs):
         """Retrieves the list of assets for the given product"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
+            organisation = self.request.query_params.get("organisation", None)
             product_id = self.kwargs["product"]
-            assets = Asset.objects.filter(product=product_id,
-                                          organisation_id=organisation)
+            assets = Asset.objects.filter(
+                product=product_id, organisation_id=organisation
+            )
             serialized = AssetSerializer(assets, many=True)
             return Response(serialized.data)
         except NotFound:
@@ -263,10 +263,11 @@ class CustomerAssetView(generics.ListAPIView):
         """Retrieves the list of Assets for the given Customer"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
+            organisation = self.request.query_params.get("organisation", None)
             customer_id = self.kwargs["customer"]
-            assets = Asset.objects.filter(customer=customer_id,
-                                          organisation_id=organisation)
+            assets = Asset.objects.filter(
+                customer=customer_id, organisation_id=organisation
+            )
             serialized = AssetSerializer(assets, many=True)
             return Response(serialized.data)
         except NotFound:
@@ -303,10 +304,11 @@ class ProductRepairingStockView(generics.ListAPIView):
            for the given product"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
+            organisation = self.request.query_params.get("organisation", None)
             product_id = self.kwargs["product"]
-            repairing_stocks = RepairingStock.objects.filter(product=product_id,
-                                                             organisation_id=organisation)
+            repairing_stocks = RepairingStock.objects.filter(
+                product=product_id, organisation_id=organisation
+            )
             serialized = RepairingStockSerializer(repairing_stocks, many=True)
             return Response(serialized.data)
         except NotFound:
@@ -343,10 +345,11 @@ class AssetRepairingStockView(generics.ListAPIView):
            for the given asset"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
+            organisation = self.request.query_params.get("organisation", None)
             asset_id = self.kwargs["asset"]
-            repairing_stocks = RepairingStock.objects.filter(asset=asset_id,
-                                                             organisation_id=organisation)
+            repairing_stocks = RepairingStock.objects.filter(
+                asset=asset_id, organisation_id=organisation
+            )
             serialized = RepairingStockSerializer(repairing_stocks, many=True)
             return Response(serialized.data)
         except NotFound:

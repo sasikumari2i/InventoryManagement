@@ -86,8 +86,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class VendorSerializer(serializers.ModelSerializer):
-
-
     class Meta:
         model = Vendor
         fields = (

@@ -159,7 +159,9 @@ class CustomerView(viewsets.ModelViewSet):
             partial = kwargs.pop("partial", False)
             instance = self.get_object()
             instance.updated_date = date.today()
-            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer = self.get_serializer(
+                instance, data=request.data, partial=partial
+            )
             serializer.is_valid(raise_exception=True)
             self.perform_update(serializer)
             return Response(serializer.data)
@@ -218,12 +220,14 @@ class VendorView(viewsets.ModelViewSet):
             partial = kwargs.pop("partial", False)
             instance = self.get_object()
             instance.updated_date = date.today()
-            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer = self.get_serializer(
+                instance, data=request.data, partial=partial
+            )
             serializer.is_valid(raise_exception=True)
             self.perform_update(serializer)
             return Response(serializer.data)
         except ValidationError:
-            raise CustomException(400 , "Exception in vendor updation")
+            raise CustomException(400, "Exception in vendor updation")
 
     def destroy(self, request, *args, **kwargs):
         """Deletes the given vendor"""
