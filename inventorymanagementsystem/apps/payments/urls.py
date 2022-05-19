@@ -8,5 +8,6 @@ router.register('payment', views.PaymentView, basename='payment')
 
 urlpatterns = [
     path('',include(router.urls)),
+    path('invoice/<str:invoice_uid>/close', views.InvoiceStatusView.as_view(),name="invoice_status"),
     path('invoice/<str:invoice>/payment', views.InvoicePaymentView.as_view(), name="invoice-payment")
 ]

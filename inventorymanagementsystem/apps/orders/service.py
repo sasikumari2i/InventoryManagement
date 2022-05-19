@@ -34,7 +34,7 @@ class OrderService:
                 order_product_data = OrderProduct.objects.create(order=new_order, product=product_details,
                                                                  quantity=product['quantity'])
 
-            invoice = self.create_invoice(new_order)
+            invoice = self.create_invoice(new_order,organisation_uid)
             invoice.save()
             order_product_data.save()
             new_order.save()
@@ -46,11 +46,11 @@ class OrderService:
 
 
     @transaction.atomic
-    def update(self, order_details, validated_data, order_products):
+    def update(self, order_details, validated_data, order_products, organisation_uid):
         """Updates details of the given order"""
 
         try:
-            products = Product.objects.all()
+            products = Product.objects.filter(organisation_id=organisation_uid)
             product_orders = OrderProduct.objects.all()
             order_details.delivery_date = validated_data.data['delivery_date']
             order_details.vendors_uid = validated_data.data['vendors']
@@ -58,14 +58,15 @@ class OrderService:
 
             for product in order_products:
                 product_details = products.get(product_uid=product['product'])
-                old_order_product = product_orders.get(product=product_details.id,order=order_details.id)
+                old_order_product = product_orders.get(product=product_details.product_uid,
+                                                       order=order_details.order_uid)
                 old_quantity = old_order_product.quantity
                 product_details.available_stock = product_details.available_stock - old_quantity
                 product_details.available_stock = product_details.available_stock + product['quantity']
                 product_details.price = product['price']
                 product_details.save()
-                order_product_details = product_orders.get(product=product_details.id,
-                                                                 order=order_details.id)
+                order_product_details = product_orders.get(product=product_details.product_uid,
+                                                                 order=order_details.order_uid)
                 order_product_details.product = product_details
                 order_product_details.order = order_details
                 order_product_details.quantity = product['quantity']
@@ -76,14 +77,18 @@ class OrderService:
             raise CustomException(400, "Exception in Order Update")
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
+        except Vendor.DoesNotExist:
+            raise CustomException(404, "Vendor does not exist")
+        except Product.DoesNotExist:
+            raise CustomException(404, "Product does not exist")
 
 
-    def create_invoice(self,new_order):
+    def create_invoice(self,new_order,organisation_uid):
         """Creates invoice for the created order"""
 
         try:
             amount = 0
-            products = Product.objects.all()
+            products = Product.objects.filter(organisation_id=organisation_uid)
             order_serializer = OrderSerializer(new_order)
             for orders in order_serializer.data['order_products']:
                 product = products.get(product_uid=orders['product'])

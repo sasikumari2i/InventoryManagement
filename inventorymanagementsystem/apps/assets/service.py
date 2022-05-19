@@ -35,7 +35,8 @@ class AssetService:
                 raise CustomException(400, "This product is already assigned")
             except Asset.DoesNotExist:
                 pass
-
+            if product.available_stock <= 0:
+                raise CustomException(400, "Product is out of stock")
             new_asset = Asset.objects.create(name=validated_data.data['name'],
                                              serial_no=validated_data.data['serial_no'],
                                              customer_id=validated_data.data['customer'],

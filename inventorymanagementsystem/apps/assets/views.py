@@ -144,7 +144,6 @@ class CloseAssetView(generics.GenericAPIView):
     def put(self, request, *args, **kwargs):
         try:
             asset_details = self.get_object()
-            print(asset_details)
             response = self.asset_service.close_asset(asset_details, request.data)
             return Response(response)
         except Http404:

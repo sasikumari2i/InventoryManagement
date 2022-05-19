@@ -17,6 +17,7 @@ class Invoice(SafeDeleteModel):
     created_date = models.DateField(default=datetime.date.today, null=True)
     payment_deadline = models.DateField(default=(date.today() + timedelta(days=15)))
     payment_status = models.BooleanField(default=False ,null=True)
+    is_active = models.BooleanField(default=True)
     organisation = models.ForeignKey(Organisation,
                                      to_field="organisation_uid",
                                      db_column="organisation_uid",

@@ -22,7 +22,6 @@ logger = logging.getLogger('django')
 class OrderView(viewsets.ModelViewSet):
     """Gives the view for the Order"""
 
-    # queryset = Order.objects.get_queryset().order_by('id')
     serializer_class = OrderSerializer
     lookup_field = 'order_uid'
     order_service = OrderService()
@@ -74,12 +73,14 @@ class OrderView(viewsets.ModelViewSet):
         """Updates the given order"""
 
         try:
+            organisation_uid = self.request.query_params.get('organisation', None)
             order_details = self.get_object()
             order_products = request.data['order_products']
             request.data.pop('order_products')
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            order = self.order_service.update(order_details, validated_data, order_products)
+            order = self.order_service.update(order_details, validated_data,
+                                              order_products, organisation_uid)
             serializer = OrderSerializer(order)
             return Response(serializer.data)
         except KeyError:
@@ -110,7 +111,6 @@ class OrderView(viewsets.ModelViewSet):
 class CustomerView(viewsets.ModelViewSet):
     """Gives the view for the Customer"""
 
-    # queryset = Customer.objects.get_queryset().order_by('id')
     serializer_class = CustomerSerializer
     lookup_field = 'customer_uid'
     customer_service = CustomerService()
@@ -157,7 +157,7 @@ class CustomerView(viewsets.ModelViewSet):
 
 class VendorView(viewsets.ModelViewSet):
     """Gives the view for the Vendor"""
-    # queryset = Vendor.objects.get_queryset().order_by('id')
+
     serializer_class = VendorSerializer
     lookup_field = 'vendor_uid'
     vendor_service = VendorService()
@@ -206,7 +206,6 @@ class VendorView(viewsets.ModelViewSet):
 
 class DeliveryView(generics.GenericAPIView):
 
-    # queryset = Order.objects.all()
     serializer_class = DeliverySerializer
     lookup_field = 'order_uid'
     order_service = OrderService()
@@ -251,7 +250,6 @@ class DeliveryView(generics.GenericAPIView):
 
 class VendorOrderView(generics.ListAPIView):
 
-    # queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'vendors'
 
@@ -273,13 +271,10 @@ class VendorOrderView(generics.ListAPIView):
         """Retrieves the list of Orders for the given vendor"""
 
         try:
-            # vendor_id = self.kwargs['vendor']
-            # orders = Order.objects.filter(vendors=vendor_id)
-            # serialized = OrderSerializer(orders,many=True)
-            # return Response(serialized.data)
-            instance = self.get_object()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data)
+            vendor_id = self.kwargs['vendors']
+            orders = Order.objects.filter(vendors=vendor_id)
+            serialized = OrderSerializer(orders,many=True)
+            return Response(serialized.data)
         except NotFound:
             raise CustomException(404, "Requested Orders for the Vendor is not available")
 

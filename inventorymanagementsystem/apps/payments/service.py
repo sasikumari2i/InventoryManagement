@@ -15,21 +15,26 @@ class InvoiceService:
     """Performs invoice related operations like creating, updating and deleting"""
 
     @transaction.atomic()
-    def create(self, validated_data, order_id):
+    def create(self, validated_data, order_id, organisation):
         """Created new Invoice for the given order and the data"""
 
         try:
-            orders = Order.objects.all()
+            orders = Order.objects.get(organisation_id=organisation)
             order = orders.get(order_uid=order_id)
-            # if order.invoice is not None:
-            #     raise CustomException(400, "Invoice Already available for this Order")
-            amount = self.total_amount(order)
+            if order.invoice is not None:
+                try:
+                    invoice = Invoice.objects.get(orders=order,is_active=True)
+                    if invoice is not None:
+                        raise CustomException(400, "Invoice Already active for this Order")
+                except Invoice.DoesNotExist:
+                    pass
+            amount = self.total_amount(order, organisation)
             created_date = date.today()
             if validated_data.data['payment_deadline'] is None:
                 validated_data.data['payment_deadline'] = created_date + timedelta(days=15)
             payment_deadline = validated_data.data['payment_deadline']
             invoice = Invoice.objects.create(amount=amount, created_date=created_date,
-                                             payment_deadline=payment_deadline, order=order,
+                                             payment_deadline=payment_deadline, orders=order,
                                              organisation_id=order.organisation_id)
 
             return invoice
@@ -37,12 +42,12 @@ class InvoiceService:
             raise CustomException(400, "Validation Error in payment service")
 
 
-    def total_amount(self,order):
+    def total_amount(self,order, organisation):
         """Calculates total amount of the order to be placed"""
 
         try:
             amount = 0
-            products = Product.objects.all()
+            products = Product.objects.get(organisation_id=organisation)
             order_serializer = OrderSerializer(order)
 
             for orders in order_serializer.data['order_products']:
@@ -62,18 +67,36 @@ class InvoiceService:
         except Invoice.DoesNotExist:
             raise CustomException(404, "Invoice Not Found")
 
+    def update_invoice(self, invoice_details):
+        """Updates the invoice status of the given order"""
+
+        try:
+            invoice_status = invoice_details.is_active
+            response = {}
+            if not invoice_status:
+                response = {"message": "It is already Inactive"}
+            elif invoice_status:
+                print(invoice_details)
+                invoice_details.is_active = False
+                invoice_details.save()
+                response = {"message": "Invoice Status Updated"}
+            return response
+        except NotFound:
+            raise CustomException(400,"Internal error in updating delivery status")
+
 
 class PaymentService:
     """Performs payment related operations like creating, updating and deleting"""
 
     @transaction.atomic()
-    def create(self, validated_data, invoice_id):
+    def create(self, validated_data, invoice_id, organisation):
         """Creates new payment for the invoice given"""
 
         try:
-            invoices = Invoice.objects.all()
-            invoice = invoices.get(invoice_uid=invoice_id)
-            order = Order.objects.get(invoice_uid=invoice)
+            invoice = Invoice.objects.get(invoice_uid=invoice_id,is_active=True,
+                                           organisation_id=organisation)
+            # invoice = invoices.get(invoice_uid=invoice_id)
+            # order = Order.objects.get(invoice_uid=invoice,organisation)
             # if not order.is_sales_order:
             #     raise CustomException(400, "Payment can be done only for sales order")
             # customer = Customer.objects.get(customer_uid=order.customers.id)
@@ -89,7 +112,8 @@ class PaymentService:
                                                  payment_type=validated_data.data['payment_type'],
                                                  phone=validated_data.data['phone'],
                                                  amount=validated_data.data['amount'],
-                                                 invoice=invoice)
+                                                 invoice=invoice,
+                                                 organisation_id=organisation)
                 # customer.wallet = customer.wallet -validated_data.data['amount']
                 payment.save()
                 # customer.save()
@@ -98,4 +122,6 @@ class PaymentService:
             return payment
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
+        except Invoice.DoesNotExist:
+            raise CustomException(404, " Invoice not available")
 

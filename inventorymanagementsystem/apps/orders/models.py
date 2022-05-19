@@ -59,7 +59,7 @@ class Order (SafeDeleteModel):
                                 db_column="vendor_uid",
                                 default=None,on_delete=models.CASCADE,
                                 null=True, blank=True)
-    invoice = models.OneToOneField(Invoice,models.SET_NULL,
+    invoice = models.ForeignKey(Invoice,models.SET_NULL,
                                    to_field="invoice_uid",
                                    db_column="invoice_uid",
                                    related_name='orders',default=None,

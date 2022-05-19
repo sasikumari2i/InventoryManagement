@@ -14,7 +14,6 @@ logger = logging.getLogger('django')
 class InvoiceView(viewsets.ViewSet):
     """Gives the view for the Invoice"""
 
-    # queryset = Invoice.objects.get_queryset().order_by('id')
     serializer_class = InvoiceSerializer
     invoice_service = InvoiceService()
 
@@ -35,10 +34,11 @@ class InvoiceView(viewsets.ViewSet):
         """Creates new invoice, overrided from ModelViewSet class"""
 
         try:
+            organisation = self.request.query_params.get('organisation', None)
             order_id = request.data['order']
             validated_data = InvoiceSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_invoice = self.invoice_service.create(validated_data, order_id)
+            new_invoice = self.invoice_service.create(validated_data, order_id, organisation)
             serialized = InvoiceSerializer(new_invoice)
             return Response(serialized.data)
         except CustomException as exc:
@@ -74,7 +74,6 @@ class InvoiceView(viewsets.ViewSet):
 class PaymentView(viewsets.ModelViewSet):
     """Gives the view for the Payment"""
 
-    # queryset = Payment.objects.get_queryset().order_by('id')
     serializer_class = PaymentSerializer
     lookup_field = "payment_uid"
     payment_service = PaymentService()
@@ -96,12 +95,12 @@ class PaymentView(viewsets.ModelViewSet):
         """Creates new payment, overrided from ModelViewSet class"""
 
         try:
+            organisation = self.request.query_params.get('organisation', None)
             invoice_uid = request.data['invoice']
             validated_data = PaymentSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_payment = self.payment_service.create(validated_data, invoice_uid)
+            new_payment = self.payment_service.create(validated_data, invoice_uid, organisation)
             serialized = PaymentSerializer(new_payment)
-            logger.info("Payment created")
             return Response(serialized.data)
         except CustomException as exc:
             logger.error("Custom Exception in Payment Creation")
@@ -114,7 +113,6 @@ class PaymentView(viewsets.ModelViewSet):
 
 class InvoicePaymentView(generics.ListAPIView):
 
-    # queryset = Payment.objects.get_queryset().order_by('id')
     serializer_class = PaymentSerializer
 
     def get_queryset(self):
@@ -140,3 +138,30 @@ class InvoicePaymentView(generics.ListAPIView):
             return Response(serialized.data)
         except ObjectDoesNotExist:
             raise CustomException(404, "The requested invoice does not exist")
+
+
+class InvoiceStatusView(generics.GenericAPIView):
+
+    lookup_field = 'invoice_uid'
+    invoice_service = InvoiceService()
+
+    def get_queryset(self):
+        try:
+            organisation_uid = self.request.query_params.get('organisation', None)
+            if organisation_uid is None:
+                raise CustomException(400, "Credentials required")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            invoices = Invoice.objects.filter(organisation=organisation).order_by('id')
+            return invoices
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Invalid Credentials")
+
+    def put(self, request, *args, **kwargs):
+        try:
+            invoice_details = self.get_object()
+            response = self.invoice_service.update_invoice(invoice_details)
+            return Response(response)
+        except Http404:
+            raise CustomException(404,"Exception in Updating Invoice Status")
