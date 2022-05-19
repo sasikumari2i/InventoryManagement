@@ -221,13 +221,17 @@ class ProductAssetView(generics.ListAPIView):
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
 
+
     def get(self, request, *args, **kwargs):
         """Retrieves the list of assets for the given product"""
 
         try:
-            instance = self.get_object()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data)
+            organisation = self.request.query_params.get('organisation', None)
+            product_id = self.kwargs["product"]
+            assets = Asset.objects.filter(product=product_id,
+                                          organisation_id=organisation)
+            serialized = AssetSerializer(assets, many=True)
+            return Response(serialized.data)
         except NotFound:
             raise CustomException(
                 404, "Requested Assets for the Product is not available"
@@ -259,9 +263,12 @@ class CustomerAssetView(generics.ListAPIView):
         """Retrieves the list of Assets for the given Customer"""
 
         try:
-            instance = self.get_object()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data)
+            organisation = self.request.query_params.get('organisation', None)
+            customer_id = self.kwargs["customer"]
+            assets = Asset.objects.filter(customer=customer_id,
+                                          organisation_id=organisation)
+            serialized = AssetSerializer(assets, many=True)
+            return Response(serialized.data)
         except NotFound:
             raise CustomException(
                 404, "Requested Assets for the Customer is not available"
@@ -296,9 +303,12 @@ class ProductRepairingStockView(generics.ListAPIView):
            for the given product"""
 
         try:
-            instance = self.get_object()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data)
+            organisation = self.request.query_params.get('organisation', None)
+            product_id = self.kwargs["product"]
+            repairing_stocks = RepairingStock.objects.filter(product=product_id,
+                                                             organisation_id=organisation)
+            serialized = RepairingStockSerializer(repairing_stocks, many=True)
+            return Response(serialized.data)
         except NotFound:
             raise CustomException(
                 404, "Requested Repairing Stocks for the Product is not available"
@@ -333,9 +343,12 @@ class AssetRepairingStockView(generics.ListAPIView):
            for the given asset"""
 
         try:
-            instance = self.get_object()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data)
+            organisation = self.request.query_params.get('organisation', None)
+            asset_id = self.kwargs["asset"]
+            repairing_stocks = RepairingStock.objects.filter(asset=asset_id,
+                                                             organisation_id=organisation)
+            serialized = RepairingStockSerializer(repairing_stocks, many=True)
+            return Response(serialized.data)
         except NotFound:
             raise CustomException(
                 404, "Requested Repairing stock for the asset is not available"

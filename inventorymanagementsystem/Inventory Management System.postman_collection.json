@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "94214171-a35b-4f9e-89be-701244929b15",
 		"name": "Inventory Management System",
+		"description": "##Inventory Management API collection\n\nThis collection contains sample requests from localhost",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -34,7 +35,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/categories/1",
+									"raw": "http://localhost:8000/categories/?organisation=9d92135d8a964a9d958a56236ca940f8",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -42,14 +43,63 @@
 									"port": "8000",
 									"path": [
 										"categories",
-										"1"
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "9d92135d8a964a9d958a56236ca940f8"
+										}
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:35:23 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "526"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
 							"cookie": [],
-							"body": null
+							"body": "{\n    \"count\": 4,\n    \"next\": \"http://localhost:8000/categories/?organisation=9d92135d8a964a9d958a56236ca940f8&page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"category_uid\": \"87e7c025-42c8-41c3-8b65-72beb3952b12\",\n            \"name\": \"Laptop_Org2\",\n            \"description\": \"Different brand Laptops and their chargers\",\n            \"created_date\": \"2022-05-18\",\n            \"updated_date\": \"2022-05-18\"\n        },\n        {\n            \"category_uid\": \"0338e0ea-d967-483d-8c6f-504ec003ad3a\",\n            \"name\": \"Accessories_Org2\",\n            \"description\": \"Accesories like headphones and optical mouse\",\n            \"created_date\": \"2022-05-18\",\n            \"updated_date\": \"2022-05-18\"\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -58,15 +108,24 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"is_sales_order\": true,\r\n            \"vendors\": null,\r\n            \"customers\": 1,\r\n            \"order_products\": [\r\n                {\r\n                    \"product\": 1,\r\n                    \"quantity\": 1\r\n                }\r\n            ]\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8000/categories/",
+							"raw": "http://localhost:8000/categories",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"categories",
-								""
+								"categories"
 							]
 						}
 					},
@@ -339,15 +398,8 @@
 								"method": "GET",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "",
-											"value": "",
-											"type": "text",
-											"disabled": true
-										}
-									]
+									"mode": "file",
+									"file": {}
 								},
 								"url": {
 									"raw": "localhost:8000/products/1",
@@ -870,6 +922,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/vendors/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vendors",
+								""
+							]
+						},
 						"description": "Display all vendors or display a specific vendor available"
 					},
 					"response": [
@@ -932,6 +996,15 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8000/vendors/",
 							"protocol": "http",
@@ -1109,6 +1182,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders",
+								""
+							]
+						},
 						"description": "Displays all orders or specific orders available in the db"
 					},
 					"response": [
@@ -1306,55 +1391,22 @@
 					]
 				},
 				{
-					"name": "Customer Specific Orders",
+					"name": "Vendor Specific Orders",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/customer-orders/",
+							"raw": "http://localhost:8000/vendor-orders/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"customer-orders",
+								"vendor-orders",
 								""
 							]
 						},
-						"description": "Displays the given customer specifc orders"
-					},
-					"response": [
-						{
-							"name": "Customer Specific Orders",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/customer-orders/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"customer-orders",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
-					"name": "Vendor Specific Orders",
-					"request": {
-						"method": "GET",
-						"header": [],
 						"description": "Displays Vendor Specific orders"
 					},
 					"response": [
@@ -1483,68 +1535,6 @@
 					]
 				},
 				{
-					"name": "Update Invoice",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/invoice/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"invoice",
-								""
-							]
-						},
-						"description": "Update data in invoice"
-					},
-					"response": [
-						{
-							"name": "Update Invoice",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n            \"amount\": \"15100000.00\",\r\n            \"created_date\": \"2022-04-26\",\r\n            \"payment_deadline\": \"2022-05-11\",\r\n            \"payment_status\": true\r\n        }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/invoice/1/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"invoice",
-										"1",
-										""
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
 					"name": "Delete Invoice",
 					"request": {
 						"method": "DELETE",
@@ -1595,9 +1585,47 @@
 			"item": [
 				{
 					"name": "View Payment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUxNzM3MjIwLCJpYXQiOjE2NTE3MzY5MjAsImp0aSI6IjRkYzVjNjg4YTk5MTRlOTY4ZGMyYzgyZTEzMjAwZWY1IiwidXNlcl9pZCI6MX0.cJ_zbQXsZn1bxZNLqT5LhElitb0L3EKDrLJQfItNm4o",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "sasi",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders"
+							]
+						},
 						"description": "Display the available payments"
 					},
 					"response": [
@@ -1663,7 +1691,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n            \"payee_name\": \"Sasikumar\",\r\n            \"payment_type\": 2,\r\n            \"email\": \"sasi@gmail.com\",\r\n            \"phone\": \"8767876787\",\r\n            \"invoice\": 1,\r\n            \"amount\": 0\r\n        }",
+									"raw": "{\r\n            \"payee_name\": \"Sasikumar\",\r\n            \"payment_type\": 2,\r\n            \"email\": \"sasi@gmail.com\",\r\n            \"phone\": \"8767876787\",\r\n            \"invoice\": 16,\r\n            \"amount\": 57000\r\n        }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1780,6 +1808,1499 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Organisation",
+			"item": [
+				{
+					"name": "Get Organisation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/organisations/7e5b0ff22f594003b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"organisations",
+								"7e5b0ff22f594003b7d3002487532a4a"
+							]
+						},
+						"description": "##To get all the available organisations"
+					},
+					"response": [
+						{
+							"name": "Get Organisation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/organisations/7e5b0ff22f594003b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"organisations",
+										"7e5b0ff22f594003b7d3002487532a4a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:40:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"organisation_uid\": \"7e5b0ff2-2f59-4003-b7d3-002487532a4a\",\n    \"name\": \"Ideas2It\",\n    \"description\": \"Ideas2It Technologies Limited, Chennai\"\n}"
+						},
+						{
+							"name": "Get Organisation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/organisations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"organisations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:40:58 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "309"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"organisation_uid\": \"7e5b0ff2-2f59-4003-b7d3-002487532a4a\",\n            \"name\": \"Ideas2It\",\n            \"description\": \"Ideas2It Technologies Limited, Chennai\"\n        },\n        {\n            \"organisation_uid\": \"9d92135d-8a96-4a9d-958a-56236ca940f8\",\n            \"name\": \"Element5\",\n            \"description\": \"Element5 Technologies, Chennai\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Organisation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/organisations/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"organisations",
+								""
+							]
+						},
+						"description": "##Create new Organisation"
+					},
+					"response": [
+						{
+							"name": "Create Organisation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Sample organisation\",\r\n    \"description\" : \"sample description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Organisation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/organisations/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"organisations",
+								""
+							]
+						},
+						"description": "Update the organisations in the database"
+					},
+					"response": [
+						{
+							"name": "Update Organisation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"name\": \"Mobile Phones\",\r\n            \"description\": \"Mobile phone of different brands and models\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/organisations/7e5b0ff22f594003b7d3002487532a4a",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"organisations",
+										"7e5b0ff22f594003b7d3002487532a4a"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"description\" : \"Sample organisation\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Orgnaisation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/organisations/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"organisations",
+								""
+							]
+						},
+						"description": "Deletes a specifc organisation"
+					},
+					"response": [
+						{
+							"name": "Delete Orgnaisation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8000/organisations/7e5b0ff22f594003b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"organisations",
+										"7e5b0ff22f594003b7d3002487532a4a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:49:59 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"organisation_uid\": \"7e5b0ff2-2f59-4003-b7d3-002487532a4a\",\n    \"name\": \"Ideas2It\",\n    \"description\": \"Ideas2It Technologies Limited, Chennai\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Asset",
+			"item": [
+				{
+					"name": "Specific Assets",
+					"item": [
+						{
+							"name": "Update Asset status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/asset/f7137762b1574a9798f3eedccd35f85d/close/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"asset",
+										"f7137762b1574a9798f3eedccd35f85d",
+										"close",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								},
+								"description": "Updates the status of the Asset"
+							},
+							"response": []
+						},
+						{
+							"name": "Product Specific Assets",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/product/f7137762b1574a9798f3eedccd35f85d/assets/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"product",
+										"f7137762b1574a9798f3eedccd35f85d",
+										"assets",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								},
+								"description": "Retrieves the product based Assets"
+							},
+							"response": []
+						},
+						{
+							"name": "Customer Specific Assets",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/f7137762b1574a9798f3eedccd35f85d/assets/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"f7137762b1574a9798f3eedccd35f85d",
+										"assets",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								},
+								"description": "Assets based on the Customer given"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Assets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/assets/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Displays the available assets in the database"
+					},
+					"response": [
+						{
+							"name": "Get Assets",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/assets/f7137762-b157-4a97-98f3-eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"assets",
+										"f7137762-b157-4a97-98f3-eedccd35f85d"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:55:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"asset_uid\": \"f7137762-b157-4a97-98f3-eedccd35f85d\",\n    \"name\": \"Lenovo Laptop\",\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\n    \"serial_no\": \"ser_pro_1\",\n    \"is_active\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Asset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lenovo Laptop\",\r\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\r\n    \"serial_no\": \"ser_pro_1\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/assets/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Displays the available assets in the database"
+					},
+					"response": [
+						{
+							"name": "Create Asset",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Lenovo Laptop\",\r\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\r\n    \"serial_no\": \"ser_pro_1\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/assets/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"assets",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:57:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Product is out of stock\",\n    \"status_code\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Asset",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/assets/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"assets",
+								"f7137762b1574a9798f3eedccd35f85d"
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Updates the given asset in the database"
+					},
+					"response": [
+						{
+							"name": "Update Asset",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/assets/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"assets",
+										"f7137762b1574a9798f3eedccd35f85d"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 11:00:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"asset_uid\": \"f7137762-b157-4a97-98f3-eedccd35f85d\",\n    \"name\": \"Lenovo Laptop\",\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\n    \"serial_no\": \"ser_pro_1\",\n    \"is_active\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Asset",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/assets/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"assets",
+								"f7137762b1574a9798f3eedccd35f85d"
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Soft deletes the given asset"
+					},
+					"response": [
+						{
+							"name": "Delete Asset",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/assets/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"assets",
+										"f7137762b1574a9798f3eedccd35f85d"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 11:01:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"asset_uid\": \"f7137762-b157-4a97-98f3-eedccd35f85d\",\n    \"name\": \"Lenovo Laptop\",\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\n    \"serial_no\": \"ser_pro_1\",\n    \"is_active\": false\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Repairing Stocks",
+			"item": [
+				{
+					"name": "Specific Repairing Stocks",
+					"item": [
+						{
+							"name": "Update Repairing Stock Status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/repairing_stock/f7137762b1574a9798f3eedccd35f85d/close/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"repairing_stock",
+										"f7137762b1574a9798f3eedccd35f85d",
+										"close",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								},
+								"description": "Close the status of the given repairing stock"
+							},
+							"response": []
+						},
+						{
+							"name": "Asset Specific Repairing Stock",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/asset/f7137762b1574a9798f3eedccd35f85d/repairing_stocks/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"asset",
+										"f7137762b1574a9798f3eedccd35f85d",
+										"repairing_stocks",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								},
+								"description": "Repairing Stock based on the Asset given"
+							},
+							"response": []
+						},
+						{
+							"name": "Product Specific Repairing Stocks",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/asset/e905956f3f67458094eebe4975a92394/repairing_stocks?organisation=7e5b0ff22f594003b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"asset",
+										"e905956f3f67458094eebe4975a92394",
+										"repairing_stocks"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003b7d3002487532a4a"
+										}
+									]
+								},
+								"description": "Retrieves the Repairing Stocks based on given Product"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Repairing Stocks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/repairing_stocks/1c10c7fb87aa-4ce48b90-8443f5bb2870?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"repairing_stocks",
+								"1c10c7fb87aa-4ce48b90-8443f5bb2870"
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Displays the available repairing stocks in the database"
+					},
+					"response": [
+						{
+							"name": "Get Repairing Stocks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/repairing_stocks/1c10c7fb87aa-4ce48b90-8443f5bb2870?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"repairing_stocks",
+										"1c10c7fb87aa-4ce48b90-8443f5bb2870"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 11:03:37 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "227"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"repairing_stock_uid\": \"1c10c7fb-87aa-4ce4-8b90-8443f5bb2870\",\n    \"asset\": \"f7137762-b157-4a97-98f3-eedccd35f85d\",\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\n    \"serial_no\": \"ser_pro_1\",\n    \"closed_date\": \"2022-05-18\",\n    \"is_active\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Repairing Stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lenovo Laptop\",\r\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\r\n    \"serial_no\": \"ser_pro_1\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/repairing_stocks/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"repairing_stocks",
+								""
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Creates new repairing stocks in the database"
+					},
+					"response": [
+						{
+							"name": "Create Asset",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Lenovo Laptop\",\r\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\r\n    \"serial_no\": \"ser_pro_1\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/repairing_stocks/?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"repairing_stocks",
+										""
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 10:57:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Product is out of stock\",\n    \"status_code\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Repairing Stocks",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/repairing_stocks/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"repairing_stocks",
+								"f7137762b1574a9798f3eedccd35f85d"
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Updates the given repairing stocks in the database"
+					},
+					"response": [
+						{
+							"name": "Update Asset",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/repairing_stocks/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"repairing_stocks",
+										"f7137762b1574a9798f3eedccd35f85d"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 11:00:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"asset_uid\": \"f7137762-b157-4a97-98f3-eedccd35f85d\",\n    \"name\": \"Lenovo Laptop\",\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\n    \"serial_no\": \"ser_pro_1\",\n    \"is_active\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Repairing Stock",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/repairing_stocks/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"repairing_stocks",
+								"f7137762b1574a9798f3eedccd35f85d"
+							],
+							"query": [
+								{
+									"key": "organisation",
+									"value": "7e5b0ff22f594003-b7d3002487532a4a"
+								}
+							]
+						},
+						"description": "Soft deletes the given repairing stocks"
+					},
+					"response": [
+						{
+							"name": "Delete Asset",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\r\n            \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/repairing_stocks/f7137762b1574a9798f3eedccd35f85d?organisation=7e5b0ff22f594003-b7d3002487532a4a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"repairing_stocks",
+										"f7137762b1574a9798f3eedccd35f85d"
+									],
+									"query": [
+										{
+											"key": "organisation",
+											"value": "7e5b0ff22f594003-b7d3002487532a4a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 May 2022 11:01:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"asset_uid\": \"f7137762-b157-4a97-98f3-eedccd35f85d\",\n    \"name\": \"Lenovo Laptop\",\n    \"product\": \"77a104ad-92e5-47f5-9336-26012f77afbd\",\n    \"customer\": \"07e641c0-b959-40d6-b73e-fcb7c9ad5fab\",\n    \"serial_no\": \"ser_pro_1\",\n    \"is_active\": false\n}"
+						}
+					]
+				}
+			],
+			"description": "Apis for Repairing stocks"
 		}
 	]
 }
