@@ -7,18 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('payments', '0002_alter_invoice_organisation_alter_payment_invoice_and_more'),
+        ("payments", "0002_alter_invoice_organisation_alter_payment_invoice_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='invoice',
-            name='is_active',
+            model_name="invoice",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
         migrations.AlterField(
-            model_name='invoice',
-            name='payment_deadline',
+            model_name="invoice",
+            name="payment_deadline",
             field=models.DateField(default=datetime.date(2022, 6, 3)),
         ),
     ]

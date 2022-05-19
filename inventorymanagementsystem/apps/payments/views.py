@@ -6,10 +6,11 @@ import logging
 from organisations.models import Organisation
 from .models import Invoice, Payment
 from .service import InvoiceService, PaymentService
-from .serializers import InvoiceSerializer,PaymentSerializer
+from .serializers import InvoiceSerializer, PaymentSerializer
 from utils.exceptionhandler import CustomException
 
-logger = logging.getLogger('django')
+logger = logging.getLogger("django")
+
 
 class InvoiceView(viewsets.ViewSet):
     """Gives the view for the Invoice"""
@@ -18,12 +19,14 @@ class InvoiceView(viewsets.ViewSet):
     invoice_service = InvoiceService()
 
     def get_queryset(self):
+        """Query Set for the getting Invoices"""
+
         try:
-            organisation_uid = self.request.query_params.get('organisation', None)
+            organisation_uid = self.request.query_params.get("organisation", None)
             if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
             organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            invoices = Invoice.objects.filter(organisation=organisation).order_by('id')
+            invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
             return invoices
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
@@ -34,28 +37,34 @@ class InvoiceView(viewsets.ViewSet):
         """Creates new invoice, overrided from ModelViewSet class"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
-            order_id = request.data['order']
+            organisation = self.request.query_params.get("organisation", None)
+            order_id = request.data["order"]
             validated_data = InvoiceSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_invoice = self.invoice_service.create(validated_data, order_id, organisation)
+            new_invoice = self.invoice_service.create(
+                validated_data, order_id, organisation
+            )
             serialized = InvoiceSerializer(new_invoice)
             return Response(serialized.data)
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
 
     def retrieve(self, request, pk):
+        """Retrieve the invoice using the given Id"""
+
         try:
-            organisation = self.request.query_params.get('organisation', None)
-            invoice = self.invoice_service.retrieve(pk,organisation)
+            organisation = self.request.query_params.get("organisation", None)
+            invoice = self.invoice_service.retrieve(pk, organisation)
             serialized = InvoiceSerializer(invoice)
             return Response(serialized.data)
         except Invoice.DoesNotExist:
             raise CustomException(404, "Invoice Not Found")
 
     def list(self, request):
+        """List all the invoices of the organisation"""
+
         try:
-            organisation = self.request.query_params.get('organisation', None)
+            organisation = self.request.query_params.get("organisation", None)
             invoice = Invoice.objects.filter(organisation_id=organisation)
             serialized = InvoiceSerializer(invoice, many=True)
             return Response(serialized.data)
@@ -63,13 +72,16 @@ class InvoiceView(viewsets.ViewSet):
             raise CustomException(404, "Invoice Not Found")
 
     def destroy(self, request, pk):
+        """Soft Delete the invoice Id given"""
+
         try:
-            organisation = self.request.query_params.get('organisation', None)
-            invoice = Invoice.objects.get(invoice_uid=pk,organisation_id=organisation)
+            organisation = self.request.query_params.get("organisation", None)
+            invoice = Invoice.objects.get(invoice_uid=pk, organisation_id=organisation)
             invoice.delete()
-            return Response({"message" : "Invoice Deleted"})
+            return Response({"message": "Invoice Deleted"})
         except Invoice.DoesNotExist:
-            raise CustomException(404,"Invoice Not Found")
+            raise CustomException(404, "Invoice Not Found")
+
 
 class PaymentView(viewsets.ModelViewSet):
     """Gives the view for the Payment"""
@@ -79,12 +91,14 @@ class PaymentView(viewsets.ModelViewSet):
     payment_service = PaymentService()
 
     def get_queryset(self):
+        """Query Set for the getting Payments"""
+
         try:
-            organisation_uid = self.request.query_params.get('organisation', None)
+            organisation_uid = self.request.query_params.get("organisation", None)
             if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
             organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            payments = Payment.objects.filter(organisation=organisation).order_by('id')
+            payments = Payment.objects.filter(organisation=organisation).order_by("id")
             return payments
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
@@ -95,33 +109,39 @@ class PaymentView(viewsets.ModelViewSet):
         """Creates new payment, overrided from ModelViewSet class"""
 
         try:
-            organisation = self.request.query_params.get('organisation', None)
-            invoice_uid = request.data['invoice']
+            organisation = self.request.query_params.get("organisation", None)
+            invoice_uid = request.data["invoice"]
             validated_data = PaymentSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_payment = self.payment_service.create(validated_data, invoice_uid, organisation)
+            new_payment = self.payment_service.create(
+                validated_data, invoice_uid, organisation
+            )
             serialized = PaymentSerializer(new_payment)
             return Response(serialized.data)
         except CustomException as exc:
             logger.error("Custom Exception in Payment Creation")
             raise CustomException(exc.status_code, exc.detail)
 
-
     def update(self, request, *args, **kwargs):
-        return Response({"message" : "Payment cannot be updated"})
+        """Overided Update method for restricting the updates"""
+
+        return Response({"message": "Payment cannot be updated"})
 
 
 class InvoicePaymentView(generics.ListAPIView):
+    """Gives the view for the Payment using the invoice given"""
 
     serializer_class = PaymentSerializer
 
     def get_queryset(self):
+        """Query Set for the getting Payments"""
+
         try:
-            organisation_uid = self.request.query_params.get('organisation', None)
+            organisation_uid = self.request.query_params.get("organisation", None)
             if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
             organisation = Organisation.objects.get(organisation_uid=organisation_id)
-            payments = Payment.objects.filter(organisation=organisation).order_by('id')
+            payments = Payment.objects.filter(organisation=organisation).order_by("id")
             return payments
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
@@ -132,7 +152,7 @@ class InvoicePaymentView(generics.ListAPIView):
         """Retrieves the payments for the Invoice id given"""
 
         try:
-            invoice_id = self.kwargs['invoice']
+            invoice_id = self.kwargs["invoice"]
             payment = Payment.objects.filter(invoice=invoice_id)
             serialized = PaymentSerializer(payment, many=True)
             return Response(serialized.data)
@@ -141,17 +161,20 @@ class InvoicePaymentView(generics.ListAPIView):
 
 
 class InvoiceStatusView(generics.GenericAPIView):
+    """Gives the view for the Invoice to update the payment status"""
 
-    lookup_field = 'invoice_uid'
+    lookup_field = "invoice_uid"
     invoice_service = InvoiceService()
 
     def get_queryset(self):
+        """Query Set for the getting Invoices"""
+
         try:
-            organisation_uid = self.request.query_params.get('organisation', None)
+            organisation_uid = self.request.query_params.get("organisation", None)
             if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
             organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            invoices = Invoice.objects.filter(organisation=organisation).order_by('id')
+            invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
             return invoices
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
@@ -159,9 +182,11 @@ class InvoiceStatusView(generics.GenericAPIView):
             raise CustomException(400, "Invalid Credentials")
 
     def put(self, request, *args, **kwargs):
+        """Updates the payment status for the Invoice given"""
+
         try:
             invoice_details = self.get_object()
             response = self.invoice_service.update_invoice(invoice_details)
             return Response(response)
         except Http404:
-            raise CustomException(404,"Exception in Updating Invoice Status")
+            raise CustomException(404, "Exception in Updating Invoice Status")

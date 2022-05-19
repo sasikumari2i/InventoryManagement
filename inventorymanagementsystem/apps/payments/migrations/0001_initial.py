@@ -12,43 +12,113 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('organisations', '0001_initial'),
+        ("organisations", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Invoice',
+            name="Invoice",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('invoice_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10, null=True)),
-                ('created_date', models.DateField(default=datetime.date.today, null=True)),
-                ('payment_deadline', models.DateField(default=datetime.date(2022, 6, 2))),
-                ('payment_status', models.BooleanField(default=False, null=True)),
-                ('organisation', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "invoice_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "amount",
+                    models.DecimalField(decimal_places=2, max_digits=10, null=True),
+                ),
+                (
+                    "created_date",
+                    models.DateField(default=datetime.date.today, null=True),
+                ),
+                (
+                    "payment_deadline",
+                    models.DateField(default=datetime.date(2022, 6, 2)),
+                ),
+                ("payment_status", models.BooleanField(default=False, null=True)),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="organisations.organisation",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
         migrations.CreateModel(
-            name='Payment',
+            name="Payment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('payment_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('payee_name', models.CharField(max_length=100, validators=[django.core.validators.RegexValidator('[A-Za-z]+([ ][a-zA-Z]+)*', 'Enter a valid name')])),
-                ('created_date', models.DateField(default=datetime.date.today)),
-                ('payment_type', models.IntegerField(choices=[(1, 'Cheque'), (2, 'Cash'), (3, 'Digital')], default=2)),
-                ('email', models.EmailField(max_length=254)),
-                ('phone', models.CharField(max_length=10, validators=[django.core.validators.RegexValidator('[6-9][0-9]{9}', 'Enter a valid phone number')])),
-                ('amount', models.BigIntegerField(default=0)),
-                ('invoice', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='payments.invoice')),
-                ('organisation', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "payment_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "payee_name",
+                    models.CharField(
+                        max_length=100,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[A-Za-z]+([ ][a-zA-Z]+)*", "Enter a valid name"
+                            )
+                        ],
+                    ),
+                ),
+                ("created_date", models.DateField(default=datetime.date.today)),
+                (
+                    "payment_type",
+                    models.IntegerField(
+                        choices=[(1, "Cheque"), (2, "Cash"), (3, "Digital")], default=2
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254)),
+                (
+                    "phone",
+                    models.CharField(
+                        max_length=10,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[6-9][0-9]{9}", "Enter a valid phone number"
+                            )
+                        ],
+                    ),
+                ),
+                ("amount", models.BigIntegerField(default=0)),
+                (
+                    "invoice",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="payments.invoice",
+                    ),
+                ),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="organisations.organisation",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
     ]

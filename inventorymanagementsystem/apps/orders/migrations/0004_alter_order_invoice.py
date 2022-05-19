@@ -7,14 +7,23 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('payments', '0003_invoice_is_active_alter_invoice_payment_deadline'),
-        ('orders', '0003_alter_order_delivery_date'),
+        ("payments", "0003_invoice_is_active_alter_invoice_payment_deadline"),
+        ("orders", "0003_alter_order_delivery_date"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='order',
-            name='invoice',
-            field=models.ForeignKey(blank=True, db_column='invoice_uid', default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='orders', to='payments.invoice', to_field='invoice_uid'),
+            model_name="order",
+            name="invoice",
+            field=models.ForeignKey(
+                blank=True,
+                db_column="invoice_uid",
+                default=None,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="orders",
+                to="payments.invoice",
+                to_field="invoice_uid",
+            ),
         ),
     ]

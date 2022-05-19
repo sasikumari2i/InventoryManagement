@@ -12,79 +12,204 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('payments', '__first__'),
-        ('organisations', '0001_initial'),
-        ('products', '__first__'),
+        ("payments", "__first__"),
+        ("organisations", "0001_initial"),
+        ("products", "__first__"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Vendor',
+            name="Vendor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('vendor_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('name', models.CharField(max_length=100, validators=[django.core.validators.RegexValidator('[A-Za-z]+([ ][a-zA-Z]+)*', 'Enter a valid name')])),
-                ('address', models.CharField(max_length=200, null=True)),
-                ('email', models.EmailField(max_length=254, null=True)),
-                ('phone_number', models.CharField(max_length=10, validators=[django.core.validators.RegexValidator('[6-9][0-9]{9}', 'Enter a valid phone number')])),
-                ('created_date', models.DateField(default=datetime.date.today)),
-                ('updated_date', models.DateField(default=datetime.date.today)),
-                ('organisation', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "vendor_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[A-Za-z]+([ ][a-zA-Z]+)*", "Enter a valid name"
+                            )
+                        ],
+                    ),
+                ),
+                ("address", models.CharField(max_length=200, null=True)),
+                ("email", models.EmailField(max_length=254, null=True)),
+                (
+                    "phone_number",
+                    models.CharField(
+                        max_length=10,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[6-9][0-9]{9}", "Enter a valid phone number"
+                            )
+                        ],
+                    ),
+                ),
+                ("created_date", models.DateField(default=datetime.date.today)),
+                ("updated_date", models.DateField(default=datetime.date.today)),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="organisations.organisation",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('order_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('order_date', models.DateField(default=datetime.date.today)),
-                ('delivery_date', models.DateField(default=datetime.date(2022, 6, 2))),
-                ('delivery_status', models.BooleanField(default=False)),
-                ('updated_date', models.DateField(default=datetime.date.today)),
-                ('invoice', models.OneToOneField(blank=True, default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='orders', to='payments.invoice')),
-                ('organisation', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation')),
-                ('vendors', models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='orders.vendor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "order_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                ("order_date", models.DateField(default=datetime.date.today)),
+                ("delivery_date", models.DateField(default=datetime.date(2022, 6, 2))),
+                ("delivery_status", models.BooleanField(default=False)),
+                ("updated_date", models.DateField(default=datetime.date.today)),
+                (
+                    "invoice",
+                    models.OneToOneField(
+                        blank=True,
+                        default=None,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="orders",
+                        to="payments.invoice",
+                    ),
+                ),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="organisations.organisation",
+                    ),
+                ),
+                (
+                    "vendors",
+                    models.ForeignKey(
+                        blank=True,
+                        default=None,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="orders.vendor",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('customer_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('name', models.CharField(max_length=100, validators=[django.core.validators.RegexValidator('[A-Za-z]+([ ][a-zA-Z]+)*', 'Enter a valid name')])),
-                ('address', models.CharField(max_length=400, null=True)),
-                ('email', models.EmailField(max_length=254, null=True)),
-                ('phone_number', models.CharField(max_length=10, validators=[django.core.validators.RegexValidator('[6-9][0-9]{9}', 'Enter a valid phone number')])),
-                ('created_date', models.DateField(default=datetime.date.today)),
-                ('updated_date', models.DateField(default=datetime.date.today)),
-                ('organisation', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "customer_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[A-Za-z]+([ ][a-zA-Z]+)*", "Enter a valid name"
+                            )
+                        ],
+                    ),
+                ),
+                ("address", models.CharField(max_length=400, null=True)),
+                ("email", models.EmailField(max_length=254, null=True)),
+                (
+                    "phone_number",
+                    models.CharField(
+                        max_length=10,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[6-9][0-9]{9}", "Enter a valid phone number"
+                            )
+                        ],
+                    ),
+                ),
+                ("created_date", models.DateField(default=datetime.date.today)),
+                ("updated_date", models.DateField(default=datetime.date.today)),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="organisations.organisation",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
         migrations.CreateModel(
-            name='OrderProduct',
+            name="OrderProduct",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('quantity', models.IntegerField(null=True)),
-                ('created_date', models.DateField(default=datetime.date.today)),
-                ('updated_date', models.DateField(default=datetime.date.today)),
-                ('order', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='order_products', to='orders.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='products', to='products.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("quantity", models.IntegerField(null=True)),
+                ("created_date", models.DateField(default=datetime.date.today)),
+                ("updated_date", models.DateField(default=datetime.date.today)),
+                (
+                    "order",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="order_products",
+                        to="orders.order",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="products",
+                        to="products.product",
+                    ),
+                ),
             ],
-            options={
-                'unique_together': {('product', 'order')},
-            },
+            options={"unique_together": {("product", "order")},},
         ),
     ]

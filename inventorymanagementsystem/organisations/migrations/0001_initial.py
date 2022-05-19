@@ -8,17 +8,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Organisation',
+            name="Organisation",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('organisation_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('description', models.CharField(max_length=200, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "organisation_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                ("name", models.CharField(max_length=100, unique=True)),
+                ("description", models.CharField(max_length=200, null=True)),
             ],
         ),
     ]

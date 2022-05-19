@@ -7,36 +7,61 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('organisations', '0001_initial'),
-        ('orders', '0001_initial'),
-        ('products', '0001_initial'),
-        ('assets', '0001_initial'),
+        ("organisations", "0001_initial"),
+        ("orders", "0001_initial"),
+        ("products", "0001_initial"),
+        ("assets", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='asset',
-            name='customer',
-            field=models.ForeignKey(db_column='customer_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='orders.customer', to_field='customer_uid'),
+            model_name="asset",
+            name="customer",
+            field=models.ForeignKey(
+                db_column="customer_uid",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="orders.customer",
+                to_field="customer_uid",
+            ),
         ),
         migrations.AlterField(
-            model_name='asset',
-            name='organisation',
-            field=models.ForeignKey(db_column='organisation_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation', to_field='organisation_uid'),
+            model_name="asset",
+            name="organisation",
+            field=models.ForeignKey(
+                db_column="organisation_uid",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="organisations.organisation",
+                to_field="organisation_uid",
+            ),
         ),
         migrations.AlterField(
-            model_name='asset',
-            name='product',
-            field=models.ForeignKey(db_column='product_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='products.product', to_field='product_uid'),
+            model_name="asset",
+            name="product",
+            field=models.ForeignKey(
+                db_column="product_uid",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="products.product",
+                to_field="product_uid",
+            ),
         ),
         migrations.AlterField(
-            model_name='repairingstock',
-            name='organisation',
-            field=models.ForeignKey(db_column='organisation_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation', to_field='organisation_uid'),
+            model_name="repairingstock",
+            name="organisation",
+            field=models.ForeignKey(
+                db_column="organisation_uid",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="organisations.organisation",
+                to_field="organisation_uid",
+            ),
         ),
         migrations.AlterField(
-            model_name='repairingstock',
-            name='product',
-            field=models.ForeignKey(db_column='product_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='products.product', to_field='product_uid'),
+            model_name="repairingstock",
+            name="product",
+            field=models.ForeignKey(
+                db_column="product_uid",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="products.product",
+                to_field="product_uid",
+            ),
         ),
     ]

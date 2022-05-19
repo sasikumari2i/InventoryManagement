@@ -12,43 +12,108 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('organisations', '0001_initial'),
+        ("organisations", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('category_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('name', models.CharField(max_length=100, validators=[django.core.validators.RegexValidator('[A-Za-z]+([ ][a-zA-Z]+)*', 'Enter a valid name')])),
-                ('description', models.CharField(max_length=200, null=True)),
-                ('created_date', models.DateField(default=datetime.date.today)),
-                ('updated_date', models.DateField(default=datetime.date.today)),
-                ('organisation', models.ForeignKey(db_column='organisation_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='organisations.organisation', to_field='organisation_uid')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "category_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[A-Za-z]+([ ][a-zA-Z]+)*", "Enter a valid name"
+                            )
+                        ],
+                    ),
+                ),
+                ("description", models.CharField(max_length=200, null=True)),
+                ("created_date", models.DateField(default=datetime.date.today)),
+                ("updated_date", models.DateField(default=datetime.date.today)),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        db_column="organisation_uid",
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="organisations.organisation",
+                        to_field="organisation_uid",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('product_uid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('name', models.CharField(max_length=100, validators=[django.core.validators.RegexValidator('[A-Za-z]+([ ][a-zA-Z]+)*', 'Enter a valid name')])),
-                ('description', models.CharField(max_length=400, null=True)),
-                ('available_stock', models.IntegerField(default=0)),
-                ('price', models.FloatField(default=0)),
-                ('created_date', models.DateField(default=datetime.date.today)),
-                ('updated_date', models.DateField(default=datetime.date.today)),
-                ('category', models.ForeignKey(db_column='category_uid', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='categories', to='products.category', to_field='category_uid')),
-                ('organisation', models.ForeignKey(db_column='organisation_uid', on_delete=django.db.models.deletion.DO_NOTHING, related_name='organisation', to='organisations.organisation', to_field='organisation_uid')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "product_uid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                "[A-Za-z]+([ ][a-zA-Z]+)*", "Enter a valid name"
+                            )
+                        ],
+                    ),
+                ),
+                ("description", models.CharField(max_length=400, null=True)),
+                ("available_stock", models.IntegerField(default=0)),
+                ("price", models.FloatField(default=0)),
+                ("created_date", models.DateField(default=datetime.date.today)),
+                ("updated_date", models.DateField(default=datetime.date.today)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        db_column="category_uid",
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="categories",
+                        to="products.category",
+                        to_field="category_uid",
+                    ),
+                ),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        db_column="organisation_uid",
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="organisation",
+                        to="organisations.organisation",
+                        to_field="organisation_uid",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
     ]

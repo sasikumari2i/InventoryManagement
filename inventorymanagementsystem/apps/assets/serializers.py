@@ -11,27 +11,31 @@ from utils.exceptionhandler import CustomException
 
 
 class AssetSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Asset
-        fields = ('id', 'name','product','customer','serial_no','is_active')
+        fields = ("asset_uid", "name", "product", "customer", "serial_no", "is_active")
+
 
 class RepairingStockSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = RepairingStock
-        fields = ('id','asset','product','serial_no','closed_date','is_active')
+        fields = (
+            "repairing_stock_uid",
+            "asset",
+            "product",
+            "serial_no",
+            "closed_date",
+            "is_active",
+        )
 
 
 class RepairingStockCreateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = RepairingStock
-        fields = ('asset',)
+        fields = ("asset",)
 
 
 class CloseAssetSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Asset
-        fields = ('id',)
+        fields = ("asset_uid",)

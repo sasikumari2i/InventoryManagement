@@ -7,13 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('assets', '0002_alter_asset_customer_alter_asset_organisation_and_more'),
+        ("assets", "0002_alter_asset_customer_alter_asset_organisation_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='repairingstock',
-            name='asset',
-            field=models.ForeignKey(db_column='asset_uid', on_delete=django.db.models.deletion.DO_NOTHING, to='assets.asset', to_field='asset_uid'),
+            model_name="repairingstock",
+            name="asset",
+            field=models.ForeignKey(
+                db_column="asset_uid",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="assets.asset",
+                to_field="asset_uid",
+            ),
         ),
     ]
