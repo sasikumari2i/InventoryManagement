@@ -7,15 +7,15 @@ from datetime import date, timedelta
 from .models import Invoice, Payment
 from utils.exceptionhandler import CustomException
 from ..orders.serializers import (
-    OrderSerializer,
+#     # OrderSerializer,
     OrderInvoiceSerializer,
-    OrderProductSerializer,
+#     OrderProductSerializer,
 )
 
 
 class InvoiceSerializer(serializers.ModelSerializer):
 
-    orders = OrderInvoiceSerializer(read_only=True)
+    order = OrderInvoiceSerializer(read_only=True)
 
     class Meta:
         model = Invoice
@@ -25,8 +25,9 @@ class InvoiceSerializer(serializers.ModelSerializer):
             "created_date",
             "payment_deadline",
             "payment_status",
-            "orders",
+            "order",
         )
+
 
     def validate(self, data):
         try:

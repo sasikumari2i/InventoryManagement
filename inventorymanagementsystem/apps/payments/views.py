@@ -163,6 +163,7 @@ class InvoicePaymentView(generics.ListAPIView):
 class InvoiceStatusView(generics.GenericAPIView):
     """Gives the view for the Invoice to update the payment status"""
 
+    serializer_class = InvoiceSerializer
     lookup_field = "invoice_uid"
     invoice_service = InvoiceService()
 

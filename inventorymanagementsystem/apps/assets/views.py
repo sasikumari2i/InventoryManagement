@@ -135,6 +135,7 @@ class RepairingStockView(viewsets.ModelViewSet):
 class CloseAssetView(generics.GenericAPIView):
     """Gives the Generic Api view for Closing the Asset"""
 
+    serializer_class = CloseAssetSerializer
     asset_service = AssetService()
     lookup_field = "asset_uid"
 
@@ -167,6 +168,7 @@ class CloseAssetView(generics.GenericAPIView):
 class CloseRepairingStockView(generics.GenericAPIView):
     """Gives the Generic Api view for Closing the Repairing Stock"""
 
+    serializer_class = RepairingStockCreateSerializer
     repairing_stock_service = RepairingStockService()
     lookup_field = "repairing_stock_uid"
 

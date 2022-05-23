@@ -6,6 +6,7 @@ from rest_framework.exceptions import NotFound
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth.models import User
 from rest_framework import permissions, authentication
+from django_filters.rest_framework import DjangoFilterBackend
 
 from organisations.models import Organisation
 from utils.exceptionhandler import CustomException
@@ -15,7 +16,9 @@ from .serializers import ProductSerializer, CategorySerializer
 
 
 class CategoryView(viewsets.ModelViewSet):
-    """Gives the view for the Category"""
+    """Gives the view for the Category
+    organisation -- organisation_uid"""
+
 
     serializer_class = CategorySerializer
     lookup_field = "category_uid"
@@ -37,6 +40,14 @@ class CategoryView(viewsets.ModelViewSet):
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
+
+    def list(self, request, *args, **kwargs):
+        """
+        param1 -- A first parameter
+        param2 -- A second parameter
+        """
+        response = super().list(request)
+        return response
 
     def create(self, request, *args, **kwargs):
 
@@ -134,14 +145,19 @@ class ProductView(viewsets.ModelViewSet):
 class CategoryProductView(generics.ListAPIView):
     """Used for Filtering out Products based on the Category given"""
 
+
     serializer_class = ProductSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('organisation',)
 
     def get_queryset(self):
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            if self.request.query_params is None:
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_id)
+            # if organisation_uid is None:
+            #     raise CustomException(400, "Credentials required")
+            organisation_uid = self.request.query_params.get("organisation")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             products = Product.objects.filter(organisation=organisation).order_by("id")
             return products
         except CustomException as exc:

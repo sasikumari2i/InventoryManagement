@@ -22,7 +22,7 @@ class Category(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
@@ -51,7 +51,7 @@ class Product(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):

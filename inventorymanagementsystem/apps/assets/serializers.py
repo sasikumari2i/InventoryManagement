@@ -37,5 +37,5 @@ class RepairingStockCreateSerializer(serializers.ModelSerializer):
 
 class CloseAssetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Asset
-        fields = ("asset_uid",)
+        model = RepairingStock
+        fields = ("asset",)

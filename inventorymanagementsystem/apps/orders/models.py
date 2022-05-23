@@ -6,7 +6,7 @@ from django.db import models
 from datetime import date, timedelta
 
 from ..products.models import Product
-from ..payments.models import Invoice
+# from ..payments.models import Invoice
 from utils.constants import ValidationConstants
 from organisations.models import Organisation
 
@@ -27,7 +27,7 @@ class Vendor(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
@@ -50,7 +50,7 @@ class Customer(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
@@ -73,22 +73,12 @@ class Order(SafeDeleteModel):
         null=True,
         blank=True,
     )
-    invoice = models.ForeignKey(
-        Invoice,
-        models.SET_NULL,
-        to_field="invoice_uid",
-        db_column="invoice_uid",
-        related_name="orders",
-        default=None,
-        null=True,
-        blank=True,
-    )
     updated_date = models.DateField(default=date.today)
     organisation = models.ForeignKey(
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):

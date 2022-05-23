@@ -8,6 +8,8 @@ from .models import Vendor, Order, OrderProduct, Customer
 from ..products.models import Product
 import utils.exceptionhandler as exceptionhandler
 from ..products.serializers import ProductSerializer
+# from ..payments.serializers import InvoiceSerializer
+from ..payments.models import Invoice
 from utils.exceptionhandler import CustomException
 
 
@@ -42,12 +44,18 @@ class OrderInvoiceSerializer(serializers.ModelSerializer):
         model = Order
         fields = (
             "order_uid",
-            "order_products",
+            "order_products"
         )
 
+class InvoiceOrderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Invoice
+        fields = ("invoice_uid",)
 
 class OrderSerializer(serializers.ModelSerializer):
 
+    invoices = InvoiceOrderSerializer(many=True, read_only=True)
     order_products = OrderProductSerializer(many=True, read_only=True)
 
     class Meta:
@@ -59,7 +67,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "delivery_date",
             "vendors",
             "order_products",
-            "invoice",
+            "invoices",
         )
 
     def validate(self, data):

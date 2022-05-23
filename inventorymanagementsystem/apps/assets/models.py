@@ -38,7 +38,7 @@ class Asset(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
@@ -68,7 +68,7 @@ class RepairingStock(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
     is_active = models.BooleanField(default=True, null=False)
 

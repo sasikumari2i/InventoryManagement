@@ -8,7 +8,7 @@ from rest_framework.exceptions import NotFound
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth.models import User
 from rest_framework import permissions, authentication
-from rest_framework.authtoken.views import ObtainAuthToken
+# from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
 from utils.exceptionhandler import CustomException

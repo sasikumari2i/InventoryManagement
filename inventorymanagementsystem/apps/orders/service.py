@@ -113,7 +113,7 @@ class OrderService:
                 amount=amount,
                 created_date=created_date,
                 payment_deadline=payment_deadline,
-                orders=new_order,
+                order=new_order,
                 organisation_id=new_order.organisation_id,
             )
             return invoice

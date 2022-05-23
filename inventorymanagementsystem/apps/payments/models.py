@@ -7,6 +7,8 @@ from django.db import models
 from datetime import date, timedelta
 from organisations.models import Organisation
 from utils.constants import ValidationConstants
+from ..orders.models import Order
+
 
 
 class Invoice(SafeDeleteModel):
@@ -18,11 +20,21 @@ class Invoice(SafeDeleteModel):
     payment_deadline = models.DateField(default=(date.today() + timedelta(days=15)))
     payment_status = models.BooleanField(default=False, null=True)
     is_active = models.BooleanField(default=True)
+    order = models.ForeignKey(
+        Order,
+        models.SET_NULL,
+        to_field="order_uid",
+        db_column="order_uid",
+        related_name="invoices",
+        default=None,
+        null=True,
+        blank=True,
+    )
     organisation = models.ForeignKey(
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
 
@@ -56,5 +68,5 @@ class Payment(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )

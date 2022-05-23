@@ -65,7 +65,7 @@ class OrderView(viewsets.ModelViewSet):
         try:
             organisation_uid = self.request.query_params.get("organisation", None)
             order_products = request.data["order_products"]
-            request.data.pop("order_products")
+            # request.data.pop("order_products")
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_order = self.order_service.create(
