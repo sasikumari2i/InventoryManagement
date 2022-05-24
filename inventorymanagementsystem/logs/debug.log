@@ -2983,3 +2983,271 @@ INFO 2022-05-24 00:08:42,842 autoreload 10824 4348 C:\Users\Lenovo\Documents\pro
 INFO 2022-05-24 00:08:45,222 autoreload 2884 14060 Watching for file changes with StatReloader
 INFO 2022-05-24 00:08:47,495 basehttp 2884 14788 "GET /orders/1c25baecbc284e2a91403ee993408a9e?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
 INFO 2022-05-24 00:08:47,525 basehttp 2884 14788 "GET /orders/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 348
+INFO 2022-05-24 00:27:01,053 basehttp 2884 14788 "GET /orders/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 722
+INFO 2022-05-24 00:27:20,699 basehttp 2884 14788 "GET /orders/1c25baecbc284e2a91403ee993408a9e?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
+INFO 2022-05-24 00:27:20,719 basehttp 2884 14788 "GET /orders/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 348
+INFO 2022-05-24 00:35:55,913 basehttp 2884 14788 "PUT /orders/1c25baecbc284e2a91403ee993408a9e?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
+INFO 2022-05-24 00:35:55,937 basehttp 2884 14788 "GET /orders/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 348
+INFO 2022-05-24 00:37:05,212 basehttp 2884 14788 "PUT /orders/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 348
+INFO 2022-05-24 00:37:24,886 basehttp 2884 14788 "PUT /orders/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 348
+INFO 2022-05-24 00:37:35,596 basehttp 2884 14788 "PUT /orders/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 348
+WARNING 2022-05-24 00:38:01,031 log 2884 14788 Not Found: /orders/c9882b14832842e1befc41544e9d8e7f/
+WARNING 2022-05-24 00:38:01,032 basehttp 2884 14788 "GET /orders/c9882b14832842e1befc41544e9d8e7f/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 404 41
+INFO 2022-05-24 00:38:07,579 basehttp 2884 14788 "GET /invoice/c9882b14832842e1befc41544e9d8e7f/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 320
+INFO 2022-05-24 00:49:58,154 autoreload 980 9264 Watching for file changes with StatReloader
+INFO 2022-05-24 00:50:03,076 basehttp 980 5640 "GET /assets/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 52
+INFO 2022-05-24 00:55:25,453 basehttp 980 5640 "POST /assets/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 216
+INFO 2022-05-24 01:01:26,899 basehttp 980 5640 "PUT /assets/faf4923a87de4b619b79157fdb6c9bf5/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 217
+INFO 2022-05-24 01:01:33,263 basehttp 980 5640 "PUT /assets/faf4923a87de4b619b79157fdb6c9bf5/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 216
+WARNING 2022-05-24 01:01:39,220 log 980 5640 Bad Request: /assets/faf4923a87de4b619b79157fdb6c9bf5/
+WARNING 2022-05-24 01:01:39,220 basehttp 980 5640 "PUT /assets/faf4923a87de4b619b79157fdb6c9bf5/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 400 54
+WARNING 2022-05-24 01:01:46,573 log 980 5640 Bad Request: /assets/faf4923a87de4b619b79157fdb6c9bf5/
+WARNING 2022-05-24 01:01:46,573 basehttp 980 5640 "PUT /assets/faf4923a87de4b619b79157fdb6c9bf5/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 400 59
+INFO 2022-05-24 01:01:57,012 basehttp 980 5640 "PATCH /assets/faf4923a87de4b619b79157fdb6c9bf5/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 216
+WARNING 2022-05-24 01:07:31,277 log 980 5640 Bad Request: /repairing_stocks/
+WARNING 2022-05-24 01:07:31,278 basehttp 980 5640 "POST /repairing_stocks/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 400 74
+INFO 2022-05-24 01:08:02,114 basehttp 980 5640 "PUT /asset/faf4923a87de4b619b79157fdb6c9bf5/close?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 38
+INFO 2022-05-24 01:08:16,599 basehttp 980 5640 "POST /repairing_stocks//close?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 66
+INFO 2022-05-24 01:08:22,147 basehttp 980 5640 "POST /repairing_stocks/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 217
+INFO 2022-05-24 01:14:49,919 basehttp 980 5640 "GET /assets/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 269
+INFO 2022-05-24 01:16:41,453 basehttp 980 5640 "GET /invoice/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 2496
+INFO 2022-05-24 01:18:41,187 basehttp 980 5640 "GET /invoice/c9882b14832842e1befc41544e9d8e7f?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
+INFO 2022-05-24 01:18:41,213 basehttp 980 5640 "GET /invoice/c9882b14832842e1befc41544e9d8e7f/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 320
+INFO 2022-05-24 01:23:05,880 basehttp 980 5640 "GET /invoice/1c25baecbc284e2a91403ee993408a9e?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
+WARNING 2022-05-24 01:23:05,896 log 980 5640 Not Found: /invoice/1c25baecbc284e2a91403ee993408a9e/
+WARNING 2022-05-24 01:23:05,898 basehttp 980 5640 "GET /invoice/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 404 48
+INFO 2022-05-24 01:23:18,967 log 980 5640 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 44, in create
+    new_invoice = self.invoice_service.create(
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 23, in create
+    orders = Order.objects.get(organisation_id=organisation)
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 499, in get
+    raise self.model.MultipleObjectsReturned(
+apps.orders.models.Order.MultipleObjectsReturned: get() returned more than one Order -- it returned 11!
+INFO 2022-05-24 01:23:19,005 basehttp 980 5640 "POST /invoice/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 56
+INFO 2022-05-24 01:25:09,901 autoreload 980 9264 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-24 01:25:12,172 autoreload 15656 10684 Watching for file changes with StatReloader
+INFO 2022-05-24 01:25:12,881 log 15656 15572 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 44, in create
+    new_invoice = self.invoice_service.create(
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 23, in create
+    orders = Order.objects.get(organisation_id=organisation)
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 499, in get
+    raise self.model.MultipleObjectsReturned(
+apps.orders.models.Order.MultipleObjectsReturned: get() returned more than one Order -- it returned 11!
+INFO 2022-05-24 01:25:12,888 basehttp 15656 15572 "POST /invoice/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 56
+INFO 2022-05-24 01:26:12,357 autoreload 15656 10684 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-24 01:26:13,818 autoreload 916 13680 Watching for file changes with StatReloader
+INFO 2022-05-24 01:26:30,142 autoreload 916 13680 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\orders\serializers.py changed, reloading.
+INFO 2022-05-24 01:26:32,531 autoreload 3268 11736 Watching for file changes with StatReloader
+INFO 2022-05-24 01:26:34,530 log 3268 7232 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 44, in create
+    new_invoice = self.invoice_service.create(
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 25, in create
+    if order.invoice is not None:
+AttributeError: 'Order' object has no attribute 'invoice'
+INFO 2022-05-24 01:26:34,534 basehttp 3268 7232 "POST /invoice/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 56
+INFO 2022-05-24 01:27:17,757 autoreload 3268 11736 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-24 01:27:19,546 autoreload 2628 6896 Watching for file changes with StatReloader
+INFO 2022-05-24 01:27:20,061 log 2628 3888 OK: /invoice/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 44, in create
+    new_invoice = self.invoice_service.create(
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 27, in create
+    invoice = Invoice.objects.get(orders=order, is_active=True)
+  File "C:\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\safedelete\queryset.py", line 72, in filter
+    return super(SafeDeleteQueryset, queryset).filter(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Python310\lib\site-packages\django\db\models\query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1466, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1496, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1342, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1156, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\Python310\lib\site-packages\django\db\models\sql\query.py", line 1640, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'orders' into field. Choices are: amount, created_date, deleted, id, invoice_uid, is_active, order, order_id, organisation, organisation_id, payment, payment_deadline, payment_status
+INFO 2022-05-24 01:27:20,105 basehttp 2628 3888 "POST /invoice/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 56
+INFO 2022-05-24 01:28:15,288 autoreload 2628 6896 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py changed, reloading.
+INFO 2022-05-24 01:28:16,926 autoreload 6940 9056 Watching for file changes with StatReloader
+WARNING 2022-05-24 01:28:21,023 log 6940 5712 Bad Request: /invoice/
+WARNING 2022-05-24 01:28:21,024 basehttp 6940 5712 "POST /invoice/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 400 68
+INFO 2022-05-24 01:29:29,857 basehttp 6940 5712 "GET /invoice/c9882b14832842e1befc41544e9d8e7f?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
+INFO 2022-05-24 01:29:29,887 basehttp 6940 5712 "GET /invoice/c9882b14832842e1befc41544e9d8e7f/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 320
+INFO 2022-05-24 01:31:35,554 basehttp 6940 5712 "PUT /invoice/c9882b14832842e1befc41544e9d8e7f?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 301 0
+INFO 2022-05-24 01:31:35,566 basehttp 6940 5712 "GET /invoice/c9882b14832842e1befc41544e9d8e7f/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 320
+WARNING 2022-05-24 01:31:40,053 log 6940 5712 Method Not Allowed: /invoice/c9882b14832842e1befc41544e9d8e7f/
+WARNING 2022-05-24 01:31:40,053 basehttp 6940 5712 "PUT /invoice/c9882b14832842e1befc41544e9d8e7f/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 405 58
+INFO 2022-05-24 09:07:41,819 autoreload 7328 4432 Watching for file changes with StatReloader
+WARNING 2022-05-24 09:07:45,651 log 7328 15612 Bad Request: /payment/
+WARNING 2022-05-24 09:07:45,652 basehttp 7328 15612 "GET /payment/ HTTP/1.1" 400 51
+ERROR 2022-05-24 09:12:53,849 views 7328 15612 Custom Exception in Payment Creation
+WARNING 2022-05-24 09:12:53,850 log 7328 15612 Not Found: /payment/
+WARNING 2022-05-24 09:12:53,850 basehttp 7328 15612 "POST /payment/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 404 53
+ERROR 2022-05-24 09:13:22,885 views 7328 15612 Custom Exception in Payment Creation
+WARNING 2022-05-24 09:13:22,886 log 7328 15612 Bad Request: /payment/
+WARNING 2022-05-24 09:13:22,888 basehttp 7328 15612 "POST /payment/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 400 57
+INFO 2022-05-24 09:13:34,376 log 7328 15612 OK: /payment/
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python310\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python310\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\views.py", line 116, in create
+    new_payment = self.payment_service.create(
+  File "C:\Python310\lib\contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\apps\payments\service.py", line 116, in create
+    payment_type=validated_data.data["payment_type"],
+KeyError: 'payment_type'
+INFO 2022-05-24 09:13:34,386 basehttp 7328 15612 "POST /payment/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 56
+INFO 2022-05-24 09:13:57,927 basehttp 7328 15612 "POST /payment/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 215
+INFO 2022-05-24 09:16:36,638 basehttp 7328 12292 "GET /swagger_schema HTTP/1.1" 200 37786
+INFO 2022-05-24 09:16:36,693 basehttp 7328 2084 "GET /static/rest_framework_swagger/bundles/app.bundle.css HTTP/1.1" 200 66
+INFO 2022-05-24 09:16:36,693 basehttp 7328 12292 "GET /static/rest_framework_swagger/bundles/vendors.bundle.css HTTP/1.1" 200 66
+INFO 2022-05-24 09:16:36,701 basehttp 7328 2084 "GET /static/rest_framework_swagger/bundles/app.bundle.js HTTP/1.1" 200 66
+INFO 2022-05-24 09:16:36,701 basehttp 7328 12292 "GET /static/rest_framework_swagger/bundles/vendors.bundle.js HTTP/1.1" 200 66
+INFO 2022-05-24 09:16:36,706 basehttp 7328 12292 "GET /static/rest_framework_swagger/logo_small.png HTTP/1.1" 200 66
+INFO 2022-05-24 09:16:36,756 basehttp 7328 12292 "GET /favicon.ico HTTP/1.1" 200 66
+INFO 2022-05-24 09:16:58,198 autoreload 7328 4432 C:\Users\Lenovo\Documents\projects\InventoryManagementSystem\inventorymanagementsystem\inventorymanagementsystem\settings.py changed, reloading.
+INFO 2022-05-24 09:16:59,921 autoreload 15320 6516 Watching for file changes with StatReloader
+INFO 2022-05-24 09:17:00,540 basehttp 15320 2748 "GET /swagger_schema HTTP/1.1" 200 37786
+INFO 2022-05-24 09:17:00,695 basehttp 15320 8156 "GET /static/rest_framework_swagger/bundles/app.bundle.css HTTP/1.1" 200 419
+INFO 2022-05-24 09:17:00,699 basehttp 15320 2748 "GET /static/rest_framework_swagger/bundles/vendors.bundle.css HTTP/1.1" 200 153889
+INFO 2022-05-24 09:17:00,722 basehttp 15320 8156 "GET /static/rest_framework_swagger/bundles/app.bundle.js HTTP/1.1" 200 1771
+INFO 2022-05-24 09:17:00,738 basehttp 15320 2748 "GET /static/rest_framework_swagger/logo_small.png HTTP/1.1" 200 458
+INFO 2022-05-24 09:17:01,452 basehttp 15320 14340 "GET /static/rest_framework_swagger/bundles/vendors.bundle.js HTTP/1.1" 200 1636116
+WARNING 2022-05-24 09:17:01,728 log 15320 14340 Not Found: /favicon.ico
+WARNING 2022-05-24 09:17:01,731 basehttp 15320 14340 "GET /favicon.ico HTTP/1.1" 404 17752
+WARNING 2022-05-24 09:21:49,550 log 15320 16080 Not Found: /asset/faf4923a87de4b619b79157fdb6c9bf5/close/
+WARNING 2022-05-24 09:21:49,550 basehttp 15320 16080 "PATCH /asset/faf4923a87de4b619b79157fdb6c9bf5/close/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 404 17902
+WARNING 2022-05-24 09:21:57,193 log 15320 16080 Not Found: /asset/faf4923a87de4b619b79157fdb6c9bf5/close/
+WARNING 2022-05-24 09:21:57,201 basehttp 15320 16080 "PUT /asset/faf4923a87de4b619b79157fdb6c9bf5/close/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 404 17900
+WARNING 2022-05-24 09:22:06,775 log 15320 16080 Method Not Allowed: /asset/faf4923a87de4b619b79157fdb6c9bf5/close
+WARNING 2022-05-24 09:22:06,775 basehttp 15320 16080 "PATCH /asset/faf4923a87de4b619b79157fdb6c9bf5/close?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 405 60
+INFO 2022-05-24 09:22:11,938 basehttp 15320 16080 "PUT /asset/faf4923a87de4b619b79157fdb6c9bf5/close?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 38
+INFO 2022-05-24 09:28:50,341 basehttp 15320 16080 "GET /asset/faf4923a87de4b619b79157fdb6c9bf5/repairing_stocks?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 219
+INFO 2022-05-24 09:31:24,941 basehttp 15320 16080 "GET /category/c5e027737c39497ba0222de9ff01b854/products?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 263
+INFO 2022-05-24 09:33:27,346 basehttp 15320 16080 "GET /customer/984a049edb9948be9ad0cae417e911be/assets?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 219
+ERROR 2022-05-24 09:36:19,331 log 15320 16080 Internal Server Error: /delivery/1c25baecbc284e2a91403ee993408a9e
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Python310\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Python310\lib\site-packages\django\middleware\common.py", line 54, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "C:\Python310\lib\site-packages\django\middleware\common.py", line 88, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PATCH, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PATCH data. Change your form to point to localhost:8000/delivery/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2022-05-24 09:36:19,332 basehttp 15320 16080 "PATCH /delivery/1c25baecbc284e2a91403ee993408a9e?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 500 69008
+WARNING 2022-05-24 09:36:24,868 log 15320 12712 Method Not Allowed: /delivery/1c25baecbc284e2a91403ee993408a9e/
+WARNING 2022-05-24 09:36:24,869 basehttp 15320 12712 "PATCH /delivery/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 405 60
+INFO 2022-05-24 09:36:31,729 basehttp 15320 12712 "PUT /delivery/1c25baecbc284e2a91403ee993408a9e/?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 37
+WARNING 2022-05-24 09:39:13,231 log 15320 12712 Not Found: /vendors/04746837d1bc4156b285474fe55e36e0/orders
+WARNING 2022-05-24 09:39:13,232 basehttp 15320 12712 "GET /vendors/04746837d1bc4156b285474fe55e36e0/orders?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 404 17906
+INFO 2022-05-24 09:39:26,787 basehttp 15320 12712 "GET /vendor/04746837d1bc4156b285474fe55e36e0/orders?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 3461
+INFO 2022-05-24 09:45:43,297 basehttp 15320 12712 "GET /product/f1465fcb72f844efbca5c7acaf3ec17b/assets?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 219
+INFO 2022-05-24 09:47:35,601 basehttp 15320 12712 "GET /product/f1465fcb72f844efbca5c7acaf3ec17b/repairing_stocks?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 219

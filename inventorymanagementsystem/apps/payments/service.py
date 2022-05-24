@@ -20,11 +20,11 @@ class InvoiceService:
         """Creates new Invoice for the given order and the data"""
 
         try:
-            orders = Order.objects.get(organisation_id=organisation)
+            orders = Order.objects.filter(organisation_id=organisation)
             order = orders.get(order_uid=order_id)
-            if order.invoice is not None:
+            if order.invoices is not None:
                 try:
-                    invoice = Invoice.objects.get(orders=order, is_active=True)
+                    invoice = Invoice.objects.get(order=order, is_active=True)
                     if invoice is not None:
                         raise CustomException(
                             400, "Invoice Already active for this Order"
