@@ -9,5 +9,7 @@ inventorymanagementsystem/apps/payments/__pycache__/
 inventorymanagementsystem/organisations/__pycache__/
 inventorymanagementsystem/apps/products/__pycache__/
 inventorymanagementsystem/apps/__pycache__/
+inventorymanagementsystem/utils/__pycache__/
+inventorymanagementsystem/inventorymanagementsystem/__pycache__/
 inventorymanagementsystem/.idea/
 inventorymanagementsystem/logs/*.log
