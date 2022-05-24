@@ -1,5 +1,5 @@
 # Inventory Management
-An Inventory Management and Asset Maintainance Application for an Organisation in Rest Framework
+An Inventory Management and Asset Maintainance Application for an Organisation
 
 Django Inventory Management is aiming to provide a SaaS application for Inventory Management 
 using Django rest framework, which is still in development phase. Major purpose of the application
