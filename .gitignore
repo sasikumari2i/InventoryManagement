@@ -1,3 +1,4 @@
-/inventorymanagementsystem/apps/assets/migrations/
-/inventorymanagementsystem/apps/__pycache__/
-/inventorymanagementsystem/apps/.idea/
+inventorymanagementsystem/apps/assets/migrations/
+inventorymanagementsystem/apps/__pycache__/
+inventorymanagementsystem/.idea/
+inventorymanagementsystem/logs/*.log
