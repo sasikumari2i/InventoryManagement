@@ -3251,3 +3251,4 @@ WARNING 2022-05-24 09:39:13,232 basehttp 15320 12712 "GET /vendors/04746837d1bc4
 INFO 2022-05-24 09:39:26,787 basehttp 15320 12712 "GET /vendor/04746837d1bc4156b285474fe55e36e0/orders?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 3461
 INFO 2022-05-24 09:45:43,297 basehttp 15320 12712 "GET /product/f1465fcb72f844efbca5c7acaf3ec17b/assets?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 219
 INFO 2022-05-24 09:47:35,601 basehttp 15320 12712 "GET /product/f1465fcb72f844efbca5c7acaf3ec17b/repairing_stocks?organisation=d4cdde5f19c9475ebe2f2b63ecef3966 HTTP/1.1" 200 219
+INFO 2022-05-24 16:31:23,980 autoreload 4824 3732 Watching for file changes with StatReloader
