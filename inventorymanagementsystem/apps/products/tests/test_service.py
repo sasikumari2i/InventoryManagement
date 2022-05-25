@@ -19,11 +19,6 @@ class ProductServiceTest(TestCase):
         )
 
         self.organisation_uid = self.organisation.organisation_uid
-        # self.category = Category.objects.create(
-        #     id=1, name='Electronics',
-        #     description='Electronic products',
-        #     organisation_id=self.organisation_uid
-        # )
 
     # def mocked_create(self):
     #     return self.category
@@ -43,7 +38,7 @@ class ProductServiceTest(TestCase):
         result = category_service.create_category(serialized_data, self.organisation_uid)
         # print(result.id)
         self.assertTrue(isinstance(result, Category))
-        # self.assertEqual(category.id, 1)
+        self.assertEqual(result.name, 'Electronics')
         # self.assertEqual(category.name,'Electronics')
         # self.assertEqual(category.description, 'Electronic products')
         # self.assertEqual(category.organisation_id, organisation_uid)
