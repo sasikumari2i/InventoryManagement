@@ -57,7 +57,7 @@ class CategoryView(viewsets.ModelViewSet):
             organisation_uid = self.request.query_params.get("organisation")
             if organisation_uid is None:
                 raise CustomException(404, "Credentials Required")
-            new_category = self.category_service.create(
+            new_category = self.category_service.create_category(
                 validated_data, organisation_uid
             )
             serialized = CategorySerializer(new_category)
@@ -113,7 +113,7 @@ class ProductView(viewsets.ModelViewSet):
         organisation_uid = self.request.query_params.get("organisation", None)
         if organisation_uid is None:
             raise CustomException(404, "Credentials Required")
-        new_product = self.product_service.create(validated_data, organisation_uid)
+        new_product = self.product_service.create_product(validated_data, organisation_uid)
         serialized = ProductSerializer(new_product)
         return Response(serialized.data)
 

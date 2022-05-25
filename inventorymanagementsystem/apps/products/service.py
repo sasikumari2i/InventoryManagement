@@ -8,7 +8,6 @@ from .serializers import ProductSerializer, CategorySerializer
 from .models import Product, Category
 from ..payments.models import Invoice
 from organisations.models import Organisation
-from ..products.serializers import ProductSerializer
 from utils.exceptionhandler import CustomException
 
 
@@ -18,7 +17,7 @@ class CategoryService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation_uid):
+    def create_category(self, validated_data, organisation_uid):
         """Creates new order from the given data"""
 
         try:
@@ -36,7 +35,7 @@ class CategoryService:
 
 class ProductService:
     @transaction.atomic()
-    def create(self, validated_data, organisation):
+    def create_product(self, validated_data, organisation):
         """Creates new order from the given data"""
         try:
             category = Category.objects.get(
