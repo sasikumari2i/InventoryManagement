@@ -40,23 +40,28 @@ class ProductServiceTest(TestCase):
         str_category = str(self.category.category_uid)
         # str_category_uid = self.category.category_uid
         # str_category = str_category_uid.replace("-","")
-        product_dict = {
+        payload = {
             "name": "Lenovo Thinkpad",
             "description": "Thinkpad mod_001 i3 8GB RAM GRP",
             "category" : str_category
             }
-        serialized_product = ProductSerializer(data=product_dict)
-        serialized_product.is_valid(raise_exception=True)
+
+        # validated_data = List(data=payload)
+        # print(validated_data.data)
+        # validated_data.update(data)
+        # print(validated_data.data)
+        # serialized_product = ProductSerializer(data=product_dict)
+        # serialized_product.is_valid(raise_exception=True)
         # print(serialized_product.data)
         # print(serialized_product.data['category'])
 
         category = Category.objects.get(
             organisation_id=self.organisation_uid,
-            category_uid=serialized_product.data["category"],
+            category_uid=payload["category"],
         )
         self.assertTrue(isinstance(category, Category))
 
-        new_product = self.product_service.create_product(serialized_product, self.organisation_uid)
+        new_product = self.product_service.create_product(payload, self.organisation_uid)
         self.assertTrue(isinstance(new_product, Product))
         # self.assertEqual(new_product.name, "Lenovo Thinkpad")
 

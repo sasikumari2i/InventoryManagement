@@ -40,12 +40,12 @@ class ProductService:
         try:
             category = Category.objects.get(
                 organisation_id=organisation,
-                category_uid=validated_data.data["category"],
+                category_uid=validated_data["category"],
             )
             new_product = Product.objects.create(
-                name=validated_data.data["name"],
-                description=validated_data.data["description"],
-                category_id=validated_data.data["category"],
+                name=validated_data["name"],
+                description=validated_data["description"],
+                category_id=validated_data["category"],
                 organisation_id=organisation,
             )
             return new_product
