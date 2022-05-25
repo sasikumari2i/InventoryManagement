@@ -110,6 +110,7 @@ class ProductView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         validated_data = ProductSerializer(data=request.data)
         validated_data.is_valid(raise_exception=True)
+        print(validated_data.data)
         organisation_uid = self.request.query_params.get("organisation", None)
         if organisation_uid is None:
             raise CustomException(404, "Credentials Required")

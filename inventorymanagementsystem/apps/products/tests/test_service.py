@@ -1,64 +1,62 @@
 from django.test import TestCase
-
-from ..service import CategoryService
-from ..serializers import CategorySerializer
+from unittest import mock
+from ..service import CategoryService, ProductService
+from ..serializers import CategorySerializer, ProductSerializer
 from organisations.models import Organisation
-from ..models import Category
+from ..models import Category, Product
 
 class ProductServiceTest(TestCase):
 
-    # def test_create_category(self):
-    #     result = self.client.post(self.categories_url)
-    #     self.assertEqual(result.status_code, 400)
-
-
     def setUp(self):
-        self.organisation = Organisation.objects.create(
+        organisation = Organisation.objects.create(
             name='Ideas2it',
             description='Ideas2it Organisation'
         )
 
-        self.organisation_uid = self.organisation.organisation_uid
+        self.category = Category.objects.create(
+            name = "Electronics",
+            description = "Electronic products",
+            organisation_id=organisation.organisation_uid
+        )
 
-    # def mocked_create(self):
-    #     return self.category
-
-    # @mock.patch('apps.products.models.Category.objects.create',
-    #             side_effect=mocked_create)
-    # @mock.patch('apps.products.models.Category.objects.create',
-    #             return_value=Category.objects.filter(id=1))
-    def test_create_category(self):
-        category_service = CategoryService()
-        category_dict = {
-            "name" : "Electronics",
-            "description" : "Electronic products"
+        self.category_dict = {
+            "name": "Electronics",
+            "description": "Electronic products"
         }
-        serialized_data = CategorySerializer(category_dict)
-        # self.organisation_uid = self.organisation.organisation_uid
-        result = category_service.create_category(serialized_data, self.organisation_uid)
-        # print(result.id)
-        self.assertTrue(isinstance(result, Category))
-        self.assertEqual(result.name, 'Electronics')
-        # self.assertEqual(category.name,'Electronics')
-        # self.assertEqual(category.description, 'Electronic products')
-        # self.assertEqual(category.organisation_id, organisation_uid)
 
-    # def test_create_category(self):
-    #
-    #     organisation_uid = self.organisation.organisation_uid
-    #     category = Category.objects.create(
-    #         id=1, name='Lenovo Thinkpad',
-    #         description='Lenovo Thinkpad i7 8GB RAM',
-    #         category_id=,
-    #         organisation_id=organisation_uid
-    #     )
-    #     name = validated_data.data["name"],
-    #     description = validated_data.data["description"],
-    #     category_id = validated_data.data["category"],
-    #     organisation_id = organisation,
-    #     self.assertTrue(isinstance(category, Category))
-    #     self.assertEqual(category.id, 1)
-    #     self.assertEqual(category.name,'Electronics')
-    #     self.assertEqual(category.description, 'Electronic products')
-    #     self.assertEqual(category.organisation_id, organisation_uid)
+        self.organisation_uid = organisation.organisation_uid
+        self.category_service = CategoryService()
+        self.product_service = ProductService()
+
+
+    def test_create_category(self):
+        serialized_data = CategorySerializer(self.category_dict)
+        new_category = self.category_service.create_category(serialized_data, self.organisation_uid)
+        self.assertTrue(isinstance(new_category, Category))
+        self.assertEqual(new_category.name, 'Electronics')
+
+
+    def test_create_product(self):
+        str_category = str(self.category.category_uid)
+        # str_category_uid = self.category.category_uid
+        # str_category = str_category_uid.replace("-","")
+        product_dict = {
+            "name": "Lenovo Thinkpad",
+            "description": "Thinkpad mod_001 i3 8GB RAM GRP",
+            "category" : str_category
+            }
+        serialized_product = ProductSerializer(data=product_dict)
+        serialized_product.is_valid(raise_exception=True)
+        # print(serialized_product.data)
+        # print(serialized_product.data['category'])
+
+        category = Category.objects.get(
+            organisation_id=self.organisation_uid,
+            category_uid=serialized_product.data["category"],
+        )
+        self.assertTrue(isinstance(category, Category))
+
+        new_product = self.product_service.create_product(serialized_product, self.organisation_uid)
+        self.assertTrue(isinstance(new_product, Product))
+        # self.assertEqual(new_product.name, "Lenovo Thinkpad")
 
