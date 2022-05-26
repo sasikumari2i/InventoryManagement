@@ -6,6 +6,9 @@ inventorymanagementsystem/apps/products/migrations/
 inventorymanagementsystem/apps/assets/__pycache__/
 inventorymanagementsystem/apps/orders/__pycache__/
 inventorymanagementsystem/apps/products/tests/__pycache__/
+inventorymanagementsystem/apps/payments/tests/__pycache__/
+inventorymanagementsystem/apps/assets/tests/__pycache__/
+inventorymanagementsystem/apps/orders/tests/__pycache__/
 inventorymanagementsystem/apps/payments/__pycache__/
 inventorymanagementsystem/organisations/__pycache__/
 inventorymanagementsystem/apps/products/__pycache__/

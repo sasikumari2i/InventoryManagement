@@ -168,10 +168,10 @@ class CustomerService:
 
         try:
             new_customer = Customer.objects.create(
-                name=validated_data.data["name"],
-                address=validated_data.data["address"],
-                email=validated_data.data["email"],
-                phone_number=validated_data.data["phone_number"],
+                name=validated_data["name"],
+                address=validated_data["address"],
+                email=validated_data["email"],
+                phone_number=validated_data["phone_number"],
                 organisation_id=organisation_uid,
             )
             return new_customer

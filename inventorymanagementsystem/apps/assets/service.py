@@ -43,7 +43,7 @@ class AssetService:
                 pass
 
             if product.available_stock <= 0:
-                raise CustomException(400, "Product is out of stock")
+                raise CustomException(400, "Product is out of Stock")
             new_asset = Asset.objects.create(
                 name=validated_data.data["name"],
                 serial_no=validated_data.data["serial_no"],
@@ -74,7 +74,9 @@ class AssetService:
                 product_uid=request["product"], organisation_id=instance.organisation
             )
             instance.updated_date = date.today()
-            if product.id != instance.id:
+            if product.id != instance.product_id:
+                if product.available_stock <=0:
+                    raise CustomException(400,"Product is out of stock")
                 product.available_stock -= 1
                 product.save()
                 new_product = Product.objects.get(product_uid=instance.product_id)

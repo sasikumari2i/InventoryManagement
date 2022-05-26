@@ -146,7 +146,7 @@ class CustomerView(viewsets.ModelViewSet):
             validated_data = CustomerSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             organisation = self.request.query_params.get("organisation", None)
-            new_customer = self.customer_service.create(validated_data, organisation)
+            new_customer = self.customer_service.create(validated_data.data, organisation)
             serialized = CustomerSerializer(new_customer)
             return Response(serialized.data)
         except ValidationError:
