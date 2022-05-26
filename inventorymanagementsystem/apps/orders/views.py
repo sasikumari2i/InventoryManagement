@@ -69,7 +69,7 @@ class OrderView(viewsets.ModelViewSet):
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_order = self.order_service.create(
-                validated_data, order_products, organisation_uid
+                validated_data.data, order_products, organisation_uid
             )
             serialized = OrderSerializer(new_order)
             return Response(serialized.data)
@@ -87,7 +87,7 @@ class OrderView(viewsets.ModelViewSet):
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             order = self.order_service.update(
-                order_details, validated_data, order_products, organisation_uid
+                order_details, validated_data.data, order_products, organisation_uid
             )
             serializer = OrderSerializer(order)
             return Response(serializer.data)
@@ -207,7 +207,7 @@ class VendorView(viewsets.ModelViewSet):
             validated_data = VendorSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             organisation = self.request.query_params.get("organisation", None)
-            new_vendor = self.vendor_service.create(validated_data, organisation)
+            new_vendor = self.vendor_service.create(validated_data.data, organisation)
             serialized = VendorSerializer(new_vendor)
             return Response(serialized.data)
         except ValidationError:

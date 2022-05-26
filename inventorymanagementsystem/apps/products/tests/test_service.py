@@ -23,6 +23,7 @@ class ProductServiceTest(TestCase):
         self.category_service = CategoryService()
         self.product_service = ProductService()
 
+
     def test_create_category(self):
         payload = {
             "name": "Electronics",

@@ -23,8 +23,8 @@ class OrderService:
         try:
             products = Product.objects.filter(organisation_id=organisation_uid)
             new_order = Order.objects.create(
-                delivery_date=validated_data.data["delivery_date"],
-                vendors_id=validated_data.data["vendors"],
+                delivery_date=validated_data["delivery_date"],
+                vendors_id=validated_data["vendors"],
                 organisation_id=organisation_uid,
             )
 
@@ -40,7 +40,6 @@ class OrderService:
                     product=product_details,
                     quantity=product["quantity"],
                 )
-
             invoice = self.create_invoice(new_order, organisation_uid)
             invoice.save()
             order_product_data.save()
@@ -58,8 +57,8 @@ class OrderService:
         try:
             products = Product.objects.filter(organisation_id=organisation_uid)
             product_orders = OrderProduct.objects.all()
-            order_details.delivery_date = validated_data.data["delivery_date"]
-            order_details.vendors_uid = validated_data.data["vendors"]
+            order_details.delivery_date = validated_data["delivery_date"]
+            order_details.vendors_uid = validated_data["vendors"]
             order_details.save()
 
             for product in order_products:
@@ -147,10 +146,10 @@ class VendorService:
 
         try:
             new_vendor = Vendor.objects.create(
-                name=validated_data.data["name"],
-                address=validated_data.data["address"],
-                email=validated_data.data["email"],
-                phone_number=validated_data.data["phone_number"],
+                name=validated_data["name"],
+                address=validated_data["address"],
+                email=validated_data["email"],
+                phone_number=validated_data["phone_number"],
                 organisation_id=organisation_uid,
             )
             return new_vendor
