@@ -41,13 +41,10 @@ class CategoryView(viewsets.ModelViewSet):
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
 
-    def list(self, request, *args, **kwargs):
-        """
-        param1 -- A first parameter
-        param2 -- A second parameter
-        """
-        response = super().list(request)
-        return response
+    # def list(self, request, *args, **kwargs):
+    #
+    #     response = super().list(request)
+    #     return response
 
     def create(self, request, *args, **kwargs):
 
@@ -58,7 +55,7 @@ class CategoryView(viewsets.ModelViewSet):
             if organisation_uid is None:
                 raise CustomException(404, "Credentials Required")
             new_category = self.category_service.create_category(
-                validated_data, organisation_uid
+                validated_data.data, organisation_uid
             )
             serialized = CategorySerializer(new_category)
             return Response(serialized.data)

@@ -22,8 +22,8 @@ class CategoryService:
 
         try:
             new_category = Category.objects.create(
-                name=validated_data.data["name"],
-                description=validated_data.data["description"],
+                name=validated_data["name"],
+                description=validated_data["description"],
                 organisation_id=organisation_uid,
             )
             return new_category
