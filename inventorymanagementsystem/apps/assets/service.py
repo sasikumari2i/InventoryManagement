@@ -25,17 +25,17 @@ class AssetService:
         try:
             product = Product.objects.get(
                 organisation_id=organisation_uid,
-                product_uid=validated_data.data["product"],
+                product_uid=validated_data["product"],
             )
             customer = Customer.objects.get(
                 organisation_id=organisation_uid,
-                customer_uid=validated_data.data["customer"],
+                customer_uid=validated_data["customer"],
             )
 
             try:
                 asset = Asset.objects.get(
                     product_id=product.id,
-                    serial_no=validated_data.data["serial_no"],
+                    serial_no=validated_data["serial_no"],
                     is_active=True,
                 )
                 raise CustomException(400, "This product is already assigned")
@@ -45,11 +45,11 @@ class AssetService:
             if product.available_stock <= 0:
                 raise CustomException(400, "Product is out of Stock")
             new_asset = Asset.objects.create(
-                name=validated_data.data["name"],
-                serial_no=validated_data.data["serial_no"],
-                customer_id=validated_data.data["customer"],
+                name=validated_data["name"],
+                serial_no=validated_data["serial_no"],
+                customer_id=validated_data["customer"],
                 organisation_id=organisation_uid,
-                product_id=validated_data.data["product"],
+                product_id=validated_data["product"],
             )
             product.available_stock -= 1
             product.save()
@@ -60,6 +60,7 @@ class AssetService:
             raise CustomException(400, "Invalid Product")
         except Customer.DoesNotExist:
             raise CustomException(400, "Invalid Customer")
+
 
     def update(self, instance, request):
         """Updates the Asset from the given data"""

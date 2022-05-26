@@ -53,7 +53,7 @@ class AssetView(viewsets.ModelViewSet):
             organisation_uid = request.query_params.get("organisation")
             validated_data = AssetSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            new_asset = self.asset_service.create(validated_data, organisation_uid)
+            new_asset = self.asset_service.create(validated_data.data, organisation_uid)
             serialized = AssetSerializer(new_asset)
             return Response(serialized.data)
         except Asset.DoesNotExist:
