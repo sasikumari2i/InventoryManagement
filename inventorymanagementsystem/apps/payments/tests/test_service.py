@@ -3,10 +3,12 @@ from unittest import mock
 from ..service import InvoiceService, PaymentService
 from organisations.models import Organisation
 from ..models import Payment,Invoice
+from ...orders.models import Vendor, Customer, OrderProduct, Order
 from ...products.models import Product, Category
 
 
 class PaymentServiceTest(TestCase):
+
     def setUp(self):
         organisation = Organisation.objects.create(
             name="Ideas2it", description="Ideas2it Organisation"
@@ -49,13 +51,6 @@ class PaymentServiceTest(TestCase):
             product=self.product, order=self.order, quantity=10
         )
 
-        # self.invoice = Invoice.objects.create(
-        #     amount=amount,
-        #     created_date=created_date,
-        #     payment_deadline=payment_deadline,
-        #     order=order,
-        #     organisation_id=order.organisation_id,
-        # )
 
     def test_create_invoice(self):
         str_order = str(self.order.order_uid)
@@ -66,5 +61,14 @@ class PaymentServiceTest(TestCase):
         }
         new_invoice = self.invoice_service.create(payload, str_order, self.organisation_uid)
         self.assertTrue(isinstance(new_invoice, Invoice))
-        # self.assertEqual(new_customer.name, "Sasi")
 
+    def test_update_invoice(self):
+
+        invoice = Invoice.objects.create(
+            amount=0,
+            order=self.order,
+            organisation_id=self.organisation_uid,
+        )
+        updated_invoice = self.invoice_service.update_invoice(invoice)
+        self.assertEqual(updated_invoice, "Invoice Status Updated")
+        print(updated_invoice)
