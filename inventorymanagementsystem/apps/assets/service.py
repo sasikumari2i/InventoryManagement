@@ -24,8 +24,7 @@ class AssetService:
 
         try:
             product = Product.objects.get(
-                organisation_id=organisation_uid,
-                product_uid=validated_data["product"],
+                organisation_id=organisation_uid, product_uid=validated_data["product"],
             )
             customer = Customer.objects.get(
                 organisation_id=organisation_uid,
@@ -43,6 +42,7 @@ class AssetService:
                 pass
 
             if product.available_stock <= 0:
+                print("Inside Asset")
                 raise CustomException(400, "Product is out of Stock")
             new_asset = Asset.objects.create(
                 name=validated_data["name"],
@@ -61,7 +61,6 @@ class AssetService:
         except Customer.DoesNotExist:
             raise CustomException(400, "Invalid Customer")
 
-
     def update(self, instance, request):
         """Updates the Asset from the given data"""
 
@@ -76,8 +75,8 @@ class AssetService:
             )
             instance.updated_date = date.today()
             if product.id != instance.product_id:
-                if product.available_stock <=0:
-                    raise CustomException(400,"Product is out of stock")
+                if product.available_stock <= 0:
+                    raise CustomException(400, "Product is out of stock")
                 product.available_stock -= 1
                 product.save()
                 new_product = Product.objects.get(product_uid=instance.product_id)
@@ -135,12 +134,12 @@ class RepairingStockService:
 
         try:
             asset = Asset.objects.get(
-                organisation_id=organisation_uid, asset_uid=validated_data.data["asset"]
+                organisation_id=organisation_uid, asset_uid=validated_data["asset"]
             )
 
             try:
                 repairing_stock = RepairingStock.objects.get(
-                    asset_id=validated_data.data["asset"], is_active=True
+                    asset_id=validated_data["asset"], is_active=True
                 )
                 raise CustomException(400, "This product is already in repairing stock")
             except RepairingStock.DoesNotExist:
@@ -153,7 +152,7 @@ class RepairingStockService:
 
             new_repairing_stock = RepairingStock.objects.create(
                 serial_no=asset.serial_no,
-                asset_id=validated_data.data["asset"],
+                asset_id=validated_data["asset"],
                 product_id=asset.product_id,
                 organisation_id=organisation_uid,
             )
@@ -172,9 +171,9 @@ class RepairingStockService:
                     400, "Only active repairing stocks can be updated"
                 )
             asset = Asset.objects.get(
-                asset_uid=request.data["asset"],
-                product_uid=request.data["product"],
-                organisation_uid=instance.organisation,
+                asset_uid=request["asset"],
+                product_id=request["product"],
+                organisation_id=instance.organisation,
             )
             instance.updated_date = date.today()
             return instance

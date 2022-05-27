@@ -11,7 +11,6 @@ from organisations.models import Organisation
 from utils.exceptionhandler import CustomException
 
 
-
 class CategoryService:
     """Performs order related operations like add new order, get single order,
     get all orders, update an order and delete order"""
@@ -39,8 +38,7 @@ class ProductService:
         """Creates new order from the given data"""
         try:
             category = Category.objects.get(
-                organisation_id=organisation,
-                category_uid=validated_data["category"],
+                organisation_id=organisation, category_uid=validated_data["category"],
             )
             new_product = Product.objects.create(
                 name=validated_data["name"],

@@ -38,7 +38,7 @@ class Asset(SafeDeleteModel):
         Organisation,
         to_field="organisation_uid",
         db_column="organisation_uid",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):

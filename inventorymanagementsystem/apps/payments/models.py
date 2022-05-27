@@ -10,7 +10,6 @@ from utils.constants import ValidationConstants
 from ..orders.models import Order
 
 
-
 class Invoice(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 

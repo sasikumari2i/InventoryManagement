@@ -42,7 +42,7 @@ class InvoiceView(viewsets.ViewSet):
             validated_data = InvoiceSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_invoice = self.invoice_service.create(
-                validated_data, order_id, organisation
+                validated_data.data, order_id, organisation
             )
             serialized = InvoiceSerializer(new_invoice)
             return Response(serialized.data)

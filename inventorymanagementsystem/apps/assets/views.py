@@ -106,7 +106,7 @@ class RepairingStockView(viewsets.ModelViewSet):
             validated_data = RepairingStockCreateSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_repairing_stock = self.repairing_stock_service.create(
-                validated_data, organisation_uid
+                validated_data.data, organisation_uid
             )
             serialized = RepairingStockSerializer(new_repairing_stock)
             return Response(serialized.data)

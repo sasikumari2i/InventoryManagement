@@ -33,16 +33,16 @@ class InvoiceService:
                     pass
             amount = self.total_amount(order, organisation)
             created_date = date.today()
-            if validated_data.data["payment_deadline"] is None:
-                validated_data.data["payment_deadline"] = created_date + timedelta(
+            if validated_data["payment_deadline"] is None:
+                validated_data["payment_deadline"] = created_date + timedelta(
                     days=15
                 )
-            payment_deadline = validated_data.data["payment_deadline"]
+            payment_deadline = validated_data["payment_deadline"]
             invoice = Invoice.objects.create(
                 amount=amount,
                 created_date=created_date,
                 payment_deadline=payment_deadline,
-                orders=order,
+                order=order,
                 organisation_id=order.organisation_id,
             )
 
@@ -55,7 +55,7 @@ class InvoiceService:
 
         try:
             amount = 0
-            products = Product.objects.get(organisation_id=organisation)
+            products = Product.objects.filter(organisation_id=organisation)
             order_serializer = OrderSerializer(order)
 
             for orders in order_serializer.data["order_products"]:

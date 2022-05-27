@@ -6,6 +6,7 @@ from django.db import models
 from datetime import date, timedelta
 
 from ..products.models import Product
+
 # from ..payments.models import Invoice
 from utils.constants import ValidationConstants
 from organisations.models import Organisation

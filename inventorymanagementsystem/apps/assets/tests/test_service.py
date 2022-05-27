@@ -1,23 +1,28 @@
 from django.test import TestCase
 from unittest import mock
-from ..service import AssetService,RepairingStockService
+from ..service import AssetService, RepairingStockService
 from organisations.models import Organisation
 from ..models import Asset, RepairingStock
-from ...products.models import Product
-from ...orders.models import Invoice
+from ...products.models import Product, Category
+from ...orders.models import Customer
+
 
 class AssetServiceTest(TestCase):
-
     def setUp(self):
         organisation = Organisation.objects.create(
-            name='Ideas2it',
-            description='Ideas2it Organisation'
+            name="Ideas2it", description="Ideas2it Organisation"
         )
 
         self.organisation_uid = organisation.organisation_uid
         self.asset_service = AssetService()
-        # self.vendor_service = VendorService()
+        self.repairing_stock_service = RepairingStockService()
         # self.order_service = OrderService()
+
+        self.category = Category.objects.create(
+            name="Electronics",
+            description="Electronic products",
+            organisation_id=self.organisation_uid,
+        )
 
         self.customer = Customer.objects.create(
             name="Sasi",
@@ -30,7 +35,31 @@ class AssetServiceTest(TestCase):
         self.product = Product.objects.create(
             name="Lenovo Thinkpad",
             description="Thinkpad mod_001 i3 8GB RAM GRP",
+            available_stock=5,
             category_id=self.category.category_uid,
+            organisation_id=self.organisation_uid,
+        )
+
+        self.asset = Asset.objects.create(
+            name="Sample Asset",
+            serial_no="ser_no_1",
+            customer_id=self.customer.customer_uid,
+            organisation_id=self.organisation_uid,
+            product_id=self.product.product_uid,
+        )
+
+        self.asset_new = Asset.objects.create(
+            name="Sample Asset 2",
+            serial_no="ser_no_2",
+            customer_id=self.customer.customer_uid,
+            organisation_id=self.organisation_uid,
+            product_id=self.product.product_uid,
+        )
+
+        self.repairing_stock = RepairingStock.objects.create(
+            serial_no=self.asset.serial_no,
+            asset_id=self.asset.asset_uid,
+            product_id=self.asset.product_id,
             organisation_id=self.organisation_uid,
         )
 
@@ -41,73 +70,48 @@ class AssetServiceTest(TestCase):
             "name": "DELL Laptop Sam",
             "serial_no": "ser_no_1",
             "customer": str_customer,
-            "product": str_product
+            "product": str_product,
         }
         new_asset = self.asset_service.create(payload, self.organisation_uid)
-        self.assertTrue(isinstance(new_customer, Asset))
-        self.assertEqual(new_asset.name, 'DELL Laptop Sam')
+        self.assertTrue(isinstance(new_asset, Asset))
+        self.assertEqual(new_asset.name, "DELL Laptop Sam")
 
+    def test_update_asset(self):
+        str_customer = str(self.customer.customer_uid)
+        str_product = str(self.product.product_uid)
 
-    # def test_create_vendor(self):
-    #     payload = {
-    #         "name": "Lenovo Vendors Sample",
-    #         "address": "Chennai",
-    #         "email": "lenovovensam@lenovo.com",
-    #         "phone_number": "8789878981"
-    #     }
-    #     new_vendor = self.vendor_service.create(payload, self.organisation_uid)
-    #     self.assertTrue(isinstance(new_vendor, Vendor))
-    #     self.assertEqual(new_vendor.name, 'Lenovo Vendors Sample')
-    #
-    #
-    # def test_create_order(self):
-    #
-    #     str_vendor = str(self.vendor.vendor_uid)
-    #     str_product = str(self.product.product_uid)
-    #     payload = {
-    #         "vendors" : str_vendor,
-    #         "delivery_date" : "2022-06-07"
-    #     }
-    #     order_products = [
-    #         {
-    #             "product": str_product,
-    #             "quantity": 10,
-    #             "price": 10000
-    #         }
-    #     ]
-    #     new_order = self.order_service.create(payload,order_products, self.organisation_uid)
-    #     self.assertTrue(isinstance(new_order, Order))
-    #     invoice = Invoice.objects.get(order_id=new_order.order_uid)
-    #     self.assertEqual(invoice.order, new_order)
-    #     # print(invoice)
-    #     # new_order_product = OrderProduct.objects.get(order=new_order)
-    #     # new_product = new_order_product.product
-    #     # print(new_product.id)
-    #     # print(product.id)
-    #     # self.assertEqual(new_product.available_stock, product.available_stock)
-    #     # print(new_product.available_stock)
-    #     # self.assertEqual(new_order.available_stock, 10)
-    #
-    # def test_update_order(self):
-    #
-    #     str_vendor = str(self.vendor.vendor_uid)
-    #     str_product = str(self.product.product_uid)
-    #
-    #     payload = {
-    #         "vendors": str_vendor,
-    #         "delivery_date": "2022-06-07"
-    #     }
-    #     order_products = [
-    #         {
-    #             "product": str_product,
-    #             "quantity": 20,
-    #             "price": 10000
-    #         }
-    #     ]
-    #
-    #     updated_order = self.order_service.update(self.order, payload, order_products, self.organisation_uid)
-    #     self.assertTrue(isinstance(updated_order, Order))
-    #
-    # def test_update_delivery(self):
-    #     status_response = self.order_service.update_delivery(self.order)
-    #     self.assertEqual(status_response['message'], "Delivery Status Updated")
+        payload = {"customer": str_customer, "product": str_product}
+        updated_asset = self.asset_service.update(self.asset, payload)
+        self.assertTrue(isinstance(updated_asset, Asset))
+
+    def test_close_asset(self):
+        data = {}
+        status_response = self.asset_service.close_asset(self.asset, data)
+        self.assertEqual(status_response["message"], "Assigned asset is closed")
+
+    def test_create_repairing_stock(self):
+        self.asset_new.is_active = False
+        self.asset_new.save()
+        str_asset = str(self.asset_new.asset_uid)
+        payload = {"asset": str_asset}
+        new_repairing_stock = self.repairing_stock_service.create(
+            payload, self.organisation_uid
+        )
+        self.assertTrue(isinstance(new_repairing_stock, RepairingStock))
+
+    def test_update_repairing_stock(self):
+        str_asset = str(self.asset.asset_uid)
+        str_product = str(self.product.product_uid)
+
+        payload = {"asset": str_asset, "product": str_product}
+        updated_repairing_stock = self.repairing_stock_service.update(
+            self.repairing_stock, payload
+        )
+        self.assertTrue(isinstance(updated_repairing_stock, RepairingStock))
+
+    def test_close_repairing_stock(self):
+        data = {}
+        status_response = self.repairing_stock_service.close_repairing_stock(
+            self.repairing_stock, data
+        )
+        self.assertEqual(status_response["message"], "Repairing Stock asset is closed")

@@ -8,6 +8,7 @@ from .models import Vendor, Order, OrderProduct, Customer
 from ..products.models import Product
 import utils.exceptionhandler as exceptionhandler
 from ..products.serializers import ProductSerializer
+
 # from ..payments.serializers import InvoiceSerializer
 from ..payments.models import Invoice
 from utils.exceptionhandler import CustomException
@@ -42,16 +43,14 @@ class OrderInvoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = (
-            "order_uid",
-            "order_products"
-        )
+        fields = ("order_uid", "order_products")
+
 
 class InvoiceOrderSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Invoice
         fields = ("invoice_uid",)
+
 
 class OrderSerializer(serializers.ModelSerializer):
 

@@ -19,7 +19,6 @@ class CategoryView(viewsets.ModelViewSet):
     """Gives the view for the Category
     organisation -- organisation_uid"""
 
-
     serializer_class = CategorySerializer
     lookup_field = "category_uid"
     category_service = CategoryService()
@@ -110,7 +109,9 @@ class ProductView(viewsets.ModelViewSet):
         organisation_uid = self.request.query_params.get("organisation", None)
         if organisation_uid is None:
             raise CustomException(404, "Credentials Required")
-        new_product = self.product_service.create_product(validated_data.data, organisation_uid)
+        new_product = self.product_service.create_product(
+            validated_data.data, organisation_uid
+        )
         serialized = ProductSerializer(new_product)
         return Response(serialized.data)
 
@@ -142,10 +143,9 @@ class ProductView(viewsets.ModelViewSet):
 class CategoryProductView(generics.ListAPIView):
     """Used for Filtering out Products based on the Category given"""
 
-
     serializer_class = ProductSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('organisation',)
+    filter_fields = ("organisation",)
 
     def get_queryset(self):
         try:
