@@ -34,9 +34,7 @@ class InvoiceService:
             amount = self.total_amount(order, organisation)
             created_date = date.today()
             if validated_data["payment_deadline"] is None:
-                validated_data["payment_deadline"] = created_date + timedelta(
-                    days=15
-                )
+                validated_data["payment_deadline"] = created_date + timedelta(days=15)
             payment_deadline = validated_data["payment_deadline"]
             invoice = Invoice.objects.create(
                 amount=amount,
@@ -108,14 +106,14 @@ class PaymentService:
             if invoice.payment_status:
                 raise CustomException(status_code=400, detail="Already paid")
             invoice.payment_status = True
-            if invoice.amount == validated_data.data["amount"]:
+            if invoice.amount == validated_data["amount"]:
                 invoice.save()
                 payment = Payment.objects.create(
-                    payee_name=validated_data.data["payee_name"],
-                    email=validated_data.data["email"],
-                    payment_type=validated_data.data["payment_type"],
-                    phone=validated_data.data["phone"],
-                    amount=validated_data.data["amount"],
+                    payee_name=validated_data["payee_name"],
+                    email=validated_data["email"],
+                    payment_type=validated_data["payment_type"],
+                    phone=validated_data["phone"],
+                    amount=validated_data["amount"],
                     invoice=invoice,
                     organisation_id=organisation,
                 )

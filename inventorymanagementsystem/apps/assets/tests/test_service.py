@@ -16,7 +16,6 @@ class AssetServiceTest(TestCase):
         self.organisation_uid = organisation.organisation_uid
         self.asset_service = AssetService()
         self.repairing_stock_service = RepairingStockService()
-        # self.order_service = OrderService()
 
         self.category = Category.objects.create(
             name="Electronics",

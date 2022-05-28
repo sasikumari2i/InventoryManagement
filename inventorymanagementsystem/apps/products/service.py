@@ -47,5 +47,9 @@ class ProductService:
                 organisation_id=organisation,
             )
             return new_product
+        except KeyError:
+            raise CustomException(400, "Invalid details")
+        except ValidationError:
+            raise CustomException(400, "Invalid details")
         except Category.DoesNotExist:
             raise CustomException(404, "Category not available")

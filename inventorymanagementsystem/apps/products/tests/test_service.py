@@ -4,6 +4,7 @@ from ..service import CategoryService, ProductService
 from ..serializers import CategorySerializer, ProductSerializer
 from organisations.models import Organisation
 from ..models import Category, Product
+from utils.exceptionhandler import CustomException
 
 
 class ProductServiceTest(TestCase):
@@ -27,8 +28,15 @@ class ProductServiceTest(TestCase):
         new_category = self.category_service.create_category(
             payload, self.organisation_uid
         )
+        exception_payload = {"description": "Electronic products"}
+
         self.assertTrue(isinstance(new_category, Category))
         self.assertEqual(new_category.name, "Electronics")
+
+        with self.assertRaises(CustomException):
+            self.category_service.create_category(
+                exception_payload, self.organisation_uid
+            )
 
     def test_create_product(self):
         str_category = str(self.category.category_uid)
@@ -41,6 +49,27 @@ class ProductServiceTest(TestCase):
         category = Category.objects.get(
             organisation_id=self.organisation_uid, category_uid=str_category,
         )
+
+        exception_payload = {
+            "description": "Thinkpad mod_001 i3 8GB RAM GRP",
+            "category": str_category,
+        }
+
+        exception_payload_category = {
+            "name": "Lenovo Thinkpad",
+            "description": "Thinkpad mod_001 i3 8GB RAM GRP",
+            "category": "str_category",
+        }
+
+        with self.assertRaises(CustomException):
+            self.product_service.create_product(
+                exception_payload, self.organisation_uid
+            )
+
+        with self.assertRaises(CustomException):
+            self.product_service.create_product(
+                exception_payload_category, self.organisation_uid
+            )
 
         self.assertTrue(isinstance(category, Category))
         new_product = self.product_service.create_product(

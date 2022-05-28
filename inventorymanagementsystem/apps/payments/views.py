@@ -114,7 +114,7 @@ class PaymentView(viewsets.ModelViewSet):
             validated_data = PaymentSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_payment = self.payment_service.create(
-                validated_data, invoice_uid, organisation
+                validated_data.data, invoice_uid, organisation
             )
             serialized = PaymentSerializer(new_payment)
             return Response(serialized.data)
