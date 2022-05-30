@@ -1,10 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-
-
 from .models import Vendor, Order, Customer, OrderProduct
-from .serializers import OrderSerializer
 
 
 admin.site.site_header = "Inventory Admin"

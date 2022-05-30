@@ -1,6 +1,5 @@
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
-from rest_framework.permissions import BasePermission, IsAuthenticated
 import logging
 
 from organisations.models import Organisation
@@ -156,7 +155,7 @@ class InvoicePaymentView(generics.ListAPIView):
             payment = Payment.objects.filter(invoice=invoice_id)
             serialized = PaymentSerializer(payment, many=True)
             return Response(serialized.data)
-        except ObjectDoesNotExist:
+        except Payment.DoesNotExist:
             raise CustomException(404, "The requested invoice does not exist")
 
 
@@ -189,5 +188,5 @@ class InvoiceStatusView(generics.GenericAPIView):
             invoice_details = self.get_object()
             response = self.invoice_service.update_invoice(invoice_details)
             return Response(response)
-        except Http404:
+        except Invoice.DoesNotExist:
             raise CustomException(404, "Exception in Updating Invoice Status")

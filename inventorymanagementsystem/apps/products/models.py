@@ -1,10 +1,8 @@
 import uuid
-from django.core.validators import RegexValidator
 from django.db import models
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
-from datetime import date, timedelta
-from rest_framework.authtoken.models import Token
+from datetime import date
 
 from organisations.models import Organisation
 from utils.constants import ValidationConstants

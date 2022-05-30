@@ -1,14 +1,12 @@
-import io
 from datetime import date, timedelta
 from django.db import transaction
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from rest_framework.exceptions import NotFound
 
-from .serializers import OrderSerializer, OrderProductSerializer
+from .serializers import OrderSerializer
 from .models import Order, OrderProduct, Vendor, Customer
-from ..products.models import Product, Category
+from ..products.models import Product
 from ..payments.models import Invoice
-from ..products.serializers import ProductSerializer
 from utils.exceptionhandler import CustomException
 
 

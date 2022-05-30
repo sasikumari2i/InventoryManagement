@@ -1,6 +1,5 @@
 import uuid
 import datetime
-from django.core.validators import RegexValidator
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 from django.db import models

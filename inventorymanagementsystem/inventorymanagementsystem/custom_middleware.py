@@ -1,14 +1,5 @@
-from re import sub
-from django.conf import settings
-from rest_framework.response import Response
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.exceptions import InvalidToken
-from django.contrib.auth.middleware import AuthenticationMiddleware
 
-from rest_framework.permissions import IsAuthenticated
-from django.utils.functional import SimpleLazyObject
-from django.contrib.auth.models import AnonymousUser
 from rest_framework.request import Request
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from utils.exceptionhandler import CustomException

@@ -1,7 +1,6 @@
 from django.test import TestCase
-from unittest import mock
+
 from ..service import CustomerService, VendorService, OrderService
-from ..serializers import CustomerSerializer, VendorSerializer
 from organisations.models import Organisation
 from ..models import Customer, Vendor, Order, OrderProduct
 from ...products.models import Product, Category

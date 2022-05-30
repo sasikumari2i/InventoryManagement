@@ -1,13 +1,10 @@
 import uuid
-from django.core.validators import RegexValidator
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 from django.db import models
 from datetime import date, timedelta
 
 from ..products.models import Product
-
-# from ..payments.models import Invoice
 from utils.constants import ValidationConstants
 from organisations.models import Organisation
 

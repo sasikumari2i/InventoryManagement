@@ -163,7 +163,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers' : False,
     'loggers': {
-        'django':{
+        'django': {
             'handlers':['file'],
             'level':'INFO'
         }

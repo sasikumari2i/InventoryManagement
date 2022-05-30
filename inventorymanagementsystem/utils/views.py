@@ -8,6 +8,7 @@ def error_404(request, exception):
 
     return response
 
+
 def error_500(request):
 
     message = "Internal Server Error"

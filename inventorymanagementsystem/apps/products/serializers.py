@@ -22,3 +22,5 @@ class ProductSerializer(serializers.ModelSerializer):
             "created_date",
             "updated_date",
         )
+
+

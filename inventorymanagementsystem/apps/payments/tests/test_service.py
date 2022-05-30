@@ -1,10 +1,11 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
-from unittest import mock
 from ..service import InvoiceService, PaymentService
 from organisations.models import Organisation
-from ..models import Payment, Invoice
-from ...orders.models import Vendor, Customer, OrderProduct, Order
+from ..models import Invoice, Payment
+from ...orders.models import Vendor, OrderProduct, Order
 from ...products.models import Product, Category
+from utils.exceptionhandler import CustomException
 
 
 class PaymentServiceTest(TestCase):
@@ -40,7 +41,7 @@ class PaymentServiceTest(TestCase):
 
         self.order = Order.objects.create(
             delivery_date="2022-06-03",
-            vendors_id=str_vendor_uid,
+            vendors_id=self.vendor.vendor_uid,
             organisation_id=self.organisation_uid,
         )
 
@@ -57,10 +58,17 @@ class PaymentServiceTest(TestCase):
         self.invoice.is_active = False
         self.invoice.save()
         payload = {"order": str_order, "payment_deadline": "2022-06-03"}
+        exception_payload = {"payment_deadline": "2022-06"}
+
         new_invoice = self.invoice_service.create(
             payload, str_order, self.organisation_uid
         )
         self.assertTrue(isinstance(new_invoice, Invoice))
+
+        with self.assertRaises(CustomException):
+            self.invoice_service.create(
+                exception_payload, "str_order", self.organisation_uid
+            )
 
     def test_update_invoice(self):
 
@@ -74,7 +82,7 @@ class PaymentServiceTest(TestCase):
         )
         self.assertEqual(retrieved_invoice.order, self.order)
 
-    def test_create_product(self):
+    def test_create_payment(self):
         str_invoice = str(self.invoice.invoice_uid)
         payload = {
             "payee_name": "Sasikumar",
@@ -84,7 +92,34 @@ class PaymentServiceTest(TestCase):
             "amount": 0,
         }
 
+        name_exception_payload = {
+            "payee_name": "1Sasikumar",
+            "email": "sasikumar@samsung.com",
+            "phone": 8987898789,
+            "payment_type": 2,
+            "amount": 0,
+        }
+
+        phone_exception_payload = {
+            "payee_name": "Sasikumar",
+            "email": "sasikumar@samsung.com",
+            "phone": 1987898789,
+            "payment_type": 2,
+            "amount": 0,
+        }
+
+        with self.assertRaises(CustomException):
+            payment_name_exc = self.payment_service.create(
+                name_exception_payload, str_invoice, self.organisation_uid
+            )
+
+        with self.assertRaises(CustomException):
+            payment_phone_exc = self.payment_service.create(
+                phone_exception_payload, str_invoice, self.organisation_uid
+            )
+
         new_payment = self.payment_service.create(
             payload, str_invoice, self.organisation_uid
         )
+
         self.assertEqual(new_payment.invoice.id, self.invoice.id)

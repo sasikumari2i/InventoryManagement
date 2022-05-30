@@ -1,15 +1,9 @@
-import sys
 from rest_framework import serializers
 import datetime
 from datetime import date, timedelta
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
 from .models import Vendor, Order, OrderProduct, Customer
-from ..products.models import Product
-import utils.exceptionhandler as exceptionhandler
-from ..products.serializers import ProductSerializer
 
-# from ..payments.serializers import InvoiceSerializer
 from ..payments.models import Invoice
 from utils.exceptionhandler import CustomException
 

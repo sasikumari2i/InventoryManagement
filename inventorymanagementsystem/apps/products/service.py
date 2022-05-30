@@ -1,12 +1,7 @@
-import io
-from datetime import date, timedelta
 from django.db import transaction
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from rest_framework.exceptions import NotFound
+from django.core.exceptions import ValidationError
 
-from .serializers import ProductSerializer, CategorySerializer
 from .models import Product, Category
-from ..payments.models import Invoice
 from organisations.models import Organisation
 from utils.exceptionhandler import CustomException
 
@@ -30,6 +25,8 @@ class CategoryService:
             raise CustomException(400, "Invalid details")
         except Organisation.DoesNotExist:
             raise CustomException(400, "Organisation does not exist")
+        except ValidationError:
+            raise CustomException(400, "Organisation does not exist")
 
 
 class ProductService:
@@ -51,5 +48,3 @@ class ProductService:
             raise CustomException(400, "Invalid details")
         except ValidationError:
             raise CustomException(400, "Invalid details")
-        except Category.DoesNotExist:
-            raise CustomException(404, "Category not available")

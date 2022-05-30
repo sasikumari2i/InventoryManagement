@@ -2,8 +2,6 @@ from django.urls import path, include
 from apps.orders import views
 from rest_framework import routers
 
-from .models import Vendor
-
 router = routers.DefaultRouter()
 router.register("customers", views.CustomerView, basename="customers")
 router.register("vendors", views.VendorView, basename="vendors")

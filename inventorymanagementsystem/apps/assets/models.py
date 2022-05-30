@@ -1,15 +1,14 @@
 import uuid
 from django.db import models
-from django.core.validators import RegexValidator
 from datetime import date, timedelta
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 
 from ..products.models import Product
 from ..orders.models import Customer
-from ..payments.models import Invoice
 from utils.constants import ValidationConstants
 from organisations.models import Organisation
+
 
 # Create your models here.
 class Asset(SafeDeleteModel):

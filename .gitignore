@@ -17,3 +17,4 @@ inventorymanagementsystem/utils/__pycache__/
 inventorymanagementsystem/inventorymanagementsystem/__pycache__/
 inventorymanagementsystem/.idea/
 inventorymanagementsystem/logs/*.log
+django_venv/

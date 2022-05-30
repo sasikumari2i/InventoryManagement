@@ -1,15 +1,14 @@
-import io
 from datetime import date, timedelta
 from django.core.exceptions import ValidationError
-from django.db import transaction
 
-from .serializers import InvoiceSerializer
+from django.db import transaction
+# from rest_framework.exceptions import ValidationError
+
 from .models import Invoice, Payment
 from ..orders.models import Order, Customer
 from ..orders.serializers import OrderSerializer
 from ..products.models import Product
 from utils.exceptionhandler import CustomException
-from django.contrib.auth.middleware import AuthenticationMiddleware
 
 
 class InvoiceService:
@@ -44,9 +43,12 @@ class InvoiceService:
                 organisation_id=order.organisation_id,
             )
 
+            order = Order.objects.get(order_uid=invoice.order.order_uid)
             return invoice
         except ValidationError:
             raise CustomException(400, "Validation Error in payment service")
+        except KeyError:
+            raise CustomException(400, "Key Error in payment service")
 
     def total_amount(self, order, organisation):
         """Calculates total amount of the order to be placed"""
@@ -117,7 +119,8 @@ class PaymentService:
                     invoice=invoice,
                     organisation_id=organisation,
                 )
-                payment.save()
+                if payment.full_clean():
+                    payment.save()
             else:
                 raise CustomException(400, "Please give correct amount")
             return payment
@@ -125,3 +128,5 @@ class PaymentService:
             raise CustomException(exc.status_code, exc.detail)
         except Invoice.DoesNotExist:
             raise CustomException(404, " Invoice not available")
+        except ValidationError:
+            raise CustomException(400, "Enter Valid Details")

@@ -1,7 +1,5 @@
 from django.test import TestCase
-from unittest import mock
 from ..service import CategoryService, ProductService
-from ..serializers import CategorySerializer, ProductSerializer
 from organisations.models import Organisation
 from ..models import Category, Product
 from utils.exceptionhandler import CustomException
