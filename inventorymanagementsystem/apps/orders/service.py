@@ -43,7 +43,7 @@ class OrderService:
             order_product_data.save()
             new_order.save()
             return new_order
-        except KeyError as exc:
+        except KeyError:
             raise CustomException(400, "Exception in Order Creation")
         except Product.DoesNotExist:
             raise CustomException(400, "Please enter available products only")

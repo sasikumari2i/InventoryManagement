@@ -1,5 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
+from utils.exceptionhandler import CustomException
 from ..service import CustomerService, VendorService, OrderService
 from organisations.models import Organisation
 from ..models import Customer, Vendor, Order, OrderProduct
@@ -41,7 +43,7 @@ class OrderServiceTest(TestCase):
 
         self.order = Order.objects.create(
             delivery_date="2022-06-03",
-            vendors_id=str_vendor_uid,
+            vendors_id=self.vendor.vendor_uid,
             organisation_id=self.organisation_uid,
         )
 
@@ -56,9 +58,22 @@ class OrderServiceTest(TestCase):
             "email": "sasi@gmail.com",
             "phone_number": "8789878916",
         }
+
+        exception_payload = {
+            "name": "1Sasi",
+            "address": "Chennai",
+            "email": "sasi@gmail.com",
+            "phone_number": "8789878916",
+        }
+
         new_customer = self.customer_service.create(payload, self.organisation_uid)
         self.assertTrue(isinstance(new_customer, Customer))
         self.assertEqual(new_customer.name, "Sasi")
+
+        customer_name_exc = self.customer_service.create(
+            exception_payload, self.organisation_uid
+        )
+        self.assertRaises(ValidationError, customer_name_exc.full_clean)
 
     def test_create_vendor(self):
         payload = {
@@ -67,15 +82,29 @@ class OrderServiceTest(TestCase):
             "email": "lenovovensam@lenovo.com",
             "phone_number": "8789878981",
         }
+
+        exception_payload = {
+            "name": "1Lenovo Vendors Sample",
+            "address": "Chennai",
+            "email": "lenovovensam@lenovo.com",
+            "phone_number": "8789878981",
+        }
+
         new_vendor = self.vendor_service.create(payload, self.organisation_uid)
         self.assertTrue(isinstance(new_vendor, Vendor))
         self.assertEqual(new_vendor.name, "Lenovo Vendors Sample")
+
+        vendor_name_exc = self.vendor_service.create(
+            exception_payload, self.organisation_uid
+        )
+        self.assertRaises(ValidationError, vendor_name_exc.full_clean)
 
     def test_create_order(self):
 
         str_vendor = str(self.vendor.vendor_uid)
         str_product = str(self.product.product_uid)
         payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
+        exception_payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
         order_products = [{"product": str_product, "quantity": 10, "price": 10000}]
         new_order = self.order_service.create(
             payload, order_products, self.organisation_uid
@@ -86,11 +115,17 @@ class OrderServiceTest(TestCase):
         invoice = Invoice.objects.get(order_id=new_order.order_uid)
         self.assertEqual(invoice.order, new_order)
 
+        with self.assertRaises(CustomException):
+            self.order_service.create(
+                exception_payload, order_products, self.organisation_uid
+            )
+
     def test_update_order(self):
         str_vendor = str(self.vendor.vendor_uid)
         str_product = str(self.product.product_uid)
 
         payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
+        exception_payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
         order_products = [{"product": str_product, "quantity": 20, "price": 10000}]
 
         updated_order = self.order_service.update(
@@ -98,6 +133,14 @@ class OrderServiceTest(TestCase):
         )
         self.assertTrue(isinstance(updated_order, Order))
 
+        with self.assertRaises(CustomException):
+            self.order_service.create(
+                exception_payload, order_products, self.organisation_uid
+            )
+
     def test_update_delivery(self):
         status_response = self.order_service.update_delivery(self.order)
         self.assertEqual(status_response["message"], "Delivery Status Updated")
+
+        status_response = self.order_service.update_delivery(self.order)
+        self.assertEqual(status_response["message"], "It is already delivered")

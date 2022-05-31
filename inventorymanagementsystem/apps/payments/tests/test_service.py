@@ -45,12 +45,26 @@ class PaymentServiceTest(TestCase):
             organisation_id=self.organisation_uid,
         )
 
+        self.order_exc = Order.objects.create(
+            delivery_date="2022-06-03",
+            vendors_id=self.vendor.vendor_uid,
+            organisation_id=self.organisation_uid,
+        )
+
+        self.order_product_exc = OrderProduct.objects.create(
+            product=self.product, order=self.order_exc, quantity=10
+        )
+
         self.order_product = OrderProduct.objects.create(
             product=self.product, order=self.order, quantity=10
         )
 
         self.invoice = Invoice.objects.create(
             amount=0, order=self.order, organisation_id=self.organisation_uid,
+        )
+
+        self.invoice_exc = Invoice.objects.create(
+            amount=0, order=self.order_exc, organisation_id=self.organisation_uid,
         )
 
     def test_create_invoice(self):
@@ -84,6 +98,7 @@ class PaymentServiceTest(TestCase):
 
     def test_create_payment(self):
         str_invoice = str(self.invoice.invoice_uid)
+        str_invoice_exc = str(self.invoice_exc.invoice_uid)
         payload = {
             "payee_name": "Sasikumar",
             "email": "sasikumar@samsung.com",
@@ -108,18 +123,14 @@ class PaymentServiceTest(TestCase):
             "amount": 0,
         }
 
-        with self.assertRaises(CustomException):
-            payment_name_exc = self.payment_service.create(
-                name_exception_payload, str_invoice, self.organisation_uid
+        payment_name_exc = self.payment_service.create(
+                name_exception_payload, str_invoice_exc, self.organisation_uid
             )
-
-        with self.assertRaises(CustomException):
-            payment_phone_exc = self.payment_service.create(
-                phone_exception_payload, str_invoice, self.organisation_uid
-            )
+        self.assertRaises(ValidationError, payment_name_exc.full_clean)
 
         new_payment = self.payment_service.create(
             payload, str_invoice, self.organisation_uid
         )
 
         self.assertEqual(new_payment.invoice.id, self.invoice.id)
+

@@ -119,8 +119,8 @@ class PaymentService:
                     invoice=invoice,
                     organisation_id=organisation,
                 )
-                if payment.full_clean():
-                    payment.save()
+                # if payment.full_clean():
+                #     payment.save()
             else:
                 raise CustomException(400, "Please give correct amount")
             return payment

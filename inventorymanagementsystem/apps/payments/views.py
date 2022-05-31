@@ -1,4 +1,7 @@
+# from django.core.exceptions import ValidationError
+
 from rest_framework import viewsets, generics
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 import logging
 
@@ -120,6 +123,8 @@ class PaymentView(viewsets.ModelViewSet):
         except CustomException as exc:
             logger.error("Custom Exception in Payment Creation")
             raise CustomException(exc.status_code, exc.detail)
+        except ValidationError:
+            raise CustomException(400, "Enter a valid name")
 
     def update(self, request, *args, **kwargs):
         """Overided Update method for restricting the updates"""

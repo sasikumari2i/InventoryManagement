@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+from utils.exceptionhandler import CustomException
 from ..service import AssetService, RepairingStockService
 from organisations.models import Organisation
 from ..models import Asset, RepairingStock
@@ -71,42 +72,65 @@ class AssetServiceTest(TestCase):
             "customer": str_customer,
             "product": str_product,
         }
+
+        exception_payload = {
+            "serial_no": "ser_no_1",
+            "customer": str_customer,
+            "product": str_product,
+        }
         new_asset = self.asset_service.create(payload, self.organisation_uid)
         self.assertTrue(isinstance(new_asset, Asset))
         self.assertEqual(new_asset.name, "DELL Laptop Sam")
+
+        with self.assertRaises(CustomException):
+            self.asset_service.create(exception_payload, self.organisation_uid)
 
     def test_update_asset(self):
         str_customer = str(self.customer.customer_uid)
         str_product = str(self.product.product_uid)
 
         payload = {"customer": str_customer, "product": str_product}
+        exception_payload = {"customer": str_customer, "product": str_product}
         updated_asset = self.asset_service.update(self.asset, payload)
         self.assertTrue(isinstance(updated_asset, Asset))
+
+        with self.assertRaises(CustomException):
+            self.asset_service.create(exception_payload, self.organisation_uid)
 
     def test_close_asset(self):
         data = {}
         status_response = self.asset_service.close_asset(self.asset, data)
         self.assertEqual(status_response["message"], "Assigned asset is closed")
+        updated_status = self.asset_service.close_asset(self.asset, data)
+        self.assertEqual(updated_status["message"], "It is already not active")
 
     def test_create_repairing_stock(self):
         self.asset_new.is_active = False
         self.asset_new.save()
         str_asset = str(self.asset_new.asset_uid)
         payload = {"asset": str_asset}
+        exception_payload = {"asset": "98uhgfvb6567656yhgfdrtyugfdsrtyu"}
         new_repairing_stock = self.repairing_stock_service.create(
             payload, self.organisation_uid
         )
         self.assertTrue(isinstance(new_repairing_stock, RepairingStock))
+
+        with self.assertRaises(CustomException):
+            self.asset_service.create(exception_payload, self.organisation_uid)
 
     def test_update_repairing_stock(self):
         str_asset = str(self.asset.asset_uid)
         str_product = str(self.product.product_uid)
 
         payload = {"asset": str_asset, "product": str_product}
+        exception_payload = {"asset": str_asset, "product": str_product}
         updated_repairing_stock = self.repairing_stock_service.update(
             self.repairing_stock, payload
         )
         self.assertTrue(isinstance(updated_repairing_stock, RepairingStock))
+
+        with self.assertRaises(CustomException):
+            self.asset_service.create(exception_payload, self.organisation_uid)
 
     def test_close_repairing_stock(self):
         data = {}
@@ -114,3 +138,7 @@ class AssetServiceTest(TestCase):
             self.repairing_stock, data
         )
         self.assertEqual(status_response["message"], "Repairing Stock asset is closed")
+        updated_status = self.repairing_stock_service.close_repairing_stock(
+            self.repairing_stock, data
+        )
+        self.assertEqual(updated_status["message"], "It is already not active")
