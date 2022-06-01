@@ -17,8 +17,8 @@ class CustomerSerializer(serializers.ModelSerializer):
             "address",
             "email",
             "phone_number",
-            "created_date",
-            "updated_date",
+            # "created_date",
+            # "updated_date",
         )
 
 
@@ -95,8 +95,8 @@ class VendorSerializer(serializers.ModelSerializer):
             "address",
             "email",
             "phone_number",
-            "created_date",
-            "updated_date",
+            # "created_date",
+            # "updated_date",
         )
 
 

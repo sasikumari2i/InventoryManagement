@@ -2,8 +2,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, generics
 import logging
 from datetime import date
-from rest_framework.exceptions import NotFound
-from django.core.exceptions import ValidationError
+from rest_framework.exceptions import NotFound, ValidationError
 from django.http import Http404
 
 from organisations.models import Organisation
@@ -146,8 +145,8 @@ class CustomerView(viewsets.ModelViewSet):
             )
             serialized = CustomerSerializer(new_customer)
             return Response(serialized.data)
-        except ValidationError:
-            raise CustomException(400, "Exception in Customer Creation")
+        except ValidationError as exc:
+            raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
     def update(self, request, *args, **kwargs):
         """Updates customer using given data"""
@@ -162,8 +161,9 @@ class CustomerView(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             self.perform_update(serializer)
             return Response(serializer.data)
-        except ValidationError:
-            raise CustomException(400, "Exception in Updating Order")
+        except ValidationError as exc:
+            raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
+
 
     def destroy(self, request, *args, **kwargs):
         """Deletes the given customer"""
@@ -207,8 +207,9 @@ class VendorView(viewsets.ModelViewSet):
             new_vendor = self.vendor_service.create(validated_data.data, organisation)
             serialized = VendorSerializer(new_vendor)
             return Response(serialized.data)
-        except ValidationError:
-            raise CustomException(400, "Exception in creating new vendors")
+        except ValidationError as exc:
+            raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
+
 
     def update(self, request, *args, **kwargs):
         """Updates vendor using given data"""

@@ -37,7 +37,6 @@ class AssetService:
                 pass
 
             if product.available_stock <= 0:
-                print("Inside Asset")
                 raise CustomException(400, "Product is out of Stock")
             new_asset = Asset.objects.create(
                 name=validated_data["name"],

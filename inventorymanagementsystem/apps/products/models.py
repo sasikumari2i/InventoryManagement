@@ -31,7 +31,7 @@ class Product(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     product_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
+    name = models.CharField(max_length=100)
     description = models.CharField(max_length=400, null=True)
     available_stock = models.IntegerField(default=0)
     price = models.FloatField(default=0)

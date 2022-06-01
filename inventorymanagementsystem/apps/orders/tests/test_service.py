@@ -104,7 +104,7 @@ class OrderServiceTest(TestCase):
         str_vendor = str(self.vendor.vendor_uid)
         str_product = str(self.product.product_uid)
         payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
-        exception_payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
+        exception_payload = {"delivery_date": "2022-06-07"}
         order_products = [{"product": str_product, "quantity": 10, "price": 10000}]
         new_order = self.order_service.create(
             payload, order_products, self.organisation_uid
@@ -125,7 +125,7 @@ class OrderServiceTest(TestCase):
         str_product = str(self.product.product_uid)
 
         payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
-        exception_payload = {"vendors": str_vendor, "delivery_date": "2022-06-07"}
+        exception_payload = {"delivery_date": "2022-06-07"}
         order_products = [{"product": str_product, "quantity": 20, "price": 10000}]
 
         updated_order = self.order_service.update(

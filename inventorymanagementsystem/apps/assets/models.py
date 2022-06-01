@@ -72,4 +72,4 @@ class RepairingStock(SafeDeleteModel):
     is_active = models.BooleanField(default=True, null=False)
 
     def __str__(self):
-        return self.name
+        return "Repairing Stock"

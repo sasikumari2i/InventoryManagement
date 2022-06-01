@@ -20,6 +20,8 @@ class OrderService:
 
         try:
             products = Product.objects.filter(organisation_id=organisation_uid)
+            vendor = Vendor.objects.get(vendor_uid=validated_data["vendors"],
+                                        organisation_id=organisation_uid)
             new_order = Order.objects.create(
                 delivery_date=validated_data["delivery_date"],
                 vendors_id=validated_data["vendors"],
@@ -47,6 +49,8 @@ class OrderService:
             raise CustomException(400, "Exception in Order Creation")
         except Product.DoesNotExist:
             raise CustomException(400, "Please enter available products only")
+        except Vendor.DoesNotExist:
+            raise CustomException(400, "Invalid Vendor")
 
     @transaction.atomic
     def update(self, order_details, validated_data, order_products, organisation_uid):
@@ -54,6 +58,8 @@ class OrderService:
 
         try:
             products = Product.objects.filter(organisation_id=organisation_uid)
+            vendor = Vendor.objects.get(vendor_uid=validated_data["vendors"],
+                                        organisation_id=organisation_uid)
             product_orders = OrderProduct.objects.all()
             order_details.delivery_date = validated_data["delivery_date"]
             order_details.vendors_uid = validated_data["vendors"]

@@ -1,11 +1,8 @@
+from django.http import Http404
 from rest_framework.response import Response
-from rest_framework.request import Request
-from datetime import date, timedelta
+from datetime import date
 from rest_framework import viewsets, generics
-from rest_framework.exceptions import NotFound
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.contrib.auth.models import User
-from rest_framework import permissions, authentication
+from rest_framework.exceptions import NotFound, ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
 
 from organisations.models import Organisation
@@ -40,11 +37,6 @@ class CategoryView(viewsets.ModelViewSet):
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
 
-    # def list(self, request, *args, **kwargs):
-    #
-    #     response = super().list(request)
-    #     return response
-
     def create(self, request, *args, **kwargs):
 
         try:
@@ -62,13 +54,18 @@ class CategoryView(viewsets.ModelViewSet):
             raise CustomException(exc.status_code, exc.detail)
 
     def update(self, request, *args, **kwargs):
-        partial = kwargs.pop("partial", False)
-        instance = self.get_object()
-        instance.updated_date = date.today()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        return Response(serializer.data)
+        try:
+            partial = kwargs.pop("partial", False)
+            instance = self.get_object()
+            instance.updated_date = date.today()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            return Response(serializer.data)
+        except Http404:
+            raise CustomException(404, "Category not available")
+        except ValidationError as exc:
+            raise CustomException(400, list(exc.get_full_details().values())[0][0]['message'])
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting
@@ -104,16 +101,21 @@ class ProductView(viewsets.ModelViewSet):
             raise CustomException(404, "Invalid Credentials")
 
     def create(self, request, *args, **kwargs):
-        validated_data = ProductSerializer(data=request.data)
-        validated_data.is_valid(raise_exception=True)
-        organisation_uid = self.request.query_params.get("organisation", None)
-        if organisation_uid is None:
-            raise CustomException(404, "Credentials Required")
-        new_product = self.product_service.create_product(
-            validated_data.data, organisation_uid
-        )
-        serialized = ProductSerializer(new_product)
-        return Response(serialized.data)
+        try:
+            validated_data = ProductSerializer(data=request.data)
+            validated_data.is_valid(raise_exception=True)
+            organisation_uid = self.request.query_params.get("organisation", None)
+            if organisation_uid is None:
+                raise CustomException(404, "Credentials Required")
+            new_product = self.product_service.create_product(
+                validated_data.data, organisation_uid
+            )
+            serialized = ProductSerializer(new_product)
+            return Response(serialized.data)
+        except ValidationError as exc:
+            raise CustomException(400, list(exc.get_full_details().values())[0][0]['message'])
+        except Category.DoesNotExist:
+            raise CustomException(404, "Invalid Category")
 
     def update(self, request, *args, **kwargs):
         try:
@@ -128,6 +130,10 @@ class ProductView(viewsets.ModelViewSet):
             return Response(serializer.data)
         except Category.DoesNotExist:
             raise CustomException(404, "Invalid Category")
+        except Http404:
+            raise CustomException(404, "Product not available")
+        except ValidationError as exc:
+            raise CustomException(400, list(exc.get_full_details().values())[0][0]['message'])
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting
@@ -136,7 +142,7 @@ class ProductView(viewsets.ModelViewSet):
             instance = self.get_object()
             super().perform_destroy(instance)
             return Response({"message": "Product Deleted"})
-        except NotFound:
+        except Http404:
             raise CustomException(404, "Object not available")
 
 
@@ -151,8 +157,6 @@ class CategoryProductView(generics.ListAPIView):
         try:
             if self.request.query_params is None:
                 raise CustomException(400, "Credentials required")
-            # if organisation_uid is None:
-            #     raise CustomException(400, "Credentials required")
             organisation_uid = self.request.query_params.get("organisation")
             organisation = Organisation.objects.get(organisation_uid=organisation_uid)
             products = Product.objects.filter(organisation=organisation).order_by("id")

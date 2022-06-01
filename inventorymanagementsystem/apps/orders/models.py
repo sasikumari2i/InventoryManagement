@@ -13,11 +13,13 @@ class Vendor(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     vendor_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
+    name = models.CharField(max_length=100)
     address = models.CharField(max_length=200, null=True)
-    email = models.EmailField(null=True)
+    email = models.EmailField(null=True, unique=True)
     phone_number = models.CharField(
-        max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX]
+        max_length=10,
+        unique=True,
+        validators=[ValidationConstants.PHONE_NUMBER_REGEX]
     )
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
@@ -38,9 +40,11 @@ class Customer(SafeDeleteModel):
     customer_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
     address = models.CharField(max_length=400, null=True)
-    email = models.EmailField(null=True)
+    email = models.EmailField(null=True, unique=True)
     phone_number = models.CharField(
-        max_length=10, validators=[ValidationConstants.PHONE_NUMBER_REGEX]
+        max_length=10,
+        unique=True,
+        validators=[ValidationConstants.PHONE_NUMBER_REGEX]
     )
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
