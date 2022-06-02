@@ -94,7 +94,7 @@ class OrderService:
             raise CustomException(exc.status_code, exc.detail)
         except Vendor.DoesNotExist:
             raise CustomException(404, "Vendor does not exist")
-        except Product.DoesNotExist:
+        except Product.DoesNotExist and OrderProduct.DoesNotExist:
             raise CustomException(404, "Product does not exist")
 
     def create_invoice(self, new_order, organisation_uid):
@@ -138,6 +138,24 @@ class OrderService:
             return response
         except NotFound:
             raise CustomException(400, "Internal error in updating delivery status")
+
+    # def cancel_order(self, order_details):
+    #     """Updates the delivery status of the given order"""
+    #
+    #     try:
+    #         response = {}
+    #         order_status = order_details.is_cancelled
+    #         if order_details.delivery_status:
+    #             response = {"message": "Order is already delivered"}
+    #         elif order_status:
+    #             response = {"message": "It is already cancelled"}
+    #         elif not order_status:
+    #             order_details.delivery_status = True
+    #             order_details.save()
+    #             response = {"message": "Order Cancelled"}
+    #         return response
+    #     except NotFound:
+    #         raise CustomException(400, "Internal error in Cancelling order")
 
 
 class VendorService:

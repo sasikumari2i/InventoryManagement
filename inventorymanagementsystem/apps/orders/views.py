@@ -76,6 +76,8 @@ class OrderView(viewsets.ModelViewSet):
         try:
             organisation_uid = self.request.query_params.get("organisation", None)
             order_details = self.get_object()
+            # if order_details.delivery_status:
+            #     raise CustomException(400, "Delivered product cannot be updated")
             order_products = request.data["order_products"]
             request.data.pop("order_products")
             validated_data = OrderSerializer(data=request.data)
@@ -86,7 +88,7 @@ class OrderView(viewsets.ModelViewSet):
             serializer = OrderSerializer(order)
             return Response(serializer.data)
         except KeyError:
-            raise CustomException(400, "Exception in Updating Order View")
+            raise CustomException(400, "Provide all the required credentials")
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
 
@@ -97,7 +99,7 @@ class OrderView(viewsets.ModelViewSet):
             response = self.update(request)
             return response
         except KeyError:
-            raise CustomException(400, "Exception in Patch Order")
+            raise CustomException(400, "Provide all the required credentials")
 
     def destroy(self, request, *args, **kwargs):
         """Deletes the given order"""
@@ -107,6 +109,8 @@ class OrderView(viewsets.ModelViewSet):
             return Response({"message": "Order Deleted"})
         except Http404:
             raise CustomException(404, "Exception in Delete Order")
+        except CustomException as exc:
+            raise CustomException(exc.status_code,exc.detail)
 
 
 class CustomerView(viewsets.ModelViewSet):
@@ -164,7 +168,6 @@ class CustomerView(viewsets.ModelViewSet):
         except ValidationError as exc:
             raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
-
     def destroy(self, request, *args, **kwargs):
         """Deletes the given customer"""
 
@@ -210,7 +213,6 @@ class VendorView(viewsets.ModelViewSet):
         except ValidationError as exc:
             raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
-
     def update(self, request, *args, **kwargs):
         """Updates vendor using given data"""
 
@@ -240,7 +242,7 @@ class VendorView(viewsets.ModelViewSet):
 class DeliveryView(generics.GenericAPIView):
     """Gives the view for updating delivery status of order"""
 
-    serializer_class = DeliverySerializer
+    # serializer_class = DeliverySerializer
     lookup_field = "order_uid"
     order_service = OrderService()
 

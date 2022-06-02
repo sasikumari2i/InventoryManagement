@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 
 from django.db import transaction
 # from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import NotFound
 
 from .models import Invoice, Payment
 from ..orders.models import Order, Customer
@@ -43,7 +44,7 @@ class InvoiceService:
                 organisation_id=order.organisation_id,
             )
 
-            order = Order.objects.get(order_uid=invoice.order.order_uid)
+            order = orders.get(order_uid=invoice.order.order_uid)
             return invoice
         except ValidationError:
             raise CustomException(400, "Validation Error in payment service")
