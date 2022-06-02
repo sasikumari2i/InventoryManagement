@@ -219,9 +219,7 @@ class ProductAssetView(generics.ListAPIView):
         try:
             organisation = self.request.query_params.get("organisation", None)
             product_id = self.kwargs["product"]
-            assets = Asset.objects.filter(
-                product=product_id, organisation_id=organisation
-            )
+            assets = Asset.objects.select_related('inventory').filter(inventory__product__product_uid=product_id)
             serialized = AssetSerializer(assets, many=True)
             return Response(serialized.data)
         except NotFound:
@@ -298,8 +296,8 @@ class ProductRepairingStockView(generics.ListAPIView):
         try:
             organisation = self.request.query_params.get("organisation", None)
             product_id = self.kwargs["product"]
-            repairing_stocks = RepairingStock.objects.filter(
-                product=product_id, organisation_id=organisation
+            repairing_stocks = RepairingStock.objects.select_related(
+                'asset').filter(asset__inventory__product__product_uid=product_id
             )
             serialized = RepairingStockSerializer(repairing_stocks, many=True)
             return Response(serialized.data)
