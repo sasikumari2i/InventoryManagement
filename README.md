@@ -27,3 +27,21 @@ list field in **settings.py** file
 - organisations
 - assets
 - payments
+
+
+### Prerequisites:
+- Git clone the main branch from the remote repository into the local repository
+- install virtual environment using 
+```{pip install virtualenv}```
+- Create a Virtual environment for the project in a separate directory using  
+```{virtualenv <my_env_name>}```
+- Keep the virtual environment directory parallel to the project directory
+- Activate the virtual environment using command in cmd
+ ```{virtual_environment_name}\scripts\activate``` 
+- To install the required packages for the application use the requirement.txt file in the git 
+- Command to install the required packages are 
+```pip install -r requirement.txt ```
+- Mention the database details in the ```settings.py``` file in the project
+- Add the created the apps in the "Installed apps" list in settings.py file
+- Run the following command from the base directory to execute the migration scripts in the apps ```python manage.py migrate {app-name}```  
+- Run the project using the command ```python manage.py runserver```
