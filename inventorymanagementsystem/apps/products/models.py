@@ -68,9 +68,8 @@ class Inventory(SafeDeleteModel):
     )
     inventory_uid = models.UUIDField(default=uuid.uuid4, editable=False,
                                      unique=True)
-    serial_no = models.UUIDField(default=uuid.uuid1, editable=False,
-                                 unique=True)
+    serial_no = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.inventory_uid
+        return self.serial_no

@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="inventorymanagementsystem.apps.products.models.organisations" />
+          <option value="inventorymanagementsystem.apps.products.models.utils" />
+          <option value="inventorymanagementsystem.apps.orders.models.organisations" />
+          <option value="inventorymanagementsystem.apps.orders.models.utils" />
+          <option value="inventorymanagementsystem.apps.payments.models.utils" />
+          <option value="inventorymanagementsystem.apps.payments.models.organisations" />
+          <option value="inventorymanagementsystem.apps.assets.models.utils" />
+          <option value="inventorymanagementsystem.apps.assets.models.organisations" />
+          <option value="inventorymanagementsystem.apps.orders.serializers.utils" />
+          <option value="inventorymanagementsystem.organisations.urls.organisations" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

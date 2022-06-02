@@ -2,11 +2,14 @@ from rest_framework.response import Response
 from rest_framework import viewsets, generics
 import logging
 from datetime import date
+import base64 as b64
+import csv
 from rest_framework.exceptions import NotFound, ValidationError
 from django.http import Http404
 
 from organisations.models import Organisation
 from .models import Order, Customer, Vendor
+from ..products.models import Inventory
 from .service import OrderService, VendorService, CustomerService
 from .serializers import (
     CustomerSerializer,
@@ -63,8 +66,7 @@ class OrderView(viewsets.ModelViewSet):
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_order = self.order_service.create(
-                validated_data.data, order_products, organisation_uid
-            )
+                validated_data.data, order_products, organisation_uid)
             serialized = OrderSerializer(new_order)
             return Response(serialized.data)
         except Vendor.DoesNotExist:
@@ -136,17 +138,17 @@ class CustomerView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         """Creates new customer using given data"""
 
-        try:
-            validated_data = CustomerSerializer(data=request.data)
-            validated_data.is_valid(raise_exception=True)
-            organisation = self.request.query_params.get("organisation", None)
-            new_customer = self.customer_service.create(
-                validated_data.data, organisation
-            )
-            serialized = CustomerSerializer(new_customer)
-            return Response(serialized.data)
-        except ValidationError as exc:
-            raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
+        # try:
+        #     validated_data = CustomerSerializer(data=request.data)
+        #     validated_data.is_valid(raise_exception=True)
+        #     organisation = self.request.query_params.get("organisation", None)
+        #     new_customer = self.customer_service.create(
+        #         validated_data.data, organisation
+        #     )
+        #     serialized = CustomerSerializer(new_customer)
+        #     return Response(serialized.data)
+        # except ValidationError as exc:
+        #     raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
     def update(self, request, *args, **kwargs):
         """Updates customer using given data"""

@@ -2,6 +2,7 @@ from datetime import date, timedelta
 from django.db import transaction
 from django.core.exceptions import ValidationError
 from rest_framework.exceptions import NotFound
+import base64
 
 from .serializers import OrderSerializer
 from .models import Order, OrderProduct, Vendor, Customer
@@ -40,6 +41,9 @@ class OrderService:
                     product=product_details,
                     quantity=product["quantity"],
                 )
+                inventories = self.create_inventory(product['inventory'],
+                                                    product_details.product_uid,
+                                                    product["quantity"])
             invoice = self.create_invoice(new_order, organisation_uid)
             invoice.save()
             order_product_data.save()
@@ -51,6 +55,34 @@ class OrderService:
             raise CustomException(400, "Please enter available products only")
         except Vendor.DoesNotExist:
             raise CustomException(400, "Invalid Vendor")
+
+    def create_inventory(self, inventories,product_uid, quantity):
+        """Read employees.txt file as csv and convert
+        into the list of employee dictionary
+        """
+        # print(request.data['inventories'])
+        csv_file = base64.b64decode(inventories).decode()
+        # csv_list = csv_file.split('\n')
+        csv_list = [word.split(',') for word in csv_file.split('\n')]
+        print(csv_list)
+        products = list()
+        heading = list()
+        # csv_file = request.data['inventories']
+        # ifile = open(csv_file, "rb")
+        # csv_reader = csv.reader(csv_file
+        line_count = 0
+        print(type(csv_list))
+        for row in csv_list:
+            # index = row.decode().replace('\r\n', '').split(',')
+            if line_count == 0:
+                heading = row
+                line_count = 1
+            else:
+                inventory = Inventory(serial_no=row[0],product_id=product_uid)
+                products.append(inventory)
+
+        inventories = Inventory.objects.bulk_create(products)
+        return inventories
 
     @transaction.atomic
     def update(self, order_details, validated_data, order_products, organisation_uid):
