@@ -53,4 +53,5 @@ class Product(SafeDeleteModel):
     )
 
     def __str__(self):
+        print("Inside Product model")
         return self.name
