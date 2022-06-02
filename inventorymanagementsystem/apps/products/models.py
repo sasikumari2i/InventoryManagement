@@ -53,5 +53,24 @@ class Product(SafeDeleteModel):
     )
 
     def __str__(self):
-        print("Inside Product model")
         return self.name
+
+
+class Inventory(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    product = models.ForeignKey(
+        Product,
+        to_field="product_uid",
+        db_column="product_uid",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    inventory_uid = models.UUIDField(default=uuid.uuid4, editable=False,
+                                     unique=True)
+    serial_no = models.UUIDField(default=uuid.uuid1, editable=False,
+                                 unique=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.inventory_uid

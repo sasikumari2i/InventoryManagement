@@ -5,7 +5,7 @@ from rest_framework.exceptions import NotFound
 
 from .serializers import OrderSerializer
 from .models import Order, OrderProduct, Vendor, Customer
-from ..products.models import Product
+from ..products.models import Product, Inventory
 from ..payments.models import Invoice
 from utils.exceptionhandler import CustomException
 
