@@ -14,4 +14,9 @@ urlpatterns = [
         views.CategoryProductView.as_view(),
         name="category-products",
     ),
+    path(
+        "product/<str:product>/inventories",
+        views.InventoryView.as_view(),
+        name="product-inventories",
+    ),
 ]

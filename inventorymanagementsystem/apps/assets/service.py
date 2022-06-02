@@ -5,7 +5,8 @@ import datetime
 
 from .models import Asset, RepairingStock
 from ..orders.models import Customer
-from ..products.models import Product, Category
+from .serializers import AssetSerializer
+from ..products.models import Product, Category, Inventory
 from utils.exceptionhandler import CustomException
 
 
@@ -18,8 +19,10 @@ class AssetService:
         """Creates new Asset from the given data"""
 
         try:
-            product = Product.objects.get(
-                organisation_id=organisation_uid, product_uid=validated_data["product"],
+            inventory = Inventory.objects.get(
+                organisation_id=organisation_uid, product_id=validated_data["product"],
+                serial_no=validated_data["serial_no"],
+                is_active=True
             )
             customer = Customer.objects.get(
                 organisation_id=organisation_uid,
@@ -28,33 +31,38 @@ class AssetService:
 
             try:
                 asset = Asset.objects.get(
-                    product_id=product.id,
-                    serial_no=validated_data["serial_no"],
+                    inventory_id=inventory.inventory_uid,
                     is_active=True,
+                    organisation_id=organisation_uid
                 )
                 raise CustomException(400, "This product is already assigned")
             except Asset.DoesNotExist:
                 pass
 
-            if product.available_stock <= 0:
-                raise CustomException(400, "Product is out of Stock")
+            # if product.available_stock <= 0:
+            #     raise CustomException(400, "Product is out of Stock")
             new_asset = Asset.objects.create(
-                name=validated_data["name"],
-                serial_no=validated_data["serial_no"],
+                inventory_id=inventory.inventory_uid,
                 customer_id=validated_data["customer"],
                 organisation_id=organisation_uid,
-                product_id=validated_data["product"],
             )
+            product = Product.objects.get(product_uid=validated_data["product"],
+                                          organisation_id=organisation_uid)
             product.available_stock -= 1
+            inventory.is_active = False
             product.save()
+            inventory.save()
             return new_asset
         except KeyError as exc:
             raise CustomException(400, "Exception in Asset Service")
-        except Product.DoesNotExist:
+        except Inventory.DoesNotExist:
             raise CustomException(400, "Invalid Product")
         except Customer.DoesNotExist:
             raise CustomException(400, "Invalid Customer")
+        except Product.DoesNotExist:
+            raise CustomException(400, "Invalid Customer")
 
+    @transaction.atomic()
     def update(self, instance, request):
         """Updates the Asset from the given data"""
 
@@ -64,22 +72,29 @@ class AssetService:
             customer = Customer.objects.get(
                 customer_uid=request["customer"], organisation_id=instance.organisation
             )
-            product = Product.objects.get(
-                product_uid=request["product"], organisation_id=instance.organisation
+            product = Product.objects.get(product_uid=request["product"],
+                                         organisation_id=instance.organisation)
+            inventory = Inventory.objects.get(
+                product_id=request["product"],
+                serial_no=request["serial_no"],
+                is_available=True,
+                organisation_id=instance.organisation
             )
             instance.updated_date = date.today()
-            if product.id != instance.product_id:
-                if product.available_stock <= 0:
-                    raise CustomException(400, "Product is out of stock")
-                product.available_stock -= 1
-                product.save()
-                new_product = Product.objects.get(product_uid=instance.product_id)
-                new_product.available_stock += 1
-                new_product.save()
+            if inventory.inventory_uid != instance.inventory_id:
+                old_inventory = Inventory.objects.get(inventory_uid=instance.inventory_id)
+                old_inventory.is_available= True
+                old_inventory.save()
+                inventory.is_available = False
+                instance.inventory_id=inventory.inventory_uid
+            inventory.save()
+            instance.save()
             return instance
         except Customer.DoesNotExist:
             raise CustomException(404, "Invalid Customer")
         except Product.DoesNotExist:
+            raise CustomException(404, "Invalid Product")
+        except Inventory.DoesNotExist:
             raise CustomException(404, "Invalid Product")
         except KeyError:
             raise CustomException(400, "Product and Customer is mandatory for updating")
@@ -145,9 +160,7 @@ class RepairingStockService:
                 )
 
             new_repairing_stock = RepairingStock.objects.create(
-                serial_no=asset.serial_no,
                 asset_id=validated_data["asset"],
-                product_id=asset.product_id,
                 organisation_id=organisation_uid,
             )
             return new_repairing_stock
@@ -156,23 +169,23 @@ class RepairingStockService:
         except Asset.DoesNotExist:
             raise CustomException(400, "Invalid Asset")
 
-    def update(self, instance, request):
-        """Updates Repairing Asset for the given data"""
-
-        try:
-            if not instance.is_active:
-                raise CustomException(
-                    400, "Only active repairing stocks can be updated"
-                )
-            asset = Asset.objects.get(
-                asset_uid=request["asset"],
-                product_id=request["product"],
-                organisation_id=instance.organisation,
-            )
-            instance.updated_date = date.today()
-            return instance
-        except Asset.DoesNotExist:
-            raise CustomException(404, "Invalid Asset")
+    # def update(self, instance, request):
+    #     """Updates Repairing Asset for the given data"""
+    #
+    #     try:
+    #         if not instance.is_active:
+    #             raise CustomException(
+    #                 400, "Only active repairing stocks can be updated"
+    #             )
+    #         asset = Asset.objects.get(
+    #             asset_uid=request["asset"],
+    #             product_id=request["product"],
+    #             organisation_id=instance.organisation,
+    #         )
+    #         instance.updated_date = date.today()
+    #         return instance
+    #     except Asset.DoesNotExist:
+    #         raise CustomException(404, "Invalid Asset")
 
     @transaction.atomic()
     def close_repairing_stock(self, repairing_stock_details, data):
@@ -198,8 +211,12 @@ class RepairingStockService:
 
                 repairing_stock_details.closed_date = data["closed_date"]
                 repairing_stock_details.save()
+                asset = Asset.objects.get(asset_uid=repairing_stock_details.asset_id)
+                inventory = Inventory.objects.get(inventory_uid=asset.inventory_id)
+                inventory.is_available = True
+                inventory.save()
                 product = Product.objects.get(
-                    product_uid=repairing_stock_details.product_id
+                    product_uid=inventory.product_id
                 )
                 product.available_stock = product.available_stock + 1
                 product.save()

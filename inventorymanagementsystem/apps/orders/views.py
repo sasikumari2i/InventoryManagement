@@ -72,25 +72,25 @@ class OrderView(viewsets.ModelViewSet):
         except Vendor.DoesNotExist:
             raise CustomException(400, "KeyError in Order Creation View")
 
-    def update(self, request, *args, **kwargs):
-        """Updates the given order"""
-
-        try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            order_details = self.get_object()
-            order_products = request.data["order_products"]
-            request.data.pop("order_products")
-            validated_data = OrderSerializer(data=request.data)
-            validated_data.is_valid(raise_exception=True)
-            order = self.order_service.update(
-                order_details, validated_data.data, order_products, organisation_uid
-            )
-            serializer = OrderSerializer(order)
-            return Response(serializer.data)
-        except KeyError:
-            raise CustomException(400, "Exception in Updating Order View")
-        except CustomException as exc:
-            raise CustomException(exc.status_code, exc.detail)
+    # def update(self, request, *args, **kwargs):
+    #     """Updates the given order"""
+    #
+    #     try:
+    #         organisation_uid = self.request.query_params.get("organisation", None)
+    #         order_details = self.get_object()
+    #         order_products = request.data["order_products"]
+    #         request.data.pop("order_products")
+    #         validated_data = OrderSerializer(data=request.data)
+    #         validated_data.is_valid(raise_exception=True)
+    #         order = self.order_service.update(
+    #             order_details, validated_data.data, order_products, organisation_uid
+    #         )
+    #         serializer = OrderSerializer(order)
+    #         return Response(serializer.data)
+    #     except KeyError:
+    #         raise CustomException(400, "Exception in Updating Order View")
+    #     except CustomException as exc:
+    #         raise CustomException(exc.status_code, exc.detail)
 
     def partial_update(self, request, *args, **kwargs):
         """Updates partial fields for the given order"""
@@ -138,17 +138,17 @@ class CustomerView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         """Creates new customer using given data"""
 
-        # try:
-        #     validated_data = CustomerSerializer(data=request.data)
-        #     validated_data.is_valid(raise_exception=True)
-        #     organisation = self.request.query_params.get("organisation", None)
-        #     new_customer = self.customer_service.create(
-        #         validated_data.data, organisation
-        #     )
-        #     serialized = CustomerSerializer(new_customer)
-        #     return Response(serialized.data)
-        # except ValidationError as exc:
-        #     raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
+        try:
+            validated_data = CustomerSerializer(data=request.data)
+            validated_data.is_valid(raise_exception=True)
+            organisation = self.request.query_params.get("organisation", None)
+            new_customer = self.customer_service.create(
+                validated_data.data, organisation
+            )
+            serialized = CustomerSerializer(new_customer)
+            return Response(serialized.data)
+        except ValidationError as exc:
+            raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
     def update(self, request, *args, **kwargs):
         """Updates customer using given data"""

@@ -7,9 +7,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from organisations.models import Organisation
 from utils.exceptionhandler import CustomException
-from .models import Product, Category
+from .models import Product, Category, Inventory
 from .service import CategoryService, ProductService
-from .serializers import ProductSerializer, CategorySerializer
+from .serializers import ProductSerializer, CategorySerializer, InventorySerializer
 
 
 class CategoryView(viewsets.ModelViewSet):
@@ -178,4 +178,39 @@ class CategoryProductView(generics.ListAPIView):
             serialized = ProductSerializer(products, many=True)
             return Response(serialized.data)
         except Product.DoesNotExist:
+            raise CustomException(404, "The requested category does not exist")
+
+
+class InventoryView(generics.ListAPIView):
+    """Used for Filtering out Products based on the Category given"""
+
+    serializer_class = InventorySerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ("organisation",)
+
+    def get_queryset(self):
+        try:
+            if self.request.query_params is None:
+                raise CustomException(400, "Credentials required")
+            organisation_uid = self.request.query_params.get("organisation")
+            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+            inventories = Inventory.objects.filter(organisation=organisation).order_by("id")
+            return inventories
+        except CustomException as exc:
+            raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(404, "Invalid Credentials")
+
+    def get(self, request, *args, **kwargs):
+        """Retrieves the products for the Category id given"""
+
+        try:
+            product_uid = self.kwargs["product"]
+            organisation_id = self.request.query_params.get("organisation", None)
+            inventories = Inventory.objects.filter(
+                product=product_uid, organisation_id=organisation_id
+            )
+            serialized = InventorySerializer(inventories, many=True)
+            return Response(serialized.data)
+        except Inventory.DoesNotExist:
             raise CustomException(404, "The requested category does not exist")

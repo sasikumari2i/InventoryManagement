@@ -66,10 +66,16 @@ class Inventory(SafeDeleteModel):
         on_delete=models.CASCADE,
         null=True,
     )
+    organisation = models.ForeignKey(
+        Organisation,
+        to_field="organisation_uid",
+        db_column="organisation_uid",
+        on_delete=models.CASCADE,
+    )
     inventory_uid = models.UUIDField(default=uuid.uuid4, editable=False,
                                      unique=True)
     serial_no = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.serial_no

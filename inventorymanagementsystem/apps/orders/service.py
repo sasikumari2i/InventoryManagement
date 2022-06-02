@@ -60,22 +60,16 @@ class OrderService:
         """Read employees.txt file as csv and convert
         into the list of employee dictionary
         """
-        # print(request.data['inventories'])
         csv_file = base64.b64decode(inventories).decode()
-        # csv_list = csv_file.split('\n')
         csv_list = [word.split(',') for word in csv_file.split('\n')]
-        print(csv_list)
         products = list()
-        heading = list()
-        # csv_file = request.data['inventories']
-        # ifile = open(csv_file, "rb")
-        # csv_reader = csv.reader(csv_file
+        # heading = list()
         line_count = 0
-        print(type(csv_list))
+        if not len(csv_list) == quantity:
+            raise CustomException(400, "Please serial numbers not matching count of product")
         for row in csv_list:
-            # index = row.decode().replace('\r\n', '').split(',')
             if line_count == 0:
-                heading = row
+                # heading = row
                 line_count = 1
             else:
                 inventory = Inventory(serial_no=row[0],product_id=product_uid)
@@ -84,50 +78,50 @@ class OrderService:
         inventories = Inventory.objects.bulk_create(products)
         return inventories
 
-    @transaction.atomic
-    def update(self, order_details, validated_data, order_products, organisation_uid):
-        """Updates details of the given order"""
-
-        try:
-            products = Product.objects.filter(organisation_id=organisation_uid)
-            vendor = Vendor.objects.get(vendor_uid=validated_data["vendors"],
-                                        organisation_id=organisation_uid)
-            product_orders = OrderProduct.objects.all()
-            order_details.delivery_date = validated_data["delivery_date"]
-            order_details.vendors_uid = validated_data["vendors"]
-            order_details.save()
-
-            for product in order_products:
-                product_details = products.get(product_uid=product["product"])
-                old_order_product = product_orders.get(
-                    product=product_details.product_uid, order=order_details.order_uid
-                )
-                old_quantity = old_order_product.quantity
-                product_details.available_stock = (
-                    product_details.available_stock - old_quantity
-                )
-                product_details.available_stock = (
-                    product_details.available_stock + product["quantity"]
-                )
-                product_details.price = product["price"]
-                product_details.save()
-                order_product_details = product_orders.get(
-                    product=product_details.product_uid, order=order_details.order_uid
-                )
-                order_product_details.product = product_details
-                order_product_details.order = order_details
-                order_product_details.quantity = product["quantity"]
-                order_product_details.save()
-
-            return order_details
-        except KeyError as exc:
-            raise CustomException(400, "Exception in Order Update")
-        except CustomException as exc:
-            raise CustomException(exc.status_code, exc.detail)
-        except Vendor.DoesNotExist:
-            raise CustomException(404, "Vendor does not exist")
-        except Product.DoesNotExist:
-            raise CustomException(404, "Product does not exist")
+    # @transaction.atomic
+    # def update(self, order_details, validated_data, order_products, organisation_uid):
+    #     """Updates details of the given order"""
+    #
+    #     try:
+    #         products = Product.objects.filter(organisation_id=organisation_uid)
+    #         vendor = Vendor.objects.get(vendor_uid=validated_data["vendors"],
+    #                                     organisation_id=organisation_uid)
+    #         product_orders = OrderProduct.objects.all()
+    #         order_details.delivery_date = validated_data["delivery_date"]
+    #         order_details.vendors_uid = validated_data["vendors"]
+    #         order_details.save()
+    #
+    #         for product in order_products:
+    #             product_details = products.get(product_uid=product["product"])
+    #             old_order_product = product_orders.get(
+    #                 product=product_details.product_uid, order=order_details.order_uid
+    #             )
+    #             old_quantity = old_order_product.quantity
+    #             product_details.available_stock = (
+    #                 product_details.available_stock - old_quantity
+    #             )
+    #             product_details.available_stock = (
+    #                 product_details.available_stock + product["quantity"]
+    #             )
+    #             product_details.price = product["price"]
+    #             product_details.save()
+    #             order_product_details = product_orders.get(
+    #                 product=product_details.product_uid, order=order_details.order_uid
+    #             )
+    #             order_product_details.product = product_details
+    #             order_product_details.order = order_details
+    #             order_product_details.quantity = product["quantity"]
+    #             order_product_details.save()
+    #
+    #         return order_details
+    #     except KeyError as exc:
+    #         raise CustomException(400, "Exception in Order Update")
+    #     except CustomException as exc:
+    #         raise CustomException(exc.status_code, exc.detail)
+    #     except Vendor.DoesNotExist:
+    #         raise CustomException(404, "Vendor does not exist")
+    #     except Product.DoesNotExist:
+    #         raise CustomException(404, "Product does not exist")
 
     def create_invoice(self, new_order, organisation_uid):
         """Creates invoice for the created order"""

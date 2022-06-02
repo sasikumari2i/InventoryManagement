@@ -46,9 +46,7 @@ class AssetView(viewsets.ModelViewSet):
 
         try:
             organisation_uid = request.query_params.get("organisation")
-            validated_data = AssetSerializer(data=request.data)
-            validated_data.is_valid(raise_exception=True)
-            new_asset = self.asset_service.create(validated_data.data, organisation_uid)
+            new_asset = self.asset_service.create(request.data, organisation_uid)
             serialized = AssetSerializer(new_asset)
             return Response(serialized.data)
         except Asset.DoesNotExist:
@@ -58,13 +56,10 @@ class AssetView(viewsets.ModelViewSet):
         """To update the given Asset"""
 
         try:
-            partial = kwargs.pop("partial", False)
             instance = self.get_object()
             asset = self.asset_service.update(instance, request.data)
-            serializer = self.get_serializer(asset, data=request.data, partial=partial)
-            serializer.is_valid(raise_exception=True)
-            self.perform_update(serializer)
-            return Response(serializer.data)
+            serialized = AssetSerializer(asset)
+            return Response(serialized.data)
         except KeyError:
             raise CustomException(400, "Product and Customer is mandatory for updating")
 
@@ -108,23 +103,23 @@ class RepairingStockView(viewsets.ModelViewSet):
         except RepairingStock.DoesNotExist:
             raise CustomException(400, "KeyError in Repairing Stock Creation View")
 
-    def update(self, request, *args, **kwargs):
-        """To Update the given Repairing Stock"""
-
-        try:
-            partial = kwargs.pop("partial", False)
-            instance = self.get_object()
-            repairing_stock = self.repairing_stock_service.update(
-                instance, request.data
-            )
-            serializer = self.get_serializer(
-                repairing_stock, data=request.data, partial=partial
-            )
-            serializer.is_valid(raise_exception=True)
-            self.perform_update(serializer)
-            return Response(serializer.data)
-        except ValidationError:
-            raise CustomException(404, "Exception in Updating Repairing Stocks")
+    # def update(self, request, *args, **kwargs):
+    #     """To Update the given Repairing Stock"""
+    #
+    #     try:
+    #         partial = kwargs.pop("partial", False)
+    #         instance = self.get_object()
+    #         repairing_stock = self.repairing_stock_service.update(
+    #             instance, request.data
+    #         )
+    #         serializer = self.get_serializer(
+    #             repairing_stock, data=request.data, partial=partial
+    #         )
+    #         serializer.is_valid(raise_exception=True)
+    #         self.perform_update(serializer)
+    #         return Response(serializer.data)
+    #     except ValidationError:
+    #         raise CustomException(404, "Exception in Updating Repairing Stocks")
 
 
 class CloseAssetView(generics.GenericAPIView):
