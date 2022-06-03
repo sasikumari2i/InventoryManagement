@@ -79,6 +79,5 @@ class Inventory(SafeDeleteModel):
     created_date = models.DateField(default=date.today)
     updated_date =models.DateField(default=date.today)
 
-
     def __str__(self):
         return self.serial_no

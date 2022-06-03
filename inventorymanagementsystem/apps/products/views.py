@@ -4,6 +4,7 @@ from datetime import date
 from rest_framework import viewsets, generics
 from rest_framework.exceptions import NotFound, ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
 
 from organisations.models import Organisation
 from utils.exceptionhandler import CustomException
@@ -19,6 +20,7 @@ class CategoryView(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     lookup_field = "category_uid"
     category_service = CategoryService()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """Query set for Category view from the request"""

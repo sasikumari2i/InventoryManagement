@@ -49,7 +49,7 @@ class RepairingStock(SafeDeleteModel):
     repairing_stock_uid = models.UUIDField(
         default=uuid.uuid4, editable=False, unique=True
     )
-    asset = models.ForeignKey(
+    asset = models.OneToOneField(
         Asset, on_delete=models.DO_NOTHING,
         unique=True,
         related_name='asset',
