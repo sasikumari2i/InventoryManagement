@@ -50,7 +50,11 @@ class RepairingStock(SafeDeleteModel):
         default=uuid.uuid4, editable=False, unique=True
     )
     asset = models.ForeignKey(
-        Asset, on_delete=models.DO_NOTHING, related_name='asset',to_field="asset_uid", db_column="asset_uid"
+        Asset, on_delete=models.DO_NOTHING,
+        unique=True,
+        related_name='asset',
+        to_field="asset_uid",
+        db_column="asset_uid"
     )
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)

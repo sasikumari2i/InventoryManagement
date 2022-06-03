@@ -20,6 +20,6 @@ class OrganisationView(viewsets.ModelViewSet):
 
         try:
             super().destroy(request)
-            return Response({"message": "Category Deleted"})
+            return Response({"message": "Organisation Deleted"})
         except Http404:
             raise CustomException(404, "Object not available")

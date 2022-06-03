@@ -2,7 +2,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets, generics
 import logging
 from rest_framework.exceptions import NotFound
-from django.core.exceptions import ValidationError
+from rest_framework.exceptions import NotFound, ValidationError
+
 from django.http import Http404
 
 from organisations.models import Organisation
@@ -102,6 +103,8 @@ class RepairingStockView(viewsets.ModelViewSet):
             return Response(serialized.data)
         except RepairingStock.DoesNotExist:
             raise CustomException(400, "KeyError in Repairing Stock Creation View")
+        except ValidationError as exc:
+            raise CustomException(400, "Duplicate Assets")
 
     # def update(self, request, *args, **kwargs):
     #     """To Update the given Repairing Stock"""

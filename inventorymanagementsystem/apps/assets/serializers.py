@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from .models import Asset, RepairingStock
 from ..products.serializers import InventorySerializer
+from django.core.exceptions import ValidationError
+from utils.exceptionhandler import CustomException
 
 class AssetSerializer(serializers.ModelSerializer):
 
@@ -25,10 +27,17 @@ class RepairingStockSerializer(serializers.ModelSerializer):
 
 
 class RepairingStockCreateSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = RepairingStock
         fields = ("asset",)
 
+    # def validate_asset(self, asset):
+    #         print("Asasasa")
+    #         repairing_stock = RepairingStock.objects.get(
+    #             asset_id=validated_data["asset"]
+    #         )
+    #         raise CustomException(400, "Duplicate Asset")
 
 class CloseAssetSerializer(serializers.ModelSerializer):
     class Meta:

@@ -3,6 +3,7 @@ from django.db import transaction
 from django.core.exceptions import ValidationError
 from rest_framework.exceptions import NotFound
 import base64
+from django.db.utils import IntegrityError
 
 from .serializers import OrderSerializer
 from .models import Order, OrderProduct, Vendor, Customer
@@ -41,9 +42,11 @@ class OrderService:
                     product=product_details,
                     quantity=product["quantity"],
                 )
-                inventories = self.create_inventory(product['inventory'],
+                inventory_list = self.create_inventory(product['inventory'],
                                                     product_details.product_uid,
-                                                    product["quantity"])
+                                                    product["quantity"],
+                                                    organisation_uid)
+                inventories = Inventory.objects.bulk_create(inventory_list)
             invoice = self.create_invoice(new_order, organisation_uid)
             invoice.save()
             order_product_data.save()
@@ -55,28 +58,35 @@ class OrderService:
             raise CustomException(400, "Please enter available products only")
         except Vendor.DoesNotExist:
             raise CustomException(400, "Invalid Vendor")
+        except IntegrityError:
+            raise CustomException(400, "Duplicate serial numbers")
 
-    def create_inventory(self, inventories,product_uid, quantity):
+    def create_inventory(self, inventories,product_uid, quantity, organisation_uid):
         """Read employees.txt file as csv and convert
         into the list of employee dictionary
         """
-        csv_file = base64.b64decode(inventories).decode()
-        csv_list = [word.split(',') for word in csv_file.split('\n')]
-        products = list()
-        # heading = list()
-        line_count = 0
-        if not len(csv_list) == quantity:
-            raise CustomException(400, "Please serial numbers not matching count of product")
-        for row in csv_list:
-            if line_count == 0:
-                # heading = row
-                line_count = 1
-            else:
-                inventory = Inventory(serial_no=row[0],product_id=product_uid)
-                products.append(inventory)
+        try:
+            csv_file = base64.b64decode(inventories).decode()
+            csv_list = [word.split(',') for word in csv_file.split('\n')]
+            products = list()
+            # heading = list()
+            line_count = 0
+            if not len(csv_list) == quantity+1:
+                raise CustomException(400, "Serial numbers not matching count of product")
+            for row in csv_list:
+                if line_count == 0:
+                    # heading = row
+                    line_count = 1
+                else:
+                    inventory = Inventory(serial_no=row[0],
+                                          product_id=product_uid,
+                                          organisation_id=organisation_uid)
+                    products.append(inventory)
 
-        inventories = Inventory.objects.bulk_create(products)
-        return inventories
+            return products
+        except IntegrityError:
+            raise CustomException(400, "Duplicate serial numbers")
+
 
     # @transaction.atomic
     # def update(self, order_details, validated_data, order_products, organisation_uid):

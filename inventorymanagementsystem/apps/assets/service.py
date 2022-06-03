@@ -1,7 +1,9 @@
 from datetime import date
 from django.db import transaction
-from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import NotFound, ValidationError
 import datetime
+from django.db.utils import IntegrityError
+# from django.core.exceptions import ValidationError
 
 from .models import Asset, RepairingStock
 from ..orders.models import Customer
@@ -22,7 +24,7 @@ class AssetService:
             inventory = Inventory.objects.get(
                 organisation_id=organisation_uid, product_id=validated_data["product"],
                 serial_no=validated_data["serial_no"],
-                is_active=True
+                is_available=True
             )
             customer = Customer.objects.get(
                 organisation_id=organisation_uid,
@@ -49,7 +51,8 @@ class AssetService:
             product = Product.objects.get(product_uid=validated_data["product"],
                                           organisation_id=organisation_uid)
             product.available_stock -= 1
-            inventory.is_active = False
+            inventory.is_available = False
+            inventory.updated_date = date.today()
             product.save()
             inventory.save()
             return new_asset
@@ -60,7 +63,7 @@ class AssetService:
         except Customer.DoesNotExist:
             raise CustomException(400, "Invalid Customer")
         except Product.DoesNotExist:
-            raise CustomException(400, "Invalid Customer")
+            raise CustomException(400, "Invalid Product")
 
     @transaction.atomic()
     def update(self, instance, request):
@@ -84,9 +87,11 @@ class AssetService:
             if inventory.inventory_uid != instance.inventory_id:
                 old_inventory = Inventory.objects.get(inventory_uid=instance.inventory_id)
                 old_inventory.is_available= True
+                old_inventory.updated_date = date.today()
                 old_inventory.save()
                 inventory.is_available = False
                 instance.inventory_id=inventory.inventory_uid
+            inventory.updated_date = date.today()
             inventory.save()
             instance.save()
             return instance
@@ -148,9 +153,9 @@ class RepairingStockService:
 
             try:
                 repairing_stock = RepairingStock.objects.get(
-                    asset_id=validated_data["asset"], is_active=True
+                    asset_id=validated_data["asset"]
                 )
-                raise CustomException(400, "This product is already in repairing stock")
+                raise CustomException(400, "Duplicate Asset")
             except RepairingStock.DoesNotExist:
                 pass
 
@@ -158,7 +163,6 @@ class RepairingStockService:
                 raise CustomException(
                     400, "Cannot be created, Assigned is still active"
                 )
-
             new_repairing_stock = RepairingStock.objects.create(
                 asset_id=validated_data["asset"],
                 organisation_id=organisation_uid,
@@ -168,6 +172,7 @@ class RepairingStockService:
             raise CustomException(400, "Exception in Repairing Stock Service")
         except Asset.DoesNotExist:
             raise CustomException(400, "Invalid Asset")
+
 
     # def update(self, instance, request):
     #     """Updates Repairing Asset for the given data"""
@@ -214,11 +219,13 @@ class RepairingStockService:
                 asset = Asset.objects.get(asset_uid=repairing_stock_details.asset_id)
                 inventory = Inventory.objects.get(inventory_uid=asset.inventory_id)
                 inventory.is_available = True
+                inventory.updated_date = date.today()
                 inventory.save()
                 product = Product.objects.get(
                     product_uid=inventory.product_id
                 )
                 product.available_stock = product.available_stock + 1
+                product.updated_date = date.today()
                 product.save()
                 response = {"message": "Repairing Stock asset is closed"}
             return response
