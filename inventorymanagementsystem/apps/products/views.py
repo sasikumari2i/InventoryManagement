@@ -20,7 +20,7 @@ class CategoryView(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     lookup_field = "category_uid"
     category_service = CategoryService()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """Query set for Category view from the request"""

@@ -27,9 +27,9 @@ urlpatterns = [
         name="product-assets",
     ),
     path(
-        "customer/<str:customer>/assets",
-        views.CustomerAssetView.as_view(),
-        name="customer-assets",
+        "employee/<str:employee>/assets",
+        views.EmployeeAssetView.as_view(),
+        name="employee-assets",
     ),
     path(
         "product/<str:product>/repairing_stocks",

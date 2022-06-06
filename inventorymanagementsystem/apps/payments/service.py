@@ -5,7 +5,7 @@ from django.db import transaction
 # from rest_framework.exceptions import ValidationError
 
 from .models import Invoice, Payment
-from ..orders.models import Order, Customer
+from ..orders.models import Order, Employee
 from ..orders.serializers import OrderSerializer
 from ..products.models import Product
 from utils.exceptionhandler import CustomException

@@ -34,10 +34,10 @@ class Vendor(SafeDeleteModel):
         return self.name
 
 
-class Customer(SafeDeleteModel):
+class Employee(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    customer_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    employee_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
     address = models.CharField(max_length=400, null=True)
     email = models.EmailField(null=True, unique=True)

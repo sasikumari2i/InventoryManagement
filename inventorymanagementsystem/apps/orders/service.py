@@ -6,7 +6,7 @@ import base64
 from django.db.utils import IntegrityError
 
 from .serializers import OrderSerializer
-from .models import Order, OrderProduct, Vendor, Customer
+from .models import Order, OrderProduct, Vendor, Employee
 from ..products.models import Product, Inventory
 from ..payments.models import Invoice
 from utils.exceptionhandler import CustomException
@@ -53,7 +53,7 @@ class OrderService:
             new_order.save()
             return new_order
         except KeyError:
-            raise CustomException(400, "Exception in Order Creation")
+            raise CustomException(400, "Inefficient data")
         except Product.DoesNotExist:
             raise CustomException(400, "Please enter available products only")
         except Vendor.DoesNotExist:
@@ -197,22 +197,22 @@ class VendorService:
             raise CustomException(400, "Invalid details")
 
 
-class CustomerService:
-    """Performs customer related operations like add new customer, get single customer,
-            get all customers, update a customer and delete customer"""
+class EmployeeService:
+    """Performs employee related operations like add new employee, get single employee,
+            get all employees, update a employee and delete employee"""
 
     @transaction.atomic()
     def create(self, validated_data, organisation_uid):
-        """Creates new customer from the given data"""
+        """Creates new employee from the given data"""
 
         try:
-            new_customer = Customer.objects.create(
+            new_employee = Employee.objects.create(
                 name=validated_data["name"],
                 address=validated_data["address"],
                 email=validated_data["email"],
                 phone_number=validated_data["phone_number"],
                 organisation_id=organisation_uid,
             )
-            return new_customer
+            return new_employee
         except KeyError:
             raise CustomException(400, "Invalid details")

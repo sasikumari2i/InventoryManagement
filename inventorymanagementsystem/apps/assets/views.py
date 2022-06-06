@@ -62,7 +62,7 @@ class AssetView(viewsets.ModelViewSet):
             serialized = AssetSerializer(asset)
             return Response(serialized.data)
         except KeyError:
-            raise CustomException(400, "Product and Customer is mandatory for updating")
+            raise CustomException(400, "Product and Employee is mandatory for updating")
 
 
 class RepairingStockView(viewsets.ModelViewSet):
@@ -231,11 +231,11 @@ class ProductAssetView(generics.ListAPIView):
             )
 
 
-class CustomerAssetView(generics.ListAPIView):
-    """Gives the view for getting Assets based on given Customer"""
+class EmployeeAssetView(generics.ListAPIView):
+    """Gives the view for getting Assets based on given Employee"""
 
     serializer_class = AssetSerializer
-    lookup_field = "customer"
+    lookup_field = "employee"
 
     def get_queryset(self):
         """Query Set for the getting Assets"""
@@ -253,19 +253,19 @@ class CustomerAssetView(generics.ListAPIView):
             raise CustomException(400, "Invalid Credentials")
 
     def get(self, request, *args, **kwargs):
-        """Retrieves the list of Assets for the given Customer"""
+        """Retrieves the list of Assets for the given Employee"""
 
         try:
             organisation = self.request.query_params.get("organisation", None)
-            customer_id = self.kwargs["customer"]
+            employee_id = self.kwargs["employee"]
             assets = Asset.objects.filter(
-                customer=customer_id, organisation_id=organisation
+                employee=employee_id, organisation_id=organisation
             )
             serialized = AssetSerializer(assets, many=True)
             return Response(serialized.data)
         except NotFound:
             raise CustomException(
-                404, "Requested Assets for the Customer is not available"
+                404, "Requested Assets for the Employee is not available"
             )
 
 

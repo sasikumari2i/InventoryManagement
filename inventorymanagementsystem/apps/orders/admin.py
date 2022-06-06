@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Vendor, Order, Customer, OrderProduct
+from .models import Vendor, Order, Employee, OrderProduct
 
 
 admin.site.site_header = "Inventory Admin"
@@ -24,7 +24,7 @@ class OrderAdmin(admin.ModelAdmin):
                     "order_date",
                     "delivery_date",
                     "vendors",
-                    "customers",
+                    "employees",
                 ]
             },
         ),
@@ -36,5 +36,5 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Vendor)
 # admin.site.register(Order)
-admin.site.register(Customer)
+admin.site.register(Employee)
 # admin.site.register(OrderProduct)

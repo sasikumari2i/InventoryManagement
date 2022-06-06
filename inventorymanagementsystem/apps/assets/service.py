@@ -6,14 +6,14 @@ from django.db.utils import IntegrityError
 # from django.core.exceptions import ValidationError
 
 from .models import Asset, RepairingStock
-from ..orders.models import Customer
+from ..orders.models import Employee
 from .serializers import AssetSerializer
 from ..products.models import Product, Category, Inventory
 from utils.exceptionhandler import CustomException
 
 
 class AssetService:
-    """Performs asset related operations like add new asset for a customer,
+    """Performs asset related operations like add new asset for a employee,
     update asset details"""
 
     @transaction.atomic()
@@ -26,9 +26,9 @@ class AssetService:
                 serial_no=validated_data["serial_no"],
                 is_available=True
             )
-            customer = Customer.objects.get(
+            employee = Employee.objects.get(
                 organisation_id=organisation_uid,
-                customer_uid=validated_data["customer"],
+                employee_uid=validated_data["employee"],
             )
 
             try:
@@ -45,7 +45,7 @@ class AssetService:
             #     raise CustomException(400, "Product is out of Stock")
             new_asset = Asset.objects.create(
                 inventory_id=inventory.inventory_uid,
-                customer_id=validated_data["customer"],
+                employee_id=validated_data["employee"],
                 organisation_id=organisation_uid,
             )
             product = Product.objects.get(product_uid=validated_data["product"],
@@ -60,8 +60,8 @@ class AssetService:
             raise CustomException(400, "Exception in Asset Service")
         except Inventory.DoesNotExist:
             raise CustomException(400, "Invalid Product")
-        except Customer.DoesNotExist:
-            raise CustomException(400, "Invalid Customer")
+        except Employee.DoesNotExist:
+            raise CustomException(400, "Invalid Employee")
         except Product.DoesNotExist:
             raise CustomException(400, "Invalid Product")
 
@@ -72,8 +72,8 @@ class AssetService:
         try:
             if not instance.is_active:
                 raise CustomException(400, "Only active assets can be updated")
-            customer = Customer.objects.get(
-                customer_uid=request["customer"], organisation_id=instance.organisation
+            employee = Employee.objects.get(
+                employee_uid=request["employee"], organisation_id=instance.organisation
             )
             product = Product.objects.get(product_uid=request["product"],
                                          organisation_id=instance.organisation)
@@ -95,14 +95,14 @@ class AssetService:
             inventory.save()
             instance.save()
             return instance
-        except Customer.DoesNotExist:
-            raise CustomException(404, "Invalid Customer")
+        except Employee.DoesNotExist:
+            raise CustomException(404, "Invalid Employee")
         except Product.DoesNotExist:
             raise CustomException(404, "Invalid Product")
         except Inventory.DoesNotExist:
             raise CustomException(404, "Invalid Product")
         except KeyError:
-            raise CustomException(400, "Product and Customer is mandatory for updating")
+            raise CustomException(400, "Product and Employee is mandatory for updating")
 
     @transaction.atomic()
     def close_asset(self, asset_details, data):

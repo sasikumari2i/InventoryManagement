@@ -8,11 +8,11 @@ from rest_framework.exceptions import NotFound, ValidationError
 from django.http import Http404
 
 from organisations.models import Organisation
-from .models import Order, Customer, Vendor
+from .models import Order, Employee, Vendor
 from ..products.models import Inventory
-from .service import OrderService, VendorService, CustomerService
+from .service import OrderService, VendorService, EmployeeService
 from .serializers import (
-    CustomerSerializer,
+    EmployeeSerializer,
     VendorSerializer,
     DeliverySerializer,
     OrderSerializer,
@@ -111,47 +111,47 @@ class OrderView(viewsets.ModelViewSet):
             raise CustomException(404, "Exception in Delete Order")
 
 
-class CustomerView(viewsets.ModelViewSet):
-    """Gives the view for the Customer"""
+class EmployeeView(viewsets.ModelViewSet):
+    """Gives the view for the Employee"""
 
-    serializer_class = CustomerSerializer
-    lookup_field = "customer_uid"
-    customer_service = CustomerService()
+    serializer_class = EmployeeSerializer
+    lookup_field = "employee_uid"
+    employee_service = EmployeeService()
 
     def get_queryset(self):
-        """Query Set for the getting Customers"""
+        """Query Set for the getting Employees"""
 
         try:
             organisation_uid = self.request.query_params.get("organisation", None)
             if organisation_uid is None:
                 raise CustomException(400, "Credentials required")
             organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            customers = Customer.objects.filter(organisation=organisation).order_by(
+            employees = Employee.objects.filter(organisation=organisation).order_by(
                 "id"
             )
-            return customers
+            return employees
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
             raise CustomException(400, "Invalid Credentials")
 
     def create(self, request, *args, **kwargs):
-        """Creates new customer using given data"""
+        """Creates new employee using given data"""
 
         try:
-            validated_data = CustomerSerializer(data=request.data)
+            validated_data = EmployeeSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             organisation = self.request.query_params.get("organisation", None)
-            new_customer = self.customer_service.create(
+            new_employee = self.employee_service.create(
                 validated_data.data, organisation
             )
-            serialized = CustomerSerializer(new_customer)
+            serialized = EmployeeSerializer(new_employee)
             return Response(serialized.data)
         except ValidationError as exc:
             raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
     def update(self, request, *args, **kwargs):
-        """Updates customer using given data"""
+        """Updates employee using given data"""
 
         try:
             partial = kwargs.pop("partial", False)
@@ -168,13 +168,13 @@ class CustomerView(viewsets.ModelViewSet):
 
 
     def destroy(self, request, *args, **kwargs):
-        """Deletes the given customer"""
+        """Deletes the given employee"""
 
         try:
             super().destroy(request)
-            return Response({"message": "Customer Deleted"})
+            return Response({"message": "Employee Deleted"})
         except Http404:
-            raise CustomException(404, "Customer not found")
+            raise CustomException(404, "Employee not found")
 
 
 class VendorView(viewsets.ModelViewSet):

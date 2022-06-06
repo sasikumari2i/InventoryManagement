@@ -10,7 +10,7 @@ class AssetSerializer(serializers.ModelSerializer):
     inventory = InventorySerializer()
     class Meta:
         model = Asset
-        fields = ("asset_uid", "inventory", "customer", "is_active")
+        fields = ("asset_uid", "inventory", "employee", "is_active")
 
 
 class RepairingStockSerializer(serializers.ModelSerializer):

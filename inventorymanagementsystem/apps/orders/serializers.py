@@ -2,17 +2,17 @@ from rest_framework import serializers
 import datetime
 from datetime import date, timedelta
 
-from .models import Vendor, Order, OrderProduct, Customer
+from .models import Vendor, Order, OrderProduct, Employee
 
 from ..payments.models import Invoice
 from utils.exceptionhandler import CustomException
 
 
-class CustomerSerializer(serializers.ModelSerializer):
+class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Customer
+        model = Employee
         fields = (
-            "customer_uid",
+            "employee_uid",
             "name",
             "address",
             "email",

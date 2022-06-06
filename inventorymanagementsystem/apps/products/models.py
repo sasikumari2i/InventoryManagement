@@ -81,3 +81,6 @@ class Inventory(SafeDeleteModel):
 
     def __str__(self):
         return self.serial_no
+
+    class Meta:
+        unique_together = [["product", "serial_no"]]

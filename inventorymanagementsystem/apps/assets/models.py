@@ -5,7 +5,7 @@ from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 
 from ..products.models import Product, Inventory
-from ..orders.models import Customer
+from ..orders.models import Employee
 from utils.constants import ValidationConstants
 from organisations.models import Organisation
 
@@ -22,11 +22,11 @@ class Asset(SafeDeleteModel):
         related_name='inventory',
         on_delete=models.DO_NOTHING,
     )
-    customer = models.ForeignKey(
-        Customer,
+    employee = models.ForeignKey(
+        Employee,
         on_delete=models.DO_NOTHING,
-        to_field="customer_uid",
-        db_column="customer_uid",
+        to_field="employee_uid",
+        db_column="employee_uid",
     )
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
