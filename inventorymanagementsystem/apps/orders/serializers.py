@@ -1,7 +1,6 @@
 from rest_framework import serializers
 import datetime
 from datetime import date, timedelta
-
 from .models import Vendor, Order, OrderProduct, Employee
 
 from ..payments.models import Invoice

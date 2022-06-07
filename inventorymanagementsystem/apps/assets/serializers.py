@@ -32,13 +32,6 @@ class RepairingStockCreateSerializer(serializers.ModelSerializer):
         model = RepairingStock
         fields = ("asset",)
 
-    # def validate_asset(self, asset):
-    #         print("Asasasa")
-    #         repairing_stock = RepairingStock.objects.get(
-    #             asset_id=validated_data["asset"]
-    #         )
-    #         raise CustomException(400, "Duplicate Asset")
-
 class CloseAssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepairingStock

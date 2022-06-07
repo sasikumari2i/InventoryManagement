@@ -47,18 +47,19 @@ INSTALLED_APPS = [
     # 'rest_framework.authtoken',
     'apps.assets',
     'drf_yasg',
-    'rest_framework_swagger'
+    'rest_framework_swagger',
+    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'inventorymanagementsystem.custom_middleware.CustomMiddleware'
+    # 'inventorymanagementsystem.custom_middleware.CustomMiddleware'
 ]
 
 ROOT_URLCONF = 'inventorymanagementsystem.urls'
@@ -106,14 +107,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE' : 2,
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
     ],
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #         'rest_framework.permissions.IsAuthenticated',
+    #     )
+}
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
 
 
@@ -183,3 +190,5 @@ LOGGING = {
         }
     }
 }
+
+# LOGIN_URL='/admin/login/'
