@@ -14,10 +14,10 @@ class OrganisationView(viewsets.ModelViewSet):
     queryset = Organisation.objects.order_by("id")
     lookup_field = "organisation_uid"
     serializer_class = OrganisationSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
-    def list(self,request, *args, **kwargs):
-        print(request.meta.USERNAME)
+    # def list(self,request, *args, **kwargs):
+    #     print(request.meta.USERNAME)
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting

@@ -113,9 +113,9 @@ REST_FRAMEWORK = {
         # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
     ],
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #         'rest_framework.permissions.IsAuthenticated',
-    #     )
+    'DEFAULT_PERMISSION_CLASSES': (
+            'rest_framework.permissions.IsAuthenticated',
+        )
 }
 
 OAUTH2_PROVIDER = {

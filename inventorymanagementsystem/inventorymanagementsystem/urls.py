@@ -22,9 +22,11 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+import oauth2_provider
 from utils.views import error_404, error_500
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+# from oauth2_provider.models import AbstractApplication
 # from rest_framework import permissions
 # from drf_yasg.views import get_schema_view
 # from drf_yasg import openapi
@@ -67,11 +69,11 @@ urlpatterns = [
 # ]
 
 
-urlpatterns += [
+# urlpatterns += [
     # path("api-auth/", include("rest_framework.urls")),
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
-]
+# ]
 
 handler404 = error_404
 handler500 = error_500
