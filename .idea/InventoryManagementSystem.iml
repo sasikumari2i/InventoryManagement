@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$/inventorymanagementsystem">
       <excludeFolder url="file://$MODULE_DIR$/inventorymanagementsystem/venv" />
     </content>
+    <orderEntry type="jdk" jdkName="Python 3.10 (inventorymanagementsystem)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

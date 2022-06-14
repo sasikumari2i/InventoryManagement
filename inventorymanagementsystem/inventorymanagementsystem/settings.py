@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'safedelete',
     # 'rest_framework.authtoken',
+    'users',
     'apps.assets',
     'drf_yasg',
     'rest_framework_swagger',
@@ -105,11 +106,8 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS' : 'rest_framework.schemas.coreapi.AutoSchema',
     "EXCEPTION_HANDLER" : "utils.exceptionhandler.custom_exception_handler",
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE' : 2,
+    'PAGE_SIZE': 2,
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
     ],
@@ -122,7 +120,6 @@ OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -192,3 +189,5 @@ LOGGING = {
 }
 
 # LOGIN_URL='/admin/login/'
+
+AUTH_USER_MODEL = 'users.User'
