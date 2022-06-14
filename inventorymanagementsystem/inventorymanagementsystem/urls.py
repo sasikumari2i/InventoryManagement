@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-import oauth2_provider
+# import oauth2_provider
 from utils.views import error_404, error_500
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi

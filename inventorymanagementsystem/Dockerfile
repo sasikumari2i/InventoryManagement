@@ -4,9 +4,9 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-COPY requirement.txt /app/requirement.txt
+COPY requirement.txt /app/requirements.txt
 
-RUN pip install -r requirement.txt
+RUN pip install -r requirements.txt
 
 COPY . /app
 

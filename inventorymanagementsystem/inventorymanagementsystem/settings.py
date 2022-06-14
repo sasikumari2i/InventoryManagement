@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'django_filters',
     'safedelete',
     # 'rest_framework.authtoken',
-    'users',
     'apps.assets',
     'drf_yasg',
     'rest_framework_swagger',
@@ -107,13 +107,13 @@ REST_FRAMEWORK = {
     "EXCEPTION_HANDLER" : "utils.exceptionhandler.custom_exception_handler",
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 2,
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
-    ],
-    'DEFAULT_PERMISSION_CLASSES': (
-            'rest_framework.permissions.IsAuthenticated',
-        )
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
+    # ]
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #         'rest_framework.permissions.IsAuthenticated',
+    #     )
 }
 
 OAUTH2_PROVIDER = {
