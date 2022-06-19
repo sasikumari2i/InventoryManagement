@@ -16,16 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.http import HttpResponse, HttpResponseNotFound
-from rest_framework_swagger.views import get_swagger_view
+# from rest_framework_swagger.views import get_swagger_view
 from rest_framework.documentation import include_docs_urls
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+# from rest_framework_simplejwt.views import (
+    # TokenObtainPairView,
+    # TokenRefreshView,
+# )
 # import oauth2_provider
 from utils.views import error_404, error_500
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+# from drf_yasg.views import get_schema_view
+# from drf_yasg import openapi
 # from oauth2_provider.models import AbstractApplication
 # from rest_framework import permissions
 # from drf_yasg.views import get_schema_view

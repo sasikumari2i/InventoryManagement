@@ -1,25 +1,39 @@
 version: "3.8"
 services:
   db:
-    image: mysql:8
+    container_name: inventory_management_db
+    image: mysql
+    volumes:
+      - ./data/db:/var/lib/mysql
+    environment:
+      - MYSQL_DB=inventory_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3307:3306"
-    environment:
-      - MYSQL_DATABASE='inventory_dev'
-      - MYSQL_USER='root'
-      - MYSQL_PASSWORD='1234'
-      - MYSQL_ROOT_PASSWORD='1234'
-      - MYSQL_HOST=''
-    volumes:
-      - /tmp/app/mysqld:/var/run/mysqld
-      - ./db:/var/lib/mysql
+
   web:
+    container_name: inventory_management_web
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8000:8000"
+    command: bash -c "
+      python manage.py makemigrations
+      && python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000
+      "
     volumes:
       - .:/app
-      - /tmp/app/mysqld:/run/mysqld
+    ports:
+      - "8000:8000"
+    environment:
+      - MYSQL_NAME=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - DB_HOST=db
+      - DB_PORT=3306
     depends_on:
       - db
+
+
+
+
