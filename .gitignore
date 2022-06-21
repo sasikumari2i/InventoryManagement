@@ -18,3 +18,7 @@ inventorymanagementsystem/inventorymanagementsystem/__pycache__/
 inventorymanagementsystem/.idea/
 inventorymanagementsystem/logs/*.log
 django_venv/
+inventorymanagementsystem/data/
+inventorymanagementsystem/venv/
+inventorymanagementsystem/*.sqlite3
+inventorymanagementsystem/helpers
