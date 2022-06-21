@@ -90,28 +90,27 @@ WSGI_APPLICATION = 'inventorymanagementsystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'inventory_dev',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.environ['MYSQL_NAME'],
-#         'USER': os.environ['MYSQL_USER'],
-#         'PASSWORD': os.environ['MYSQL_PASSWORD'],
-#         # 'HOST': '127.0.0.1',
-#         'HOST': os.environ['DB_HOST'],
-#         'PORT': os.environ['DB_PORT'],
+#         'NAME': 'inventory_dev',
+#         'USER': 'root',
+#         'PASSWORD': '1234',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ['MYSQL_NAME'],
+        'USER': os.environ['MYSQL_USER'],
+        'PASSWORD': os.environ['MYSQL_PASSWORD'],
+        'HOST': os.environ['DB_HOST'],
+        'PORT': os.environ['DB_PORT'],
+    }
+}
 
 
 REST_FRAMEWORK = {
