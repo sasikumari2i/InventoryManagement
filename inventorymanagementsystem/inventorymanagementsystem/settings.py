@@ -12,27 +12,27 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import site
 from pathlib import Path
+
 # import django.contrib.auth.middleware.AuthenticationMiddleware
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-kzdk(olyf5$oqjo_7!#c-15sudsk*6akw@ot@uuju5!&476js!'
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-kzdk(olyf5$oqjo_7!#c-15sudsk*6akw@ot@uuju5!&476js!'
+# SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.getenv('DEBUG')
+DEBUG = False
+# DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost']
 
 # Application definition
 
 INSTALLED_APPS = [
-    # 'users',
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,7 +78,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries' : {
+            'libraries': {
                 'staticfiles': 'django.templatetags.static',
             }
         },
@@ -87,50 +87,56 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'inventorymanagementsystem.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'inventory_dev',
-#         'USER': 'root',
-#         'PASSWORD': '1234',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     }
-# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['MYSQL_NAME'],
-        'USER': os.environ['MYSQL_USER'],
-        'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': os.environ['DB_PORT'],
+        'NAME': 'inventory_dev',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ['MYSQL_NAME'],
+#         'USER': os.environ['MYSQL_USER'],
+#         'PASSWORD': os.environ['MYSQL_PASSWORD'],
+#         'HOST': os.environ['DB_HOST'],
+#         'PORT': os.environ['DB_PORT'],
+#     }
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     "EXCEPTION_HANDLER": "utils.exceptionhandler.custom_exception_handler",
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 2,
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
-    # ]
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #         'rest_framework.permissions.IsAuthenticated',
-    #     )
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }
+
+# OAUTH2_PROVIDER = {
+#     # this is the list of available scopes
+#     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+# }
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+    'SCOPES': {
+        'superuser': 'access by superuser',
+        'staff': 'access by staff',
+    }
 }
 
 # Password validation
@@ -151,7 +157,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -163,44 +168,42 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_ROOT = 'static/'
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers' : False,
+    'disable_existing_loggers': False,
     'loggers': {
         'django': {
-            'handlers':['file'],
-            'level':'INFO'
+            'handlers': ['file'],
+            'level': 'INFO'
         }
     },
-    'handlers':{
-        'file':{
-            'level':'INFO',
-            'class':'logging.FileHandler',
-            'filename':'./logs/debug.log',
-            'formatter':'simple',
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': './logs/debug.log',
+            'formatter': 'simple',
         }
     },
-    'formatters':{
+    'formatters': {
         'simple': {
-            'format':'{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style':'{',
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
         }
     }
 }
 
 # LOGIN_URL='/admin/login/'
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'

@@ -3,7 +3,7 @@ import datetime
 from datetime import date, timedelta
 from .models import Vendor, Order, OrderProduct, Employee
 
-from ..payments.models import Invoice
+from apps.payments.models import Invoice
 from utils.exceptionhandler import CustomException
 
 

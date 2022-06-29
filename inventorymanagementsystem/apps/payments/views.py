@@ -1,5 +1,5 @@
 # from django.core.exceptions import ValidationError
-
+from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework import viewsets, generics
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -19,17 +19,23 @@ class InvoiceView(viewsets.ViewSet):
 
     serializer_class = InvoiceSerializer
     invoice_service = InvoiceService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Invoices"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
-            return invoices
+            elif self.request.user.user_role == "super_user":
+                invoices = Invoice.objects.order_by("id")
+                return invoices
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
+                return invoices
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -91,17 +97,23 @@ class PaymentView(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
     lookup_field = "payment_uid"
     payment_service = PaymentService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Payments"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            payments = Payment.objects.filter(organisation=organisation).order_by("id")
-            return payments
+            elif self.request.user.user_role == "super_user":
+                payments = Payment.objects.order_by("id")
+                return payments
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                payments = Payment.objects.filter(organisation=organisation).order_by("id")
+                return payments
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -136,21 +148,27 @@ class InvoicePaymentView(generics.ListAPIView):
     """Gives the view for the Payment using the invoice given"""
 
     serializer_class = PaymentSerializer
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Payments"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_id)
-            payments = Payment.objects.filter(organisation=organisation).order_by("id")
-            return payments
+            elif self.request.user.user_role == "super_user":
+                payments = Payment.objects.order_by("id")
+                return payments
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                payments = Payment.objects.filter(organisation=organisation).order_by("id")
+                return payments
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
-            raise CustomException(404, "Invalid Credentials")
+            raise CustomException(400, "Invalid Credentials")
 
     def get(self, request, *args, **kwargs):
         """Retrieves the payments for the Invoice id given"""
@@ -170,17 +188,23 @@ class InvoiceStatusView(generics.GenericAPIView):
     serializer_class = InvoiceSerializer
     lookup_field = "invoice_uid"
     invoice_service = InvoiceService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Invoices"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
-            return invoices
+            elif self.request.user.user_role == "super_user":
+                invoices = Invoice.objects.order_by("id")
+                return invoices
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
+                return invoices
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:

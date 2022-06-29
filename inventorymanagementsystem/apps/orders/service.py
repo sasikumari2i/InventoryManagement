@@ -7,8 +7,8 @@ from django.db.utils import IntegrityError
 
 from .serializers import OrderSerializer
 from .models import Order, OrderProduct, Vendor, Employee
-from ..products.models import Product, Inventory
-from ..payments.models import Invoice
+from apps.products.models import Product, Inventory
+from apps.payments.models import Invoice
 from utils.exceptionhandler import CustomException
 
 

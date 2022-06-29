@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import oauth2_provider
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.http import HttpResponse, HttpResponseNotFound
@@ -26,7 +27,7 @@ from rest_framework.documentation import include_docs_urls
 from utils.views import error_404, error_500
 # from drf_yasg.views import get_schema_view
 # from drf_yasg import openapi
-# from oauth2_provider.models import AbstractApplication
+# from oauth2_provider.urls import AbstractApplication
 # from rest_framework import permissions
 # from drf_yasg.views import get_schema_view
 # from drf_yasg import openapi
@@ -40,9 +41,11 @@ urlpatterns = [
     path("", include("apps.assets.urls")),
     path("", include("apps.orders.urls")),
     path("", include("apps.payments.urls")),
+    path("", include("users.urls")),
     path("api-auth/", include("rest_framework.urls")),
     # path('auth/', include('oauth2_provider.urls', namespace='oauth2_provider'))
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_login'))
+    # path('o/token/', oauth2_provider.urls, name='oauth2_login')
     # path('docs/', include_docs_urls(title='AssetManagement')),
     # path('schema', get_schema_view(
     #     title="Asset Management",

@@ -1,14 +1,12 @@
 from datetime import date
 from django.db import transaction
-from rest_framework.exceptions import NotFound, ValidationError
+from rest_framework.exceptions import NotFound
 import datetime
-from django.db.utils import IntegrityError
 # from django.core.exceptions import ValidationError
 
 from .models import Asset, RepairingStock
-from ..orders.models import Employee
-from .serializers import AssetSerializer
-from ..products.models import Product, Category, Inventory
+from apps.orders.models import Employee
+from ..products.models import Product, Inventory
 from utils.exceptionhandler import CustomException
 
 

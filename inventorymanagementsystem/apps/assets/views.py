@@ -1,3 +1,4 @@
+from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework.response import Response
 from rest_framework import viewsets, generics
 import logging
@@ -26,17 +27,23 @@ class AssetView(viewsets.ModelViewSet):
     serializer_class = AssetSerializer
     lookup_field = "asset_uid"
     asset_service = AssetService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Asset"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            assets = Asset.objects.filter(organisation_id=organisation).order_by("id")
-            return assets
+            elif self.request.user.user_role == "super_user":
+                assets = Asset.objects.order_by("id")
+                return assets
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                assets = Asset.objects.filter(organisation=organisation).order_by("id")
+                return assets
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -71,19 +78,23 @@ class RepairingStockView(viewsets.ModelViewSet):
     serializer_class = RepairingStockSerializer
     lookup_field = "repairing_stock_uid"
     repairing_stock_service = RepairingStockService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for Repairing Stock"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            repairing_stocks = RepairingStock.objects.filter(
-                organisation=organisation
-            ).order_by("id")
-            return repairing_stocks
+            elif self.request.user.user_role == "super_user":
+                repairing_stocks = RepairingStock.objects.order_by("id")
+                return repairing_stocks
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
+                return repairing_stocks
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -131,17 +142,23 @@ class CloseAssetView(generics.GenericAPIView):
     serializer_class = CloseAssetSerializer
     asset_service = AssetService()
     lookup_field = "asset_uid"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Asset"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            assets = Asset.objects.filter(organisation=organisation).order_by("id")
-            return assets
+            elif self.request.user.user_role == "super_user":
+                assets = Asset.objects.order_by("id")
+                return assets
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                assets = Asset.objects.filter(organisation=organisation).order_by("id")
+                return assets
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -164,19 +181,23 @@ class CloseRepairingStockView(generics.GenericAPIView):
     serializer_class = RepairingStockCreateSerializer
     repairing_stock_service = RepairingStockService()
     lookup_field = "repairing_stock_uid"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Repairing Stock"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            repairing_stocks = RepairingStock.objects.filter(
-                organisation=organisation
-            ).order_by("id")
-            return repairing_stocks
+            elif self.request.user.user_role == "super_user":
+                repairing_stocks = RepairingStock.objects.order_by("id")
+                return repairing_stocks
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
+                return repairing_stocks
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -200,17 +221,23 @@ class ProductAssetView(generics.ListAPIView):
 
     serializer_class = AssetSerializer
     lookup_field = "product"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Assets"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            assets = Asset.objects.filter(organisation=organisation).order_by("id")
-            return assets
+            elif self.request.user.user_role == "super_user":
+                assets = Asset.objects.order_by("id")
+                return assets
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                assets = Asset.objects.filter(organisation=organisation).order_by("id")
+                return assets
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -236,17 +263,23 @@ class EmployeeAssetView(generics.ListAPIView):
 
     serializer_class = AssetSerializer
     lookup_field = "employee"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Assets"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            assets = Asset.objects.filter(organisation=organisation).order_by("id")
-            return assets
+            elif self.request.user.user_role == "super_user":
+                assets = Asset.objects.order_by("id")
+                return assets
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                assets = Asset.objects.filter(organisation=organisation).order_by("id")
+                return assets
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -274,19 +307,23 @@ class ProductRepairingStockView(generics.ListAPIView):
 
     serializer_class = RepairingStockSerializer
     lookup_field = "product"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Repairing Stock"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            repairing_stocks = RepairingStock.objects.filter(
-                organisation=organisation
-            ).order_by("id")
-            return repairing_stocks
+            elif self.request.user.user_role == "super_user":
+                repairing_stocks = RepairingStock.objects.order_by("id")
+                return repairing_stocks
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
+                return repairing_stocks
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -315,19 +352,23 @@ class AssetRepairingStockView(generics.ListAPIView):
 
     serializer_class = RepairingStockSerializer
     lookup_field = "asset"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Repairing Stock"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            repairing_stocks = RepairingStock.objects.filter(
-                organisation=organisation
-            ).order_by("id")
-            return repairing_stocks
+            elif self.request.user.user_role == "super_user":
+                repairing_stocks = RepairingStock.objects.order_by("id")
+                return repairing_stocks
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
+                return repairing_stocks
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:

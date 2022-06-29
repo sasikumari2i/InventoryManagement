@@ -4,7 +4,7 @@ from safedelete.models import SOFT_DELETE_CASCADE
 from django.db import models
 from datetime import date, timedelta
 
-from ..products.models import Product
+from apps.products.models import Product
 from utils.constants import ValidationConstants
 from organisations.models import Organisation
 

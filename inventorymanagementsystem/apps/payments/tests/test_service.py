@@ -2,8 +2,8 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 from ..service import InvoiceService, PaymentService
 from organisations.models import Organisation
-from ..models import Invoice, Payment
-from ...orders.models import Vendor, OrderProduct, Order
+from ..models import Invoice
+from apps.orders import Vendor, OrderProduct, Order
 from ...products.models import Product, Category
 from utils.exceptionhandler import CustomException
 

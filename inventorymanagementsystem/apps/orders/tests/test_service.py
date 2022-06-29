@@ -5,8 +5,8 @@ from utils.exceptionhandler import CustomException
 from ..service import CustomerService, VendorService, OrderService
 from organisations.models import Organisation
 from ..models import Customer, Vendor, Order, OrderProduct
-from ...products.models import Product, Category
-from ...payments.models import Invoice
+from apps.products.models import Product, Category
+from apps.payments.models import Invoice
 
 
 class OrderServiceTest(TestCase):

@@ -5,7 +5,7 @@ from ..service import AssetService, RepairingStockService
 from organisations.models import Organisation
 from ..models import Asset, RepairingStock
 from ...products.models import Product, Category
-from ...orders.models import Customer
+from apps.orders import Customer
 
 
 class AssetServiceTest(TestCase):

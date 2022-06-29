@@ -1,12 +1,11 @@
 import uuid
 from django.db import models
-from datetime import date, timedelta
+from datetime import date
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 
-from ..products.models import Product, Inventory
-from ..orders.models import Employee
-from utils.constants import ValidationConstants
+from ..products.models import Inventory
+from apps.orders.models import Employee
 from organisations.models import Organisation
 
 

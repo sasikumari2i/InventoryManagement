@@ -1,3 +1,4 @@
+from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework.response import Response
 from rest_framework import viewsets, generics
 import logging
@@ -9,7 +10,7 @@ from django.http import Http404
 
 from organisations.models import Organisation
 from .models import Order, Employee, Vendor
-from ..products.models import Inventory
+from apps.products.models import Inventory
 from .service import OrderService, VendorService, EmployeeService
 from .serializers import (
     EmployeeSerializer,
@@ -28,17 +29,23 @@ class OrderView(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     lookup_field = "order_uid"
     order_service = OrderService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Orders"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            orders = Order.objects.filter(organisation=organisation).order_by("id")
-            return orders
+            elif self.request.user.user_role == "super_user":
+                orders = Order.objects.order_by("id")
+                return orders
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                orders = Order.objects.filter(organisation=organisation).order_by("id")
+                return orders
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -117,19 +124,23 @@ class EmployeeView(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
     lookup_field = "employee_uid"
     employee_service = EmployeeService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Employees"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            employees = Employee.objects.filter(organisation=organisation).order_by(
-                "id"
-            )
-            return employees
+            elif self.request.user.user_role == "super_user":
+                employees = Employee.objects.order_by("id")
+                return employees
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                employees = Employee.objects.filter(organisation=organisation).order_by("id")
+                return employees
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -166,7 +177,6 @@ class EmployeeView(viewsets.ModelViewSet):
         except ValidationError as exc:
             raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
 
-
     def destroy(self, request, *args, **kwargs):
         """Deletes the given employee"""
 
@@ -183,17 +193,23 @@ class VendorView(viewsets.ModelViewSet):
     serializer_class = VendorSerializer
     lookup_field = "vendor_uid"
     vendor_service = VendorService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
-        """Query Set for the getting Vendors"""
+        """Query Set for the getting Employees"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            vendors = Vendor.objects.filter(organisation=organisation).order_by("id")
-            return vendors
+            elif self.request.user.user_role == "super_user":
+                vendors = Vendor.objects.order_by("id")
+                return vendors
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                vendors = Vendor.objects.filter(organisation=organisation).order_by("id")
+                return vendors
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -211,7 +227,6 @@ class VendorView(viewsets.ModelViewSet):
             return Response(serialized.data)
         except ValidationError as exc:
             raise CustomException(404, list(exc.get_full_details().values())[0][0]['message'])
-
 
     def update(self, request, *args, **kwargs):
         """Updates vendor using given data"""
@@ -245,17 +260,23 @@ class DeliveryView(generics.GenericAPIView):
     serializer_class = DeliverySerializer
     lookup_field = "order_uid"
     order_service = OrderService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Orders"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            orders = Order.objects.filter(organisation=organisation).order_by("id")
-            return orders
+            elif self.request.user.user_role == "super_user":
+                orders = Order.objects.order_by("id")
+                return orders
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                orders = Order.objects.filter(organisation=organisation).order_by("id")
+                return orders
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -277,17 +298,23 @@ class VendorOrderView(generics.ListAPIView):
 
     serializer_class = OrderSerializer
     lookup_field = "vendors"
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query Set for the getting Vendors"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            orders = Order.objects.filter(organisation=organisation).order_by("id")
-            return orders
+            elif self.request.user.user_role == "super_user":
+                orders = Order.objects.order_by("id")
+                return orders
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                orders = Order.objects.filter(organisation=organisation).order_by("id")
+                return orders
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:

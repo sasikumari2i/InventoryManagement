@@ -1,11 +1,11 @@
 from django.http import Http404
+from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 from utils.exceptionhandler import CustomException
 from .models import Organisation
 from .serializers import OrganisationSerializer
-from rest_framework.permissions import IsAuthenticated
 
 
 class OrganisationView(viewsets.ModelViewSet):
@@ -14,10 +14,8 @@ class OrganisationView(viewsets.ModelViewSet):
     queryset = Organisation.objects.order_by("id")
     lookup_field = "organisation_uid"
     serializer_class = OrganisationSerializer
-    # permission_classes = [IsAuthenticated]
-
-    # def list(self,request, *args, **kwargs):
-    #     print(request.meta.USERNAME)
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['superuser']
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting

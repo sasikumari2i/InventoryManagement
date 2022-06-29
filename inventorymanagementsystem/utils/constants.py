@@ -1,5 +1,8 @@
 from django.core.validators import RegexValidator
 
+SCOPE_OF_SUPERUSER = 'superuser staff'
+SCOPE_OF_STAFF = 'staff'
+
 
 class ValidationConstants:
     """Regex Validator strings defined here"""

@@ -1,10 +1,10 @@
 from django.http import Http404
+from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework.response import Response
 from datetime import date
 from rest_framework import viewsets, generics
 from rest_framework.exceptions import NotFound, ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticated
 
 from organisations.models import Organisation
 from utils.exceptionhandler import CustomException
@@ -20,20 +20,23 @@ class CategoryView(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     lookup_field = "category_uid"
     category_service = CategoryService()
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query set for Category view from the request"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            categories = Category.objects.filter(organisation_id=organisation).order_by(
-                "id"
-            )
-            return categories
+            elif self.request.user.user_role == "super_user":
+                categories = Category.objects.order_by("id")
+                return categories
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                categories = Category.objects.filter(organisation=organisation).order_by("id")
+                return categories
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -86,17 +89,23 @@ class ProductView(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     lookup_field = "product_uid"
     product_service = ProductService()
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         """Query set for Product view from the request"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
-            if organisation_uid is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            products = Product.objects.filter(organisation=organisation).order_by("id")
-            return products
+            elif self.request.user.user_role == "super_user":
+                products = Product.objects.order_by("id")
+                return products
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                products = Product.objects.filter(organisation=organisation).order_by("id")
+                return products
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -154,15 +163,21 @@ class CategoryProductView(generics.ListAPIView):
     serializer_class = ProductSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ("organisation",)
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         try:
-            if self.request.query_params is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation_uid = self.request.query_params.get("organisation")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            products = Product.objects.filter(organisation=organisation).order_by("id")
-            return products
+            elif self.request.user.user_role == "super_user":
+                products = Product.objects.order_by("id")
+                return products
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                products = Product.objects.filter(organisation=organisation).order_by("id")
+                return products
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:
@@ -189,15 +204,21 @@ class InventoryView(generics.ListAPIView):
     serializer_class = InventorySerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ("organisation",)
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
+    required_scopes = ['staff']
 
     def get_queryset(self):
         try:
-            if self.request.query_params is None:
+            organisation_uid = self.request.user.organisation_id
+            if organisation_uid is None and self.request.user.user_role == "staff":
                 raise CustomException(400, "Credentials required")
-            organisation_uid = self.request.query_params.get("organisation")
-            organisation = Organisation.objects.get(organisation_uid=organisation_uid)
-            inventories = Inventory.objects.filter(organisation=organisation).order_by("id")
-            return inventories
+            elif self.request.user.user_role == "super_user":
+                inventories = Inventory.objects.order_by("id")
+                return inventories
+            else:
+                organisation = Organisation.objects.get(organisation_uid=organisation_uid)
+                inventories = Inventory.objects.filter(organisation=organisation).order_by("id")
+                return inventories
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
         except Organisation.DoesNotExist:

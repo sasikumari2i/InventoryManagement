@@ -6,7 +6,7 @@ from django.db import models
 from datetime import date, timedelta
 from organisations.models import Organisation
 from utils.constants import ValidationConstants
-from ..orders.models import Order
+from apps.orders.models import Order
 
 
 class Invoice(SafeDeleteModel):

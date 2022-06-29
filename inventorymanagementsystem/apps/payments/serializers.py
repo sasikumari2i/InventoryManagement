@@ -4,7 +4,7 @@ from datetime import date, timedelta
 
 from .models import Invoice, Payment
 from utils.exceptionhandler import CustomException
-from ..orders.serializers import (
+from apps.orders.serializers import (
     OrderInvoiceSerializer,
 )
 

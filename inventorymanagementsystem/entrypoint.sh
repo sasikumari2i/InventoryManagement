@@ -1,9 +1,9 @@
 #!/bin/sh
 
-python manage.py makemigrations --no-input
-python manage.py migrate --no-input
-python manage.py collectstatic --no-input
+python manage.py makemigrations
+python manage.py migrate
+python manage.py collectstatic
 
-gunicorn inventorymanagementsystem.wsgi:application --bind 0.0.0.0:8000
+gunicorn --timeout 60 --workers 4 inventorymanagementsystem.wsgi:application --bind 0.0.0.0:8000
 
 

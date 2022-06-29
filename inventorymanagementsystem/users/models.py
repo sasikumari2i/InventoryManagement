@@ -7,11 +7,12 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 # from oauth2_provider.models import AbstractApplication, Application
 
 # Create your models here.
+from organisations.models import Organisation
 
 
 class MyUserManager(BaseUserManager):
 
-    def create_user(self, name, phone_number, email, user_role, password=None):
+    def create_user(self, name, phone_no, email, user_role, password=None):
         """
         Creates and saves a User with the given email,and password.
         """
@@ -21,7 +22,7 @@ class MyUserManager(BaseUserManager):
         user = self.model(
             name=name,
             email=self.normalize_email(email),
-            phone_number=phone_number,
+            phone_no=phone_no,
             user_role=user_role)
         user.set_password(password)
         user.save(using=self._db)
@@ -34,12 +35,12 @@ class MyUserManager(BaseUserManager):
         application.save()
         return user
 
-    def create_superuser(self, name, phone_number, email, user_role, password=None):
+    def create_superuser(self, name, phone_no, email, user_role, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
-        user = self.create_user(name=name, phone_number=phone_number,
+        user = self.create_user(name=name, phone_no=phone_no,
                                 email=email, password=password, user_role=user_role)
         user.save(using=self._db)
         return user
@@ -54,11 +55,20 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=50, blank=True, null=True, unique=True)
     email = models.EmailField(unique=True)
     phone_no = models.CharField(max_length=10)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_by = models.IntegerField(default=None, null=True)
-    user_role = models.CharField(choices=ROLE_CHOICES, default="staff", max_length=15)
+    user_role = models.CharField(choices=ROLE_CHOICES,
+                                 default="staff",
+                                 max_length=15)
+    organisation = models.ForeignKey(
+        Organisation,
+        to_field="organisation_uid",
+        db_column="organisation_uid",
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     objects = MyUserManager()
 
