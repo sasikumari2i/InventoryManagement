@@ -27,13 +27,11 @@ class CategoryView(viewsets.ModelViewSet):
         """Query set for Category view from the request"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 categories = Category.objects.order_by("id")
                 return categories
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 categories = Category.objects.filter(organisation=organisation).order_by("id")
                 return categories
@@ -45,18 +43,22 @@ class CategoryView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         try:
+            created_by = request.user.user_uid
             validated_data = CategorySerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            organisation_uid = self.request.query_params.get("organisation")
+            organisation_uid = self.request.user.organisation_id
+            # organisation_uid = self.request.query_params.get("organisation")
             if organisation_uid is None:
-                raise CustomException(404, "Credentials Required")
+                raise CustomException(404, "Credentials required")
             new_category = self.category_service.create_category(
-                validated_data.data, organisation_uid
+                validated_data.data, organisation_uid, created_by
             )
             serialized = CategorySerializer(new_category)
             return Response(serialized.data)
         except CustomException as exc:
             raise CustomException(exc.status_code, exc.detail)
+        except Organisation.DoesNotExist:
+            raise CustomException(400, "Organisation not available")
 
     def update(self, request, *args, **kwargs):
         try:
@@ -96,13 +98,11 @@ class ProductView(viewsets.ModelViewSet):
         """Query set for Product view from the request"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 products = Product.objects.order_by("id")
                 return products
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 products = Product.objects.filter(organisation=organisation).order_by("id")
                 return products
@@ -113,13 +113,15 @@ class ProductView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
+            created_by = request.user.user_uid
             validated_data = ProductSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            organisation_uid = self.request.query_params.get("organisation", None)
+            organisation_uid = self.request.user.organisation_id
+            # organisation_uid = self.request.query_params.get("organisation", None)
             if organisation_uid is None:
                 raise CustomException(404, "Credentials Required")
             new_product = self.product_service.create_product(
-                validated_data.data, organisation_uid
+                validated_data.data, organisation_uid, created_by
             )
             serialized = ProductSerializer(new_product)
             return Response(serialized.data)
@@ -168,13 +170,11 @@ class CategoryProductView(generics.ListAPIView):
 
     def get_queryset(self):
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 products = Product.objects.order_by("id")
                 return products
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 products = Product.objects.filter(organisation=organisation).order_by("id")
                 return products
@@ -188,7 +188,8 @@ class CategoryProductView(generics.ListAPIView):
 
         try:
             category_uid = self.kwargs["category"]
-            organisation_id = self.request.query_params.get("organisation", None)
+            organisation_id = self.request.user.organisation_id
+            # organisation_id = self.request.query_params.get("organisation", None)
             products = Product.objects.filter(
                 category=category_uid, organisation_id=organisation_id
             )
@@ -209,13 +210,11 @@ class InventoryView(generics.ListAPIView):
 
     def get_queryset(self):
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 inventories = Inventory.objects.order_by("id")
                 return inventories
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 inventories = Inventory.objects.filter(organisation=organisation).order_by("id")
                 return inventories
@@ -229,7 +228,8 @@ class InventoryView(generics.ListAPIView):
 
         try:
             product_uid = self.kwargs["product"]
-            organisation_id = self.request.query_params.get("organisation", None)
+            organisation_id = self.request.user.organisation_id
+            # organisation_id = self.request.query_params.get("organisation", None)
             inventories = Inventory.objects.filter(
                 product=product_uid, organisation_id=organisation_id
             )

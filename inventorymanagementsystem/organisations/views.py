@@ -2,6 +2,7 @@ from django.http import Http404
 from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework import viewsets
 from rest_framework.response import Response
+from datetime import date
 
 from utils.exceptionhandler import CustomException
 from .models import Organisation
@@ -16,6 +17,16 @@ class OrganisationView(viewsets.ModelViewSet):
     serializer_class = OrganisationSerializer
     permission_classes = [IsAuthenticatedOrTokenHasScope]
     required_scopes = ['superuser']
+
+    def create(self, request, *args, **kwargs):
+        request.data['created_by'] = request.user.user_uid
+        response = super().create(request)
+        return response
+
+    def update(self, request, *args, **kwargs):
+        request.data['updated_date'] = date.today()
+        response = super().update(request)
+        return response
 
     def destroy(self, request, *args, **kwargs):
         """destroy method overrided from ModelViewSet class for deleting

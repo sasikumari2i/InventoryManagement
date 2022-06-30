@@ -16,6 +16,7 @@ class Vendor(SafeDeleteModel):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200, null=True)
     email = models.EmailField(null=True, unique=True)
+    created_by = models.UUIDField(default=None, null=True)
     phone_number = models.CharField(
         max_length=10,
         unique=True,
@@ -41,6 +42,7 @@ class Employee(SafeDeleteModel):
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
     address = models.CharField(max_length=400, null=True)
     email = models.EmailField(null=True, unique=True)
+    created_by = models.UUIDField(default=None, null=True)
     phone_number = models.CharField(
         max_length=10,
         unique=True,
@@ -66,6 +68,8 @@ class Order(SafeDeleteModel):
     order_date = models.DateField(default=date.today)
     delivery_date = models.DateField(default=(date.today() + timedelta(days=15)))
     delivery_status = models.BooleanField(default=False)
+    created_by = models.UUIDField(default=None, null=True)
+    received_by = models.UUIDField(default=None, null=True)
     vendors = models.ForeignKey(
         Vendor,
         to_field="vendor_uid",

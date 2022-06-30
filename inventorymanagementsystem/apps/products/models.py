@@ -14,6 +14,7 @@ class Category(SafeDeleteModel):
     category_uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100, validators=[ValidationConstants.NAME_REGEX])
     description = models.CharField(max_length=200, null=True)
+    created_by = models.UUIDField(default=None, null=True)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
     organisation = models.ForeignKey(
@@ -43,6 +44,7 @@ class Product(SafeDeleteModel):
         on_delete=models.CASCADE,
         null=True,
     )
+    created_by = models.UUIDField(default=None, null=True)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
     organisation = models.ForeignKey(
@@ -74,10 +76,11 @@ class Inventory(SafeDeleteModel):
     )
     inventory_uid = models.UUIDField(default=uuid.uuid4, editable=False,
                                      unique=True)
+    created_by = models.UUIDField(default=None, null=True)
     serial_no = models.CharField(max_length=100, unique=True)
     is_available = models.BooleanField(default=True)
     created_date = models.DateField(default=date.today)
-    updated_date =models.DateField(default=date.today)
+    updated_date = models.DateField(default=date.today)
 
     def __str__(self):
         return self.serial_no

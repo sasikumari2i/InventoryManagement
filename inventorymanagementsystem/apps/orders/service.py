@@ -17,7 +17,7 @@ class OrderService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, validated_data, order_products, organisation_uid):
+    def create(self, validated_data, order_products, created_by, organisation_uid):
         """Creates new order from the given data"""
 
         try:
@@ -28,14 +28,17 @@ class OrderService:
                 delivery_date=validated_data["delivery_date"],
                 vendors_id=validated_data["vendors"],
                 organisation_id=organisation_uid,
+                created_by=created_by,
+                received_by=created_by
             )
 
             for product in order_products:
                 product_details = products.get(product_uid=product["product"])
                 product_details.price = product["price"]
                 product_details.available_stock = (
-                    product_details.available_stock + product["quantity"]
+                        product_details.available_stock + product["quantity"]
                 )
+                product_details.updated_date = date.today()
                 product_details.save()
                 order_product_data = OrderProduct.objects.create(
                     order=new_order,
@@ -43,9 +46,10 @@ class OrderService:
                     quantity=product["quantity"],
                 )
                 inventory_list = self.create_inventory(product['inventory'],
-                                                    product_details.product_uid,
-                                                    product["quantity"],
-                                                    organisation_uid)
+                                                       product_details.product_uid,
+                                                       product["quantity"],
+                                                       organisation_uid,
+                                                       created_by)
                 inventories = Inventory.objects.bulk_create(inventory_list)
             invoice = self.create_invoice(new_order, organisation_uid)
             invoice.save()
@@ -61,7 +65,7 @@ class OrderService:
         except IntegrityError:
             raise CustomException(400, "Duplicate serial numbers")
 
-    def create_inventory(self, inventories,product_uid, quantity, organisation_uid):
+    def create_inventory(self, inventories, product_uid, quantity, organisation_uid, created_by):
         """Read employees.txt file as csv and convert
         into the list of employee dictionary
         """
@@ -71,7 +75,7 @@ class OrderService:
             products = list()
             # heading = list()
             line_count = 0
-            if not len(csv_list) == quantity+1:
+            if not len(csv_list) == quantity + 1:
                 raise CustomException(400, "Serial numbers not matching count of product")
             for row in csv_list:
                 if line_count == 0:
@@ -80,13 +84,13 @@ class OrderService:
                 else:
                     inventory = Inventory(serial_no=row[0],
                                           product_id=product_uid,
-                                          organisation_id=organisation_uid)
+                                          organisation_id=organisation_uid,
+                                          created_by=created_by)
                     products.append(inventory)
 
             return products
         except IntegrityError:
             raise CustomException(400, "Duplicate serial numbers")
-
 
     # @transaction.atomic
     # def update(self, order_details, validated_data, order_products, organisation_uid):
@@ -181,7 +185,7 @@ class VendorService:
         get all vendors, update a vendor and delete vendor"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation_uid):
+    def create(self, validated_data, organisation_uid, created_by):
         """Creates new vendor from the given data"""
 
         try:
@@ -191,6 +195,7 @@ class VendorService:
                 email=validated_data["email"],
                 phone_number=validated_data["phone_number"],
                 organisation_id=organisation_uid,
+                created_by=created_by
             )
             return new_vendor
         except KeyError:
@@ -202,7 +207,7 @@ class EmployeeService:
             get all employees, update a employee and delete employee"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation_uid):
+    def create(self, validated_data, organisation_uid, created_by):
         """Creates new employee from the given data"""
 
         try:
@@ -212,6 +217,7 @@ class EmployeeService:
                 email=validated_data["email"],
                 phone_number=validated_data["phone_number"],
                 organisation_id=organisation_uid,
+                created_by=created_by
             )
             return new_employee
         except KeyError:

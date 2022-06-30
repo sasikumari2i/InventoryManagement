@@ -36,13 +36,11 @@ class OrderView(viewsets.ModelViewSet):
         """Query Set for the getting Orders"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 orders = Order.objects.order_by("id")
                 return orders
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 orders = Order.objects.filter(organisation=organisation).order_by("id")
                 return orders
@@ -67,13 +65,15 @@ class OrderView(viewsets.ModelViewSet):
         """Creates new order using given data"""
 
         try:
-            organisation_uid = self.request.query_params.get("organisation", None)
+            created_by = request.user.user_uid
+            organisation_uid = self.request.user.organisation_id
+            # organisation_uid = self.request.query_params.get("organisation", None)
             order_products = request.data["order_products"]
             # request.data.pop("order_products")
             validated_data = OrderSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_order = self.order_service.create(
-                validated_data.data, order_products, organisation_uid)
+                validated_data.data, order_products, created_by, organisation_uid)
             serialized = OrderSerializer(new_order)
             return Response(serialized.data)
         except Vendor.DoesNotExist:
@@ -131,13 +131,11 @@ class EmployeeView(viewsets.ModelViewSet):
         """Query Set for the getting Employees"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 employees = Employee.objects.order_by("id")
                 return employees
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 employees = Employee.objects.filter(organisation=organisation).order_by("id")
                 return employees
@@ -150,11 +148,13 @@ class EmployeeView(viewsets.ModelViewSet):
         """Creates new employee using given data"""
 
         try:
+            created_by = request.user.user_uid
             validated_data = EmployeeSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
+            # organisation = self.request.query_params.get("organisation", None)
             new_employee = self.employee_service.create(
-                validated_data.data, organisation
+                validated_data.data, organisation, created_by
             )
             serialized = EmployeeSerializer(new_employee)
             return Response(serialized.data)
@@ -200,13 +200,11 @@ class VendorView(viewsets.ModelViewSet):
         """Query Set for the getting Employees"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 vendors = Vendor.objects.order_by("id")
                 return vendors
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 vendors = Vendor.objects.filter(organisation=organisation).order_by("id")
                 return vendors
@@ -219,10 +217,12 @@ class VendorView(viewsets.ModelViewSet):
         """Creates new Vendor using given data"""
 
         try:
+            created_by = request.user.user_uid
             validated_data = VendorSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
-            organisation = self.request.query_params.get("organisation", None)
-            new_vendor = self.vendor_service.create(validated_data.data, organisation)
+            organisation = self.request.user.organisation_id
+            # organisation = self.request.query_params.get("organisation", None)
+            new_vendor = self.vendor_service.create(validated_data.data, organisation, created_by)
             serialized = VendorSerializer(new_vendor)
             return Response(serialized.data)
         except ValidationError as exc:
@@ -267,13 +267,11 @@ class DeliveryView(generics.GenericAPIView):
         """Query Set for the getting Orders"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 orders = Order.objects.order_by("id")
                 return orders
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 orders = Order.objects.filter(organisation=organisation).order_by("id")
                 return orders
@@ -305,13 +303,11 @@ class VendorOrderView(generics.ListAPIView):
         """Query Set for the getting Vendors"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 orders = Order.objects.order_by("id")
                 return orders
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 orders = Order.objects.filter(organisation=organisation).order_by("id")
                 return orders

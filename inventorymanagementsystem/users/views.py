@@ -20,7 +20,7 @@ from .service import UserService
 def login_user(request):
     user = authenticate(username=request.data['username'], password=request.data['password'])
 
-    if user:
+    if user.is_active:
         app_obj = Application.objects.filter(user=user)
         url = 'http://' + request.get_host() + '/o/token/'
         data_dict = {
@@ -38,11 +38,12 @@ def login_user(request):
 
 
 def give_scopes_based_on_user_role(user):
-    scope = None
-    if user.is_active and user.user_role == "super_user":
+    scope = SCOPE_OF_STAFF
+    if user.is_superuser:
         scope = SCOPE_OF_SUPERUSER
-    elif user.is_active and user.user_role == "staff":
-        scope = SCOPE_OF_STAFF
+    # else:
+    #     # scope = SCOPE_OF_STAFF
+    #     scope = None
     return scope
 
 
@@ -58,9 +59,10 @@ class UserView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         try:
+            created_by = request.user.user_uid
             user = UserSerializer(data=request.data)
             user.is_valid(raise_exception=True)
-            new_user = self.user_service.create(user, request.data['password'])
+            new_user = self.user_service.create(user, created_by, request.data['password'])
             serialized = UserSerializer(new_user)
             return Response(serialized.data)
         except CustomException as exc:

@@ -15,7 +15,7 @@ class AssetService:
     update asset details"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation_uid):
+    def create(self, validated_data, organisation_uid, created_by):
         """Creates new Asset from the given data"""
 
         try:
@@ -45,10 +45,12 @@ class AssetService:
                 inventory_id=inventory.inventory_uid,
                 employee_id=validated_data["employee"],
                 organisation_id=organisation_uid,
+                created_by=created_by
             )
             product = Product.objects.get(product_uid=validated_data["product"],
                                           organisation_id=organisation_uid)
             product.available_stock -= 1
+            product.updated_date = date.today()
             inventory.is_available = False
             inventory.updated_date = date.today()
             product.save()
@@ -74,7 +76,7 @@ class AssetService:
                 employee_uid=request["employee"], organisation_id=instance.organisation
             )
             product = Product.objects.get(product_uid=request["product"],
-                                         organisation_id=instance.organisation)
+                                          organisation_id=instance.organisation)
             inventory = Inventory.objects.get(
                 product_id=request["product"],
                 serial_no=request["serial_no"],
@@ -84,11 +86,11 @@ class AssetService:
             instance.updated_date = date.today()
             if inventory.inventory_uid != instance.inventory_id:
                 old_inventory = Inventory.objects.get(inventory_uid=instance.inventory_id)
-                old_inventory.is_available= True
+                old_inventory.is_available = True
                 old_inventory.updated_date = date.today()
                 old_inventory.save()
                 inventory.is_available = False
-                instance.inventory_id=inventory.inventory_uid
+                instance.inventory_id = inventory.inventory_uid
             inventory.updated_date = date.today()
             inventory.save()
             instance.save()
@@ -103,7 +105,7 @@ class AssetService:
             raise CustomException(400, "Product and Employee is mandatory for updating")
 
     @transaction.atomic()
-    def close_asset(self, asset_details, data):
+    def close_asset(self, asset_details, data, received_by):
         """Update Asset status to False"""
 
         try:
@@ -114,7 +116,6 @@ class AssetService:
             elif is_active:
                 asset_details.is_active = False
                 asset_details.updated_date = date.today()
-
                 try:
                     returned_date = datetime.datetime.strptime(
                         data["return_date"], "%Y-%m-%d"
@@ -127,6 +128,7 @@ class AssetService:
                     data["return_date"] = datetime.datetime.today()
 
                 asset_details.return_date = data["return_date"]
+                asset_details.received_by = received_by
                 asset_details.save()
                 response = {"message": "Assigned asset is closed"}
             return response
@@ -141,7 +143,7 @@ class RepairingStockService:
         update repairing stock details"""
 
     @transaction.atomic()
-    def create(self, validated_data, organisation_uid):
+    def create(self, validated_data, organisation_uid, created_by):
         """Creates new Repairing Stock for the given Asset"""
 
         try:
@@ -164,13 +166,13 @@ class RepairingStockService:
             new_repairing_stock = RepairingStock.objects.create(
                 asset_id=validated_data["asset"],
                 organisation_id=organisation_uid,
+                created_by=created_by
             )
             return new_repairing_stock
         except KeyError as exc:
             raise CustomException(400, "Exception in Repairing Stock Service")
         except Asset.DoesNotExist:
             raise CustomException(400, "Invalid Asset")
-
 
     # def update(self, instance, request):
     #     """Updates Repairing Asset for the given data"""
@@ -191,7 +193,7 @@ class RepairingStockService:
     #         raise CustomException(404, "Invalid Asset")
 
     @transaction.atomic()
-    def close_repairing_stock(self, repairing_stock_details, data):
+    def close_repairing_stock(self, repairing_stock_details, data, received_by):
         """Update Reparing status to False and reflects to the product accordingly"""
 
         try:
@@ -213,6 +215,7 @@ class RepairingStockService:
                     data["closed_date"] = datetime.datetime.today()
 
                 repairing_stock_details.closed_date = data["closed_date"]
+                repairing_stock_details.received_by = received_by
                 repairing_stock_details.save()
                 asset = Asset.objects.get(asset_uid=repairing_stock_details.asset_id)
                 inventory = Inventory.objects.get(inventory_uid=asset.inventory_id)

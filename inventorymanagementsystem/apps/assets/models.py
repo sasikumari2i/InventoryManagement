@@ -27,6 +27,8 @@ class Asset(SafeDeleteModel):
         to_field="employee_uid",
         db_column="employee_uid",
     )
+    created_by = models.UUIDField(default=None, null=True)
+    received_by = models.UUIDField(default=None, null=True)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
     is_active = models.BooleanField(default=True, null=False)
@@ -55,6 +57,8 @@ class RepairingStock(SafeDeleteModel):
         to_field="asset_uid",
         db_column="asset_uid"
     )
+    created_by = models.UUIDField(default=None, null=True)
+    received_by = models.UUIDField(default=None, null=True)
     created_date = models.DateField(default=date.today)
     updated_date = models.DateField(default=date.today)
     closed_date = models.DateField(default=None, null=True)

@@ -16,6 +16,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
             "address",
             "email",
             "phone_number",
+            "created_by"
             # "created_date",
             # "updated_date",
         )
@@ -60,6 +61,8 @@ class OrderSerializer(serializers.ModelSerializer):
             "vendors",
             "order_products",
             "invoices",
+            "created_by",
+            "received_by"
         )
 
     def validate(self, data):
@@ -94,6 +97,7 @@ class VendorSerializer(serializers.ModelSerializer):
             "address",
             "email",
             "phone_number",
+            "created_by"
             # "created_date",
             # "updated_date",
         )

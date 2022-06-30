@@ -2,20 +2,21 @@ from rest_framework import serializers
 
 from .models import Asset, RepairingStock
 from ..products.serializers import InventorySerializer
-from django.core.exceptions import ValidationError
-from utils.exceptionhandler import CustomException
+
 
 class AssetSerializer(serializers.ModelSerializer):
 
     inventory = InventorySerializer()
+
     class Meta:
         model = Asset
-        fields = ("asset_uid", "inventory", "employee", "is_active")
+        fields = ("asset_uid", "inventory", "employee", "is_active", "created_by", "received_by")
 
 
 class RepairingStockSerializer(serializers.ModelSerializer):
 
     asset = AssetSerializer()
+
     class Meta:
         model = RepairingStock
         fields = (
@@ -23,6 +24,8 @@ class RepairingStockSerializer(serializers.ModelSerializer):
             "asset",
             "closed_date",
             "is_active",
+            "created_by",
+            "received_by"
         )
 
 
@@ -32,7 +35,9 @@ class RepairingStockCreateSerializer(serializers.ModelSerializer):
         model = RepairingStock
         fields = ("asset",)
 
+
 class CloseAssetSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = RepairingStock
         fields = ("asset",)

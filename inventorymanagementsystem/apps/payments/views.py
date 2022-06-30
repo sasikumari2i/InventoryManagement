@@ -26,13 +26,11 @@ class InvoiceView(viewsets.ViewSet):
         """Query Set for the getting Invoices"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 invoices = Invoice.objects.order_by("id")
                 return invoices
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
                 return invoices
@@ -45,12 +43,13 @@ class InvoiceView(viewsets.ViewSet):
         """Creates new invoice, overrided from ModelViewSet class"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            organisation_id = self.request.user.organisation_id
             order_id = request.data["order"]
             validated_data = InvoiceSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_invoice = self.invoice_service.create(
-                validated_data.data, order_id, organisation
+                validated_data.data, order_id, organisation_id
             )
             serialized = InvoiceSerializer(new_invoice)
             return Response(serialized.data)
@@ -61,7 +60,8 @@ class InvoiceView(viewsets.ViewSet):
         """Retrieve the invoice using the given Id"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
             invoice = self.invoice_service.retrieve(pk, organisation)
             serialized = InvoiceSerializer(invoice)
             return Response(serialized.data)
@@ -72,7 +72,8 @@ class InvoiceView(viewsets.ViewSet):
         """List all the invoices of the organisation"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
             invoice = Invoice.objects.filter(organisation_id=organisation)
             serialized = InvoiceSerializer(invoice, many=True)
             return Response(serialized.data)
@@ -83,7 +84,8 @@ class InvoiceView(viewsets.ViewSet):
         """Soft Delete the invoice Id given"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
             invoice = Invoice.objects.get(invoice_uid=pk, organisation_id=organisation)
             invoice.delete()
             return Response({"message": "Invoice Deleted"})
@@ -104,13 +106,11 @@ class PaymentView(viewsets.ModelViewSet):
         """Query Set for the getting Payments"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 payments = Payment.objects.order_by("id")
                 return payments
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 payments = Payment.objects.filter(organisation=organisation).order_by("id")
                 return payments
@@ -123,7 +123,8 @@ class PaymentView(viewsets.ModelViewSet):
         """Creates new payment, overrided from ModelViewSet class"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
             invoice_uid = request.data["invoice"]
             validated_data = PaymentSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
@@ -155,13 +156,11 @@ class InvoicePaymentView(generics.ListAPIView):
         """Query Set for the getting Payments"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 payments = Payment.objects.order_by("id")
                 return payments
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 payments = Payment.objects.filter(organisation=organisation).order_by("id")
                 return payments
@@ -195,13 +194,11 @@ class InvoiceStatusView(generics.GenericAPIView):
         """Query Set for the getting Invoices"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 invoices = Invoice.objects.order_by("id")
                 return invoices
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 invoices = Invoice.objects.filter(organisation=organisation).order_by("id")
                 return invoices

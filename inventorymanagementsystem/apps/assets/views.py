@@ -34,13 +34,11 @@ class AssetView(viewsets.ModelViewSet):
         """Query Set for the getting Asset"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 assets = Asset.objects.order_by("id")
                 return assets
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 assets = Asset.objects.filter(organisation=organisation).order_by("id")
                 return assets
@@ -53,8 +51,10 @@ class AssetView(viewsets.ModelViewSet):
         """To create new Asset"""
 
         try:
-            organisation_uid = request.query_params.get("organisation")
-            new_asset = self.asset_service.create(request.data, organisation_uid)
+            created_by = request.user.user_uid
+            # organisation_uid = request.query_params.get("organisation")
+            organisation_uid = self.request.user.organisation_id
+            new_asset = self.asset_service.create(request.data, organisation_uid, created_by)
             serialized = AssetSerializer(new_asset)
             return Response(serialized.data)
         except Asset.DoesNotExist:
@@ -85,13 +85,11 @@ class RepairingStockView(viewsets.ModelViewSet):
         """Query Set for Repairing Stock"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 repairing_stocks = RepairingStock.objects.order_by("id")
                 return repairing_stocks
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
                 return repairing_stocks
@@ -104,11 +102,13 @@ class RepairingStockView(viewsets.ModelViewSet):
         """To create new Repairing Stock"""
 
         try:
-            organisation_uid = request.query_params.get("organisation")
+            created_by = request.user.user_uid
+            # organisation_uid = request.query_params.get("organisation")
+            organisation_uid = self.request.user.organisation_id
             validated_data = RepairingStockCreateSerializer(data=request.data)
             validated_data.is_valid(raise_exception=True)
             new_repairing_stock = self.repairing_stock_service.create(
-                validated_data.data, organisation_uid
+                validated_data.data, organisation_uid, created_by
             )
             serialized = RepairingStockSerializer(new_repairing_stock)
             return Response(serialized.data)
@@ -149,13 +149,11 @@ class CloseAssetView(generics.GenericAPIView):
         """Query Set for the getting Asset"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 assets = Asset.objects.order_by("id")
                 return assets
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 assets = Asset.objects.filter(organisation=organisation).order_by("id")
                 return assets
@@ -168,8 +166,9 @@ class CloseAssetView(generics.GenericAPIView):
         """Updates Status for the Asset"""
 
         try:
+            received_by = request.user.user_uid
             asset_details = self.get_object()
-            response = self.asset_service.close_asset(asset_details, request.data)
+            response = self.asset_service.close_asset(asset_details, request.data, received_by)
             return Response(response)
         except Http404:
             raise CustomException(404, "Exception in Updating Asset Status")
@@ -188,13 +187,11 @@ class CloseRepairingStockView(generics.GenericAPIView):
         """Query Set for the getting Repairing Stock"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 repairing_stocks = RepairingStock.objects.order_by("id")
                 return repairing_stocks
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
                 return repairing_stocks
@@ -207,9 +204,10 @@ class CloseRepairingStockView(generics.GenericAPIView):
         """Updates Status for the Repairing Stock"""
 
         try:
+            received_by = request.user.user_uid
             repairing_stock_details = self.get_object()
             response = self.repairing_stock_service.close_repairing_stock(
-                repairing_stock_details, request.data
+                repairing_stock_details, request.data, received_by
             )
             return Response(response)
         except Http404:
@@ -228,13 +226,11 @@ class ProductAssetView(generics.ListAPIView):
         """Query Set for the getting Assets"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 assets = Asset.objects.order_by("id")
                 return assets
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 assets = Asset.objects.filter(organisation=organisation).order_by("id")
                 return assets
@@ -247,7 +243,8 @@ class ProductAssetView(generics.ListAPIView):
         """Retrieves the list of assets for the given product"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.user.organisation_id
             product_id = self.kwargs["product"]
             assets = Asset.objects.select_related('inventory').filter(inventory__product__product_uid=product_id)
             serialized = AssetSerializer(assets, many=True)
@@ -270,13 +267,11 @@ class EmployeeAssetView(generics.ListAPIView):
         """Query Set for the getting Assets"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 assets = Asset.objects.order_by("id")
                 return assets
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 assets = Asset.objects.filter(organisation=organisation).order_by("id")
                 return assets
@@ -289,7 +284,8 @@ class EmployeeAssetView(generics.ListAPIView):
         """Retrieves the list of Assets for the given Employee"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
+            # organisation = self.request.query_params.get("organisation", None)
             employee_id = self.kwargs["employee"]
             assets = Asset.objects.filter(
                 employee=employee_id, organisation_id=organisation
@@ -314,13 +310,11 @@ class ProductRepairingStockView(generics.ListAPIView):
         """Query Set for the getting Repairing Stock"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 repairing_stocks = RepairingStock.objects.order_by("id")
                 return repairing_stocks
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
                 return repairing_stocks
@@ -334,7 +328,8 @@ class ProductRepairingStockView(generics.ListAPIView):
            for the given product"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.query_params.get("organisation", None)
+            # organisation = self.request.user.organisation_id
             product_id = self.kwargs["product"]
             repairing_stocks = RepairingStock.objects.select_related(
                 'asset').filter(asset__inventory__product__product_uid=product_id
@@ -359,13 +354,11 @@ class AssetRepairingStockView(generics.ListAPIView):
         """Query Set for the getting Repairing Stock"""
 
         try:
-            organisation_uid = self.request.user.organisation_id
-            if organisation_uid is None and self.request.user.user_role == "staff":
-                raise CustomException(400, "Credentials required")
-            elif self.request.user.user_role == "super_user":
+            if self.request.user.is_superuser:
                 repairing_stocks = RepairingStock.objects.order_by("id")
                 return repairing_stocks
             else:
+                organisation_uid = self.request.user.organisation_id
                 organisation = Organisation.objects.get(organisation_uid=organisation_uid)
                 repairing_stocks = RepairingStock.objects.filter(organisation=organisation).order_by("id")
                 return repairing_stocks
@@ -379,7 +372,8 @@ class AssetRepairingStockView(generics.ListAPIView):
            for the given asset"""
 
         try:
-            organisation = self.request.query_params.get("organisation", None)
+            organisation = self.request.user.organisation_id
+            # organisation = self.request.query_params.get("organisation", None)
             asset_id = self.kwargs["asset"]
             repairing_stocks = RepairingStock.objects.filter(
                 asset=asset_id, organisation_id=organisation

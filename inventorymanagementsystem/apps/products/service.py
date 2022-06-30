@@ -11,7 +11,7 @@ class CategoryService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create_category(self, validated_data, organisation_uid):
+    def create_category(self, validated_data, organisation_uid, created_by):
         """Creates new order from the given data"""
 
         try:
@@ -19,6 +19,7 @@ class CategoryService:
                 name=validated_data["name"],
                 description=validated_data["description"],
                 organisation_id=organisation_uid,
+                created_by=created_by
             )
             return new_category
         except KeyError:
@@ -31,7 +32,7 @@ class CategoryService:
 
 class ProductService:
     @transaction.atomic()
-    def create_product(self, validated_data, organisation):
+    def create_product(self, validated_data, organisation, created_by):
         """Creates new order from the given data"""
         try:
             category = Category.objects.get(
@@ -42,9 +43,12 @@ class ProductService:
                 description=validated_data["description"],
                 category_id=validated_data["category"],
                 organisation_id=organisation,
+                created_by=created_by
             )
             return new_product
         except KeyError:
             raise CustomException(400, "Invalid details")
         except ValidationError:
             raise CustomException(400, "Invalid details")
+        except Category.DoesNotExist:
+            raise CustomException(404, "Invalid Category")

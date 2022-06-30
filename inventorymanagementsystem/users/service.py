@@ -12,7 +12,7 @@ class UserService:
     get all orders, update an order and delete order"""
 
     @transaction.atomic()
-    def create(self, user, password):
+    def create(self, user, created_by, password):
         """Creates new order from the given data"""
 
         try:
@@ -20,10 +20,7 @@ class UserService:
                 name=user.data['name'],
                 email=user.data['email'],
                 phone_no=user.data['phone_no'],
-                is_staff=user.data['is_staff'],
-                is_admin=user.data['is_admin'],
-                created_by=user.data['created_by'],
-                user_role=user.data['user_role'],
+                created_by=created_by,
                 organisation_id=user.data['organisation']
             )
             new_user.set_password(password)
