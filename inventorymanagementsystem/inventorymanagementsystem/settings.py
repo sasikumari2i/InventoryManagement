@@ -90,27 +90,27 @@ WSGI_APPLICATION = 'inventorymanagementsystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'inventory_dev',
-#         'USER': 'root',
-#         'PASSWORD': '1234',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['MYSQL_NAME'],
-        'USER': os.environ['MYSQL_USER'],
-        'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': os.environ['DB_PORT'],
+        'NAME': 'inv',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ['MYSQL_NAME'],
+#         'USER': os.environ['MYSQL_USER'],
+#         'PASSWORD': os.environ['MYSQL_PASSWORD'],
+#         'HOST': os.environ['DB_HOST'],
+#         'PORT': os.environ['DB_PORT'],
+#     }
+# }
 
 
 REST_FRAMEWORK = {
@@ -174,30 +174,30 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers' : False,
-    'loggers': {
-        'django': {
-            'handlers':['file'],
-            'level':'INFO'
-        }
-    },
-    'handlers':{
-        'file':{
-            'level':'INFO',
-            'class':'logging.FileHandler',
-            'filename':'./logs/debug.log',
-            'formatter':'simple',
-        }
-    },
-    'formatters':{
-        'simple': {
-            'format':'{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style':'{',
-        }
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers' : False,
+#     'loggers': {
+#         'django': {
+#             'handlers':['file'],
+#             'level':'INFO'
+#         }
+#     },
+#     'handlers':{
+#         'file':{
+#             'level':'INFO',
+#             'class':'logging.FileHandler',
+#             'filename':'./logs/debug.log',
+#             'formatter':'simple',
+#         }
+#     },
+#     'formatters':{
+#         'simple': {
+#             'format':'{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#             'style':'{',
+#         }
+#     }
+# }
 
 # LOGIN_URL='/admin/login/'
 
