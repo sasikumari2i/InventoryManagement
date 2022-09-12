@@ -35,9 +35,9 @@ from utils.views import error_404, error_500
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("organisations.urls")),
-    path("", include("apps.products.urls")),
     path("", include("apps.assets.urls")),
+    path("", include("apps.products.urls")),
+    path("organisation/", include("organisations.urls")),
     path("", include("apps.orders.urls")),
     path("", include("apps.payments.urls")),
     path("api-auth/", include("rest_framework.urls")),
